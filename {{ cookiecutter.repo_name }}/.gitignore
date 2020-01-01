@@ -1,3 +1,16 @@
+# exclude data from source control by default\
+# but maintain hierarchy for project cloning
+data/**
+!data/**/
+!data/**/.gitkeep
+
+# exclude data from source control by default\
+# but maintain hierarchy for project cloning
+**/third-party/**
+!**/third-party/**/
+!**/third-party/**/.gitkeep
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -74,12 +87,6 @@ target/
 
 # Jupyter NB Checkpoints
 .ipynb_checkpoints/
-
-# exclude data from source control by default\
-# but maintain hierarchy for project cloning
-data/**
-!data/**/
-!data/**/.gitkeep
 
 # Mac OS-specific storage files
 .DS_Store
