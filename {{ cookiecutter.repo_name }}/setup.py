@@ -76,8 +76,6 @@ setup(
             '{{ cookiecutter.command_line_interface_bin_name }} = {{ cookiecutter.package_name }}.cli:main',
         ]
     },
-{%- if cookiecutter.scm_versioning == 'yes' %}
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
-{%- endif %}
 )
