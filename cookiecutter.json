@@ -1,0 +1,31 @@
+{
+    "full_name": "Michael Sedelmeyer",
+    "email": "20605812+sedelmeyer@users.noreply.github.com",
+    "website": "https://www.sedelmeyer.net/",
+    "github_username": "sedelmeyer",
+    "project_name": "project_name",
+    "repo_name": "{{ cookiecutter.project_name|lower|replace(' ','-') }}",
+    "package_name": "{{ cookiecutter.project_name|lower|replace(' ','_')|replace('-','_') }}",
+    "distribution_name": "{{ cookiecutter.package_name|replace('_','-') }}",
+    "project_short_description": "A short description of the project.",
+    "release_date": "today",
+    "year_from": [
+        "2019",
+        "2018",
+        "2017"
+    ],
+    "year_to": "{% now 'utc', '%Y' %}",
+    "version": "0.0.0",
+    "scm_versioning": ["yes"],
+    "license": ["MIT license", "BSD 2-Clause License", "BSD 3-Clause License", "ISC license", "Apache Software License 2.0"],
+    "test_runner": ["pytest"],
+    "linter": ["flake8"],
+    "command_line_interface": ["argparse", "plain", "click", "no"],
+    "command_line_interface_bin_name": "{{ cookiecutter.distribution_name }}",
+    "sphinx_docs": ["yes", "no"],
+    "sphinx_theme": ["sphinx-rtd-theme", "sphinx-py3doc-enhanced-theme"],
+    "sphinx_doctest": ["no", "yes"],
+    "travis": ["yes", "no"],
+
+    "_extensions": ["jinja2_time.TimeExtension"]
+}
