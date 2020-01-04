@@ -22,9 +22,6 @@
     "linter": ["flake8"],
     "command_line_interface": ["argparse", "plain", "click", "no"],
     "command_line_interface_bin_name": "{{ cookiecutter.distribution_name }}",
-    "sphinx_docs": ["yes", "no"],
-    "sphinx_theme": ["sphinx-rtd-theme", "sphinx-py3doc-enhanced-theme"],
-    "sphinx_doctest": ["no", "yes"],
     "travis": ["yes", "no"],
 
     "_extensions": ["jinja2_time.TimeExtension"]

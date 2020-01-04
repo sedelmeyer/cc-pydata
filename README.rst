@@ -203,31 +203,6 @@ You will be asked for these fields:
             "project-name"
       - Name of the CLI bin/executable file (set the console script name in ``setup.py``).
 
-    * - ``sphinx_docs``
-      - .. code:: python
-
-            "yes"
-      - Have Sphinx documentation.
-
-    * - ``sphinx_theme``
-      - .. code:: python
-
-            "sphinx-rtd-theme"
-      - What Sphinx_ theme to use.
-
-        Suggested alternative: `sphinx-py3doc-enhanced-theme
-        <https://pypi.org/project/sphinx_py3doc_enhanced_theme>`_ for a responsive theme based on
-        the Python 3 documentation.
-
-    * - ``sphinx_doctest``
-      - .. code:: python
-
-            "no"
-      - Set to ``"yes"`` if you want to enable doctesting in the `docs` environment. Works best with
-        ``test_matrix_separate_coverage == 'no'``.
-
-        Read more about `doctest support in Sphinx <http://www.sphinx-doc.org/en/stable/ext/doctest.html>`_.
-
     * - ``travis``
       - .. code:: python
 
