@@ -57,7 +57,182 @@ TODO
 Getting started
 ---------------
 
-TODO
+First generate your project::
+
+  cookiecutter gh:sedelmeyer/cookiecutter-pydata
+
+You will be asked for these fields:
+
+.. note:: Fields that work together usually use the same prefix. If you answer "no" on the first one then the rest
+   won't have any effect so just ignore them. Maybe in the future cookiecutter will allow option hiding or something
+   like a wizard.
+
+.. list-table::
+    :header-rows: 1
+
+    * - Field
+      - Default
+      - Description
+
+    * - ``full_name``
+      - .. code:: python
+
+            "Michael Sedelmeyer"
+      - Main author of this library or application (used in ``AUTHORS.rst`` and ``setup.py``).
+
+        Can be set in your ``~/.cookiecutterrc`` config file.
+
+    * - ``email``
+      - .. code:: python
+
+            "20605812+sedelmeyer@users.noreply.github.com"
+      - Contact email of the author (used in ``AUTHORS.rst`` and ``setup.py``).
+
+        Can be set in your ``~/.cookiecutterrc`` config file.
+
+    * - ``website``
+      - .. code:: python
+
+            "https://www.sedelmeyer.net"
+      - Website of the author (used in ``AUTHORS.rst``).
+
+        Can be set in your ``~/.cookiecutterrc`` config file.
+
+    * - ``github_username``
+      - .. code:: python
+
+            "sedelmeyer"
+      - GitHub user name of this project (used for GitHub link).
+
+        Can be set in your ``~/.cookiecutterrc`` config file.
+
+    * - ``project_name``
+      - .. code:: python
+
+            "project_name"
+      - Verbose project name, used in headings (docs, readme, etc).
+
+    * - ``repo_name``
+      - .. code:: python
+
+            "project-name"
+      - Repository name on GitHub (and project's root directory name).
+
+    * - ``package_name``
+      - .. code:: python
+
+            "project_name"
+      - Python package name (whatever you would import).
+
+    * - ``distribution_name``
+      - .. code:: python
+
+            "project-name"
+      - PyPI distribution name (what you would ``pip install``).
+
+    * - ``project_short_description``
+      - .. code:: python
+
+            "A short description of the project."
+      - One line description of the project (used in ``README.rst`` and ``setup.py``).
+
+    * - ``release_date``
+      - .. code:: python
+
+            "today"
+      - Release date of the project (ISO 8601 format) default to today (used in ``CHANGELOG.rst``).
+
+    * - ``year_from``
+      - .. code:: python
+
+            "2019"
+      - Copyright year (used in Sphinx ``conf.py``).
+
+    * - ``version``
+      - .. code:: python
+
+            "0.0.0"
+      - Release version (see ``.bumpversion.cfg`` and in Sphinx ``conf.py``).
+
+    * - ``scm_versioning``
+      - .. code:: python
+
+            "yes"
+      - Enables the use of `setuptools-scm <https://pypi.org/project/setuptools-scm/>`_.
+
+    * - ``license``
+      - .. code:: python
+
+            "MIT license"
+      - License to use. Available options:
+
+        * MIT license
+        * BSD 2-Clause license
+        * BSD 3-Clause license
+        * ISC license
+        * Apache Software License 2.0
+
+        What license to pick? https://choosealicense.com/
+
+    * - ``test_runner``
+      - .. code:: python
+
+            "pytest"
+      - Test runner to use. Currently only configured for ``pytest``.
+
+    * - ``linter``
+      - .. code:: python
+
+        "flake8"
+      - Linter to use for ``tox -e check``. Available options: ``flake8`` only
+
+    * - ``command_line_interface``
+      - .. code:: python
+
+            "argparse"
+      - Option to enable a CLI (a bin/executable file). Available options:
+
+        * ``plain`` - a very simple command.
+        * ``argparse`` - a command implemented with ``argparse``.
+        * ``click`` - a command implemented with `click <http://click.pocoo.org/>`_ - which you can use to build more complex commands.
+        * ``no`` - no CLI at all.
+
+    * - ``command_line_interface_bin_name``
+      - .. code:: python
+
+            "project-name"
+      - Name of the CLI bin/executable file (set the console script name in ``setup.py``).
+
+    * - ``sphinx_docs``
+      - .. code:: python
+
+            "yes"
+      - Have Sphinx documentation.
+
+    * - ``sphinx_theme``
+      - .. code:: python
+
+            "sphinx-rtd-theme"
+      - What Sphinx_ theme to use.
+
+        Suggested alternative: `sphinx-py3doc-enhanced-theme
+        <https://pypi.org/project/sphinx_py3doc_enhanced_theme>`_ for a responsive theme based on
+        the Python 3 documentation.
+
+    * - ``sphinx_doctest``
+      - .. code:: python
+
+            "no"
+      - Set to ``"yes"`` if you want to enable doctesting in the `docs` environment. Works best with
+        ``test_matrix_separate_coverage == 'no'``.
+
+        Read more about `doctest support in Sphinx <http://www.sphinx-doc.org/en/stable/ext/doctest.html>`_.
+
+    * - ``travis``
+      - .. code:: python
+
+            "yes"
+      - If you want the Travis-CI_ badge and configuration.
 
 Directory structure
 -------------------
@@ -89,6 +264,7 @@ TODO
 .. _Travis-CI: http://travis-ci.org/
 .. _Tox: https://tox.readthedocs.io/en/latest/
 .. _Sphinx: http://sphinx-doc.org/
+.. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 .. _setuptools_scm: https://github.com/pypa/setuptools_scm/
 .. _Pytest: http://pytest.org/
 .. _Pipenv: https://pipenv.readthedocs.io/en/latest/#
