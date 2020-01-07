@@ -8,13 +8,9 @@ Welcome to cookiecutter-pydata's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
+    readme
+    tutorial
+    changelog
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
