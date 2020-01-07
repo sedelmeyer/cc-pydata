@@ -34,6 +34,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.githubpages',
+    'sphinx.ext.graphviz',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -51,11 +52,30 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # a list of builtin themes.
 #
 html_theme = 'alabaster'
+# html_logo = '_static/logo.png'
+# html_favicon = '_static/favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+# html theme options for alabaster
+html_theme_options = {
+    # 'logo': 'logo.png',
+    'logo_name': 'true',
+    'github_user': 'sedelmeyer',
+    'github_repo': 'cookiecutter-pydata',
+    'fixed_sidebar': 'false',
+    'description': 'A Cookiecutter template for generating a '\
+            '"reasonably standardized" skeleton for a Python-based '\
+            'data science project.',
+    'badge_branch': 'master',
+    'github_banner': 'true',
+    'github_button': 'true',
+    'travis_button': 'false',
+    'show_powered_by': 'true',
+    'show_rebar_bottom': 'true'
+}
 
 # -- Extension configuration -------------------------------------------------
