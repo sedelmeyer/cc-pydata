@@ -1,2 +1,3 @@
 .vscode/
 {{ cookiecutter.repo_name }}/
+docs/_build/
