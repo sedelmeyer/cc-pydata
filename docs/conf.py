@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'cookiecutter-pydata'
+project = 'cc-pydata'
 copyright = '2020, Michael Sedelmeyer'
 author = 'Michael Sedelmeyer'
 
@@ -65,17 +65,17 @@ html_theme_options = {
     # 'logo': 'logo.png',
     'logo_name': 'true',
     'github_user': 'sedelmeyer',
-    'github_repo': 'cookiecutter-pydata',
+    'github_repo': 'cc-pydata',
     'fixed_sidebar': 'false',
-    'description': 'A Cookiecutter template for generating a '\
-            '"reasonably standardized" skeleton for a Python-based '\
-            'data science project.',
+    'description': 'Cookiecutter PyData is a template for generating a '\
+            '"reasonably standardized" skeleton for Python-based '\
+            'data science projects.',
     'badge_branch': 'master',
     'github_banner': 'true',
     'github_button': 'true',
     'travis_button': 'false',
     'show_powered_by': 'true',
-    'show_rebar_bottom': 'true'
+    'show_relbar_bottom': 'true'
 }
 
 # -- Extension configuration -------------------------------------------------
