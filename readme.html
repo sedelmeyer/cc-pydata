@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Cookiecutter PyData &#8212; cc-pydata v0.1.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial" href="tutorial.html" />
+    <link rel="prev" title="Welcome to Cookiecutter PyData’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="cookiecutter-pydata">
+<span id="readme"></span><h1>Cookiecutter PyData<a class="headerlink" href="#cookiecutter-pydata" title="Permalink to this headline">¶</a></h1>
+<p>Cookiecutter PyData is a <a class="reference external" href="https://github.com/audreyr/cookiecutter">Cookiecutter</a> template for generating a “reasonably standardized” skeleton for Python-based data science projects.</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#summary" id="id2">Summary</a></p></li>
+<li><p><a class="reference internal" href="#design-decisions" id="id3">Design decisions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#inspiration-and-sources" id="id4">Inspiration and sources</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#features" id="id5">Features</a></p></li>
+<li><p><a class="reference internal" href="#requirements" id="id6">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#getting-started" id="id7">Getting started</a></p></li>
+<li><p><a class="reference internal" href="#directory-structure" id="id8">Directory structure</a></p></li>
+<li><p><a class="reference internal" href="#other-resources" id="id9">Other resources</a></p></li>
+</ul>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This <a class="reference external" href="https://github.com/audreyr/cookiecutter">Cookiecutter</a> template allows for the creation of a “reasonably standardized”, but flexible project structure when starting a new Python-based data science project. The benefits of using such a structure and implementing it with Cookiecutter is that it:</p>
+<ul class="simple">
+<li><p>Takes the guesswork and low-value manual labor out of standing up a new data science project</p></li>
+<li><p>Allows you to get started right away on your data science work when stating a new project</p></li>
+<li><p>Creates a sense of consistency across your projects, making it easier for yourself and others to interpret and replicate your analyses and findings.</p></li>
+</ul>
+</div>
+<div class="section" id="design-decisions">
+<h2>Design decisions<a class="headerlink" href="#design-decisions" title="Permalink to this headline">¶</a></h2>
+<p><strong>This project is in no way complete.</strong> This template is being actively developed and will evolve as my work and my development skills evolve. While I have attempted to embed Python best practices and standards into the design of this template, best practices and standards change over time. What’s more, this template is designed to formalize the workflows (see <a class="reference internal" href="#getting-started">Getting started</a>) and leverage the tools (see <a class="reference internal" href="#features">Features</a>) that work best for me across a wide range of projects. If you choose to adopt this template for your own use, you may find these workflows and tools do not work for you without making some changes yourself. For that reason, please feel free to fork and modify your own version.</p>
+<div class="section" id="inspiration-and-sources">
+<h3>Inspiration and sources<a class="headerlink" href="#inspiration-and-sources" title="Permalink to this headline">¶</a></h3>
+<p>To begin this project, I took note of the workflows and design decisions I began repeating across a number of my projects, portions of which were heavily inspired by methods I had learned from others and from patterns codified by other great Cookiecutter templates.</p>
+<p>For this reason, this template takes inspiration and borrows heavily from these other fabulous Cookiecutter templates available on GitHub:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/drivendata/cookiecutter-data-science">drivendata/cookiecutter-data-science</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ionelmc/cookiecutter-pylibrary">ionelmc/cookiecutter-pylibrary</a></p></li>
+</ul>
+<p>For additional background on these other projects and to better understand the elements of both that appealed most to me, please read:</p>
+<ul class="simple">
+<li><p>Ionel’s packaging thoughts outlined in his posts on <a class="reference external" href="https://blog.ionelmc.ro/2014/05/25/python-packaging/">Packaging a python library</a> and <a class="reference external" href="https://blog.ionelmc.ro/2014/06/25/python-packaging-pitfalls/">Packaging pitfalls</a></p></li>
+<li><p>Driven Data’s fabulous write-up on <a class="reference external" href="https://drivendata.github.io/cookiecutter-data-science/">Cookiecutter Data Science</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://pytest.org/">Pytest</a> for testing Python &gt;=3.5</p></li>
+<li><p>Version configuration with <a class="reference external" href="https://github.com/pypa/setuptools_scm/">setuptools_scm</a></p></li>
+<li><p><a class="reference external" href="https://pipenv.readthedocs.io/en/latest/#">Pipenv</a> for package management and for generating a repeatable environment</p></li>
+<li><p><a class="reference external" href="http://travis-ci.org/">Travis-CI</a> for continuous testing.</p></li>
+<li><p>Packaging of modules, installed into your working environment as an editable library (i.e. <code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">.</span></code>) and easily imported into Jupyter notebooks with natural syntax such as <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">module_name</span> <span class="pre">import</span> <span class="pre">function_name</span></code></p></li>
+</ul>
+<p><em>TODO</em></p>
+<ul class="simple">
+<li><p>Perhaps add <a class="reference external" href="https://azure.microsoft.com/en-us/services/devops/pipelines/">Azure Pipelines</a> as a secondary CI option</p></li>
+<li><p><a class="reference external" href="https://tox.readthedocs.io/en/latest/">Tox</a> for managing test environments for Python &gt;=3.5</p></li>
+<li><p>Project documentation generated using <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> and <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">reStructuredText</a>, ready for hosting alongside your project on GitHub pages.</p></li>
+</ul>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>TODO</p>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>First generate your project:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cookiecutter</span> <span class="n">gh</span><span class="p">:</span><span class="n">sedelmeyer</span><span class="o">/</span><span class="n">cookiecutter</span><span class="o">-</span><span class="n">pydata</span>
+</pre></div>
+</div>
+<p>You will be asked for to enter these fields:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">full_name</span></code></p>
+<ul>
+<li><p>Main author of this library or application (used in <code class="docutils literal notranslate"><span class="pre">AUTHORS.rst</span></code> and <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>).</p></li>
+<li><p>Can be set in your <code class="docutils literal notranslate"><span class="pre">~/.cookiecutterrc</span></code> config file.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">email</span></code></p>
+<ul>
+<li><p>Contact email of the author (used in <code class="docutils literal notranslate"><span class="pre">AUTHORS.rst</span></code> and <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>).</p></li>
+<li><p>Can be set in your <code class="docutils literal notranslate"><span class="pre">~/.cookiecutterrc</span></code> config file.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">website</span></code></p>
+<ul>
+<li><p>Website of the author (used in <code class="docutils literal notranslate"><span class="pre">AUTHORS.rst</span></code>).</p></li>
+<li><p>Can be set in your <code class="docutils literal notranslate"><span class="pre">~/.cookiecutterrc</span></code> config file.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">github_username</span></code></p>
+<ul>
+<li><p>GitHub user name of this project (used for GitHub link).</p></li>
+<li><p>Can be set in your <code class="docutils literal notranslate"><span class="pre">~/.cookiecutterrc</span></code> config file.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">project_name</span></code></p>
+<ul>
+<li><p>Verbose project name, used in headings (docs, readme, etc).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">repo_name</span></code></p>
+<ul>
+<li><p>Repository name on GitHub (and project’s root directory name).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">package_name</span></code></p>
+<ul>
+<li><p>Python package name (whatever you would import).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">distribution_name</span></code></p>
+<ul>
+<li><p>PyPI distribution name (what you would <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code>).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">project_short_description</span></code></p>
+<ul>
+<li><p>One line description of the project (used in <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> and <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">release_date</span></code></p>
+<ul>
+<li><p>Release date of the project (ISO 8601 format) default to today (used in <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code>).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">year_from</span></code></p>
+<ul>
+<li><p>Copyright year (used in Sphinx <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">version</span></code></p>
+<ul>
+<li><p>Release version (see <code class="docutils literal notranslate"><span class="pre">.bumpversion.cfg</span></code> and in Sphinx <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scm_versioning</span></code></p>
+<ul>
+<li><p>Enables the use of <a class="reference external" href="https://pypi.org/project/setuptools-scm/">setuptools-scm</a>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">license</span></code></p>
+<ul>
+<li><p>License to use. Available options:</p>
+<ul>
+<li><p>MIT license</p></li>
+<li><p>BSD 2-Clause license</p></li>
+<li><p>BSD 3-Clause license</p></li>
+<li><p>ISC license</p></li>
+<li><p>Apache Software License 2.0</p></li>
+</ul>
+</li>
+<li><p>What license to pick? <a class="reference external" href="https://choosealicense.com/">https://choosealicense.com/</a></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_runner</span></code></p>
+<ul>
+<li><p>Test runner to use. Currently only configured for <code class="docutils literal notranslate"><span class="pre">pytest</span></code>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linter</span></code></p>
+<ul>
+<li><p>Available options: <code class="docutils literal notranslate"><span class="pre">flake8</span></code> only</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">command_line_interface</span></code></p>
+<ul>
+<li><p>Option to enable a CLI (a bin/executable file). Available options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">plain</span></code> - a very simple command.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">argparse</span></code> - a command implemented with <code class="docutils literal notranslate"><span class="pre">argparse</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">click</span></code> - a command implemented with <a class="reference external" href="http://click.pocoo.org/">click</a> * <code class="docutils literal notranslate"><span class="pre">no</span></code> - no CLI at all.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">command_line_interface_bin_name</span></code></p>
+<ul>
+<li><p>Name of the CLI bin/executable file (set the console script name in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">travis</span></code></p>
+<ul>
+<li><p>If you want the <a class="reference external" href="http://travis-ci.org/">Travis-CI</a> badge and configuration.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="directory-structure">
+<h2>Directory structure<a class="headerlink" href="#directory-structure" title="Permalink to this headline">¶</a></h2>
+<p>TODO</p>
+</div>
+<div class="section" id="other-resources">
+<h2>Other resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">¶</a></h2>
+<p>TODO</p>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="index.html" title="Previous document">Welcome to Cookiecutter PyData’s documentation!</a>
+        </li>
+        <li>
+          <a href="tutorial.html" title="Next document">Tutorial</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">cc-pydata</a></h1>
+
+
+
+<p class="blurb">Cookiecutter PyData is a template for generating a "reasonably standardized" skeleton for Python-based data science projects.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=sedelmeyer&repo=cc-pydata&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cookiecutter PyData</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#design-decisions">Design decisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#directory-structure">Directory structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-resources">Other resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Cookiecutter PyData’s documentation!</a></li>
+      <li>Next: <a href="tutorial.html" title="next chapter">Tutorial</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Michael Sedelmeyer.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/readme.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/sedelmeyer/cc-pydata" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
