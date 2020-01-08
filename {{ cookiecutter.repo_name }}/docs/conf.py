@@ -1,6 +1,6 @@
 # Configuration file for the Sphinx documentation builder.
 #
-# This file only contains a selection of the most common options. For a full
+# This file contains a selection of common options. For a full
 # list see the documentation:
 # http://www.sphinx-doc.org/en/master/config
 
@@ -67,6 +67,9 @@ html_theme = 'alabaster'
 # html_baseurl is configured for GitHub's docs hosting
 html_baseurl = 'https://{{ cookiecutter.github_username }}.github.io/'\
     '{{ cookiecutter.repo_name }}/'
+
+# uncomment to include auto-generated update data in html footer
+# html_last_updated_fmt = '%Y-%m-%d'
 
 # Uncomment if you add a site logo or favicon to the _static dir
 # html_logo = 'logo.png'
