@@ -59,11 +59,27 @@ TODO
 Getting started
 ---------------
 
+.. contents:: Contents
+  :local:
+  :backlinks: none
+
+1. Initiate the template using Cookiecutter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 First generate your project::
 
   cookiecutter gh:sedelmeyer/cookiecutter-pydata
 
-You will be asked for to enter these fields:
+Alternatively, if you have a local working copy of the ``cookiecutter-pydata`` project in which you've made customizations to the template, you can run::
+
+  cookiecutter <path-to-directory>/cookiecutter-pydata
+
+2. Complete template prompts required to generate template
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The below listed prompts will be presented on the commandline after generating your project (see Step 1 above). For each prompt, default values will be presented in brackets (i.e. ``full_name [Michael Sedelmeyer]:  ``).
+
+To modify defaults or customize these prompts, please see the ``cookiecutter.json`` file.
 
 * ``full_name``
   
@@ -156,6 +172,35 @@ You will be asked for to enter these fields:
 * ``travis``
   
   * If you want the Travis-CI_ badge and configuration.
+
+3. Initiate git version control
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The first thing you should do once your template has been generated is to ``cd`` into your new repository and initiate ``git``::
+
+  cd <newly-generate-directory>
+  git init
+
+This step will be required prior to inititating your Pipenv environment because ``setuptools-scm`` is used for versioning your newly generated package. If Git has not yet been initiated for your project, Pipenv install of your local package will fail in the next step below.
+
+4. Install your new Pipenv environment from the Pipfile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Once you have Git version control initiated (see Step 3 above), you can build your working Pipenv environment ::
+
+Via the Pipfile, your newly created local package is installed as an editable. For example, the line in the Pipfile that reads... ::
+
+  package_name = {editable = true,path = "."}
+
+...is equivalent to running this from the command line... ::
+
+  pipenv install -e .
+
+...which is similar to running the following command in plain old Pip if you were not working from a virtual environment ::
+
+  pip install -e .
+
+For a more complete overview of how to use Pipenv for package and dependencies management, please see the Pipenv_ project page.
 
 Directory structure
 -------------------
