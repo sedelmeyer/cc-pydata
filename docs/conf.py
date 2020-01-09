@@ -53,7 +53,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 html_theme = 'alabaster'
 # html_logo = '_static/logo.png'
-# html_favicon = '_static/favicon.ico'
+html_favicon = '_static/favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -62,8 +62,8 @@ html_static_path = ['_static']
 
 # html theme options for alabaster
 html_theme_options = {
-    # 'logo': 'logo.png',
-    'logo_name': 'true',
+    'logo': 'logo.png',
+    'logo_name': 'false',
     'github_user': 'sedelmeyer',
     'github_repo': 'cc-pydata',
     'fixed_sidebar': 'false',
