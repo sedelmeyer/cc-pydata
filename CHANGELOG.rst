@@ -1,12 +1,33 @@
 Changelog
 =========
 
+Future versions
+---------------
+
+.. todo::
+
+    * Add packaging and scm versioning to project (similar to cookiecutter-pypackage_)
+    * Add TravisCI to project
+    * Add Azure pipelines support to project
+    * Add tox_ and tests to project (perhaps using pystest-cookies_)
+    * Add tox to template
+    * Add doc tests to template and project
+    * Add gh-pages publishing script to project
+
+.. _cookiecutter-pypackage: https://github.com/audreyr/cookiecutter-pypackage
+.. _pytest-cookies: https://github.com/hackebrot/pytest-cookies
+.. _tox: https://tox.readthedocs.io/en/latest/
+
 v0.1.3 (2020-01-...
 -------------------
 
-* Add Sphinx and flake8 to template Pipfile (todo)
-* Add Sphinx documentation skeleton with Jinja fields to template (todo)
-* Add initial template README.rst
+.. todo::
+
+    * Add initial template README.rst to the template (todo)
+
+* Add Sphinx and flake8 to template Pipfile
+* Add Sphinx documentation skeleton with Jinja fields to template
+* Add initial content to the project tutorial
 
 v0.1.2 (2020-01-06)
 -------------------
