@@ -102,3 +102,9 @@ html_theme_options = {
 }
 
 # -- Extension configuration -------------------------------------------------
+
+napoleon_use_ivar = False
+napoleon_use_param = True
+napoleon_use_rtype = True
+
+todo_include_todos = True
