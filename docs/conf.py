@@ -22,7 +22,7 @@ copyright = '2020, Michael Sedelmeyer'
 author = 'Michael Sedelmeyer'
 
 # The full version, including alpha/beta/rc tags
-release = 'v0.1.2'
+release = 'v0.1.3'
 
 
 # -- General configuration ---------------------------------------------------
@@ -35,6 +35,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.githubpages',
     'sphinx.ext.graphviz',
+    'sphinx.ext.todo',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -52,6 +53,9 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # a list of builtin themes.
 #
 html_theme = 'alabaster'
+
+# If using alabaster theme and hiding 'logo_name', use the 'logo' setting
+# in html_theme_options, otherwise, uncomment html_logo to activate the logo
 # html_logo = '_static/logo.png'
 html_favicon = '_static/favicon.ico'
 
@@ -79,3 +83,5 @@ html_theme_options = {
 }
 
 # -- Extension configuration -------------------------------------------------
+
+todo_include_todos = True
