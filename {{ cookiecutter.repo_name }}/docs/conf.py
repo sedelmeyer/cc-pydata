@@ -24,8 +24,14 @@ year = '{% if cookiecutter.year_from == cookiecutter.year_to %}'\
 author = {{ '{0!r}'.format(cookiecutter.full_name) }}
 copyright = '{0}, {1}'.format(year, author)
 
-# The full version, including alpha/beta/rc tags
-version = release = {{ '{0!r}'.format(cookiecutter.version) }}
+# The full version, including alpha/beta/rc tags, updated
+# using setuptools_scm
+try:
+    from pkg_resources import get_distribution
+    version = release = get_distribution('{{ cookiecutter.package_name }}').version
+except Exception:
+    traceback.print_exc()
+    version = release = {{ '{0!r}'.format(cookiecutter.version) }}
 
 
 # -- General configuration ---------------------------------------------------
