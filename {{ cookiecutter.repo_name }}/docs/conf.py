@@ -77,7 +77,8 @@ html_baseurl = 'https://{{ cookiecutter.github_username }}.github.io/'\
 # uncomment to include auto-generated update data in html footer
 # html_last_updated_fmt = '%Y-%m-%d'
 
-# Uncomment if you add a site logo or favicon to the _static dir
+# If using alabaster theme and hiding 'logo_name', use the 'logo' setting
+# in html_theme_options, otherwise, uncomment html_logo to activate the logo
 # html_logo = 'logo.png'
 # html_favicon = 'favicon.ico'
 
