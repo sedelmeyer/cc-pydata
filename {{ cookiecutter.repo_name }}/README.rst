@@ -1,13 +1,22 @@
 {{ cookiecutter.project_name }}
 ===============================
 
+{{ cookiecutter.project_short_description }}
+
 .. image:: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.distribution_name }}.svg?branch=master
     :target: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.distribution_name }}
+
+.. contents:: Contents
+  :local:
+  :depth: 1
+  :backlinks: none
 
 Summary
 -------
 
-{{ cookiecutter.project_short_description }}
+.. todo::
+
+    * Add a brief summary of this project.
 
 Analysis and findings
 ---------------------
@@ -30,7 +39,7 @@ Replicating this analysis
 
 In order to replicate this analysis and run the Python code available in this analysis locally, follow these steps:
 
-.. contents:: Contents
+.. contents:: In this section
   :local:
   :backlinks: none
 
@@ -61,7 +70,7 @@ Adding to this project
 
 If you'd like to build off of this project to explore additional methods or to practice your own data science and development skills, below are some important notes regarding the configuration of this project.
 
-.. contents:: Contents
+.. contents:: In this section
   :local:
   :backlinks: none
 
