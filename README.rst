@@ -7,6 +7,9 @@ Cookiecutter PyData is a Cookiecutter_ template for generating a "reasonably sta
   :local:
   :backlinks: none
 
+.. image:: https://travis-ci.com/sedelmeyer/cc-pydata.svg?branch=master
+    :target: https://travis-ci.com/sedelmeyer/cc-pydata
+
 Summary
 -------
 
