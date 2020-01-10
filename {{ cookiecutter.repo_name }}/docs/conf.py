@@ -1,6 +1,6 @@
 # Configuration file for the Sphinx documentation builder.
 #
-# This file only contains a selection of the most common options. For a full
+# This file contains a selection of common options. For a full
 # list see the documentation:
 # http://www.sphinx-doc.org/en/master/config
 
@@ -9,20 +9,29 @@
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../src'))
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'cc-pydata'
-copyright = '2020, Michael Sedelmeyer'
-author = 'Michael Sedelmeyer'
+project = {{ '{0!r}'.format(cookiecutter.project_name) }}
+year = '{% if cookiecutter.year_from == cookiecutter.year_to %}'\
+    '{{ cookiecutter.year_from }}{% else %}{{ cookiecutter.year_from }}'\
+    '-{{ cookiecutter.year_to }}{% endif %}'
+author = {{ '{0!r}'.format(cookiecutter.full_name) }}
+copyright = '{0}, {1}'.format(year, author)
 
-# The full version, including alpha/beta/rc tags
-release = 'v0.1.3'
+# The full version, including alpha/beta/rc tags, updated
+# using setuptools_scm
+try:
+    from pkg_resources import get_distribution
+    version = release = get_distribution('{{ cookiecutter.package_name }}').version
+except Exception:
+    traceback.print_exc()
+    version = release = {{ '{0!r}'.format(cookiecutter.version) }}
 
 
 # -- General configuration ---------------------------------------------------
@@ -35,6 +44,8 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.githubpages',
     'sphinx.ext.graphviz',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.extlinks',
     'sphinx.ext.todo',
 ]
 
@@ -47,6 +58,11 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
+
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -54,10 +70,17 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 html_theme = 'alabaster'
 
+# html_baseurl is configured for GitHub's docs hosting
+html_baseurl = 'https://{{ cookiecutter.github_username }}.github.io/'\
+    '{{ cookiecutter.repo_name }}/'
+
+# uncomment to include auto-generated update data in html footer
+# html_last_updated_fmt = '%Y-%m-%d'
+
 # If using alabaster theme and hiding 'logo_name', use the 'logo' setting
 # in html_theme_options, otherwise, uncomment html_logo to activate the logo
-# html_logo = '_static/logo.png'
-html_favicon = '_static/favicon.ico'
+# html_logo = 'logo.png'
+# html_favicon = 'favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -66,14 +89,12 @@ html_static_path = ['_static']
 
 # html theme options for alabaster
 html_theme_options = {
-    'logo': 'logo.png',
-    'logo_name': 'false',
-    'github_user': 'sedelmeyer',
-    'github_repo': 'cc-pydata',
+    #'logo': 'logo.png',
+    'logo_name': 'true',
+    'github_user': '{{ cookiecutter.github_username }}',
+    'github_repo': '{{ cookiecutter.repo_name }}',
     'fixed_sidebar': 'false',
-    'description': 'Cookiecutter PyData is a template for generating '\
-            '"reasonably standardized" skeletons for Python-based '\
-            'data science projects.',
+    'description': '{{ cookiecutter.project_short_description }}',
     'badge_branch': 'master',
     'github_banner': 'true',
     'github_button': 'true',
@@ -81,12 +102,13 @@ html_theme_options = {
     'show_powered_by': 'true',
     'show_relbar_bottom': 'true',
     'extra_nav_links': {
-        'Find me online at sedelmeyer.net': 'https://www.sedelmeyer.net/',
-        'GitHub': 'https://github.com/sedelmeyer',
-        'LinkedIn': 'https://www.linkedin.com/in/sedelmeyer/'
     }
 }
 
 # -- Extension configuration -------------------------------------------------
+
+napoleon_use_ivar = False
+napoleon_use_param = True
+napoleon_use_rtype = True
 
 todo_include_todos = True
