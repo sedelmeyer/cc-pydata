@@ -1,14 +1,14 @@
 Cookiecutter PyData
 ===================
 
-Cookiecutter PyData is a Cookiecutter_ template for generating a "reasonably standardized" skeleton for Python-based data science projects.
+Cookiecutter PyData is a Cookiecutter_ template for generating "reasonably standardized" skeletons for Python-based data science projects.
+
+.. image:: https://travis-ci.com/sedelmeyer/cc-pydata.svg?branch=master
+    :target: https://travis-ci.com/sedelmeyer/cc-pydata
 
 .. contents:: Contents
   :local:
   :backlinks: none
-
-.. image:: https://travis-ci.com/sedelmeyer/cc-pydata.svg?branch=master
-    :target: https://travis-ci.com/sedelmeyer/cc-pydata
 
 Summary
 -------
@@ -22,7 +22,11 @@ This Cookiecutter_ template allows for the creation of a "reasonably standardize
 Design decisions
 ----------------
 
-**This project is in no way complete.** This template is being actively developed and will evolve as my work and my development skills evolve. While I have attempted to embed Python best practices and standards into the design of this template, best practices and standards change over time. What's more, this template is designed to formalize the workflows (see `Getting started`_) and leverage the tools (see `Features`_) that work best for me across a wide range of projects. If you choose to adopt this template for your own use, you may find these workflows and tools do not work for you without making some changes yourself. For that reason, please feel free to fork and modify your own version.
+.. note::
+
+    This project is in no way complete. This template is being actively developed and will evolve as my work and my development skills evolve.
+
+While I have attempted to embed Python best practices and standards into the design of this template, best practices and standards change over time. What's more, this template is designed to formalize the workflows (see `Getting started`_) and leverage the tools (see `Features`_) that work best for me across a wide range of projects. If you choose to adopt this template for your own use, you may find these workflows and tools do not work for you without making some changes yourself. For that reason, please feel free to fork and modify your own version.
 
 .. _sources:
 
