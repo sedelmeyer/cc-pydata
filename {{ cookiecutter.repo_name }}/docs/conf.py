@@ -89,6 +89,7 @@ html_static_path = ['_static']
 
 # html theme options for alabaster
 html_theme_options = {
+    #'logo': 'logo.png',
     'logo_name': 'true',
     'github_user': '{{ cookiecutter.github_username }}',
     'github_repo': '{{ cookiecutter.repo_name }}',
@@ -99,7 +100,9 @@ html_theme_options = {
     'github_button': 'true',
     'travis_button': 'true',
     'show_powered_by': 'true',
-    'show_relbar_bottom': 'true'
+    'show_relbar_bottom': 'true',
+    'extra_nav_links': {
+    }
 }
 
 # -- Extension configuration -------------------------------------------------
