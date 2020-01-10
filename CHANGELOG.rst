@@ -1,15 +1,16 @@
 Changelog
 =========
 
-Future versions
+Future releases
 ---------------
 
 .. todo::
 
+    * Improve template README.rst placeholder instructions for replicating and adding to the project
     * Add packaging and scm versioning to project (similar to cookiecutter-pypackage_)
     * Add TravisCI to project
     * Add Azure pipelines support to project
-    * Add tox_ and tests to project (perhaps using pystest-cookies_)
+    * Add tox_ and tests to project (perhaps using `pytest-cookies`_)
     * Add tox to template
     * Add doc tests to template and project
     * Add gh-pages publishing script to project
@@ -18,13 +19,10 @@ Future versions
 .. _pytest-cookies: https://github.com/hackebrot/pytest-cookies
 .. _tox: https://tox.readthedocs.io/en/latest/
 
-v0.1.3 (2020-01-...
+v0.1.3 (2020-01-10)
 -------------------
 
-.. todo::
-
-    * Add initial template README.rst to the template (todo)
-
+* Add initial template README.rst to the template
 * Add Sphinx and flake8 to template Pipfile
 * Add Sphinx documentation skeleton with Jinja fields to template
 * Add initial content to the project tutorial
