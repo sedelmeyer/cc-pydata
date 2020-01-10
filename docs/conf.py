@@ -79,7 +79,12 @@ html_theme_options = {
     'github_button': 'true',
     'travis_button': 'false',
     'show_powered_by': 'true',
-    'show_relbar_bottom': 'true'
+    'show_relbar_bottom': 'true',
+    'extra_nav_links': {
+        'Find me online at sedelmeyer.net': 'https://www.sedelmeyer.net/',
+        'GitHub': 'https://github.com/sedelmeyer',
+        'LinkedIn': 'https://www.linkedin.com/in/sedelmeyer/'
+    }
 }
 
 # -- Extension configuration -------------------------------------------------
