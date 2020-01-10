@@ -77,7 +77,7 @@ html_theme_options = {
     'badge_branch': 'master',
     'github_banner': 'true',
     'github_button': 'true',
-    'travis_button': 'false',
+    'travis_button': 'true',
     'show_powered_by': 'true',
     'show_relbar_bottom': 'true',
     'extra_nav_links': {
