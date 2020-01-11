@@ -8,7 +8,59 @@ This tutorial walks through the basic use of the Cookiecutter PyData template, a
 .. contents:: Tutorial Contents
   :local:
   :depth: 1
-  :backlinks: none
+  :backlinks: top
+
+.. _directory structure:
+
+Resulting directory structure
+-----------------------------
+
+When you generate a Cookiecutter PyData data science project from this template (see :ref:`getting started`), the resulting project will have the following directory structure::
+
+    PyData Project Directory
+    │
+    ├── LICENSE
+    ├── README.rst         <- The top-level README for developers using this project
+    ├── CHANGLOG.rst       <- Used to document version-by-version changes to the project
+    ├── Pipfile            <- Requirements file for reproducing the analysis environment
+    │                         using the Pipenv package manager (see pipenv.readthedocs.io)
+    ├── .env               <- Sets project-specific environmnt variables such as credentials
+    │                         that you do not want committed to Git history (see
+    │                         pipenv.readthedocs.io/en/latest/advanced/#automatic-loading-of-env)
+    ├── data               <- All data files related to the project. Files contained in this
+    │   |                     directory are ommitted from Git history via the .gitignore file
+    │   ├── raw            <- The original data file(s), this data should never be modified
+    │   ├── interim        <- Intermediate data that has been transformed
+    │   └── processed      <- The final data set(s) for modeling
+    │
+    ├── docs               <- A default Sphinx project for generating documentation
+    │   └── _static
+    │       └── figures    <- Generated graphics and figures to be used in Sphinx generated docs
+    ├── models             <- Trained and serialized models, model predictions, or model summaries
+    │
+    ├── notebooks          <- Jupyter notebooks, named using a number and descriptive title
+    │                         so sequential run order and purpose are explicit, e.g.
+    │                         `001-EDA-property-assessments`
+    │
+    ├── references         <- Data dictionaries, manuals, and all other explanatory materials
+    │   └── third-party    <- Third-party and copyrighted materials you do not want committed to
+    │                         Git history
+    │
+    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
+    │   └── figures        <- Generated graphics and figures to be used in reporting
+    │
+    ├── src                <- Source code for use in this project
+    │   └── <module_name>
+    │       ├── __init__.py    <- Makes src a Python module
+    │       ├── __main__.py    <- Scripts to download or generate data
+    │       └── cli.py         <-
+    │
+    ├── .gitignore         <- Specified files to exclude from Git history (as a default, `.env`,
+    │                         `./data/` files, and `*/third-party/` files are all excluded)
+    ├── .travis.yml        <- Configuration for TravisCI services (see travis-ci.com)
+    ├── setup.py           <- Setup script for the project using setuptools (see
+    │                         packaging.python.org/guides/distributing-packages-using-setuptools)
+    └── setup.cfg          <- contains option defaults for setup.py commands
 
 .. _getting started:
 
@@ -147,19 +199,19 @@ This step will be required prior to inititating your Pipenv environment because 
 4. Install your new Pipenv environment from the Pipfile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once you have Git version control initiated (see Step 3 above), you can build your working Pipenv environment::
+Once you have Git version control initiated (see Step 3 above), you can build your working Pipenv environment.
 
-Via the Pipfile, your newly created local package is installed as an editable. For example, the line in the Pipfile that reads...::
+Via the Pipfile, your newly created local package is installed as an editable. For example, the line in the Pipfile that reads::
 
   package_name = {editable = true,path = "."}
 
-...is equivalent to running this from the command line...::
+...is equivalent to running this from the command line::
 
-  pipenv install -e .
+    pipenv install -e .
 
 ...which is similar to running the following command in plain old Pip if you were not working from a virtual environment::
 
-  pip install -e .
+    pip install -e .
 
 For a more complete overview of how to use Pipenv for package and dependencies management, please see the Pipenv_ project page.
 
