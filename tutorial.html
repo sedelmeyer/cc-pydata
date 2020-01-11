@@ -40,14 +40,65 @@
 <div class="contents local topic" id="tutorial-contents">
 <p class="topic-title first">Tutorial Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#generating-a-new-template" id="id15">Generating a new template</a></p></li>
-<li><p><a class="reference internal" href="#packaging-characteristics-of-this-template" id="id16">Packaging characteristics of this template</a></p></li>
-<li><p><a class="reference internal" href="#documenting-your-project-using-sphinx-and-github-pages" id="id17">Documenting your project using Sphinx and GitHub Pages</a></p></li>
-<li><p><a class="reference internal" href="#test-configuration-and-continuous-integration-with-travisci" id="id18">Test configuration and continuous integration with TravisCI</a></p></li>
+<li><p><a class="reference internal" href="#resulting-directory-structure" id="id15">Resulting directory structure</a></p></li>
+<li><p><a class="reference internal" href="#generating-a-new-template" id="id16">Generating a new template</a></p></li>
+<li><p><a class="reference internal" href="#packaging-characteristics-of-this-template" id="id17">Packaging characteristics of this template</a></p></li>
+<li><p><a class="reference internal" href="#documenting-your-project-using-sphinx-and-github-pages" id="id18">Documenting your project using Sphinx and GitHub Pages</a></p></li>
+<li><p><a class="reference internal" href="#test-configuration-and-continuous-integration-with-travisci" id="id19">Test configuration and continuous integration with TravisCI</a></p></li>
 </ul>
 </div>
+<div class="section" id="resulting-directory-structure">
+<span id="directory-structure"></span><h2><a class="toc-backref" href="#tutorial-contents">Resulting directory structure</a><a class="headerlink" href="#resulting-directory-structure" title="Permalink to this headline">¶</a></h2>
+<p>When you generate a Cookiecutter PyData data science project from this template (see <a class="reference internal" href="#getting-started"><span class="std std-ref">Generating a new template</span></a>), the resulting project will have the following directory structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>PyData Project Directory
+│
+├── LICENSE
+├── README.rst         &lt;- The top-level README for developers using this project
+├── CHANGLOG.rst       &lt;- Used to document version-by-version changes to the project
+├── Pipfile            &lt;- Requirements file for reproducing the analysis environment
+│                         using the Pipenv package manager (see pipenv.readthedocs.io)
+├── .env               &lt;- Sets project-specific environmnt variables such as credentials
+│                         that you do not want committed to Git history (see
+│                         pipenv.readthedocs.io/en/latest/advanced/#automatic-loading-of-env)
+├── data               &lt;- All data files related to the project. Files contained in this
+│   |                     directory are ommitted from Git history via the .gitignore file
+│   ├── raw            &lt;- The original data file(s), this data should never be modified
+│   ├── interim        &lt;- Intermediate data that has been transformed
+│   └── processed      &lt;- The final data set(s) for modeling
+│
+├── docs               &lt;- A default Sphinx project for generating documentation
+│   └── _static
+│       └── figures    &lt;- Generated graphics and figures to be used in Sphinx generated docs
+├── models             &lt;- Trained and serialized models, model predictions, or model summaries
+│
+├── notebooks          &lt;- Jupyter notebooks, named using a number and descriptive title
+│                         so sequential run order and purpose are explicit, e.g.
+│                         `001-EDA-property-assessments`
+│
+├── references         &lt;- Data dictionaries, manuals, and all other explanatory materials
+│   └── third-party    &lt;- Third-party and copyrighted materials you do not want committed to
+│                         Git history
+│
+├── reports            &lt;- Generated analysis as HTML, PDF, LaTeX, etc.
+│   └── figures        &lt;- Generated graphics and figures to be used in reporting
+│
+├── src                &lt;- Source code for use in this project
+│   └── &lt;module_name&gt;
+│       ├── __init__.py    &lt;- Makes src a Python module
+│       ├── __main__.py    &lt;- Scripts to download or generate data
+│       └── cli.py         &lt;-
+│
+├── .gitignore         &lt;- Specified files to exclude from Git history (as a default, `.env`,
+│                         `./data/` files, and `*/third-party/` files are all excluded)
+├── .travis.yml        &lt;- Configuration for TravisCI services (see travis-ci.com)
+├── setup.py           &lt;- Setup script for the project using setuptools (see
+│                         packaging.python.org/guides/distributing-packages-using-setuptools)
+└── setup.cfg          &lt;- contains option defaults for setup.py commands
+</pre></div>
+</div>
+</div>
 <div class="section" id="generating-a-new-template">
-<span id="getting-started"></span><h2>Generating a new template<a class="headerlink" href="#generating-a-new-template" title="Permalink to this headline">¶</a></h2>
+<span id="getting-started"></span><h2><a class="toc-backref" href="#tutorial-contents">Generating a new template</a><a class="headerlink" href="#generating-a-new-template" title="Permalink to this headline">¶</a></h2>
 <div class="admonition-todo admonition" id="id2">
 <p class="admonition-title">Todo</p>
 <ul class="simple">
@@ -57,10 +108,10 @@
 <div class="contents local topic" id="in-this-section">
 <p class="topic-title first">In this section</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#initiate-the-template-using-cookiecutter" id="id19">1. Initiate the template using Cookiecutter</a></p></li>
-<li><p><a class="reference internal" href="#complete-template-prompts-required-to-generate-template" id="id20">2. Complete template prompts required to generate template</a></p></li>
-<li><p><a class="reference internal" href="#initiate-git-version-control" id="id21">3. Initiate git version control</a></p></li>
-<li><p><a class="reference internal" href="#install-your-new-pipenv-environment-from-the-pipfile" id="id22">4. Install your new Pipenv environment from the Pipfile</a></p></li>
+<li><p><a class="reference internal" href="#initiate-the-template-using-cookiecutter" id="id20">1. Initiate the template using Cookiecutter</a></p></li>
+<li><p><a class="reference internal" href="#complete-template-prompts-required-to-generate-template" id="id21">2. Complete template prompts required to generate template</a></p></li>
+<li><p><a class="reference internal" href="#initiate-git-version-control" id="id22">3. Initiate git version control</a></p></li>
+<li><p><a class="reference internal" href="#install-your-new-pipenv-environment-from-the-pipfile" id="id23">4. Install your new Pipenv environment from the Pipfile</a></p></li>
 </ul>
 </div>
 <div class="section" id="initiate-the-template-using-cookiecutter">
@@ -206,12 +257,12 @@
 </div>
 <div class="section" id="install-your-new-pipenv-environment-from-the-pipfile">
 <h3>4. Install your new Pipenv environment from the Pipfile<a class="headerlink" href="#install-your-new-pipenv-environment-from-the-pipfile" title="Permalink to this headline">¶</a></h3>
-<p>Once you have Git version control initiated (see Step 3 above), you can build your working Pipenv environment:</p>
-<p>Via the Pipfile, your newly created local package is installed as an editable. For example, the line in the Pipfile that reads…:</p>
+<p>Once you have Git version control initiated (see Step 3 above), you can build your working Pipenv environment.</p>
+<p>Via the Pipfile, your newly created local package is installed as an editable. For example, the line in the Pipfile that reads:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package_name</span> <span class="o">=</span> <span class="p">{</span><span class="n">editable</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
-<p>…is equivalent to running this from the command line…:</p>
+<p>…is equivalent to running this from the command line:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipenv</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
 </pre></div>
 </div>
@@ -225,14 +276,14 @@
 </div>
 </div>
 <div class="section" id="packaging-characteristics-of-this-template">
-<span id="packaging"></span><h2>Packaging characteristics of this template<a class="headerlink" href="#packaging-characteristics-of-this-template" title="Permalink to this headline">¶</a></h2>
+<span id="packaging"></span><h2><a class="toc-backref" href="#tutorial-contents">Packaging characteristics of this template</a><a class="headerlink" href="#packaging-characteristics-of-this-template" title="Permalink to this headline">¶</a></h2>
 <div class="contents local topic" id="id3">
 <p class="topic-title first">In this section</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#using-pipenv-to-manage-your-project-dependencies" id="id23">Using Pipenv to manage your project dependencies</a></p></li>
-<li><p><a class="reference internal" href="#managing-environment-variables-with-the-env-file" id="id24">Managing environment variables with the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file</a></p></li>
-<li><p><a class="reference internal" href="#accessing-modules-in-your-package-from-a-jupyter-notebook" id="id25">Accessing modules in your package from a Jupyter Notebook</a></p></li>
-<li><p><a class="reference internal" href="#versioning-your-project" id="id26">Versioning your project</a></p></li>
+<li><p><a class="reference internal" href="#using-pipenv-to-manage-your-project-dependencies" id="id24">Using Pipenv to manage your project dependencies</a></p></li>
+<li><p><a class="reference internal" href="#managing-environment-variables-with-the-env-file" id="id25">Managing environment variables with the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file</a></p></li>
+<li><p><a class="reference internal" href="#accessing-modules-in-your-package-from-a-jupyter-notebook" id="id26">Accessing modules in your package from a Jupyter Notebook</a></p></li>
+<li><p><a class="reference internal" href="#versioning-your-project" id="id27">Versioning your project</a></p></li>
 </ul>
 </div>
 <div class="section" id="using-pipenv-to-manage-your-project-dependencies">
@@ -277,12 +328,12 @@
 </div>
 </div>
 <div class="section" id="documenting-your-project-using-sphinx-and-github-pages">
-<h2>Documenting your project using Sphinx and GitHub Pages<a class="headerlink" href="#documenting-your-project-using-sphinx-and-github-pages" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#tutorial-contents">Documenting your project using Sphinx and GitHub Pages</a><a class="headerlink" href="#documenting-your-project-using-sphinx-and-github-pages" title="Permalink to this headline">¶</a></h2>
 <div class="contents local topic" id="id8">
 <p class="topic-title first">In this section</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#getting-started-with-sphinx-and-restructuredtext" id="id27">Getting started with Sphinx and reStructuredText</a></p></li>
-<li><p><a class="reference internal" href="#hosting-your-project-documentation-using-github-pages" id="id28">Hosting your project documentation using GitHub Pages</a></p></li>
+<li><p><a class="reference internal" href="#getting-started-with-sphinx-and-restructuredtext" id="id28">Getting started with Sphinx and reStructuredText</a></p></li>
+<li><p><a class="reference internal" href="#hosting-your-project-documentation-using-github-pages" id="id29">Hosting your project documentation using GitHub Pages</a></p></li>
 </ul>
 </div>
 <div class="section" id="getting-started-with-sphinx-and-restructuredtext">
@@ -310,12 +361,12 @@
 </div>
 </div>
 <div class="section" id="test-configuration-and-continuous-integration-with-travisci">
-<h2>Test configuration and continuous integration with TravisCI<a class="headerlink" href="#test-configuration-and-continuous-integration-with-travisci" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#tutorial-contents">Test configuration and continuous integration with TravisCI</a><a class="headerlink" href="#test-configuration-and-continuous-integration-with-travisci" title="Permalink to this headline">¶</a></h2>
 <div class="contents local topic" id="id11">
 <p class="topic-title first">In this section</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#unit-testing-your-project-and-using-the-pytest-runner" id="id29">Unit-testing your project and using the PyTest runner</a></p></li>
-<li><p><a class="reference internal" href="#configuring-and-leveraging-travisci-for-your-project" id="id30">Configuring and leveraging TravisCI for your project</a></p></li>
+<li><p><a class="reference internal" href="#unit-testing-your-project-and-using-the-pytest-runner" id="id30">Unit-testing your project and using the PyTest runner</a></p></li>
+<li><p><a class="reference internal" href="#configuring-and-leveraging-travisci-for-your-project" id="id31">Configuring and leveraging TravisCI for your project</a></p></li>
 </ul>
 </div>
 <div class="section" id="unit-testing-your-project-and-using-the-pytest-runner">
@@ -402,6 +453,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Cookiecutter PyData</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#resulting-directory-structure">Resulting directory structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#generating-a-new-template">Generating a new template</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#packaging-characteristics-of-this-template">Packaging characteristics of this template</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#documenting-your-project-using-sphinx-and-github-pages">Documenting your project using Sphinx and GitHub Pages</a></li>
@@ -457,7 +509,7 @@
       &copy;2020, Michael Sedelmeyer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
