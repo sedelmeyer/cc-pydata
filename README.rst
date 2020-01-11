@@ -228,8 +228,52 @@ Directory structure
 
 .. todo::
 
-    * Insert illustration of the directory structure
     * Describe design decisions related to this structure
+
+```
+├── LICENSE
+├── README.rst         <- The top-level README for developers using this project
+├── CHANGLOG.rst       <- Used to document version-by-version changes to the project
+├── Pipfile            <- Requirements file for reproducing the analysis environment
+|                         using the Pipenv package manager (see pipenv.readthedocs.io)
+├── .env               <- Sets project-specific environmnt variables such as credentials
+|                         that you do not want committed to Git history (see
+|                         pipenv.readthedocs.io/en/latest/advanced/#automatic-loading-of-env)
+├── data               <- All data files related to the project. Files contained in this
+|   |                     directory are ommitted from Git history via the .gitignore file
+│   ├── raw            <- The original data file(s), this data should never be modified
+│   ├── interim        <- Intermediate data that has been transformed
+│   └── processed      <- The final data set(s) for modeling
+│
+├── docs               <- A default Sphinx project for generating documentation
+|   └── _static
+│       └── figures    <- Generated graphics and figures to be used in Sphinx generated docs
+├── models             <- Trained and serialized models, model predictions, or model summaries
+│
+├── notebooks          <- Jupyter notebooks, named using a number and descriptive title
+|                         so sequential run order and purpose are explicit, e.g.
+│                         `001-EDA-property-assessments`
+│
+├── references         <- Data dictionaries, manuals, and all other explanatory materials
+│   └── third-party    <- Third-party and copyrighted materials you do not want committed to
+|                         Git history
+│
+├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
+│   └── figures        <- Generated graphics and figures to be used in reporting
+│
+├── src                <- Source code for use in this project
+|   └── <module_name>
+│       ├── __init__.py    <- Makes src a Python module
+│       ├── __main__.py    <- Scripts to download or generate data
+|       └── cli.py         <-
+|
+├── .gitignore         <- Specified files to exclude from Git history (as a default, `.env`,
+|                         `./data/` files, and `*/third-party/` files are all excluded)
+├── .travis.yml        <- Configuration for TravisCI services (see travis-ci.com)
+├── setup.py           <- Setup script for the project using setuptools (see
+|                         packaging.python.org/guides/distributing-packages-using-setuptools)
+└── setup.cfg          <- contains option defaults for setup.py commands
+```
 
 .. _other resources:
 
