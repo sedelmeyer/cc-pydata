@@ -19,6 +19,12 @@ Future releases
 .. _pytest-cookies: https://github.com/hackebrot/pytest-cookies
 .. _tox: https://tox.readthedocs.io/en/latest/
 
+v0.1.4 (2020-01-11)
+-------------------
+
+* Add ``notebooks`` directory to template
+* Add template directory structure to the project documentation
+
 v0.1.3 (2020-01-10)
 -------------------
 
@@ -42,9 +48,9 @@ v0.1.1 (2020-01-04)
 v0.1.0 (2020-01-02)
 -------------------
 
-* Add basic python packaging files to template.
+* Add basic python packaging files to template
 
 v0.0.0 (2020-01-01)
 -------------------
 
-* Initial template with placeholder directories.
+* Initial template with placeholder directories

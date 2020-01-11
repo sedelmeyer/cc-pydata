@@ -6,6 +6,10 @@ Cookiecutter PyData is a Cookiecutter_ template for generating "reasonably stand
 .. image:: https://travis-ci.com/sedelmeyer/cc-pydata.svg?branch=master
     :target: https://travis-ci.com/sedelmeyer/cc-pydata
 
+* **GitHub repo:** https://github.com/sedelmeyer/cc-pydata
+* **Full project documentation:** https://sedelmeyer.github.io/cc-pydata
+
+
 .. contents:: Contents
   :local:
   :backlinks: none
@@ -74,162 +78,51 @@ Requirements
 Getting started
 ---------------
 
-.. todo::
+Initiate the template using Cookiecutter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    * Shorten this section in favor of the new Tutorial page
+Once you have met the basic requirements listed above, generating a new Cookiecutter PyData project skeleton is as easy as executing this in your command line::
 
-.. contents:: Contents
-  :local:
-  :backlinks: none
-
-1. Initiate the template using Cookiecutter
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-First generate your project::
-
-  cookiecutter gh:sedelmeyer/cookiecutter-pydata
+  cookiecutter gh:sedelmeyer/cc-pydata
 
 Alternatively, if you have a local working copy of the ``cookiecutter-pydata`` project in which you've made customizations to the template, you can run::
 
-  cookiecutter <path-to-directory>/cookiecutter-pydata
+  cookiecutter <path-to-directory>/cc-pydata
 
-2. Complete template prompts required to generate template
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The below listed prompts will be presented on the commandline after generating your project (see Step 1 above). For each prompt, default values will be presented in brackets (i.e. ``full_name [Michael Sedelmeyer]:  ``).
-
-To modify defaults or customize these prompts, please see the ``cookiecutter.json`` file.
-
-* ``full_name``
-
-  * Main author of this library or application (used in ``AUTHORS.rst`` and ``setup.py``).
-  * Can be set in your ``~/.cookiecutterrc`` config file.
-
-* ``email``
-
-  * Contact email of the author (used in ``AUTHORS.rst`` and ``setup.py``).
-  * Can be set in your ``~/.cookiecutterrc`` config file.
-
-* ``website``
-
-  * Website of the author (used in ``AUTHORS.rst``).
-  * Can be set in your ``~/.cookiecutterrc`` config file.
-
-* ``github_username``
-
-  * GitHub user name of this project (used for GitHub link).
-  * Can be set in your ``~/.cookiecutterrc`` config file.
-
-* ``project_name``
-
-  * Verbose project name, used in headings (docs, readme, etc).
-
-* ``repo_name``
-
-  * Repository name on GitHub (and project's root directory name).
-
-* ``package_name``
-
-  * Python package name (whatever you would import).
-
-* ``distribution_name``
-
-  * PyPI distribution name (what you would ``pip install``).
-
-* ``project_short_description``
-
-  * One line description of the project (used in ``README.rst`` and ``setup.py``).
-
-* ``release_date``
-
-  * Release date of the project (ISO 8601 format) default to today (used in ``CHANGELOG.rst``).
-
-* ``year_from``
-
-  * Copyright year (used in Sphinx ``conf.py``).
-
-* ``version``
-
-  * Release version (see ``.bumpversion.cfg`` and in Sphinx ``conf.py``).
-
-* ``scm_versioning``
-
-  * Enables the use of `setuptools-scm <https://pypi.org/project/setuptools-scm/>`_.
-
-* ``license``
-
-  * License to use. Available options:
-
-    * MIT license
-    * BSD 2-Clause license
-    * BSD 3-Clause license
-    * ISC license
-    * Apache Software License 2.0
-
-  * What license to pick? https://choosealicense.com/
-
-* ``test_runner``
-
-  * Test runner to use. Currently only configured for ``pytest``.
-
-* ``linter``
-
-  * Available options: ``flake8`` only
-
-* ``command_line_interface``
-
-  * Option to enable a CLI (a bin/executable file). Available options:
-
-    * ``plain`` - a very simple command.
-    * ``argparse`` - a command implemented with ``argparse``.
-    * ``click`` - a command implemented with `click <http://click.pocoo.org/>`_ * ``no`` - no CLI at all.
-
-* ``command_line_interface_bin_name``
-
-  * Name of the CLI bin/executable file (set the console script name in ``setup.py``).
-
-* ``travis``
-
-  * If you want the Travis-CI_ badge and configuration.
-
-3. Initiate git version control
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The first thing you should do once your template has been generated is to ``cd`` into your new repository and initiate ``git``::
-
-  cd <newly-generate-directory>
-  git init
-
-This step will be required prior to inititating your Pipenv environment because ``setuptools-scm`` is used for versioning your newly generated package. If Git has not yet been initiated for your project, Pipenv install of your local package will fail in the next step below.
-
-4. Install your new Pipenv environment from the Pipfile
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Once you have Git version control initiated (see Step 3 above), you can build your working Pipenv environment ::
-
-Via the Pipfile, your newly created local package is installed as an editable. For example, the line in the Pipfile that reads... ::
-
-  package_name = {editable = true,path = "."}
-
-...is equivalent to running this from the command line... ::
-
-  pipenv install -e .
-
-...which is similar to running the following command in plain old Pip if you were not working from a virtual environment ::
-
-  pip install -e .
-
-For a more complete overview of how to use Pipenv for package and dependencies management, please see the Pipenv_ project page.
-
-.. _directory structure:
+**For a complete overview on how to generate and configure your Cookiecutter PyData data science project,** please see `this project's full tutorial`_.
 
 Directory structure
 -------------------
 
-.. todo::
+Below is a high level overview of the resulting directory structure when you generate a Cookiecutter PyData data science project.
 
-    * Insert illustration of the directory structure
-    * Describe design decisions related to this structure
+**For a complete overview of the resulting project directory,** please see `this project's full tutorial`_.
+
+.. code::
+
+    PyData Project Directory
+    │
+    ├── README.rst         <- The top-level README for developers using this project
+    ├── CHANGLOG.rst       <- Used to document version-by-version changes to the project
+    ├── Pipfile            <- Requirements file for reproducing the analysis environment
+    │                         using the Pipenv package manager (see pipenv.readthedocs.io)
+    ├── .env               <- Sets project-specific environmnt variables such as credentials
+    │                         that you do not want committed to Git history (see
+    │                         pipenv.readthedocs.io/en/latest/advanced/#automatic-loading-of-env)
+    ├── data               <- All data files related to the project. Files contained in this
+    │                         directory are ommitted from Git history via the .gitignore file    │
+    ├── docs               <- A default Sphinx project for generating documentation
+    ├── models             <- Trained and serialized models, model predictions, or model summaries
+    ├── notebooks          <- Jupyter notebooks, named using a number and descriptive title
+    │                         so sequential run order and purpose are explicit, e.g.
+    │                         `001-EDA-property-assessments`
+    ├── references         <- Data dictionaries, manuals, and all other explanatory materials
+    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
+    ├── src                <- Source code for use in this project
+    ├── .travis.yml        <- Configuration for TravisCI services (see travis-ci.com)
+    ├── setup.py           <- Setup script for the project using setuptools (see
+    │                         packaging.python.org/guides/distributing-packages-using-setuptools)
+    └── setup.cfg          <- contains option defaults for setup.py commands
 
 .. _other resources:
 
@@ -254,3 +147,5 @@ Other resources
 .. _Pytest: http://pytest.org/
 .. _Pipenv: https://pipenv.readthedocs.io/en/latest/#
 .. _Azure Pipelines: https://azure.microsoft.com/en-us/services/devops/pipelines/
+
+.. _`this project's full tutorial`: https://sedelmeyer.github.io/cc-pydata/tutorial.html
