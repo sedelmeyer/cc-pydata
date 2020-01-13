@@ -67,10 +67,6 @@ When you generate a Cookiecutter PyData data science project from this template 
 Generating a new template
 -------------------------
 
-.. todo::
-
-    * Update this section to ensure prompt details better reflect recent template changes
-
 .. contents:: In this section
   :local:
   :backlinks: none
@@ -96,22 +92,22 @@ To modify defaults or customize these prompts, please see the ``cookiecutter.jso
 
 * ``full_name``
 
-  * Main author of this library or application (used in ``AUTHORS.rst`` and ``setup.py``).
+  * Main author of this library or application (used in ``setup.py`` and ``docs/conf.py``).
   * Can be set in your ``~/.cookiecutterrc`` config file.
 
 * ``email``
 
-  * Contact email of the author (used in ``AUTHORS.rst`` and ``setup.py``).
+  * Contact email of the author (used in ``setup.py``).
   * Can be set in your ``~/.cookiecutterrc`` config file.
 
 * ``website``
 
-  * Website of the author (used in ``AUTHORS.rst``).
+  * Website of the author (not yet used in resulting template).
   * Can be set in your ``~/.cookiecutterrc`` config file.
 
 * ``github_username``
 
-  * GitHub user name of this project (used for GitHub link).
+  * GitHub user name of this project (used for GitHub links in ``setup.py`` and ``docs/conf.py``).
   * Can be set in your ``~/.cookiecutterrc`` config file.
 
 * ``project_name``
@@ -120,7 +116,7 @@ To modify defaults or customize these prompts, please see the ``cookiecutter.jso
 
 * ``repo_name``
 
-  * Repository name on GitHub (and project's root directory name).
+  * Repository name on GitHub (and project's root directory name, used in ``setup.py``, ``docs/conf.py``, and for GitHub links).
 
 * ``package_name``
 
@@ -132,7 +128,7 @@ To modify defaults or customize these prompts, please see the ``cookiecutter.jso
 
 * ``project_short_description``
 
-  * One line description of the project (used in ``README.rst`` and ``setup.py``).
+  * One line description of the project (used in ``README.rst``, ``setup.py``, and ``docs/conf.py``).
 
 * ``release_date``
 
@@ -144,11 +140,11 @@ To modify defaults or customize these prompts, please see the ``cookiecutter.jso
 
 * ``version``
 
-  * Release version (see ``.bumpversion.cfg`` and in Sphinx ``conf.py``).
+  * Release version (used in ``setup.py`` and ``docs/conf.py``).
 
 * ``scm_versioning``
 
-  * Enables the use of `setuptools-scm <https://pypi.org/project/setuptools-scm/>`_.
+  * Enables the use of `setuptools-scm <https://pypi.org/project/setuptools-scm/>`_ (there is currently no option to turn this off, all projects will include this capability by default).
 
 * ``license``
 
@@ -184,7 +180,7 @@ To modify defaults or customize these prompts, please see the ``cookiecutter.jso
 
 * ``travis``
 
-  * If you want the Travis-CI_ badge and configuration.
+  * If you want the Travis-CI_ badge and configuration (currently, this project will always generate with Tracis-CI configuration).
 
 3. Initiate git version control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -199,23 +195,23 @@ This step will be required prior to inititating your Pipenv environment because 
 4. Install your new Pipenv environment from the Pipfile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once you have Git version control initiated (see Step 3 above), you can build your working Pipenv environment.
+Once you have Git version control initiated (see Step 3 above), you can build your working Pipenv virtual environment::
 
-Via the Pipfile, your newly created local package is installed as an editable. For example, the line in the Pipfile that reads::
+    pipenv install --dev
 
-  package_name = {editable = true,path = "."}
+Note that the ``--dev`` option is specified so that both development and package dependencies are installed in your Pipenv environment.
 
-...is equivalent to running this from the command line::
+To activate your environment after it has been created::
 
-    pipenv install -e .
+    pipenv shell
 
-...which is similar to running the following command in plain old Pip if you were not working from a virtual environment::
+To deactivate your environment::
 
-    pip install -e .
+    exit
 
 For a more complete overview of how to use Pipenv for package and dependencies management, please see the Pipenv_ project page.
 
-**CONGRATULATIONS! You've stood up a new PyData data science project template!**
+**Congratulations!** You've stood up a new PyData data science project template!
 
 **Now it's time to explore some of the features of this template!**
 
@@ -236,6 +232,19 @@ Using Pipenv to manage your project dependencies
     * Include basic Pipenv_ usage for this project
     * Discuss ``pipenv shell``
     * Discuss use of Pipfile versus ```install requires`` and link to an article discussing the differences
+
+Please note that, via the Pipfile, your newly created local package is installed as an editable. For example, the line in the Pipfile that reads::
+
+  package_name = {editable = true,path = "."}
+
+...is equivalent to running this from the command line::
+
+    pipenv install -e .
+
+...which is similar to running the following command in plain old Pip if you were not working from a virtual environment::
+
+    pip install -e .
+
 
 Managing environment variables with the ``.env`` file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -289,9 +298,9 @@ Outlined here is the basic Git workflow for hosting your Sphinx-generated projec
 
 While GitHub can be configured to use the base directory of your ``master`` branch or the ``./docs`` directory of your ``master`` branch, using a separate ``gh-pages`` branch for your site content has the added benefit of keeping your source content separate from your Sphinx-generated build content. This will help to keep your master branch git history storage from ballooning with built site content, particularly when that content can be rebuilt at any time using your historical Git commits.
 
-The basic steps are as follows:
+The basic steps for publishing your GitHub pages content are as follows:
 
-* After running ``make html`` to generate your site content, you need to first create your orphaned ``gh-pages`` branch. Note that this only needs to be done the first time you create this branch::
+* After running ``make html`` to generate your site content, you need to first create an orphaned ``gh-pages`` branch. Note that this only needs to be done the first time you create this branch::
 
     git checkout --orphaned gh-pages
 
@@ -299,21 +308,21 @@ The basic steps are as follows:
 
     git rm --cached -r .
 
-* Once they're removed from staging and no longer tracked by Git, you can delete them from the gh-pages branch all together::
+* Once they're removed from staging and no longer tracked by Git, you can delete them from the gh-pages branch all together. (Don't worry, they will still exist on your ``master`` branch.)::
 
     git clean -id
 
-* You will receive a prompt asking you what you want to do. The command you want to specify is ``c`` (clean). By cleaning your repo, your ``gh-pages`` branch will be left containing only your ``.git/`` directory, as well as any other files previously ignored by Git as specified by your ``.gitignore`` file (including your ``docs/_build/html/`` site content).
+* You will then receive a prompt asking you what you want to do. The command you want to specify is ``c`` (clean). By cleaning your repo, your ``gh-pages`` branch will be left containing only your ``.git/`` directory, as well as any other files previously ignored by Git as specified by your ``.gitignore`` file (including your ``docs/_build/html/`` site content).
 
-* Now, to be certain we don't delete or commit any of the other files you had ignored by Git on your ``master`` branch, you want to checkout your master version of ``.gitignore``::
+* Now, to be certain we don't delete or commit any of the other files you had ignored by Git on your ``master`` branch (because these will vanish from your ``master`` branch too if you accidentally delete them), you want to checkout your master version of ``.gitignore``::
 
     git checkout master -- .gitignore
 
-* If you type ``git status`` you will see that this command has placed your master .gitignore in your ``gh-pages`` staging area. Commit it as such::
+* If you type ``git status`` you will see that this command has placed your master .gitignore in your ``gh-pages`` staging area, and you will see that Git has gone back to ignoring the other files you'd like ignored. Commit it as such::
 
     git commit -m "git: add .gitignore from master"
 
-* Now you want to place all of your Sphinx-generated site content into your base directory for rendering by GitHub Pages::
+* Now you want to place all of your Sphinx-generated site content into your ``gh-pages`` base directory for rendering by GitHub Pages::
 
     cp -r docs/_build/html/* .
 
