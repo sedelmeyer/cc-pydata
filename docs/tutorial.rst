@@ -285,10 +285,69 @@ The resulting project template is configured to use reStructuredText_ and Sphinx
 Hosting your project documentation using GitHub Pages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
+Outlined here is the basic Git workflow for hosting your Sphinx-generated project documentation on `GitHub Pages`_. There are several different methods for configuring GitHub to host your project documentation. The one we will use here is to use a separate ``gh-pages`` Git branch for just your Sphinx-generate site content.
 
-    * Describe the basic nuances of managing git branches and pushing to gh-pages in conjunction with Sphinx
-    * Lay out basic ``bash`` workflow
+While GitHub can be configured to use the base directory of your ``master`` branch or the ``./docs`` directory of your ``master`` branch, using a separate ``gh-pages`` branch for your site content has the added benefit of keeping your source content separate from your Sphinx-generated build content. This will help to keep your master branch git history storage from ballooning with built site content, particularly when that content can be rebuilt at any time using your historical Git commits.
+
+The basic steps are as follows:
+
+* After running ``make html`` to generate your site content, you need to first create your orphaned ``gh-pages`` branch. Note that this only needs to be done the first time you create this branch::
+
+    git checkout --orphaned gh-pages
+
+* By default, all existing files not excluded by your ``.gitignore`` will be staged in your new branch. You will need to remove them all from staging with this command::
+
+    git rm --cached -r .
+
+* Once they're removed from staging and no longer tracked by Git, you can delete them from the gh-pages branch all together::
+
+    git clean -id
+
+* You will receive a prompt asking you what you want to do. The command you want to specify is ``c`` (clean). By cleaning your repo, your ``gh-pages`` branch will be left containing only your ``.git/`` directory, as well as any other files previously ignored by Git as specified by your ``.gitignore`` file (including your ``docs/_build/html/`` site content).
+
+* Now, to be certain we don't delete or commit any of the other files you had ignored by Git on your ``master`` branch, you want to checkout your master version of ``.gitignore``::
+
+    git checkout master -- .gitignore
+
+* If you type ``git status`` you will see that this command has placed your master .gitignore in your ``gh-pages`` staging area. Commit it as such::
+
+    git commit -m "git: add .gitignore from master"
+
+* Now you want to place all of your Sphinx-generated site content into your base directory for rendering by GitHub Pages::
+
+    cp -r docs/_build/html/* .
+
+* Next, add a blank ``.nojekyll`` file to your directory to tell GitHub that you are not using Jekyll (the default site generator for GitHub Pages) to generate your site::
+
+    touch .nojekyll
+
+* If you check ``git status``, you will see that your site content is now visible to git because we have taken it out of the previously ignored ``docs/_build/`` directory.
+
+* Add your site content files to your staging area and commit them::
+
+    git add -A
+    git commit -m "docs: add <current release version> site content"
+
+* Then, push the changes to GitHub::
+
+    git push origin gh-pages
+
+* Once committed and pushed, you can return to any of your other branches to continue work on your project::
+
+    git checkout master
+
+* Next time you want to return to your ``gh-pages`` branch to load your latest Sphinx-generated site content to GitHub Pages, you can just checkout that branch and follow the above outlined process again starting with the step of copying over your latest .gitignore in case you've made any edits to it on ``master``::
+
+    git checkout gh-pages
+    git checkout master -- .gitignore
+    ...
+
+Accessing your new site on GitHub Pages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Once you have pushed the first version of your ``gh-pages`` branch to GitHub, GitHub will automatically generate a new site. To view this site, go to your project repo on GitHub, go to Settings, and scroll down until you see the GitHub Pages section of your settings.
+
+There should now appear a hyperlink indicating the URL at which your new site is located. Follow that link and you can preview your site.
 
 Test configuration and continuous integration with TravisCI
 -----------------------------------------------------------
@@ -332,3 +391,5 @@ Configuring and leveraging TravisCI for your project
 .. _Pipenv loading of .env: https://pipenv.kennethreitz.org/en/latest/advanced/#automatic-loading-of-env
 .. _Single-sourcing the package version: _https://packaging.python.org/guides/single-sourcing-package-version/#single-sourcing-the-version
 .. _reStructuredText primer: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+
+.. _GitHub Pages: https://pages.github.com/
