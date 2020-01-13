@@ -40,11 +40,11 @@
 <div class="contents local topic" id="tutorial-contents">
 <p class="topic-title first">Tutorial Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#resulting-directory-structure" id="id15">Resulting directory structure</a></p></li>
-<li><p><a class="reference internal" href="#generating-a-new-template" id="id16">Generating a new template</a></p></li>
-<li><p><a class="reference internal" href="#packaging-characteristics-of-this-template" id="id17">Packaging characteristics of this template</a></p></li>
-<li><p><a class="reference internal" href="#documenting-your-project-using-sphinx-and-github-pages" id="id18">Documenting your project using Sphinx and GitHub Pages</a></p></li>
-<li><p><a class="reference internal" href="#test-configuration-and-continuous-integration-with-travisci" id="id19">Test configuration and continuous integration with TravisCI</a></p></li>
+<li><p><a class="reference internal" href="#resulting-directory-structure" id="id13">Resulting directory structure</a></p></li>
+<li><p><a class="reference internal" href="#generating-a-new-template" id="id14">Generating a new template</a></p></li>
+<li><p><a class="reference internal" href="#packaging-characteristics-of-this-template" id="id15">Packaging characteristics of this template</a></p></li>
+<li><p><a class="reference internal" href="#documenting-your-project-using-sphinx-and-github-pages" id="id16">Documenting your project using Sphinx and GitHub Pages</a></p></li>
+<li><p><a class="reference internal" href="#test-configuration-and-continuous-integration-with-travisci" id="id17">Test configuration and continuous integration with TravisCI</a></p></li>
 </ul>
 </div>
 <div class="section" id="resulting-directory-structure">
@@ -99,19 +99,13 @@
 </div>
 <div class="section" id="generating-a-new-template">
 <span id="getting-started"></span><h2><a class="toc-backref" href="#tutorial-contents">Generating a new template</a><a class="headerlink" href="#generating-a-new-template" title="Permalink to this headline">¶</a></h2>
-<div class="admonition-todo admonition" id="id2">
-<p class="admonition-title">Todo</p>
-<ul class="simple">
-<li><p>Update this section to ensure prompt details better reflect recent template changes</p></li>
-</ul>
-</div>
 <div class="contents local topic" id="in-this-section">
 <p class="topic-title first">In this section</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#initiate-the-template-using-cookiecutter" id="id20">1. Initiate the template using Cookiecutter</a></p></li>
-<li><p><a class="reference internal" href="#complete-template-prompts-required-to-generate-template" id="id21">2. Complete template prompts required to generate template</a></p></li>
-<li><p><a class="reference internal" href="#initiate-git-version-control" id="id22">3. Initiate git version control</a></p></li>
-<li><p><a class="reference internal" href="#install-your-new-pipenv-environment-from-the-pipfile" id="id23">4. Install your new Pipenv environment from the Pipfile</a></p></li>
+<li><p><a class="reference internal" href="#initiate-the-template-using-cookiecutter" id="id18">1. Initiate the template using Cookiecutter</a></p></li>
+<li><p><a class="reference internal" href="#complete-template-prompts-required-to-generate-template" id="id19">2. Complete template prompts required to generate template</a></p></li>
+<li><p><a class="reference internal" href="#initiate-git-version-control" id="id20">3. Initiate git version control</a></p></li>
+<li><p><a class="reference internal" href="#install-your-new-pipenv-environment-from-the-pipfile" id="id21">4. Install your new Pipenv environment from the Pipfile</a></p></li>
 </ul>
 </div>
 <div class="section" id="initiate-the-template-using-cookiecutter">
@@ -132,25 +126,25 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">full_name</span></code></p>
 <ul>
-<li><p>Main author of this library or application (used in <code class="docutils literal notranslate"><span class="pre">AUTHORS.rst</span></code> and <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>).</p></li>
+<li><p>Main author of this library or application (used in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and <code class="docutils literal notranslate"><span class="pre">docs/conf.py</span></code>).</p></li>
 <li><p>Can be set in your <code class="docutils literal notranslate"><span class="pre">~/.cookiecutterrc</span></code> config file.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">email</span></code></p>
 <ul>
-<li><p>Contact email of the author (used in <code class="docutils literal notranslate"><span class="pre">AUTHORS.rst</span></code> and <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>).</p></li>
+<li><p>Contact email of the author (used in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>).</p></li>
 <li><p>Can be set in your <code class="docutils literal notranslate"><span class="pre">~/.cookiecutterrc</span></code> config file.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">website</span></code></p>
 <ul>
-<li><p>Website of the author (used in <code class="docutils literal notranslate"><span class="pre">AUTHORS.rst</span></code>).</p></li>
+<li><p>Website of the author (not yet used in resulting template).</p></li>
 <li><p>Can be set in your <code class="docutils literal notranslate"><span class="pre">~/.cookiecutterrc</span></code> config file.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">github_username</span></code></p>
 <ul>
-<li><p>GitHub user name of this project (used for GitHub link).</p></li>
+<li><p>GitHub user name of this project (used for GitHub links in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and <code class="docutils literal notranslate"><span class="pre">docs/conf.py</span></code>).</p></li>
 <li><p>Can be set in your <code class="docutils literal notranslate"><span class="pre">~/.cookiecutterrc</span></code> config file.</p></li>
 </ul>
 </li>
@@ -161,7 +155,7 @@
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">repo_name</span></code></p>
 <ul>
-<li><p>Repository name on GitHub (and project’s root directory name).</p></li>
+<li><p>Repository name on GitHub (and project’s root directory name, used in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, <code class="docutils literal notranslate"><span class="pre">docs/conf.py</span></code>, and for GitHub links).</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">package_name</span></code></p>
@@ -176,7 +170,7 @@
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">project_short_description</span></code></p>
 <ul>
-<li><p>One line description of the project (used in <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> and <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>).</p></li>
+<li><p>One line description of the project (used in <code class="docutils literal notranslate"><span class="pre">README.rst</span></code>, <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, and <code class="docutils literal notranslate"><span class="pre">docs/conf.py</span></code>).</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">release_date</span></code></p>
@@ -191,12 +185,12 @@
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">version</span></code></p>
 <ul>
-<li><p>Release version (see <code class="docutils literal notranslate"><span class="pre">.bumpversion.cfg</span></code> and in Sphinx <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>).</p></li>
+<li><p>Release version (used in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and <code class="docutils literal notranslate"><span class="pre">docs/conf.py</span></code>).</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">scm_versioning</span></code></p>
 <ul>
-<li><p>Enables the use of <a class="reference external" href="https://pypi.org/project/setuptools-scm/">setuptools-scm</a>.</p></li>
+<li><p>Enables the use of <a class="reference external" href="https://pypi.org/project/setuptools-scm/">setuptools-scm</a> (there is currently no option to turn this off, all projects will include this capability by default).</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">license</span></code></p>
@@ -241,7 +235,7 @@
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">travis</span></code></p>
 <ul>
-<li><p>If you want the <a class="reference external" href="http://travis-ci.org/">Travis-CI</a> badge and configuration.</p></li>
+<li><p>If you want the <a class="reference external" href="http://travis-ci.org/">Travis-CI</a> badge and configuration (currently, this project will always generate with Tracis-CI configuration).</p></li>
 </ul>
 </li>
 </ul>
@@ -257,8 +251,46 @@
 </div>
 <div class="section" id="install-your-new-pipenv-environment-from-the-pipfile">
 <h3>4. Install your new Pipenv environment from the Pipfile<a class="headerlink" href="#install-your-new-pipenv-environment-from-the-pipfile" title="Permalink to this headline">¶</a></h3>
-<p>Once you have Git version control initiated (see Step 3 above), you can build your working Pipenv environment.</p>
-<p>Via the Pipfile, your newly created local package is installed as an editable. For example, the line in the Pipfile that reads:</p>
+<p>Once you have Git version control initiated (see Step 3 above), you can build your working Pipenv virtual environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipenv</span> <span class="n">install</span> <span class="o">--</span><span class="n">dev</span>
+</pre></div>
+</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">--dev</span></code> option is specified so that both development and package dependencies are installed in your Pipenv environment.</p>
+<p>To activate your environment after it has been created:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipenv</span> <span class="n">shell</span>
+</pre></div>
+</div>
+<p>To deactivate your environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exit</span>
+</pre></div>
+</div>
+<p>For a more complete overview of how to use Pipenv for package and dependencies management, please see the <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/#">Pipenv</a> project page.</p>
+<p><strong>Congratulations!</strong> You’ve stood up a new PyData data science project template!</p>
+<p><strong>Now it’s time to explore some of the features of this template!</strong></p>
+</div>
+</div>
+<div class="section" id="packaging-characteristics-of-this-template">
+<span id="packaging"></span><h2><a class="toc-backref" href="#tutorial-contents">Packaging characteristics of this template</a><a class="headerlink" href="#packaging-characteristics-of-this-template" title="Permalink to this headline">¶</a></h2>
+<div class="contents local topic" id="id2">
+<p class="topic-title first">In this section</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#using-pipenv-to-manage-your-project-dependencies" id="id22">Using Pipenv to manage your project dependencies</a></p></li>
+<li><p><a class="reference internal" href="#managing-environment-variables-with-the-env-file" id="id23">Managing environment variables with the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file</a></p></li>
+<li><p><a class="reference internal" href="#accessing-modules-in-your-package-from-a-jupyter-notebook" id="id24">Accessing modules in your package from a Jupyter Notebook</a></p></li>
+<li><p><a class="reference internal" href="#versioning-your-project" id="id25">Versioning your project</a></p></li>
+</ul>
+</div>
+<div class="section" id="using-pipenv-to-manage-your-project-dependencies">
+<h3>Using Pipenv to manage your project dependencies<a class="headerlink" href="#using-pipenv-to-manage-your-project-dependencies" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Include basic <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/#">Pipenv</a> usage for this project</p></li>
+<li><p>Discuss <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">shell</span></code></p></li>
+<li><p>Discuss use of Pipfile versus <code class="docutils literal notranslate"><span class="pre">`install</span> <span class="pre">requires</span></code> and link to an article discussing the differences</p></li>
+</ul>
+</div>
+<p>Please note that, via the Pipfile, your newly created local package is installed as an editable. For example, the line in the Pipfile that reads:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package_name</span> <span class="o">=</span> <span class="p">{</span><span class="n">editable</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
@@ -270,36 +302,10 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
 </pre></div>
 </div>
-<p>For a more complete overview of how to use Pipenv for package and dependencies management, please see the <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/#">Pipenv</a> project page.</p>
-<p><strong>CONGRATULATIONS! You’ve stood up a new PyData data science project template!</strong></p>
-<p><strong>Now it’s time to explore some of the features of this template!</strong></p>
-</div>
-</div>
-<div class="section" id="packaging-characteristics-of-this-template">
-<span id="packaging"></span><h2><a class="toc-backref" href="#tutorial-contents">Packaging characteristics of this template</a><a class="headerlink" href="#packaging-characteristics-of-this-template" title="Permalink to this headline">¶</a></h2>
-<div class="contents local topic" id="id3">
-<p class="topic-title first">In this section</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#using-pipenv-to-manage-your-project-dependencies" id="id24">Using Pipenv to manage your project dependencies</a></p></li>
-<li><p><a class="reference internal" href="#managing-environment-variables-with-the-env-file" id="id25">Managing environment variables with the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file</a></p></li>
-<li><p><a class="reference internal" href="#accessing-modules-in-your-package-from-a-jupyter-notebook" id="id26">Accessing modules in your package from a Jupyter Notebook</a></p></li>
-<li><p><a class="reference internal" href="#versioning-your-project" id="id27">Versioning your project</a></p></li>
-</ul>
-</div>
-<div class="section" id="using-pipenv-to-manage-your-project-dependencies">
-<h3>Using Pipenv to manage your project dependencies<a class="headerlink" href="#using-pipenv-to-manage-your-project-dependencies" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="id4">
-<p class="admonition-title">Todo</p>
-<ul class="simple">
-<li><p>Include basic <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/#">Pipenv</a> usage for this project</p></li>
-<li><p>Discuss <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">shell</span></code></p></li>
-<li><p>Discuss use of Pipfile versus <code class="docutils literal notranslate"><span class="pre">`install</span> <span class="pre">requires</span></code> and link to an article discussing the differences</p></li>
-</ul>
-</div>
 </div>
 <div class="section" id="managing-environment-variables-with-the-env-file">
 <h3>Managing environment variables with the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file<a class="headerlink" href="#managing-environment-variables-with-the-env-file" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="id5">
+<div class="admonition-todo admonition" id="id4">
 <p class="admonition-title">Todo</p>
 <ul class="simple">
 <li><p>Discuss the purpose and usage of the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file</p></li>
@@ -311,14 +317,14 @@
 </div>
 <div class="section" id="accessing-modules-in-your-package-from-a-jupyter-notebook">
 <h3>Accessing modules in your package from a Jupyter Notebook<a class="headerlink" href="#accessing-modules-in-your-package-from-a-jupyter-notebook" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="id6">
+<div class="admonition-todo admonition" id="id5">
 <p class="admonition-title">Todo</p>
 <p>Describe usage of <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">&lt;your-package-name&gt;</span> <span class="pre">import</span> <span class="pre">&lt;module-name&gt;</span></code> behavior in Jupyter notebooks</p>
 </div>
 </div>
 <div class="section" id="versioning-your-project">
 <h3>Versioning your project<a class="headerlink" href="#versioning-your-project" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="id7">
+<div class="admonition-todo admonition" id="id6">
 <p class="admonition-title">Todo</p>
 <ul class="simple">
 <li><p>Describe versioning of project using <a class="reference external" href="https://github.com/pypa/setuptools_scm/">setuptools_scm</a></p></li>
@@ -329,17 +335,18 @@
 </div>
 <div class="section" id="documenting-your-project-using-sphinx-and-github-pages">
 <h2><a class="toc-backref" href="#tutorial-contents">Documenting your project using Sphinx and GitHub Pages</a><a class="headerlink" href="#documenting-your-project-using-sphinx-and-github-pages" title="Permalink to this headline">¶</a></h2>
-<div class="contents local topic" id="id8">
+<div class="contents local topic" id="id7">
 <p class="topic-title first">In this section</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#getting-started-with-sphinx-and-restructuredtext" id="id28">Getting started with Sphinx and reStructuredText</a></p></li>
-<li><p><a class="reference internal" href="#hosting-your-project-documentation-using-github-pages" id="id29">Hosting your project documentation using GitHub Pages</a></p></li>
+<li><p><a class="reference internal" href="#getting-started-with-sphinx-and-restructuredtext" id="id26">Getting started with Sphinx and reStructuredText</a></p></li>
+<li><p><a class="reference internal" href="#hosting-your-project-documentation-using-github-pages" id="id27">Hosting your project documentation using GitHub Pages</a></p></li>
+<li><p><a class="reference internal" href="#accessing-your-new-site-on-github-pages" id="id28">Accessing your new site on GitHub Pages</a></p></li>
 </ul>
 </div>
 <div class="section" id="getting-started-with-sphinx-and-restructuredtext">
 <h3>Getting started with Sphinx and reStructuredText<a class="headerlink" href="#getting-started-with-sphinx-and-restructuredtext" title="Permalink to this headline">¶</a></h3>
 <p>The resulting project template is configured to use <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">reStructuredText</a> and <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> to generate and maintain your resulting project documentation.</p>
-<div class="admonition-todo admonition" id="id9">
+<div class="admonition-todo admonition" id="id8">
 <p class="admonition-title">Todo</p>
 <ul class="simple">
 <li><p>Describe the basic usage of Sphinx to build and maintain documentation</p></li>
@@ -351,27 +358,90 @@
 </div>
 <div class="section" id="hosting-your-project-documentation-using-github-pages">
 <h3>Hosting your project documentation using GitHub Pages<a class="headerlink" href="#hosting-your-project-documentation-using-github-pages" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="id10">
-<p class="admonition-title">Todo</p>
-<ul class="simple">
-<li><p>Describe the basic nuances of managing git branches and pushing to gh-pages in conjunction with Sphinx</p></li>
-<li><p>Lay out basic <code class="docutils literal notranslate"><span class="pre">bash</span></code> workflow</p></li>
+<p>Outlined here is the basic Git workflow for hosting your Sphinx-generated project documentation on <a class="reference external" href="https://pages.github.com/">GitHub Pages</a>. There are several different methods for configuring GitHub to host your project documentation. The one we will use here is to use a separate <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> Git branch for just your Sphinx-generate site content.</p>
+<p>While GitHub can be configured to use the base directory of your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch or the <code class="docutils literal notranslate"><span class="pre">./docs</span></code> directory of your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch, using a separate <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch for your site content has the added benefit of keeping your source content separate from your Sphinx-generated build content. This will help to keep your master branch git history storage from ballooning with built site content, particularly when that content can be rebuilt at any time using your historical Git commits.</p>
+<p>The basic steps for publishing your GitHub pages content are as follows:</p>
+<ul>
+<li><p>After running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> to generate your site content, you need to first create an orphaned <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch. Note that this only needs to be done the first time you create this branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">--</span><span class="n">orphaned</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span>
+</pre></div>
+</div>
+</li>
+<li><p>By default, all existing files not excluded by your <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> will be staged in your new branch. You will need to remove them all from staging with this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">rm</span> <span class="o">--</span><span class="n">cached</span> <span class="o">-</span><span class="n">r</span> <span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>Once they’re removed from staging and no longer tracked by Git, you can delete them from the gh-pages branch all together. (Don’t worry, they will still exist on your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clean</span> <span class="o">-</span><span class="nb">id</span>
+</pre></div>
+</div>
+</li>
+<li><p>You will then receive a prompt asking you what you want to do. The command you want to specify is <code class="docutils literal notranslate"><span class="pre">c</span></code> (clean). By cleaning your repo, your <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch will be left containing only your <code class="docutils literal notranslate"><span class="pre">.git/</span></code> directory, as well as any other files previously ignored by Git as specified by your <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file (including your <code class="docutils literal notranslate"><span class="pre">docs/_build/html/</span></code> site content).</p></li>
+<li><p>Now, to be certain we don’t delete or commit any of the other files you had ignored by Git on your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch (because these will vanish from your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch too if you accidentally delete them), you want to checkout your master version of <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span> <span class="o">--</span> <span class="o">.</span><span class="n">gitignore</span>
+</pre></div>
+</div>
+</li>
+<li><p>If you type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> you will see that this command has placed your master .gitignore in your <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> staging area, and you will see that Git has gone back to ignoring the other files you’d like ignored. Commit it as such:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;git: add .gitignore from master&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Now you want to place all of your Sphinx-generated site content into your <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> base directory for rendering by GitHub Pages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="n">docs</span><span class="o">/</span><span class="n">_build</span><span class="o">/</span><span class="n">html</span><span class="o">/*</span> <span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>Next, add a blank <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> file to your directory to tell GitHub that you are not using Jekyll (the default site generator for GitHub Pages) to generate your site:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">touch</span> <span class="o">.</span><span class="n">nojekyll</span>
+</pre></div>
+</div>
+</li>
+<li><p>If you check <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>, you will see that your site content is now visible to git because we have taken it out of the previously ignored <code class="docutils literal notranslate"><span class="pre">docs/_build/</span></code> directory.</p></li>
+<li><p>Add your site content files to your staging area and commit them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">A</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;docs: add &lt;current release version&gt; site content&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Then, push the changes to GitHub:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span>
+</pre></div>
+</div>
+</li>
+<li><p>Once committed and pushed, you can return to any of your other branches to continue work on your project:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+</pre></div>
+</div>
+</li>
+<li><p>Next time you want to return to your <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch to load your latest Sphinx-generated site content to GitHub Pages, you can just checkout that branch and follow the above outlined process again starting with the step of copying over your latest .gitignore in case you’ve made any edits to it on <code class="docutils literal notranslate"><span class="pre">master</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span> <span class="o">--</span> <span class="o">.</span><span class="n">gitignore</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</li>
 </ul>
 </div>
+<div class="section" id="accessing-your-new-site-on-github-pages">
+<h3>Accessing your new site on GitHub Pages<a class="headerlink" href="#accessing-your-new-site-on-github-pages" title="Permalink to this headline">¶</a></h3>
+<p>Once you have pushed the first version of your <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch to GitHub, GitHub will automatically generate a new site. To view this site, go to your project repo on GitHub, go to Settings, and scroll down until you see the GitHub Pages section of your settings.</p>
+<p>There should now appear a hyperlink indicating the URL at which your new site is located. Follow that link and you can preview your site.</p>
 </div>
 </div>
 <div class="section" id="test-configuration-and-continuous-integration-with-travisci">
 <h2><a class="toc-backref" href="#tutorial-contents">Test configuration and continuous integration with TravisCI</a><a class="headerlink" href="#test-configuration-and-continuous-integration-with-travisci" title="Permalink to this headline">¶</a></h2>
-<div class="contents local topic" id="id11">
+<div class="contents local topic" id="id9">
 <p class="topic-title first">In this section</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#unit-testing-your-project-and-using-the-pytest-runner" id="id30">Unit-testing your project and using the PyTest runner</a></p></li>
-<li><p><a class="reference internal" href="#configuring-and-leveraging-travisci-for-your-project" id="id31">Configuring and leveraging TravisCI for your project</a></p></li>
+<li><p><a class="reference internal" href="#unit-testing-your-project-and-using-the-pytest-runner" id="id29">Unit-testing your project and using the PyTest runner</a></p></li>
+<li><p><a class="reference internal" href="#configuring-and-leveraging-travisci-for-your-project" id="id30">Configuring and leveraging TravisCI for your project</a></p></li>
 </ul>
 </div>
 <div class="section" id="unit-testing-your-project-and-using-the-pytest-runner">
 <h3>Unit-testing your project and using the PyTest runner<a class="headerlink" href="#unit-testing-your-project-and-using-the-pytest-runner" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="id12">
+<div class="admonition-todo admonition" id="id10">
 <p class="admonition-title">Todo</p>
 <ul class="simple">
 <li><p>Explain where and how should unit tests be included for this package</p></li>
@@ -381,7 +451,7 @@
 </div>
 <div class="section" id="configuring-and-leveraging-travisci-for-your-project">
 <h3>Configuring and leveraging TravisCI for your project<a class="headerlink" href="#configuring-and-leveraging-travisci-for-your-project" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="id13">
+<div class="admonition-todo admonition" id="id11">
 <p class="admonition-title">Todo</p>
 <ul class="simple">
 <li><p>Describe the basic .travis.yml configuration</p></li>
