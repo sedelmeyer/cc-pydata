@@ -12,6 +12,9 @@
 
 import os
 import sys
+import traceback
+from pkg_resources import get_distribution
+
 sys.path.insert(0, os.path.abspath('../src'))
 
 
@@ -27,8 +30,7 @@ copyright = '{0}, {1}'.format(year, author)
 # The full version, including alpha/beta/rc tags, updated
 # using setuptools_scm
 try:
-    from pkg_resources import get_distribution
-    version = release = get_distribution('{{ cookiecutter.package_name }}').version
+    version = release = get_distribution('{{ cookiecutter.repo_name }}').version
 except Exception:
     traceback.print_exc()
     version = release = {{ '{0!r}'.format(cookiecutter.version) }}
@@ -74,22 +76,22 @@ html_theme = 'alabaster'
 html_baseurl = 'https://{{ cookiecutter.github_username }}.github.io/'\
     '{{ cookiecutter.repo_name }}/'
 
-# uncomment to include auto-generated update data in html footer
-# html_last_updated_fmt = '%Y-%m-%d'
-
-# If using alabaster theme and hiding 'logo_name', use the 'logo' setting
-# in html_theme_options, otherwise, uncomment html_logo to activate the logo
-# html_logo = 'logo.png'
-# html_favicon = 'favicon.ico'
-
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+# uncomment to include auto-generated update data in html footer
+# html_last_updated_fmt = '%Y-%m-%d'
+
+# If using alabaster theme and hiding 'logo_name', use the 'logo' setting
+# in html_theme_options, otherwise, uncomment html_logo to activate site logo
+# html_logo = 'logo.png'
+# html_favicon = 'favicon.ico'
+
 # html theme options for alabaster
 html_theme_options = {
-    #'logo': 'logo.png',
+    # 'logo': 'logo.png',
     'logo_name': 'true',
     'github_user': '{{ cookiecutter.github_username }}',
     'github_repo': '{{ cookiecutter.repo_name }}',

@@ -19,6 +19,12 @@ Future releases
 .. _pytest-cookies: https://github.com/hackebrot/pytest-cookies
 .. _tox: https://tox.readthedocs.io/en/latest/
 
+v0.1.5 (2020-01-13)
+-------------------
+
+* Add GitHub Pages ``git`` workflow to the project tutorial
+* Fix setuptools-scm and static path in the template ``conf.py`` file
+
 v0.1.4 (2020-01-11)
 -------------------
 
@@ -28,7 +34,7 @@ v0.1.4 (2020-01-11)
 v0.1.3 (2020-01-10)
 -------------------
 
-* Add initial template README.rst to the template
+* Add initial template ``README.rst`` to the template
 * Add Sphinx and flake8 to template Pipfile
 * Add Sphinx documentation skeleton with Jinja fields to template
 * Add initial content to the project tutorial
