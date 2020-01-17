@@ -302,7 +302,7 @@ The basic steps for publishing your GitHub pages content are as follows:
 
 * After running ``make html`` to generate your site content, you need to first create an orphaned ``gh-pages`` branch. Note that this only needs to be done the first time you create this branch::
 
-    git checkout --orphaned gh-pages
+    git checkout --orphan gh-pages
 
 * By default, all existing files not excluded by your ``.gitignore`` will be staged in your new branch. You will need to remove them all from staging with this command::
 
