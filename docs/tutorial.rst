@@ -20,8 +20,8 @@ When you generate a Cookiecutter PyData data science project from this template 
     PyData Project Directory
     │
     ├── LICENSE
-    ├── README.rst         <- The top-level README for developers using this project
-    ├── CHANGLOG.rst       <- Used to document version-by-version changes to the project
+    ├── README.rst         <- Top-level README for developers
+    ├── CHANGLOG.rst       <- Used to document version-by-version changes
     ├── Pipfile            <- Requirements file for reproducing the analysis environment
     │                         using the Pipenv package manager (see pipenv.readthedocs.io)
     ├── .env               <- Sets project-specific environmnt variables such as credentials
@@ -52,8 +52,8 @@ When you generate a Cookiecutter PyData data science project from this template 
     ├── src                <- Source code for use in this project
     │   └── <module_name>
     │       ├── __init__.py    <- Makes src a Python module
-    │       ├── __main__.py    <- Scripts to download or generate data
-    │       └── cli.py         <-
+    │       ├── __main__.py    <- Entry point module
+    │       └── cli.py         <- Module for creating the command line app
     │
     ├── .gitignore         <- Specified files to exclude from Git history (as a default, `.env`,
     │                         `./data/` files, and `*/third-party/` files are all excluded)
