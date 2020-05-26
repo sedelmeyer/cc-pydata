@@ -19,6 +19,20 @@ Future releases
 .. _pytest-cookies: https://github.com/hackebrot/pytest-cookies
 .. _tox: https://tox.readthedocs.io/en/latest/
 
+v0.1.7 (XXXX-XX-XX)
+-------------------
+
+.. todo::
+
+    * Add imagemagik and conf.py instructions for logo.png and favicon.ico
+
+
+v0.1.6 (2020-05-26)
+-------------------
+
+* Fix gh-pages tutorial instructions
+* Fix template setup.cfg --pyargs to prevent travis-ci build failure
+
 v0.1.5 (2020-01-13)
 -------------------
 
