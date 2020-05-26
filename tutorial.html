@@ -53,8 +53,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>PyData Project Directory
 │
 ├── LICENSE
-├── README.rst         &lt;- The top-level README for developers using this project
-├── CHANGLOG.rst       &lt;- Used to document version-by-version changes to the project
+├── README.rst         &lt;- Top-level README for developers
+├── CHANGLOG.rst       &lt;- Used to document version-by-version changes
 ├── Pipfile            &lt;- Requirements file for reproducing the analysis environment
 │                         using the Pipenv package manager (see pipenv.readthedocs.io)
 ├── .env               &lt;- Sets project-specific environmnt variables such as credentials
@@ -85,8 +85,8 @@
 ├── src                &lt;- Source code for use in this project
 │   └── &lt;module_name&gt;
 │       ├── __init__.py    &lt;- Makes src a Python module
-│       ├── __main__.py    &lt;- Scripts to download or generate data
-│       └── cli.py         &lt;-
+│       ├── __main__.py    &lt;- Entry point module
+│       └── cli.py         &lt;- Module for creating the command line app
 │
 ├── .gitignore         &lt;- Specified files to exclude from Git history (as a default, `.env`,
 │                         `./data/` files, and `*/third-party/` files are all excluded)
@@ -363,7 +363,7 @@
 <p>The basic steps for publishing your GitHub pages content are as follows:</p>
 <ul>
 <li><p>After running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> to generate your site content, you need to first create an orphaned <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch. Note that this only needs to be done the first time you create this branch:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">--</span><span class="n">orphaned</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">--</span><span class="n">orphan</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span>
 </pre></div>
 </div>
 </li>
@@ -579,7 +579,7 @@
       &copy;2020, Michael Sedelmeyer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
