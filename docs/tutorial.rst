@@ -322,19 +322,34 @@ Other static site generators, GitHub, and Jupyter notebooks typically rely on Ma
 * reStructuredText supports semantic meaning in a manner not supported by Markdown
 * reStructuredText is extensible and standardized while any Markdown that is feature-rich enough to even begin supporting moderate-to-heavy technical writing needs will come in many flavors which are not always portable between different platforms without tedious modification
 * reStructuredText is a stable go-to, has been around for a while, and has been used heavily in the Python community since 2002
-* reStructuredText is the default markup language for Sphinx (see more about why we are using Sphinx in the section below) and integrates well with Sphinx's more powerful directives
+* reStructuredText is the default markup language for Sphinx (see more about why we are using Sphinx in the section below) and integrates well with `Sphinx's more powerful directives <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html>`_
 
 Rationale for using Sphinx instead of Jekyll, Pelican, or some other static site generator
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-GitHub Pages strongly favors GitHub's homegrown static site generator Jekyll and is stupid simple to use for some basic web publishing needs. The first major drawback to Jekyll is that it's a Ruby-based tool. That means you'd need to run both a Ruby environment and Python environment to publish your ``cc-pydata`` documentation. Meanwhile, Sphinx is through-and-through a Python-based tool (in fact the documentation for the Python language itself is published using Sphinx). The second major drawback is that Jekyll is not a tool custom-suited for documenting code. This drawback also applies to Pelican and many other static site generators. They typically provide no means for auto-generating project documentation directly from the custom code contained in your packaged Python library. Sphinx on the otherhand excels at this task. As was illustrated above (see :ref:`make-docs`), Sphinx offers powerful directives for auto-generating and auto-organizing your project documentation, pulling documentation directly from the docstrings in your code.
+GitHub Pages strongly favors GitHub's homegrown static site generator `Jekyll <https://jekyllrb.com/>`_ and is hella simple to use for some basic web publishing needs. The first major drawback to Jekyll is that it's a Ruby-based tool. That means you'd need to run both a Ruby environment and Python environment to publish your ``cc-pydata`` documentation. Meanwhile, Sphinx is through-and-through a Python-based tool (in fact the documentation for the Python language itself is published using Sphinx). The second major drawback is that Jekyll is not a tool custom-suited for documenting code. This drawback also applies to `Pelican <https://docs.getpelican.com/>`_ and many other static site generators. They typically provide no means for auto-generating project documentation directly from the custom code contained in your packaged Python library. Sphinx on the otherhand excels at this task. As was illustrated above (see :ref:`make-docs`), Sphinx offers powerful built-in extensions such as `sphinx.ext.autodoc <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html>`_ for generating and organizing your project documentation, pulling documentation directly from the docstrings in your code.
 
+Information about other popular "built-in" Sphinx extensions that help to make Sphinx a smart choice for technical documentation `can be found in the "Extensions" section of the Sphinx documentation <https://www.sphinx-doc.org/en/master/usage/extensions/index.html>`_.
 
 Adding a logo to your Sphinx site
 """""""""""""""""""""""""""""""""
 
+The default theme used for the Sphinx docs in the ``cc-pydata`` template is called `Alabaster <https://alabaster.readthedocs.io/en/latest/>`_. It's clean, responsive, and configurable. Did I mention it was clean?
+
+The Alabaster theme provides a simple option for adding a site logo to the top of the lefthand navbar. A reasonable width for that logo image is 200 pixels. To add a logo to your ``cc-pydata`` project documentation, simply:
+
+#. Save your 200-pixel-width image file (e.g. as .jpg or .png file) to the ``docs/`` directory, and name it ``docs/logo.png`` (with the appropriate file extension of course).
+#. Go to the ``docs/conf.py`` file and uncomment the ``logo`` setting in the ``html_theme_options`` dictionary.
+#. Then ``make html`` and your new logo image should appear in the generated site HTML.
+
 Adding a favicon to your Sphinx site
 """"""""""""""""""""""""""""""""""""
+
+Similar to the site logo, if you wish to add a favicon image to your Alabaster-themed Sphinx site:
+
+#. Generate your ``favicon.ico`` image at 16x16 pixels, or 32x32, or whatever size makes the most sense given current browser standards and backwards compatibility concerns (truthfully, I couldn't care less and would just choose a size that works for your browser of choice).
+#. Save it as ``docs/favicon.ico``.
+#. Go to the ``docs/conf.py`` file and uncomment the ``html_favicon = '_static/favicon.ico'`` line and ``make html`` again.
 
 Resizing other images for your Sphinx site
 """"""""""""""""""""""""""""""""""""""""""
@@ -343,9 +358,6 @@ Resizing other images for your Sphinx site
 .. todo::
 
     * Describe the basic usage of Sphinx to build and maintain documentation
-    * Specify that the ``docs/_build`` directory should not be committed to git history
-    * Discuss the significance of reStructuredText_ versus Markdown
-    * Include links to important resources line `reStructuredText primer`_
 
 .. _gh-pages:
 
