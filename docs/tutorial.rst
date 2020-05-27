@@ -309,14 +309,26 @@ At any time you can preview your generated site content by opening your site's `
 
 **It is recommended that you DO NOT** ``git commit`` **those generated site files to your** ``master`` **branch.** It is poor practice (and an inefficient use of git history storage) to commit your site source files and generate site HTML content to the same git branch. Instead, please refer to the section :ref:`gh-pages`. That section outlines a recommended workflow for managing and commiting your generated site content using `GitHub Pages`_.
 
+.. _make-docs:
+
 Auto-generating documentation for your custom package modules
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Rationale for using reStructuredText instead of Markdown
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+Other static site generators, GitHub, and Jupyter notebooks typically rely on Markdown as a lightweight markup language. So then, why does the ``cc-pydata`` project template use reStructuredText instead of Markdown? Afterall, reStructuredText is a bit more verbose and not quite as frictionless for an author to use compared to Markdown. However, benefits abound, particularly for technical writing, once you get past the initial learning curve. And, because the primary assumption is that you'll be writing technical content to document and support your Python-based ``cc-pydata`` project, reStructuredText is the better choice. Here are a few primary reasons worth highlighting:
+
+* reStructuredText supports semantic meaning in a manner not supported by Markdown
+* reStructuredText is extensible and standardized while any Markdown that is feature-rich enough to even begin supporting moderate-to-heavy technical writing needs will come in many flavors which are not always portable between different platforms without tedious modification
+* reStructuredText is a stable go-to, has been around for a while, and has been used heavily in the Python community since 2002
+* reStructuredText is the default markup language for Sphinx (see more about why we are using Sphinx in the section below) and integrates well with Sphinx's more powerful directives
+
 Rationale for using Sphinx instead of Jekyll, Pelican, or some other static site generator
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+GitHub Pages strongly favors GitHub's homegrown static site generator Jekyll and is stupid simple to use for some basic web publishing needs. The first major drawback to Jekyll is that it's a Ruby-based tool. That means you'd need to run both a Ruby environment and Python environment to publish your ``cc-pydata`` documentation. Meanwhile, Sphinx is through-and-through a Python-based tool (in fact the documentation for the Python language itself is published using Sphinx). The second major drawback is that Jekyll is not a tool custom-suited for documenting code. This drawback also applies to Pelican and many other static site generators. They typically provide no means for auto-generating project documentation directly from the custom code contained in your packaged Python library. Sphinx on the otherhand excels at this task. As was illustrated above (see :ref:`make-docs`), Sphinx offers powerful directives for auto-generating and auto-organizing your project documentation, pulling documentation directly from the docstrings in your code.
+
 
 Adding a logo to your Sphinx site
 """""""""""""""""""""""""""""""""
