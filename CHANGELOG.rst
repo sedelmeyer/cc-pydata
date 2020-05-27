@@ -13,7 +13,7 @@ Future releases
     * Add tox_ and tests to project (perhaps using `pytest-cookies`_)
     * Add tox to template
     * Add doc tests to template and project
-    * Add gh-pages publishing script to project
+    * Create a gh-pages publishing script to automate steps
 
 .. _cookiecutter-pypackage: https://github.com/audreyr/cookiecutter-pypackage
 .. _pytest-cookies: https://github.com/hackebrot/pytest-cookies
@@ -24,14 +24,16 @@ v0.1.7 (XXXX-XX-XX)
 
 .. todo::
 
+    * Add Sphinx usage instructions
     * Add imagemagik and conf.py instructions for logo.png and favicon.ico
+    * Add unit testing info to docs
 
 
 v0.1.6 (2020-05-26)
 -------------------
 
-* Fix gh-pages tutorial instructions
-* Fix template setup.cfg --pyargs to prevent travis-ci build failure
+* Fix ``gh-pages`` tutorial instructions
+* Fix template ``setup.cfg`` ``--pyargs`` to prevent travis-ci build failure
 
 v0.1.5 (2020-01-13)
 -------------------
