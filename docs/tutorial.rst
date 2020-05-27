@@ -192,6 +192,8 @@ The first thing you should do once your template has been generated is to ``cd``
 
 This step will be required prior to inititating your Pipenv environment because ``setuptools-scm`` is used for versioning your newly generated package. If Git has not yet been initiated for your project, Pipenv install of your local package will fail in the next step below.
 
+.. _install-pipenv:
+
 4. Install your new Pipenv environment from the Pipfile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -282,7 +284,49 @@ Documenting your project using Sphinx and GitHub Pages
 Getting started with Sphinx and reStructuredText
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The resulting project template is configured to use reStructuredText_ and Sphinx_ to generate and maintain your resulting project documentation.
+The resulting project template is configured to use reStructuredText_ and Sphinx_ to generate and maintain your resulting project documentation. By defult, ``sphinx`` has been added as a ``dev-packages`` requirement to `the template's base Pipfile <https://github.com/sedelmeyer/cc-pydata/blob/master/%7B%7B%20cookiecutter.repo_name%20%7D%7D/Pipfile>`_. Therefore, when you run ``pipenv install --dev`` for the first time for your new project (see :ref:`install-pipenv`), ``sphinx`` will be installed to your pipenv virtual environment by default.
+
+* **If you are new to Sphinx**, please see `the Sphinx documentation <https://www.sphinx-doc.org>`_
+* **If you are new to reStructuredText**, a good starting place will be `the reStructuredText documentation provided by the Sphinx project <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
+
+Generating and previewing your site HTML
+""""""""""""""""""""""""""""""""""""""""
+
+Sphinx provides a convenient ``Makefile`` for performing basic site-building tasks. Generating (and re-generating) your Sphinx site's HTML is as easy as following the next two steps:
+
+#. Navigate to your project's ``docs/`` directory: ``cd docs/``
+#. Run the ``make`` command for building your HTML: ``make html``
+
+If your reStructuredText contains any errors, Sphinx will tell you as it builds your HTML.
+
+Your generated HTML, CSS, and related site files will now be located in the project's ``docs/_build/html/`` directory.
+
+At any time you can preview your generated site content by opening your site's ``index.html`` file and navigating throughout your generated site files.
+
+* If you are using Ubuntu, you can open your site content with your default web-browser by using this command:
+    * ``xdg-open docs/_built/html/index.html``
+* If you are using a different operating system, use the appropriate command or simply open the ``index.html`` with your system's GUI.
+
+**It is recommended that you DO NOT** ``git commit`` **those generated site files to your** ``master`` **branch.** It is poor practice (and an inefficient use of git history storage) to commit your site source files and generate site HTML content to the same git branch. Instead, please refer to the section :ref:`gh-pages`. That section outlines a recommended workflow for managing and commiting your generated site content using `GitHub Pages`_.
+
+Auto-generating documentation for your custom package modules
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Rationale for using reStructuredText instead of Markdown
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Rationale for using Sphinx instead of Jekyll, Pelican, or some other static site generator
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Adding a logo to your Sphinx site
+"""""""""""""""""""""""""""""""""
+
+Adding a favicon to your Sphinx site
+""""""""""""""""""""""""""""""""""""
+
+Resizing other images for your Sphinx site
+""""""""""""""""""""""""""""""""""""""""""
+
 
 .. todo::
 
@@ -290,6 +334,8 @@ The resulting project template is configured to use reStructuredText_ and Sphinx
     * Specify that the ``docs/_build`` directory should not be committed to git history
     * Discuss the significance of reStructuredText_ versus Markdown
     * Include links to important resources line `reStructuredText primer`_
+
+.. _gh-pages:
 
 Hosting your project documentation using GitHub Pages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
