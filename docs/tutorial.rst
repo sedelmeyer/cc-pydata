@@ -314,6 +314,11 @@ At any time you can preview your generated site content by opening your site's `
 Auto-generating documentation for your custom package modules
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+.. todo::
+
+    * Describe the basic usage of Sphinx to build and maintain documentation
+
+
 Rationale for using reStructuredText instead of Markdown
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -350,14 +355,6 @@ Similar to the site logo, if you wish to add a favicon image to your Alabaster-t
 #. Generate your ``favicon.ico`` image at 16x16 pixels, or 32x32, or whatever size makes the most sense given current browser standards and backwards compatibility concerns (truthfully, I couldn't care less and would just choose a size that works for your browser of choice).
 #. Save it as ``docs/favicon.ico``.
 #. Go to the ``docs/conf.py`` file and uncomment the ``html_favicon = '_static/favicon.ico'`` line and ``make html`` again.
-
-Resizing other images for your Sphinx site
-""""""""""""""""""""""""""""""""""""""""""
-
-
-.. todo::
-
-    * Describe the basic usage of Sphinx to build and maintain documentation
 
 .. _gh-pages:
 
@@ -437,6 +434,61 @@ Test configuration and continuous integration with TravisCI
 
 Unit-testing your project and using the PyTest runner
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unit-test storage location
+""""""""""""""""""""""""""
+
+The ``cc-pydata`` template, by default, provides a ``tests/`` directory at the same level as the ``src/`` directory. Opinions and rationale about where and how to store Python unit tests vary. Some people prefer storing unit tests directly within their modules, some under ``src/``, but outside their actual modules, and others in the manner we have done here for ``cc-pydata``. Sometimes circumstances and/or preferences warrant using one location over another. To keep things simple, and to make it easy to locate tests in your project, the current location has been chosen for the ``cc-pydata`` template. However, you should feel free to relocate your unit tests to a different location if it makes sense for you.
+
+``pytest`` test-runner
+""""""""""""""""""""""
+
+``pytest`` and ``pytest-cov`` are installed as default ``dev-packages`` in the base ``Pipfile`` included with the ``cc-pydata`` project template.  ``pytest`` makes for a simple yet powerful test-runner for test discovery, test-coverage reporting, and simple diagnostics.
+
+Running unit-tests using ``pytest``
+"""""""""""""""""""""""""""""""""""
+
+At any time during development of your ``cc-pydata`` project, you can run your entire suite of unit tests by using the following commands:
+
+#. ``pipenv shell`` (if you aren't currently in your project's ``pipenv`` environment)
+#. ``python -m pytest``
+
+Running ``python -m pytest`` will provide a convenient summary as tests are run.
+for storing unittests outside of the python module. The output will look something like this if there are no errors:
+
+.. code::
+
+    ============================= test session starts ==============================
+    platform linux -- Python 3.6.9, pytest-5.3.2, py-1.8.1, pluggy-0.13.1
+    rootdir: /home/Code/basedata, inifile: setup.cfg, testpaths: tests, basedata
+    plugins: cov-2.8.1
+    collected 77 items
+
+    tests/test_basedata.py .                                                 [  1%]
+    tests/inventory/test_inventory.py ..........                             [ 14%]
+    tests/ops/test_base.py ..............                                    [ 32%]
+    tests/ops/test_cols.py .................                                 [ 54%]
+    tests/ops/test_databuild.py .................                            [ 76%]
+    tests/ops/test_ids.py .................                                  [ 98%]
+    tests/ops/tests.py .                                                     [100%]
+
+    ----------- coverage: platform linux, python 3.6.9-final-0 -----------
+    Name                                 Stmts   Miss Branch BrPart     Cover   Missing
+    -----------------------------------------------------------------------------------
+    src/basedata/__init__.py                 5      2      0      0    60.00%   6-8
+    src/basedata/__main__.py                 3      1      2      1    60.00%   13->14, 14
+    src/basedata/cli.py                      6      0      0      0   100.00%
+    src/basedata/inventory/__init__.py      39      0     16      0   100.00%
+    src/basedata/ops/__init__.py             6      0      0      0   100.00%
+    src/basedata/ops/base.py                49      0     16      1    98.46%   127->136
+    src/basedata/ops/cols.py                38      0      6      0   100.00%
+    src/basedata/ops/ids.py                 40      0     16      0   100.00%
+    -----------------------------------------------------------------------------------
+    TOTAL                                  186      3     56      2    97.93%
+
+
+    ============================== 77 passed in 1.59s ==============================
+
 
 .. todo::
 
