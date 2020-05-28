@@ -465,7 +465,7 @@ Location of ``cc-pydata`` unit tests
 
 The ``cc-pydata`` template, by default, provides a ``tests/`` directory at the same level as the ``src/`` directory.
 
-* Opinions and rationale about where and how to store Python unit tests vary.
+* Opinions and rationale about where to store Python unit tests vary.
 * Some people prefer storing unit tests directly within their modules, some under ``src/``, but outside their actual modules, and others in the manner we have done here for ``cc-pydata``.
 * Sometimes circumstances and/or preferences warrant using one location over another.
 * To keep things simple, and to make it easy to locate tests in your project, the current ``tests/`` location has been chosen for the ``cc-pydata`` template.
@@ -480,10 +480,19 @@ The ``cc-pydata`` template, by default, provides a ``tests/`` directory at the s
 Running unit tests using ``pytest``
 """""""""""""""""""""""""""""""""""
 
-At any time during development of your ``cc-pydata`` project, you can run your entire suite of unit tests by using the following commands:
+At any time during development of your ``cc-pydata`` project, you can run your entire suite of unit tests. The two easiest methods for doing this are:
 
-#. ``pipenv run pytest`` (if you aren't currently in your project's ``pipenv`` environment)
-#. ``python -m pytest`` or simply ``pytest`` (if you are currently in your ``pipenv shell``)
+#. If you aren't currently in your project's ``pipenv`` environment, run::
+
+    pipenv run pytest
+
+#. If you are currently in your ``pipenv shell``, run::
+
+    python -m pytest
+
+    # or even more simply just the single word command...
+
+    pytest
 
 Running ``pytest`` will provide a convenient summary as tests are run. As an example, your output will look something like this if there are no test failures:
 
