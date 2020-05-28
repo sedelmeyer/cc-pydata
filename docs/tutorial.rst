@@ -284,7 +284,7 @@ Documenting your project using Sphinx and GitHub Pages
 Getting started with Sphinx and reStructuredText
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The resulting project template is configured to use reStructuredText_ and Sphinx_ to generate and maintain your resulting project documentation. By defult, ``sphinx`` has been added as a ``dev-packages`` requirement to `the template's base Pipfile <https://github.com/sedelmeyer/cc-pydata/blob/master/%7B%7B%20cookiecutter.repo_name%20%7D%7D/Pipfile>`_. Therefore, when you run ``pipenv install --dev`` for the first time for your new project (see :ref:`install-pipenv`), ``sphinx`` will be installed to your pipenv virtual environment by default.
+The resulting project template is configured to use reStructuredText_ and Sphinx_ to generate and maintain your project documentation. By defult, ``sphinx`` has been added as a ``dev-packages`` requirement to `the template's base Pipfile <https://github.com/sedelmeyer/cc-pydata/blob/master/%7B%7B%20cookiecutter.repo_name%20%7D%7D/Pipfile>`_. Therefore, when you run ``pipenv install --dev`` for the first time for your new project (see :ref:`install-pipenv`), ``sphinx`` will be installed to your ``pipenv`` virtual environment by default.
 
 * **If you are new to Sphinx**, please see `the Sphinx documentation <https://www.sphinx-doc.org>`_
 * **If you are new to reStructuredText**, a good starting place will be `the reStructuredText documentation provided by the Sphinx project <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
@@ -294,8 +294,13 @@ Generating and previewing your site HTML
 
 Sphinx provides a convenient ``Makefile`` for performing basic site-building tasks. Generating (and re-generating) your Sphinx site's HTML is as easy as following the next two steps:
 
-#. Navigate to your project's ``docs/`` directory: ``cd docs/``
-#. Run the ``make`` command for building your HTML: ``make html``
+#. Navigate to your project's ``docs/`` directory::
+
+    cd docs/
+
+#. Run the ``make`` command for building your HTML::
+
+    make html
 
 If your reStructuredText contains any errors, Sphinx will tell you as it builds your HTML.
 
@@ -303,8 +308,10 @@ Your generated HTML, CSS, and related site files will now be located in the proj
 
 At any time you can preview your generated site content by opening your site's ``index.html`` file and navigating throughout your generated site files.
 
-* If you are using Ubuntu, you can open your site content with your default web-browser by using this command:
-    * ``xdg-open docs/_built/html/index.html``
+* If you are using Ubuntu, you can open your site content with your default web-browser by using this command::
+
+    xdg-open docs/_built/html/index.html
+
 * If you are using a different operating system, use the appropriate command or simply open the ``index.html`` with your system's GUI.
 
 **It is recommended that you DO NOT** ``git commit`` **those generated site files to your** ``master`` **branch.** It is poor practice (and an inefficient use of git history storage) to commit your site source files and generate site HTML content to the same git branch. Instead, please refer to the section :ref:`gh-pages`. That section outlines a recommended workflow for managing and commiting your generated site content using `GitHub Pages`_.
@@ -322,17 +329,35 @@ Auto-generating documentation for your custom package modules
 Rationale for using reStructuredText instead of Markdown
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Other static site generators, GitHub, and Jupyter notebooks typically rely on Markdown as a lightweight markup language. So then, why does the ``cc-pydata`` project template use reStructuredText instead of Markdown? Afterall, reStructuredText is a bit more verbose and not quite as frictionless for an author to use compared to Markdown. However, benefits abound, particularly for technical writing, once you get past the initial learning curve. And, because the primary assumption is that you'll be writing technical content to document and support your Python-based ``cc-pydata`` project, reStructuredText is the better choice. Here are a few primary reasons worth highlighting:
+GitHub, Jupyter notebooks, and other static site generators typically rely on Markdown as a lightweight markup language.
 
-* reStructuredText supports semantic meaning in a manner not supported by Markdown
-* reStructuredText is extensible and standardized while any Markdown that is feature-rich enough to even begin supporting moderate-to-heavy technical writing needs will come in many flavors which are not always portable between different platforms without tedious modification
-* reStructuredText is a stable go-to, has been around for a while, and has been used heavily in the Python community since 2002
+* So then, why does the ``cc-pydata`` project template use reStructuredText instead of Markdown?
+* Afterall, reStructuredText is a bit more verbose and not quite as frictionless for an author to use compared to Markdown.
+
+Because benefits abound, particularly for technical writing (once you get past the initial learning curve). And, because the primary assumption is that you'll be writing technical content to document and support your Python-based ``cc-pydata`` project, reStructuredText is the better choice.
+
+Here are a few primary reasons worth highlighting:
+
+* reStructuredText supports semantic meaning in a manner not supported by Markdown,
+* reStructuredText is extensible and standardized while any Markdown implementation that is feature-rich enough to even begin supporting moderate-to-heavy technical writing needs will come in many flavors which are not always portable between different platforms without tedious modification,
+* reStructuredText is a stable "go-to", has been around for a while, and has been used heavily in the Python community since 2002,
 * reStructuredText is the default markup language for Sphinx (see more about why we are using Sphinx in the section below) and integrates well with `Sphinx's more powerful directives <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html>`_
 
 Rationale for using Sphinx instead of Jekyll, Pelican, or some other static site generator
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-GitHub Pages strongly favors GitHub's homegrown static site generator `Jekyll <https://jekyllrb.com/>`_ and is hella simple to use for some basic web publishing needs. The first major drawback to Jekyll is that it's a Ruby-based tool. That means you'd need to run both a Ruby environment and Python environment to publish your ``cc-pydata`` documentation. Meanwhile, Sphinx is through-and-through a Python-based tool (in fact the documentation for the Python language itself is published using Sphinx). The second major drawback is that Jekyll is not a tool custom-suited for documenting code. This drawback also applies to `Pelican <https://docs.getpelican.com/>`_ and many other static site generators. They typically provide no means for auto-generating project documentation directly from the custom code contained in your packaged Python library. Sphinx on the otherhand excels at this task. As was illustrated above (see :ref:`make-docs`), Sphinx offers powerful built-in extensions such as `sphinx.ext.autodoc <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html>`_ for generating and organizing your project documentation, pulling documentation directly from the docstrings in your code.
+GitHub Pages strongly favors GitHub's homegrown static site generator `Jekyll <https://jekyllrb.com/>`_ and it's hella simple to use for some basic web publishing needs.
+
+* Unfortunately, Jekyll is a Ruby-based tool.
+* That means, if you use Jekyll, you'll need to run both a Ruby environment and Python environment to publish your ``cc-pydata`` documentation.
+
+Meanwhile, Sphinx is through-and-through a Python-based tool (in fact the documentation for the Python language itself is published using Sphinx)!
+
+* The second major drawback for Jekyll is, it's not a tool custom-suited for documenting code.
+* This drawback also applies to the Python-based `Pelican <https://docs.getpelican.com/>`_ site generator and many other static site generators.
+* They typically provide no means for auto-generating project documentation directly from the custom code contained in your packaged Python library.
+
+Sphinx on the otherhand excels at this task. As was illustrated above (see :ref:`make-docs`), Sphinx offers powerful built-in extensions such as `sphinx.ext.autodoc <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html>`_ for generating and organizing your project documentation, pulling documentation directly from the docstrings in your code.
 
 Information about other popular "built-in" Sphinx extensions that help to make Sphinx a smart choice for technical documentation `can be found in the "Extensions" section of the Sphinx documentation <https://www.sphinx-doc.org/en/master/usage/extensions/index.html>`_.
 
@@ -435,28 +460,34 @@ Test configuration and continuous integration with TravisCI
 Unit-testing your project and using the PyTest runner
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Unit-test storage location
-""""""""""""""""""""""""""
+Location of ``cc-pydata`` unit tests
+""""""""""""""""""""""""""""""""""""
 
-The ``cc-pydata`` template, by default, provides a ``tests/`` directory at the same level as the ``src/`` directory. Opinions and rationale about where and how to store Python unit tests vary. Some people prefer storing unit tests directly within their modules, some under ``src/``, but outside their actual modules, and others in the manner we have done here for ``cc-pydata``. Sometimes circumstances and/or preferences warrant using one location over another. To keep things simple, and to make it easy to locate tests in your project, the current location has been chosen for the ``cc-pydata`` template. However, you should feel free to relocate your unit tests to a different location if it makes sense for you.
+The ``cc-pydata`` template, by default, provides a ``tests/`` directory at the same level as the ``src/`` directory.
+
+* Opinions and rationale about where and how to store Python unit tests vary.
+* Some people prefer storing unit tests directly within their modules, some under ``src/``, but outside their actual modules, and others in the manner we have done here for ``cc-pydata``.
+* Sometimes circumstances and/or preferences warrant using one location over another.
+* To keep things simple, and to make it easy to locate tests in your project, the current ``tests/`` location has been chosen for the ``cc-pydata`` template.
+* However, you should feel free to relocate your unit tests to a different location if it makes sense for you or your project.
 
 ``pytest`` test-runner
 """"""""""""""""""""""
 
-``pytest`` and ``pytest-cov`` are installed as default ``dev-packages`` in the base ``Pipfile`` included with the ``cc-pydata`` project template.  ``pytest`` makes for a simple yet powerful test-runner for test discovery, test-coverage reporting, and simple diagnostics.
+* ``pytest`` and ``pytest-cov`` are installed as default ``dev-packages`` in the base ``Pipfile`` included with the ``cc-pydata`` project template.
+* `Pytest`_ makes for a simple yet powerful test-runner for test discovery, reporting, and simple diagnostics; and `pytest-cov <https://pytest-cov.readthedocs.io/en/latest/readme.html>`_ produces coverage reports.
 
-Running unit-tests using ``pytest``
+Running unit tests using ``pytest``
 """""""""""""""""""""""""""""""""""
 
 At any time during development of your ``cc-pydata`` project, you can run your entire suite of unit tests by using the following commands:
 
-#. ``pipenv shell`` (if you aren't currently in your project's ``pipenv`` environment)
-#. ``python -m pytest``
+#. ``pipenv run pytest`` (if you aren't currently in your project's ``pipenv`` environment)
+#. ``python -m pytest`` or simply ``pytest`` (if you are currently in your ``pipenv shell``)
 
-Running ``python -m pytest`` will provide a convenient summary as tests are run.
-for storing unittests outside of the python module. The output will look something like this if there are no errors:
+Running ``pytest`` will provide a convenient summary as tests are run. As an example, your output will look something like this if there are no test failures:
 
-.. code::
+.. code:: bash
 
     ============================= test session starts ==============================
     platform linux -- Python 3.6.9, pytest-5.3.2, py-1.8.1, pluggy-0.13.1
@@ -489,11 +520,6 @@ for storing unittests outside of the python module. The output will look somethi
 
     ============================== 77 passed in 1.59s ==============================
 
-
-.. todo::
-
-    * Explain where and how should unit tests be included for this package
-    * Describe the use of the PyTest runner and associated configuration established for test coverage reporting
 
 Configuring and leveraging TravisCI for your project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
