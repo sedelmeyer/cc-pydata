@@ -71,15 +71,37 @@ Features
 Requirements
 ------------
 
-.. todo::
+Basic prerequisites
+^^^^^^^^^^^^^^^^^^^
 
-    * Include basic system requirements needed to generate and use this template
+This template and resulting ``cc-pydata`` project has been observed to work with the following installed dependencies. However, I suspect it will will work with a broader range of versions than are shown here.
+
+* ``python >= 3.7``
+* ``cookiecutter >= 1.7``
+* ``pipenv >= 2018-11-26``
+
+Installing ``cookiecutter``
+"""""""""""""""""""""""""""
+
+In order to generate this template, you will need ``cookiecutter`` installed on your machine. For instruction on how to install this, please see the `Cookiecutter installation documentation <https://cookiecutter.readthedocs.io/en/1.7.2/installation.html>`_.
+
+Installing ``pipenv``
+"""""""""""""""""""""
+
+In addition, because the resulting ``cc-pydata`` project template is configured to use ``pipenv`` for package management, you will also want to enure that you have ``pipenv`` installed on your machine. For more information on ``pipenv`` see please `see the documentation <https://pipenv.pypa.io/en/latest/>`_. For instructions on how to properly install ``pipenv``, please see `the official installation instructions <https://pipenv.pypa.io/en/latest/install/#installing-pipenv>`_.
+
+Using an alternative to ``pipenv`` for package management
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+If you prefer to NOT use ``pipenv`` for packaging and virtual environment management in favor of an alternative such as ``conda`` or ``virtualenv``, you likely can do so with the resulting ``cc-pydata`` project. You will just need to modify the resulting project structure accordingly.
+
+
 
 Getting started
 ---------------
 
-Initiate the template using Cookiecutter
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Initiate the ``cc-pydata`` template using Cookiecutter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once you have met the basic requirements listed above, generating a new Cookiecutter PyData project skeleton is as easy as executing this in your command line::
 
@@ -91,8 +113,8 @@ Alternatively, if you have a local working copy of the ``cookiecutter-pydata`` p
 
 **For a complete overview on how to generate and configure your Cookiecutter PyData data science project,** please see `this project's full tutorial`_.
 
-Directory structure
--------------------
+``cc-pydata`` directory structure
+---------------------------------
 
 Below is a high level overview of the resulting directory structure when you generate a Cookiecutter PyData data science project.
 
