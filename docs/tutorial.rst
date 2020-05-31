@@ -86,7 +86,7 @@ Alternatively, if you have a local working copy of the ``cookiecutter-pydata`` p
 2. Complete template prompts required to generate template
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The below listed prompts will be presented on the commandline after generating your project (see Step 1 above). For each prompt, default values will be presented in brackets (i.e. ``full_name [Michael Sedelmeyer]:``).
+The below listed prompts will be presented on the command line after generating your project (see Step 1 above). For each prompt, default values will be presented in brackets (i.e. ``full_name [Michael Sedelmeyer]:``).
 
 To modify defaults or customize these prompts, please see the ``cookiecutter.json`` file.
 
@@ -194,10 +194,10 @@ This step will be required prior to inititating your Pipenv environment because 
 
 .. _install-pipenv:
 
-4. Install your new Pipenv environment from the Pipfile
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4. Install your new ``pipenv`` environment from the Pipfile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once you have Git version control initiated (see Step 3 above), you can build your working Pipenv virtual environment::
+Once you have Git version control initiated (see Step 3 above), you can build your working Pipenv_ virtual environment::
 
     pipenv install --dev
 
@@ -211,7 +211,7 @@ To deactivate your environment::
 
     exit
 
-For a more complete overview of how to use Pipenv for package and dependencies management, please see the Pipenv_ project page.
+For a more complete overview of how to use ``pipenv`` for package and dependencies management, please see the Pipenv_ project page.
 
 **Congratulations!** You've stood up a new PyData data science project template!
 
@@ -231,9 +231,9 @@ Using Pipenv to manage your project dependencies
 
 .. todo::
 
-    * Include basic Pipenv_ usage for this project
+    * Include basic Pipenv_ usage for this project (adding new dependencies, installing those dependenies, etc.)
     * Discuss ``pipenv shell``
-    * Discuss use of Pipfile versus ```install requires`` and link to an article discussing the differences
+    * Discuss use of ``Pipfile`` versus ``install requires`` and link to an article discussing the differences
 
 Please note that, via the Pipfile, your newly created local package is installed as an editable. For example, the line in the Pipfile that reads::
 
@@ -273,6 +273,8 @@ Versioning your project
 
     * Describe versioning of project using `setuptools_scm`_
     * Include link to article `Single-sourcing the package version`_
+    * Set project versions during commits to ``master`` by using ``git tag``
+    * Checking current project version with ``python setup.py --version`` while in ``pipenv shell``
 
 Documenting your project using Sphinx and GitHub Pages
 ------------------------------------------------------
