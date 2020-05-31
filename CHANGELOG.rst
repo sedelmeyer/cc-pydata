@@ -6,7 +6,7 @@ Future releases
 
 .. todo::
 
-    * Improve template README.rst placeholder instructions for replicating and adding to the project
+    * Improve template README.rst placeholder instructions for replicating and adding to a ``cc-pydata`` project
     * Add packaging and scm versioning to project (similar to cookiecutter-pypackage_)
     * Add TravisCI to project
     * Add Azure pipelines support to project
@@ -19,15 +19,12 @@ Future releases
 .. _pytest-cookies: https://github.com/hackebrot/pytest-cookies
 .. _tox: https://tox.readthedocs.io/en/latest/
 
-v0.1.7 (XXXX-XX-XX)
+v0.1.7 (2020-05-31)
 -------------------
 
-.. todo::
-
-    * Add Sphinx usage instructions
-    * Add imagemagik and conf.py instructions for logo.png and favicon.ico
-    * Add unit testing info to docs
-
+* Add requirements and links to other useful resources to ``README.rst``
+* Add basic Sphinx usage instructions to docs
+* Add basic unit testing info to docs
 
 v0.1.6 (2020-05-26)
 -------------------
