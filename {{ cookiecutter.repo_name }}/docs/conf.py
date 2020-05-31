@@ -86,8 +86,8 @@ html_static_path = ['_static']
 
 # If using alabaster theme and hiding 'logo_name', use the 'logo' setting
 # in html_theme_options, otherwise, uncomment html_logo to activate site logo
-# html_logo = 'logo.png'
-# html_favicon = 'favicon.ico'
+# html_logo = '_static/logo.png'
+# html_favicon = '_static/favicon.ico'
 
 # html theme options for alabaster
 html_theme_options = {
