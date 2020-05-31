@@ -20,17 +20,13 @@ Summary
 This Cookiecutter_ template allows for the creation of a "reasonably standardized", but flexible project structure when starting a new Python-based data science project. The benefits of using such a structure and implementing it with Cookiecutter is that it:
 
 * Takes the guesswork and low-value manual labor out of standing up a new data science project
-* Allows you to get started right away on your data science work when stating a new project
+* Allows you to get started right away on your data science work when starting a new project
 * Creates a sense of consistency across your projects, making it easier for yourself and others to interpret and replicate your analyses and findings.
 
 Design decisions
 ----------------
 
-.. note::
-
-    This project is in no way complete. This template is being actively developed and will evolve as my work and my development skills evolve.
-
-While I have attempted to embed Python best practices and standards into the design of this template, best practices and standards change over time. What's more, this template is designed to formalize the workflows (see `Getting started`_) and leverage the tools (see `Features`_) that work best for me across a wide range of projects. If you choose to adopt this template for your own use, you may find these workflows and tools do not work for you without making some changes yourself. For that reason, please feel free to fork and modify your own version.
+While I have attempted to embed Python best practices and standards into the design of this template, best practices and standards change over time. What's more, this template is designed to formalize the workflows (see `Getting started`_) and leverage the tools (see `Features`_) that work best for me across a wide range of projects. If you choose to adopt this template for your own use, you may find these workflows and tools do not work for you without making some changes yourself. For that reason, please feel free to fork and modify your own version of this project.
 
 .. _sources:
 
@@ -71,15 +67,36 @@ Features
 Requirements
 ------------
 
-.. todo::
+Basic prerequisites
+^^^^^^^^^^^^^^^^^^^
 
-    * Include basic system requirements needed to generate and use this template
+This template and resulting ``cc-pydata`` project has been observed to work with the following installed dependencies. However, I suspect it will will work with a broader range of versions than are shown here:
+
+* ``python >= 3.7``
+* ``cookiecutter >= 1.7``
+* ``pipenv >= 2018-11-26``
+
+Installing ``cookiecutter``
+"""""""""""""""""""""""""""
+
+In order to generate this template, you will need ``cookiecutter`` installed on your machine. For instruction on how to install this, please see the `Cookiecutter installation documentation <https://cookiecutter.readthedocs.io/en/1.7.2/installation.html>`_.
+
+Installing ``pipenv``
+"""""""""""""""""""""
+
+In addition, because the resulting ``cc-pydata`` project template is configured to use ``pipenv`` for package management, you will also want to enure that you have ``pipenv`` installed on your machine. For more information on ``pipenv`` please see `the documentation <https://pipenv.pypa.io/en/latest/>`_. For instructions on how to properly install ``pipenv``, please see `the official installation instructions <https://pipenv.pypa.io/en/latest/install/#installing-pipenv>`_.
+
+Using an alternative to ``pipenv`` for package management
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+If you prefer NOT to use ``pipenv`` for packaging and virtual environment management in favor of an alternative such as ``conda`` or ``virtualenv``, you likely can do so with the resulting ``cc-pydata`` project. You will just need to modify the resulting project structure accordingly.
+
 
 Getting started
 ---------------
 
-Initiate the template using Cookiecutter
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Initiate the ``cc-pydata`` template using Cookiecutter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once you have met the basic requirements listed above, generating a new Cookiecutter PyData project skeleton is as easy as executing this in your command line::
 
@@ -91,8 +108,8 @@ Alternatively, if you have a local working copy of the ``cookiecutter-pydata`` p
 
 **For a complete overview on how to generate and configure your Cookiecutter PyData data science project,** please see `this project's full tutorial`_.
 
-Directory structure
--------------------
+``cc-pydata`` directory structure
+---------------------------------
 
 Below is a high level overview of the resulting directory structure when you generate a Cookiecutter PyData data science project.
 
@@ -129,9 +146,31 @@ Below is a high level overview of the resulting directory structure when you gen
 Other resources
 ---------------
 
-.. todo::
+For further reading, please see `this project's full tutorial`_ as well as these other useful resources:
 
-    * Include links to other useful resources
+Cookiecutter resources
+^^^^^^^^^^^^^^^^^^^^^^
+
+* The Cookiecutter_ project on GitHub
+* The official `Cookiecutter project documentation <https://cookiecutter.readthedocs.io/en/1.7.2/>`_
+* Driven Data's `Cookiecutter Data Science project documentation <https://drivendata.github.io/cookiecutter-data-science/>`_, which helped to inspire my ``cc-pydata`` template
+* Ionelmc's `ionelmc/cookiecutter-pylibrary`_ project on GitHub, another source of inspiration for my ``cc-pydata`` template
+
+Tools leveraged by ``cc-pydata``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Pipenv_ for package and virtual environment management
+* Travis-CI_ for continuous integration
+* setuptools_scm_ for project versioning
+* Sphinx_ and reStructuredText_ for authoring project documentation
+* Pytest_ for use as a Python test runner
+
+Articles related to Python packaging
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* `Packaging a python library`_
+* `Packaging pitfalls`_
+
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`drivendata/cookiecutter-data-science`: https://github.com/drivendata/cookiecutter-data-science
