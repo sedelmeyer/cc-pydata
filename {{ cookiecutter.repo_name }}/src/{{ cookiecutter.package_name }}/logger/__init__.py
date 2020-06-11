@@ -9,7 +9,7 @@ This module handles setup of logging configuration for ``{{cookiecutter.package_
 .. autosummary::
 
    logfunc
-   setup_logging
+   start_logging
 
 |
 """
@@ -23,7 +23,7 @@ import sys
 import time
 
 
-def setup_logging(
+def start_logging(
     default_path='logging.json',
     default_level='INFO',
     env_key='LOG_CFG'
