@@ -19,6 +19,12 @@ Future releases
 .. _pytest-cookies: https://github.com/hackebrot/pytest-cookies
 .. _tox: https://tox.readthedocs.io/en/latest/
 
+v0.2.0 (Future Release)
+-------------------
+
+* Add basic logging config and functionality to template
+* Add ``sphinx.ext.autosummary`` api starter documentation to template docs
+
 v0.1.7 (2020-05-31)
 -------------------
 
