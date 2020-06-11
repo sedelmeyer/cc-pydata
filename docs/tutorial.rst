@@ -496,6 +496,11 @@ At any time during development of your ``cc-pydata`` project, you can run your e
 
     pytest
 
+The ``pytest`` test-runner is a powerful command-line tool. There are far too many features to describe here. For a good overview:
+
+* Please see `the documentation regarding the Usage and Invocations <https://docs.pytest.org/en/latest/usage.html>`_ of ``python -m pytest``;
+* Additionally, you can see the complete listing of available ``pytest`` arguments in the "help" documentation by running ``pytest -h``.
+
 Running ``pytest`` will provide a convenient summary as tests are run. As an example, your output will look something like this if there are no test failures:
 
 .. code:: bash
@@ -540,6 +545,47 @@ Configuring and leveraging TravisCI for your project
     * Describe the basic .travis.yml configuration
     * Describe basic steps to set up CI integration with TravisCI for your project
 
+
+Logging configuration and out-of-the-box logging features
+---------------------------------------------------------
+
+The ``cc-pydata`` template provides some useful default, yet easily modified and enhanced, logging capabilities out-of-the-box for your data science project.
+
+The defaults provided (and described below), rely only on the ``logging`` module included in Python's standard library.
+
+.. contents:: In this section
+  :local:
+  :backlinks: none
+
+.. todo::
+
+   Add sections:
+
+   * Package-level NullHandler
+    * provide link to library default best practices
+   * The default ``logging.json`` configuration file
+   * Custom ``logger`` module
+   * ``logger.start_logging()``
+   * ``logger.logfunc``
+
+
+Default ``logging`` configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The package-level ``NullHandler`` initialized at import
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+The default ``logging.json`` configuration file
+"""""""""""""""""""""""""""""""""""""""""""""""
+
+Basic functionality in the custom ``logger`` module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Initializing ``logging`` in your session using ``logger.start_logging()``
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Logging characteristics of a function or method with the ``@logger.logfunc`` decorator
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`drivendata/cookiecutter-data-science`: https://github.com/drivendata/cookiecutter-data-science
