@@ -54,6 +54,7 @@ Features
 * Version configuration with `setuptools_scm`_
 * Pipenv_ for package management and for generating a repeatable environment
 * Travis-CI_ for continuous testing.
+* Out-of-the-box (and easily modified) logging configuration with base functionality
 * Packaging of modules, installed into your working environment as an editable library (i.e. ``-e .``) and easily imported into Jupyter notebooks with natural syntax such as ``from module_name import function_name``
 * Project documentation generated using Sphinx_ and reStructuredText_, ready for hosting alongside your project on GitHub pages.
 
