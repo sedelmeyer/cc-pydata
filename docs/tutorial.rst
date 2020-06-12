@@ -587,7 +587,7 @@ As a default, a do-nothing handler (a.k.a. ``logging.NullHandler()``) is set at 
 To accomplish this, the top-level ``__init__.py`` file contains the following code::
 
     import logging
-    logging.getLogger('foo').addHandler(logging.NullHandler())
+    logging.getLogger('<package-name>').addHandler(logging.NullHandler())
 
 This ensures a handler is always found for your application's logging events, preventing unwanted logging to occur unless you explicity set a different handler. For more information on this, please see the ``logging`` `documentation's notes on best practices for configuring logging for a library <https://docs.python.org/3/howto/logging.html#configuring-logging-for-a-library>`_.
 
@@ -603,6 +603,17 @@ If that ``logging.json`` file is not available, or if you call the ``start_loggi
 Customizing the provided ``logging.json`` configuration file
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+When calling ``<package-name>.logger.start_logging()` from your ``cc-pydata`` project's root directory, you are effectively initializing your ``logging`` session with ``logging.config.dictConfig(logging.json)``.
+
+The default ``logging.json`` configuration file provided with the ``cc-pydata`` template simply provides a single ``root`` handler that logs to ``sys.stdout`` at the ``INFO`` logging level.
+
+To add additional handlers, change logging levels, change formatters, or add filters to this ``logging.json`` file, please see:
+
+* The official ``logging.config.dictConfig`` `documentation <https://docs.python.org/3/library/logging.config.html#logging.config.dictConfig>`_.
+
+* The configuration dictionary `schema documentation <https://docs.python.org/3/library/logging.config.html#logging-config-dictschema>`_.
+
+
 Functions provided in the custom ``<package-name>.logger`` module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -611,6 +622,23 @@ The ``<package-name>.logger.start_logging()`` function
 
 The ``@<package-name>.logger.logfunc()`` decorator function
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+For additional information on best practices and logging in Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you are new to logging, or are considering logging for the first time in the context of a Python data science project, here are some additional resources I have found to be helpful:
+
+* The Python standard library provides `an extensive tutorial and HOWTO for getting started with logging <https://docs.python.org/3/howto/logging.html>`_.
+
+* The Python standard library provides `a more advanced "logging cookbook" with many great recipes <https://docs.python.org/3/howto/logging-cookbook.html>`_.
+
+* Kenneth Reitz and Real Python provide `a clear and concise section on logging in The Hitchhiker's Guide to Python <https://docs.python-guide.org/writing/logging/>`_.
+
+* Fang-Pen Lin provides `an overview of good logging practices (along with a sample dictionary configuration) on her blog <https://fangpenlin.com/posts/2012/08/26/good-logging-practice-in-python/>`_.
+
+* Real Python provides `a clear introductory tutorial on logging in Python <https://realpython.com/python-logging/>`_.
+
+* And, Ari Cohen provides `an interesting approach to logging decorators (which inspired my custom logfunc function) for data science projects <https://towardsdatascience.com/unit-testing-and-logging-for-data-science-d7fb8fd5d217>`_.
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`drivendata/cookiecutter-data-science`: https://github.com/drivendata/cookiecutter-data-science
