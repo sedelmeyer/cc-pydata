@@ -546,7 +546,7 @@ Configuring and leveraging TravisCI for your project
     * Describe basic steps to set up CI integration with TravisCI for your project
 
 
-Logging configuration and out-of-the-box logging features
+Logging configuration and the out-of-box logging features
 ---------------------------------------------------------
 
 The ``cc-pydata`` template provides some useful default, yet easily modified, logging capabilities out-of-the-box for your data science project.
@@ -560,9 +560,6 @@ The defaults provided (and described below), rely only on the ``logging`` `modul
 .. todo::
 
    Add sections:
-
-   * Package-level NullHandler
-       * provide link to library default best practices
 
    * The default ``logging.json`` configuration file
    * Custom ``logger`` module
@@ -594,21 +591,26 @@ To accomplish this, the top-level ``__init__.py`` file contains the following co
 
 This ensures a handler is always found for your application's logging events, preventing unwanted logging to occur unless you explicity set a different handler. For more information on this, please see the ``logging`` `documentation's notes on best practices for configuring logging for a library <https://docs.python.org/3/howto/logging.html#configuring-logging-for-a-library>`_.
 
-Initializing active logging with the ``<package>.logger.start_logging()`` function
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Initializing active logging with the ``<package-name>.logger.start_logging()`` function
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+Initializing active logging for any given session during which you import and run your ``cc-pydata`` application is as simple as making a call to the provided ``<package-name>.logger.start_logging()`` custom function.
 
-The default ``logging.json`` configuration file
-"""""""""""""""""""""""""""""""""""""""""""""""
+As a default, ``start_logging`` will import the ``logging`` dictionary configuration specified in the provided ``logging.json`` file contained in the default ``cc-pydata`` template.
 
-Basic functionality in the custom ``logger`` module
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If that ``logging.json`` file is not available, or if you call the ``start_logging`` function with its default arguments from an interactive Jupyter notebook session for a notebook located in the ``notebooks`` directory, a basic logging configuration will be initialized at the ``INFO`` logging level, and log events will be output to ``sys.stdout``.
 
-Initializing ``logging`` in your session using ``logger.start_logging()``
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Customizing the provided ``logging.json`` configuration file
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Logging characteristics of a function or method with the ``@logger.logfunc`` decorator
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Functions provided in the custom ``<package-name>.logger`` module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``<package-name>.logger.start_logging()`` function
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+The ``@<package-name>.logger.logfunc()`` decorator function
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`drivendata/cookiecutter-data-science`: https://github.com/drivendata/cookiecutter-data-science
