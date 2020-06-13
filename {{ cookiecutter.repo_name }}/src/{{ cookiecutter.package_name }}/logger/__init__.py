@@ -2,7 +2,7 @@
 {{cookiecutter.package_name}}.logger
 ~~~~~~~~~~~~~
 
-This module handles setup of logging configuration for ``{{cookiecutter.package_name}}`` package
+This module contains logging-related features for the ``{{cookiecutter.package_name}}`` package
 
 **Module functions:**
 
