@@ -138,6 +138,7 @@ Below is a high level overview of the resulting directory structure when you gen
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
     ├── src                <- Source code for use in this project
     ├── .travis.yml        <- Configuration for TravisCI services (see travis-ci.com)
+    ├── logging.json       <- Default logging configuration dictionary
     ├── setup.py           <- Setup script for the project using setuptools (see
     │                         packaging.python.org/guides/distributing-packages-using-setuptools)
     └── setup.cfg          <- contains option defaults for setup.py commands
