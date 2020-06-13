@@ -598,6 +598,40 @@ As a default, ``start_logging`` will import the ``logging`` dictionary configura
 
 If that ``logging.json`` file is not available, or if you call the ``start_logging`` function with its default arguments from an interactive Jupyter notebook session for a notebook located in the ``notebooks`` directory, a ``logging.basicConfig()`` `configuration <https://docs.python.org/3/library/logging.html#logging.basicConfig>`_ will be initialized at the ``INFO`` logging level, and log events will be output to ``sys.stdout``.
 
+Diagram illustrating the Default ``cc-pydata`` project logging behavior
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Below is a flow diagram illustrating the default project logging behavior described above:
+
+.. graphviz::
+
+   digraph pydata_logging {
+    rankdir=TB;
+    {
+    	node [shape = box, fontname = Monospace]
+        1 [label = "import <package-name>"]
+        2 [label = "<package-name>.logger.start_logging()"]
+    };
+    {
+        node [shape = box, color = lightblue, style = filled, fontname = Monospace]
+        a [label = "logging.NullHandler()"]
+        b [label = "logging.config.dictConfig(\l    os.environ['LOG_CFG']\l)"]
+        c [label = "logging.config.dictConfig(logging.json)"]
+        d [label = "logging.basicConfig(\l    stream=sys.stdout,\l    level=logging.INFO\l)"]
+    };
+    {
+        node [shape = diamond]
+        i [label = "Does the\nLOG_CFG environment\nvariable exist?"]
+        ii [label = "Does the\nlogging.json file\nexist in the\nactive directory?"]
+    };
+	1 -> a;
+	a -> 2;
+	2 -> i;
+	i -> b [ label = "Yes" ];
+	i -> ii [ label = "No" ];
+	ii -> c [ label = "Yes" ];
+	ii -> d [ label = "No" ];
+   }
 
 Customizing the provided ``logging.json`` configuration file
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -651,7 +685,9 @@ Example::
 
     from <package-name>.logger import start_logging
 
+
     start_logging()
+
 
     ...
 
@@ -680,7 +716,9 @@ Example::
     import logging
     from <package-name>.logger import logfunc
 
+
     log = logging.getLogger(__name__)
+
 
     @logfunc(log=log, funcname=True, runtime=True)
     def some_function(arg1, **kwargs):
