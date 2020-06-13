@@ -561,10 +561,7 @@ The defaults provided (and described below), rely only on the ``logging`` `modul
 
    Add sections:
 
-   * The default ``logging.json`` configuration file
-   * Custom ``logger`` module
-   * ``logger.start_logging()``
-   * ``logger.logfunc``
+   * Make schematic showing logging initialization hierarchy
 
 
 Default ``logging`` configuration
@@ -591,19 +588,21 @@ To accomplish this, the top-level ``__init__.py`` file contains the following co
 
 This ensures a handler is always found for your application's logging events, preventing unwanted logging to occur unless you explicity set a different handler. For more information on this, please see the ``logging`` `documentation's notes on best practices for configuring logging for a library <https://docs.python.org/3/howto/logging.html#configuring-logging-for-a-library>`_.
 
+
 Initializing active logging with the ``<package-name>.logger.start_logging()`` function
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Initializing active logging for any given session during which you import and run your ``cc-pydata`` application is as simple as making a call to the provided ``<package-name>.logger.start_logging()`` custom function.
+To active logging for any given session during which you import and run your ``cc-pydata`` application, all you need to do is run the provided ``<package-name>.logger.start_logging()`` custom function.
 
-As a default, ``start_logging`` will import the ``logging`` dictionary configuration specified in the provided ``logging.json`` file contained in the default ``cc-pydata`` template.
+As a default, ``start_logging`` will import the ``logging`` dictionary configuration specified in the provided ``logging.json`` file contained in the default ``cc-pydata`` project template.
 
-If that ``logging.json`` file is not available, or if you call the ``start_logging`` function with its default arguments from an interactive Jupyter notebook session for a notebook located in the ``notebooks`` directory, a basic logging configuration will be initialized at the ``INFO`` logging level, and log events will be output to ``sys.stdout``.
+If that ``logging.json`` file is not available, or if you call the ``start_logging`` function with its default arguments from an interactive Jupyter notebook session for a notebook located in the ``notebooks`` directory, a ``logging.basicConfig()`` `configuration <https://docs.python.org/3/library/logging.html#logging.basicConfig>`_ will be initialized at the ``INFO`` logging level, and log events will be output to ``sys.stdout``.
+
 
 Customizing the provided ``logging.json`` configuration file
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-When calling ``<package-name>.logger.start_logging()` from your ``cc-pydata`` project's root directory, you are effectively initializing your ``logging`` session with ``logging.config.dictConfig(logging.json)``.
+When calling ``<package-name>.logger.start_logging()`` from your ``cc-pydata`` project's root directory, you are effectively initializing your ``logging`` session with ``logging.config.dictConfig(logging.json)``.
 
 The default ``logging.json`` configuration file provided with the ``cc-pydata`` template simply provides a single ``root`` handler that logs to ``sys.stdout`` at the ``INFO`` logging level.
 
@@ -617,11 +616,76 @@ To add additional handlers, change logging levels, change formatters, or add fil
 Functions provided in the custom ``<package-name>.logger`` module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The ``cc-pydata`` project template provides a built in custom logging module located at the ``<package-name>.logger`` namespace.
+
+This ``logger`` module has been kept simple with the thought that users can build additional logging functionality to suite the needs of their own data science project.
+
+The ``logger`` module comes with two provided functions:
+
+.. list-table::
+
+   * - ``<package-name>.logger.start_logging(...)``
+     - Set up logging configuration for the ``cc-pydata`` project package
+   * - ``<package-name>.logger.logfunc(...)``
+     - Decorator wrap function call to provide log information when a function is called
+
+Both ``logger`` functions are described in greater detail below.
+
+
 The ``<package-name>.logger.start_logging()`` function
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
+This function activates a ``logging`` configuration for the ``cc-pydata`` project package during your current session.
+
+:param default_path: string file path for json formatted
+                        logging configuration file (default is
+                        ``'logging.json'``)
+:param default_level: string indicating the default level
+                        for logging, accepts the following
+                        values: ``'DEBUG'``, ``'INFO'``, ``'WARNING'``,
+                        ``'ERROR'``, ``'CRITICAL'`` (default is ``'INFO'``)
+:param env_key: string indicating environment key if one exists
+                (default is ``'LOG_CFG'``)
+
+Example::
+
+    from <package-name>.logger import start_logging
+
+    start_logging()
+
+    ...
+
+
 The ``@<package-name>.logger.logfunc()`` decorator function
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+This function acts as a ``functools.wraps`` `decorator for decorating functions or methods <https://docs.python.org/3/library/functools.html#functools.wraps>`_ to provide logging functionality to log details of the decorated function
+
+:param orig_func: ``NoneType`` placeholder parameter
+:param log: ``logging.getLogger`` object for logging, default is ``None``
+:param funcname: boolean indicating whether to log name of function,
+                    default is ``False``
+:param argvals: boolean indicating whether to log function arguments,
+                default is ``False``
+:param docdescr: boolean indicating whether to log function docstring
+                    short description, default is ``False``
+:param runtime: boolean indicating whether to log function execution
+                runtime in seconds, default is ``False``
+:return: ``functools.wraps`` wrapper function
+
+Please note that all logs are generate at the ``INFO`` logging level
+
+Example::
+
+    import logging
+    from <package-name>.logger import logfunc
+
+    log = logging.getLogger(__name__)
+
+    @logfunc(log=log, funcname=True, runtime=True)
+    def some_function(arg1, **kwargs):
+        ...
+
 
 For additional information on best practices and logging in Python
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
