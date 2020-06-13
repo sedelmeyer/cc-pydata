@@ -71,8 +71,8 @@ html_theme_options = {
     'github_user': 'sedelmeyer',
     'github_repo': 'cc-pydata',
     'fixed_sidebar': 'false',
-    'description': 'Cookiecutter PyData is a template for generating '\
-            '"reasonably standardized" skeletons for Python-based '\
+    'description': 'Cookiecutter PyData (cc-pydata) is a template for '
+            'generating "reasonably standardized" skeletons for Python-based '
             'data science projects.',
     'badge_branch': 'master',
     'github_banner': 'true',
