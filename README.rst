@@ -1,7 +1,7 @@
 Cookiecutter PyData
 ===================
 
-Cookiecutter PyData is a Cookiecutter_ template for generating "reasonably standardized" skeletons for Python-based data science projects.
+Cookiecutter PyData (``cc-pydata``) is a Cookiecutter_ template for generating "reasonably standardized" skeletons for Python-based data science projects.
 
 .. image:: https://travis-ci.com/sedelmeyer/cc-pydata.svg?branch=master
     :target: https://travis-ci.com/sedelmeyer/cc-pydata
