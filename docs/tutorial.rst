@@ -50,7 +50,12 @@ When you generate a Cookiecutter PyData data science project from this template 
     │   └── figures        <- Generated graphics and figures to be used in reporting
     │
     ├── src                <- Source code for use in this project
-    │   └── <module_name>
+    │   └── <package-name>
+    │       ├── data           <- Submodule for downloading and cleansing data
+    │       ├── features       <- Submodule for generating engineered features for modeling
+    │       ├── models         <- Submodule for training models and generating predictions
+    │       ├── visualizations <- Submodule for generating visualizations
+    │       ├── logger         <- Submodule for logging-related functionality
     │       ├── __init__.py    <- Makes src a Python module
     │       ├── __main__.py    <- Entry point module
     │       └── cli.py         <- Module for creating the command line app
@@ -58,6 +63,7 @@ When you generate a Cookiecutter PyData data science project from this template 
     ├── .gitignore         <- Specified files to exclude from Git history (as a default, `.env`,
     │                         `./data/` files, and `*/third-party/` files are all excluded)
     ├── .travis.yml        <- Configuration for TravisCI services (see travis-ci.com)
+    ├── logging.json       <- Default logging configuration dictionary
     ├── setup.py           <- Setup script for the project using setuptools (see
     │                         packaging.python.org/guides/distributing-packages-using-setuptools)
     └── setup.cfg          <- contains option defaults for setup.py commands
@@ -584,6 +590,8 @@ As a default, a do-nothing handler (a.k.a. ``logging.NullHandler()``) is set at 
 To accomplish this, the top-level ``__init__.py`` file contains the following code::
 
     import logging
+
+
     logging.getLogger('<package-name>').addHandler(logging.NullHandler())
 
 This ensures a handler is always found for your application's logging events, preventing unwanted logging to occur unless you explicity set a different handler. For more information on this, please see the ``logging`` `documentation's notes on best practices for configuring logging for a library <https://docs.python.org/3/howto/logging.html#configuring-logging-for-a-library>`_.
