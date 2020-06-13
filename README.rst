@@ -118,30 +118,42 @@ Below is a high level overview of the resulting directory structure when you gen
 
 .. code::
 
-    PyData Project Directory
+    cc-pydata Project Directory
     │
-    ├── README.rst         <- The top-level README for developers using this project
-    ├── CHANGLOG.rst       <- Used to document version-by-version changes to the project
-    ├── Pipfile            <- Requirements file for reproducing the analysis environment
-    │                         using the Pipenv package manager (see pipenv.readthedocs.io)
-    ├── .env               <- Sets project-specific environmnt variables such as credentials
-    │                         that you do not want committed to Git history (see
-    │                         pipenv.readthedocs.io/en/latest/advanced/#automatic-loading-of-env)
-    ├── data               <- All data files related to the project. Files contained in this
-    │                         directory are ommitted from Git history via the .gitignore file    │
-    ├── docs               <- A default Sphinx project for generating documentation
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    ├── notebooks          <- Jupyter notebooks, named using a number and descriptive title
-    │                         so sequential run order and purpose are explicit, e.g.
+    ├── README.rst         <- The top-level README for developers using
+    │                         this project
+    ├── CHANGLOG.rst       <- Used to document version-by-version
+    │                         changes to the project
+    ├── Pipfile            <- Requirements file for reproducing the
+    │                         analysis environment using the Pipenv
+    │                         package manager
+    │                         (see pipenv.readthedocs.io)
+    ├── .env               <- Sets project-specific environment
+    │                         variables such as credentials that you
+    │                         do not want committed to Git history
+    ├── data               <- All data files related to the project.
+    │                         Files contained in this directory are
+    │                         ommitted from Git history via the
+    │                         .gitignore file
+    ├── docs               <- A default Sphinx project for generating
+    │                         documentation
+    ├── models             <- Trained and serialized models, model
+    │                         predictions, or model summaries
+    ├── notebooks          <- Jupyter notebooks, named using a number
+    │                         and descriptive title so sequential run
+    │                         order and purpose are explicit, e.g.
     │                         `001-EDA-property-assessments`
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
+    ├── references         <- Data dictionaries, manuals, and all
+    │                         other explanatory materials
+    ├── reports            <- Generated analysis as HTML, LaTeX, etc.
     ├── src                <- Source code for use in this project
-    ├── .travis.yml        <- Configuration for TravisCI services (see travis-ci.com)
+    ├── .travis.yml        <- Configuration for TravisCI services
+    │                         (see travis-ci.com)
     ├── logging.json       <- Default logging configuration dictionary
-    ├── setup.py           <- Setup script for the project using setuptools (see
-    │                         packaging.python.org/guides/distributing-packages-using-setuptools)
-    └── setup.cfg          <- contains option defaults for setup.py commands
+    ├── setup.py           <- Setup script for the project using
+    │                         setuptools
+    └── setup.cfg          <- contains option defaults for setup.pydata
+                              commands
 
 .. _other resources:
 
