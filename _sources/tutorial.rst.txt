@@ -3,7 +3,7 @@
 Tutorial
 ========
 
-This tutorial walks through the basic use of the Cookiecutter PyData template, as well as some of this template's more important features.
+This tutorial walks through the basic use of the Cookiecutter PyData (i.e. ``cc-pydata``) template, as well as some of this template's more important features.
 
 .. contents:: Tutorial Contents
   :local:
@@ -12,55 +12,81 @@ This tutorial walks through the basic use of the Cookiecutter PyData template, a
 
 .. _directory structure:
 
-Resulting directory structure
------------------------------
+``cc-pydata`` project template structure
+----------------------------------------
 
-When you generate a Cookiecutter PyData data science project from this template (see :ref:`getting started`), the resulting project will have the following directory structure::
+When you generate a ``cc-pydata`` data science project from this template (see :ref:`getting started`), the resulting project will have the following directory structure::
 
-    PyData Project Directory
+    cc-pydata Project Directory
     │
     ├── LICENSE
-    ├── README.rst         <- Top-level README for developers
-    ├── CHANGLOG.rst       <- Used to document version-by-version changes
-    ├── Pipfile            <- Requirements file for reproducing the analysis environment
-    │                         using the Pipenv package manager (see pipenv.readthedocs.io)
-    ├── .env               <- Sets project-specific environmnt variables such as credentials
-    │                         that you do not want committed to Git history (see
-    │                         pipenv.readthedocs.io/en/latest/advanced/#automatic-loading-of-env)
-    ├── data               <- All data files related to the project. Files contained in this
-    │   |                     directory are ommitted from Git history via the .gitignore file
-    │   ├── raw            <- The original data file(s), this data should never be modified
-    │   ├── interim        <- Intermediate data that has been transformed
-    │   └── processed      <- The final data set(s) for modeling
+    ├── README.rst        <- Top-level README for developers
+    ├── CHANGLOG.rst      <- Documents version-by-version changes
+    ├── Pipfile           <- Requirements file for reproducing the
+    │                        analysis environment using the Pipenv
+    │                        package manager
+    │                        (see pipenv.readthedocs.io)
+    ├── .env              <- Sets project-specific environmnt variables
+    │                        such as credentials that you do not want
+    │                        committed to Git history
+    ├── data              <- All data files related to the project.
+    │   |                    Files contained in this directory are
+    │   │                    ommitted from Git history via .gitignore
+    │   ├── raw           <- The original data file(s) that, for the
+    │   │                    purpose of reproducibility, should never
+    │   │                    be modified
+    │   ├── interim       <- Data that has been cleaned or transformed
+    │   └── processed     <- The final data set(s) used for modeling
     │
-    ├── docs               <- A default Sphinx project for generating documentation
+    ├── docs              <- A default Sphinx project for generating
+    │   │                    project documentation
     │   └── _static
-    │       └── figures    <- Generated graphics and figures to be used in Sphinx generated docs
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
+    │       └── figures   <- Generated graphics and figures to be used
+    │                        in Sphinx generated docs
+    ├── models            <- Trained and serialized models, model
+    │                        predictions, or model summaries
     │
-    ├── notebooks          <- Jupyter notebooks, named using a number and descriptive title
-    │                         so sequential run order and purpose are explicit, e.g.
-    │                         `001-EDA-property-assessments`
+    ├── notebooks         <- Jupyter notebooks, named using a number
+    │                        and descriptive title so sequential run-
+    │                        order and purpose are explicit, e.g.
+    │                        "001-EDA-property-assessments.ipynb"
     │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials
-    │   └── third-party    <- Third-party and copyrighted materials you do not want committed to
-    │                         Git history
+    ├── references        <- Data dictionaries, manuals, and all other
+    │   │                    explanatory materials
+    │   └── third-party   <- Third-party and copyrighted materials you
+    │                        do not want committed to Git history
     │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
+    ├── reports           <- Generated analysis as HTML, PDF, etc.
+    │   └── figures       <- Generated graphics and figures to be used
+    │                        in reporting
     │
-    ├── src                <- Source code for use in this project
-    │   └── <module_name>
+    ├── src               <- Source code for use in this project
+    │   └── <package-name>
+    │       ├── data           <- Submodule for downloading and
+    │       │                     cleansing data
+    │       ├── features       <- Submodule for generating engineered
+    │       │                     features for modeling
+    │       ├── models         <- Submodule for training models and
+    │       │                     generating predictions
+    │       ├── visualizations <- Submodule for generating
+    │       │                     visualizations
+    │       ├── logger         <- Submodule for project logging-related
+    │       │                     functionality
     │       ├── __init__.py    <- Makes src a Python module
     │       ├── __main__.py    <- Entry point module
-    │       └── cli.py         <- Module for creating the command line app
+    │       └── cli.py         <- Module for creating the command line
+    │                             interface for the project
     │
-    ├── .gitignore         <- Specified files to exclude from Git history (as a default, `.env`,
-    │                         `./data/` files, and `*/third-party/` files are all excluded)
-    ├── .travis.yml        <- Configuration for TravisCI services (see travis-ci.com)
-    ├── setup.py           <- Setup script for the project using setuptools (see
-    │                         packaging.python.org/guides/distributing-packages-using-setuptools)
-    └── setup.cfg          <- contains option defaults for setup.py commands
+    ├── .gitignore        <- Specified files to exclude from Git
+    │                        history (as a default, `.env`, `./data/`
+    │                        files, and `*/third-party/` files are all
+    │                        excluded)
+    ├── .travis.yml       <- Configuration for TravisCI services
+    │                        (see travis-ci.com)
+    ├── logging.json      <- Default logging configuration dictionary
+    ├── setup.py          <- Setup script for the project using
+    │                        setuptools
+    └── setup.cfg         <- Option defaults for setup.py commands
 
 .. _getting started:
 
@@ -71,20 +97,25 @@ Generating a new template
   :local:
   :backlinks: none
 
+0. Ensure all prerequisites are met
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+See the :ref:`requirements` section of the :ref:`readme` README documentation to ensure basic system dependencies are met.
+
 1. Initiate the template using Cookiecutter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-First generate your project::
+Generating a ``cc-pydata`` project template is as simple as running the following command from your terminal::
 
-  cookiecutter gh:sedelmeyer/cookiecutter-pydata
+  cookiecutter gh:sedelmeyer/cc-pydata
 
-Alternatively, if you have a local working copy of the ``cookiecutter-pydata`` project in which you've made customizations to the template, you can run::
+Alternatively, if you have a local working copy of the ``cc-pydata`` project in which you've made customizations to the template, you can run::
 
-  cookiecutter <path-to-directory>/cookiecutter-pydata
+  cookiecutter <path-to-directory>/cc-pydata
 
 
-2. Complete template prompts required to generate template
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2. Complete template prompts required to generate the template
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The below listed prompts will be presented on the command line after generating your project (see Step 1 above). For each prompt, default values will be presented in brackets (i.e. ``full_name [Michael Sedelmeyer]:``).
 
@@ -172,7 +203,8 @@ To modify defaults or customize these prompts, please see the ``cookiecutter.jso
 
     * ``plain`` - a very simple command.
     * ``argparse`` - a command implemented with ``argparse``.
-    * ``click`` - a command implemented with `click <http://click.pocoo.org/>`_ * ``no`` - no CLI at all.
+    * ``click`` - a command implemented with `click <http://click.pocoo.org/>`_
+    * ``no`` - no CLI at all.
 
 * ``command_line_interface_bin_name``
 
@@ -213,7 +245,7 @@ To deactivate your environment::
 
 For a more complete overview of how to use ``pipenv`` for package and dependencies management, please see the Pipenv_ project page.
 
-**Congratulations!** You've stood up a new PyData data science project template!
+**Congratulations!** You've stood up a new ``cc-pydata`` data science project template!
 
 **Now it's time to explore some of the features of this template!**
 
@@ -291,6 +323,8 @@ The resulting project template is configured to use reStructuredText_ and Sphinx
 * **If you are new to Sphinx**, please see `the Sphinx documentation <https://www.sphinx-doc.org>`_
 * **If you are new to reStructuredText**, a good starting place will be `the reStructuredText documentation provided by the Sphinx project <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
 
+.. _make-html:
+
 Generating and previewing your site HTML
 """"""""""""""""""""""""""""""""""""""""
 
@@ -323,9 +357,39 @@ At any time you can preview your generated site content by opening your site's `
 Auto-generating documentation for your custom package modules
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. todo::
+Sphinx is a powerful tool for auto-generating API documentation directly from the docstrings embedded within your code. In other words, if you take the time to document your code correctly using docstrings, your API reference material can largely write itself.
 
-    * Describe the basic usage of Sphinx to build and maintain documentation
+There are several approaches you can take to accomplish this. Options include:
+
+1. Manual configuration of API reference materials using the ``sphinx.ext.autodoc`` `autodoc Sphinx extension <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html>`_;
+
+2. Manual configuration of API reference materials using the ``sphinx.ext.autosummary`` `autsummary Sphinx extension <https://www.sphinx-doc.org/en/master/usage/extensions/autosummary.html>`_;
+
+3. Fully automated generation of API reference materials using the ``sphinx-apidoc`` `command line utility, which relies on the autodoc extension <https://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html>`_;
+
+4. Automatic generation of API reference materials by setting the ``autosummary`` extension's ``autosummary_generate = True`` `parameter in your Sphinx <https://www.sphinx-doc.org/en/master/usage/extensions/autosummary.html#confval-autosummary_generate>`_ ``conf.py`` file;
+
+5. ...a combination of any of the approaches listed above.
+
+Each approach listed above has its own pros and cons which are far too detailed to explore here. For a great comparison of using the ``automodule`` versus the ``autosummary`` extension, `please see this article by Roman Miroshnychenko <https://romanvm.pythonanywhere.com/post/autodocumenting-your-python-code-sphinx-part-ii-6/>`_. Otherwise, please refer to the ``autodoc``, ``sphinx-apidoc``, ``autosummary``, and ``autosummary_generate`` links provided in the list above.
+
+I am sure approaches other than those listed above exist as well, but you should be able to accomplish everything you need to accomplish using these tools, so I will save myself the time it would take to provide a more exhaustive list.
+
+**If you have questions about the proper syntax for writing  Sphinx-friendly reStructuredText docstrings in your Python code**, please see:
+
+* `Roman Miroshnychenko's article on autodocumenting your python code <https://romanvm.pythonanywhere.com/post/autodocumenting-your-python-code-sphinx-part-i-5/>`_
+
+* `Thomas Cokelaer's example on how to document your Python docstrings <https://thomas-cokelaer.info/tutorials/sphinx/docstring_python.html>`_
+
+You may also find Sphinx's `documentation on its Python Domain directives <https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#the-python-domain>`_ to be extremely useful while trying to embed references within your docstrings.
+
+Sphinx can also generate documentation from the Google- and Numpy-formatted docstring styles with the help of the ``sphinx.ext.napoleon`` Sphinx extension. If either of those docstring formats are your jam, please `see the napoleon documentation <https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html>`_.
+
+.. note::
+
+   * The first time you run ``make html`` as was described in :ref:`make-html`, the ``docs/modules.rst`` file contained in the default ``cc-pydata`` template will generate a starter "API Reference" page documenting all modules and functions already contained in the ``cc-pydata`` template. That initial ``modules.rst`` file makes use of the manual approach #1 listed above and uses the ``sphinx.ext.autodoc`` extension's ``automodule`` `directive <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#directive-automodule>`_ to generate that starter documentation.
+
+   * All Sphinx extensions listed above, including ``sphinx.ext.autodoc``, ``sphinx.ext.autosummary``, and ``sphinx.ext.napoleon`` are imported by default in the ``cc-pydata`` template's ``conf.py`` Sphinx configuration file.
 
 
 Rationale for using reStructuredText instead of Markdown
@@ -333,10 +397,15 @@ Rationale for using reStructuredText instead of Markdown
 
 GitHub, Jupyter notebooks, and other static site generators typically rely on Markdown as a lightweight markup language.
 
+QUESTION:
+
 * So then, why does the ``cc-pydata`` project template use reStructuredText instead of Markdown?
 * Afterall, reStructuredText is a bit more verbose and not quite as frictionless for an author to use compared to Markdown.
 
-Because benefits abound, particularly for technical writing (once you get past the initial learning curve). And, because the primary assumption is that you'll be writing technical content to document and support your Python-based ``cc-pydata`` project, reStructuredText is the better choice.
+ANSWER:
+
+* Because benefits abound, particularly for technical writing (once you get past the initial learning curve).
+* And, because the primary assumption is that you'll be writing technical content to document and support your Python-based ``cc-pydata`` project, reStructuredText is the better choice.
 
 Here are a few primary reasons worth highlighting:
 
@@ -358,8 +427,9 @@ Meanwhile, Sphinx is through-and-through a Python-based tool (in fact the docume
 * The second major drawback for Jekyll is, it's not a tool custom-suited for documenting code.
 * This drawback also applies to the Python-based `Pelican <https://docs.getpelican.com/>`_ site generator and many other static site generators.
 * They typically provide no means for auto-generating project documentation directly from the custom code contained in your packaged Python library.
+* Sphinx, on the otherhand, excels at this task!
 
-Sphinx on the otherhand excels at this task. As was illustrated above (see :ref:`make-docs`), Sphinx offers powerful built-in extensions such as `sphinx.ext.autodoc <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html>`_ for generating and organizing your project documentation, pulling documentation directly from the docstrings in your code.
+As was illustrated above (see :ref:`make-docs`), Sphinx offers powerful built-in extensions such as `sphinx.ext.autodoc <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html>`_ for generating and organizing your project documentation, pulling documentation directly from the docstrings in your code.
 
 Information about other popular "built-in" Sphinx extensions that help to make Sphinx a smart choice for technical documentation `can be found in the "Extensions" section of the Sphinx documentation <https://www.sphinx-doc.org/en/master/usage/extensions/index.html>`_.
 
@@ -496,40 +566,44 @@ At any time during development of your ``cc-pydata`` project, you can run your e
 
     pytest
 
-Running ``pytest`` will provide a convenient summary as tests are run. As an example, your output will look something like this if there are no test failures:
+The ``pytest`` test-runner is a powerful command-line tool. There are far too many features to describe here. For a good overview:
+
+* Please see `the documentation regarding the Usage and Invocations <https://docs.pytest.org/en/latest/usage.html>`_ of ``python -m pytest``;
+* Additionally, you can see the complete listing of available ``pytest`` arguments in the "help" documentation by running ``pytest -h``.
+
+Running ``pytest`` will provide a convenient summary as tests are run. As an example, your default ``cc-pydata`` test output will look something like this if there are no test failures:
 
 .. code:: bash
 
-    ============================= test session starts ==============================
-    platform linux -- Python 3.6.9, pytest-5.3.2, py-1.8.1, pluggy-0.13.1
-    rootdir: /home/Code/basedata, inifile: setup.cfg, testpaths: tests, basedata
-    plugins: cov-2.8.1
-    collected 77 items
+    ============================== test session starts ===============================
+    platform linux -- Python 3.7.5, pytest-5.4.3, py-1.8.1, pluggy-0.13.1
+    rootdir: /home/Code/project_name, inifile: setup.cfg, testpaths: tests, project_name
+    plugins: cov-2.10.0
+    collected 11 items
 
-    tests/test_basedata.py .                                                 [  1%]
-    tests/inventory/test_inventory.py ..........                             [ 14%]
-    tests/ops/test_base.py ..............                                    [ 32%]
-    tests/ops/test_cols.py .................                                 [ 54%]
-    tests/ops/test_databuild.py .................                            [ 76%]
-    tests/ops/test_ids.py .................                                  [ 98%]
-    tests/ops/tests.py .                                                     [100%]
+    tests/test_project_name.py ...                                             [ 27%]
+    tests/data/test_data.py .                                                  [ 36%]
+    tests/features/test_features.py .                                          [ 45%]
+    tests/logger/test_logger.py ....                                           [ 81%]
+    tests/models/test_models.py .                                              [ 90%]
+    tests/visualizations/test_visualizations.py .                              [100%]
 
-    ----------- coverage: platform linux, python 3.6.9-final-0 -----------
-    Name                                 Stmts   Miss Branch BrPart     Cover   Missing
-    -----------------------------------------------------------------------------------
-    src/basedata/__init__.py                 5      2      0      0    60.00%   6-8
-    src/basedata/__main__.py                 3      1      2      1    60.00%   13->14, 14
-    src/basedata/cli.py                      6      0      0      0   100.00%
-    src/basedata/inventory/__init__.py      39      0     16      0   100.00%
-    src/basedata/ops/__init__.py             6      0      0      0   100.00%
-    src/basedata/ops/base.py                49      0     16      1    98.46%   127->136
-    src/basedata/ops/cols.py                38      0      6      0   100.00%
-    src/basedata/ops/ids.py                 40      0     16      0   100.00%
-    -----------------------------------------------------------------------------------
-    TOTAL                                  186      3     56      2    97.93%
+    ----------- coverage: platform linux, python 3.7.5-final-0 -----------
+    Name                                          Stmts   Miss Branch BrPart  Cover
+    -------------------------------------------------------------------------------
+    src/project_name/__init__.py                      7      2      0      0    71%
+    src/project_name/__main__.py                      3      1      2      1    60%
+    src/project_name/cli.py                           6      0      0      0   100%
+    src/project_name/data/__init__.py                 2      0      0      0   100%
+    src/project_name/features/__init__.py             2      0      0      0   100%
+    src/project_name/logger/__init__.py              41      2     14      5    87%
+    src/project_name/models/__init__.py               2      0      0      0   100%
+    src/project_name/visualizations/__init__.py       2      0      0      0   100%
+    -------------------------------------------------------------------------------
+    TOTAL                                            65      5     16      6    86%
 
 
-    ============================== 77 passed in 1.59s ==============================
+    =============================== 11 passed in 0.16s ===============================
 
 
 Configuring and leveraging TravisCI for your project
@@ -540,6 +614,198 @@ Configuring and leveraging TravisCI for your project
     * Describe the basic .travis.yml configuration
     * Describe basic steps to set up CI integration with TravisCI for your project
 
+
+Logging configuration and the out-of-box logging features
+---------------------------------------------------------
+
+The ``cc-pydata`` template provides some useful default, yet easily modified, logging capabilities out-of-the-box for your data science project.
+
+The defaults provided (and described below), rely only on the ``logging`` `module included in Python's standard library <https://docs.python.org/3/library/logging.html>`_.
+
+.. contents:: In this section
+  :local:
+  :backlinks: none
+
+
+Default ``logging`` configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The default logging configuration of the ``cc-pydata`` application provides the flexibility to program logging events into your application, then to easily choose whether or not to enable logging of those events for any given session in which you import and run your application.
+
+For intance:
+
+* If you don't explicitly initialize an active handler during your session, a package-level do-nothing ``NullHandler`` will silence all logging events generated by your application.
+* On the otherhand, if you do want events actively logged during your session, you easily use the custom ``logger.start_logging()`` function call provided in the base ``cc-pydata`` template.
+
+More on both of these options are outlined below...
+
+The package-level ``NullHandler`` initialized at import
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+As a default, a do-nothing handler (a.k.a. ``logging.NullHandler()``) is set at the time of import for your ``cc-pydata`` application. This behavior helps to ensure logs are not printed unless you explicity choose to activate logging while running your ``cc-pydata`` application.
+
+To accomplish this, the top-level ``__init__.py`` file contains the following code::
+
+    import logging
+
+
+    logging.getLogger('<package-name>').addHandler(logging.NullHandler())
+
+This ensures a handler is always found for your application's logging events, preventing unwanted logging to occur unless you explicity set a different handler. For more information on this, please see the ``logging`` `documentation's notes on best practices for configuring logging for a library <https://docs.python.org/3/howto/logging.html#configuring-logging-for-a-library>`_.
+
+
+Initializing active logging with the ``<package-name>.logger.start_logging()`` function
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+To active logging for any given session during which you import and run your ``cc-pydata`` application, all you need to do is run the provided ``<package-name>.logger.start_logging()`` custom function.
+
+As a default, ``start_logging`` will import the ``logging`` dictionary configuration specified in the provided ``logging.json`` file contained in the default ``cc-pydata`` project template.
+
+If that ``logging.json`` file is not available, or if you call the ``start_logging`` function with its default arguments from an interactive Jupyter notebook session for a notebook located in the ``notebooks`` directory, a ``logging.basicConfig()`` `configuration <https://docs.python.org/3/library/logging.html#logging.basicConfig>`_ will be initialized at the ``INFO`` logging level, and log events will be output to ``sys.stdout``.
+
+Diagram illustrating the Default ``cc-pydata`` project logging behavior
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Below is a flow diagram illustrating the default project logging behavior described above:
+
+.. graphviz::
+
+   digraph pydata_logging {
+    rankdir=TB;
+    {
+    	node [shape = box, fontname = Monospace]
+        1 [label = "import <package-name>"]
+        2 [label = "<package-name>.logger.start_logging()"]
+    };
+    {
+        node [shape = box, color = lightblue, style = filled, fontname = Monospace]
+        a [label = "logging.NullHandler()"]
+        b [label = "logging.config.dictConfig(\l    os.environ['LOG_CFG']\l)"]
+        c [label = "logging.config.dictConfig(logging.json)"]
+        d [label = "logging.basicConfig(\l    stream=sys.stdout,\l    level=logging.INFO\l)"]
+    };
+    {
+        node [shape = diamond]
+        i [label = "Does the\nLOG_CFG environment\nvariable exist?"]
+        ii [label = "Does the\nlogging.json file\nexist in the\nactive directory?"]
+    };
+	1 -> a;
+	a -> 2;
+	2 -> i;
+	i -> b [ label = "Yes" ];
+	i -> ii [ label = "No" ];
+	ii -> c [ label = "Yes" ];
+	ii -> d [ label = "No" ];
+   }
+
+Customizing the provided ``logging.json`` configuration file
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+When calling ``<package-name>.logger.start_logging()`` from your ``cc-pydata`` project's root directory, you are effectively initializing your ``logging`` session with ``logging.config.dictConfig(logging.json)``.
+
+The default ``logging.json`` configuration file provided with the ``cc-pydata`` template simply provides a single ``root`` handler that logs to ``sys.stdout`` at the ``INFO`` logging level.
+
+To add additional handlers, change logging levels, change formatters, or add filters to this ``logging.json`` file, please see:
+
+* Official ``logging.config.dictConfig`` `documentation <https://docs.python.org/3/library/logging.config.html#logging.config.dictConfig>`_;
+
+* Configuration `dictionary schema documentation <https://docs.python.org/3/library/logging.config.html#logging-config-dictschema>`_.
+
+
+Functions provided in the custom ``<package-name>.logger`` module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``cc-pydata`` project template provides a built in custom logging module located at the ``<package-name>.logger`` namespace.
+
+This ``logger`` module has been kept simple with the thought that users can build additional logging functionality to suite the needs of their own data science project.
+
+The ``logger`` module comes with two provided functions:
+
+.. list-table::
+
+   * - ``<package-name>.logger.start_logging(...)``
+     - Set up logging configuration for the ``cc-pydata`` project package
+   * - ``<package-name>.logger.logfunc(...)``
+     - Decorator wrap function call to provide log information when a function is called
+
+Both ``logger`` functions are described in greater detail below.
+
+
+The ``<package-name>.logger.start_logging()`` function
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+This function activates a ``logging`` configuration for the ``cc-pydata`` project package during your current session.
+
+:param default_path: string file path for json formatted
+                        logging configuration file (default is
+                        ``'logging.json'``)
+:param default_level: string indicating the default level
+                        for logging, accepts the following
+                        values: ``'DEBUG'``, ``'INFO'``, ``'WARNING'``,
+                        ``'ERROR'``, ``'CRITICAL'`` (default is ``'INFO'``)
+:param env_key: string indicating environment key if one exists
+                (default is ``'LOG_CFG'``)
+
+Example::
+
+    from <package-name>.logger import start_logging
+
+
+    start_logging()
+
+
+    ...
+
+
+The ``<package-name>.logger.logfunc()`` decorator function
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+This function acts as a ``functools.wraps`` `decorator for decorating functions or methods <https://docs.python.org/3/library/functools.html#functools.wraps>`_ to provide logging functionality to log details of the decorated function
+
+:param orig_func: ``NoneType`` placeholder parameter
+:param log: ``logging.getLogger`` object for logging, default is ``None``
+:param funcname: boolean indicating whether to log name of function,
+                    default is ``False``
+:param argvals: boolean indicating whether to log function arguments,
+                default is ``False``
+:param docdescr: boolean indicating whether to log function docstring
+                    short description, default is ``False``
+:param runtime: boolean indicating whether to log function execution
+                runtime in seconds, default is ``False``
+:return: ``functools.wraps`` wrapper function
+
+Please note that all logs are generate at the ``INFO`` logging level
+
+Example::
+
+    import logging
+    from <package-name>.logger import logfunc
+
+
+    log = logging.getLogger(__name__)
+
+
+    @logfunc(log=log, funcname=True, runtime=True)
+    def some_function(arg1, **kwargs):
+        ...
+
+
+For additional information on best practices and logging in Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you are new to logging, or are considering logging for the first time in the context of a Python data science project, here are some additional resources I have found to be helpful:
+
+* The Python standard library provides `an extensive tutorial and HOWTO for getting started with logging <https://docs.python.org/3/howto/logging.html>`_.
+
+* The Python standard library provides `a more advanced "logging cookbook" with many great recipes <https://docs.python.org/3/howto/logging-cookbook.html>`_.
+
+* Kenneth Reitz and Real Python provide `a clear and concise section on logging in The Hitchhiker's Guide to Python <https://docs.python-guide.org/writing/logging/>`_.
+
+* Fang-Pen Lin provides `an overview of good logging practices (along with a sample dictionary configuration) on her blog <https://fangpenlin.com/posts/2012/08/26/good-logging-practice-in-python/>`_.
+
+* Real Python provides `a clear introductory tutorial on logging in Python <https://realpython.com/python-logging/>`_.
+
+* And, Ari Cohen provides `an interesting approach to logging decorators (which inspired my custom logfunc function) for data science projects <https://towardsdatascience.com/unit-testing-and-logging-for-data-science-d7fb8fd5d217>`_.
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`drivendata/cookiecutter-data-science`: https://github.com/drivendata/cookiecutter-data-science
@@ -557,7 +823,7 @@ Configuring and leveraging TravisCI for your project
 .. _Azure Pipelines: https://azure.microsoft.com/en-us/services/devops/pipelines/
 
 .. _Pipenv loading of .env: https://pipenv.kennethreitz.org/en/latest/advanced/#automatic-loading-of-env
-.. _Single-sourcing the package version: _https://packaging.python.org/guides/single-sourcing-package-version/#single-sourcing-the-version
+.. _Single-sourcing the package version: https://packaging.python.org/guides/single-sourcing-package-version/#single-sourcing-the-version
 .. _reStructuredText primer: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 
 .. _GitHub Pages: https://pages.github.com/
