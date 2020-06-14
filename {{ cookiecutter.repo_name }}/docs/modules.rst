@@ -6,20 +6,20 @@ API Reference
   :depth: 2
   :backlinks: top
 
-.. automodule:: caproj.cli
+.. automodule:: {{cookiecutter.package_name}}.cli
    :members:
 
-.. automodule:: caproj.data
+.. automodule:: {{cookiecutter.package_name}}.data
    :members:
 
-.. automodule:: caproj.features
+.. automodule:: {{cookiecutter.package_name}}.features
    :members:
 
-.. automodule:: caproj.logger
+.. automodule:: {{cookiecutter.package_name}}.logger
    :members:
 
-.. automodule:: caproj.models
+.. automodule:: {{cookiecutter.package_name}}.models
    :members:
 
-.. automodule:: caproj.visualizations
+.. automodule:: {{cookiecutter.package_name}}.visualizations
    :members:
