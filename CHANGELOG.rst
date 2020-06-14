@@ -7,22 +7,25 @@ Future releases
 .. todo::
 
     * Improve template README.rst placeholder instructions for replicating and adding to a ``cc-pydata`` project
-    * Add packaging and scm versioning to project (similar to cookiecutter-pypackage_)
-    * Add TravisCI to project
-    * Add Azure pipelines support to project
-    * Add tox_ and tests to project (perhaps using `pytest-cookies`_)
+    * Add packaging and scm versioning to repo (similar to cookiecutter-pypackage_)
+    * Add TravisCI to repo
+    * Add Azure pipelines support to template
+    * Add tox_ and tests to repo (perhaps using `pytest-cookies`_, or in a manner similar to cookiecutter-pypackage_ or cookiecutter-datascience_)
     * Add tox to template
-    * Add doc tests to template and project
+    * Add doc tests to template and repo
     * Create a gh-pages publishing script to automate steps
 
 .. _cookiecutter-pypackage: https://github.com/audreyr/cookiecutter-pypackage
+.. _cookiecutter-datascience: https://github.com/drivendata/cookiecutter-data-science
 .. _pytest-cookies: https://github.com/hackebrot/pytest-cookies
 .. _tox: https://tox.readthedocs.io/en/latest/
 
-v0.2.0 (Future Release)
+v0.2.0 (2020-06-14)
 -------------------
 
+* Add standard submodule placeholders to ``cc-pydata`` template
 * Add basic logging config and functionality to template
+* Add logging documentation to ``cc-pydata`` tutorial
 * Add ``sphinx.ext.autosummary`` api starter documentation to template docs
 
 v0.1.7 (2020-05-31)
