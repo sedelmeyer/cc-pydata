@@ -184,6 +184,7 @@ Articles related to Python packaging
 
 * `Packaging a python library`_
 * `Packaging pitfalls`_
+* `Distributing packages using setuptools <https://packaging.python.org/guides/distributing-packages-using-setuptools/>`_
 
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
