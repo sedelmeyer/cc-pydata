@@ -555,40 +555,39 @@ The ``pytest`` test-runner is a powerful command-line tool. There are far too ma
 * Please see `the documentation regarding the Usage and Invocations <https://docs.pytest.org/en/latest/usage.html>`_ of ``python -m pytest``;
 * Additionally, you can see the complete listing of available ``pytest`` arguments in the "help" documentation by running ``pytest -h``.
 
-Running ``pytest`` will provide a convenient summary as tests are run. As an example, your output will look something like this if there are no test failures:
+Running ``pytest`` will provide a convenient summary as tests are run. As an example, your default ``cc-pydata`` test output will look something like this if there are no test failures:
 
 .. code:: bash
 
-    ============================= test session starts ==============================
-    platform linux -- Python 3.6.9, pytest-5.3.2, py-1.8.1, pluggy-0.13.1
-    rootdir: /home/Code/basedata, inifile: setup.cfg, testpaths: tests, basedata
-    plugins: cov-2.8.1
-    collected 77 items
+    ============================== test session starts ===============================
+    platform linux -- Python 3.7.5, pytest-5.4.3, py-1.8.1, pluggy-0.13.1
+    rootdir: /home/Code/project_name, inifile: setup.cfg, testpaths: tests, project_name
+    plugins: cov-2.10.0
+    collected 11 items
 
-    tests/test_basedata.py .                                                 [  1%]
-    tests/inventory/test_inventory.py ..........                             [ 14%]
-    tests/ops/test_base.py ..............                                    [ 32%]
-    tests/ops/test_cols.py .................                                 [ 54%]
-    tests/ops/test_databuild.py .................                            [ 76%]
-    tests/ops/test_ids.py .................                                  [ 98%]
-    tests/ops/tests.py .                                                     [100%]
+    tests/test_project_name.py ...                                             [ 27%]
+    tests/data/test_data.py .                                                  [ 36%]
+    tests/features/test_features.py .                                          [ 45%]
+    tests/logger/test_logger.py ....                                           [ 81%]
+    tests/models/test_models.py .                                              [ 90%]
+    tests/visualizations/test_visualizations.py .                              [100%]
 
-    ----------- coverage: platform linux, python 3.6.9-final-0 -----------
-    Name                                 Stmts   Miss Branch BrPart     Cover   Missing
-    -----------------------------------------------------------------------------------
-    src/basedata/__init__.py                 5      2      0      0    60.00%   6-8
-    src/basedata/__main__.py                 3      1      2      1    60.00%   13->14, 14
-    src/basedata/cli.py                      6      0      0      0   100.00%
-    src/basedata/inventory/__init__.py      39      0     16      0   100.00%
-    src/basedata/ops/__init__.py             6      0      0      0   100.00%
-    src/basedata/ops/base.py                49      0     16      1    98.46%   127->136
-    src/basedata/ops/cols.py                38      0      6      0   100.00%
-    src/basedata/ops/ids.py                 40      0     16      0   100.00%
-    -----------------------------------------------------------------------------------
-    TOTAL                                  186      3     56      2    97.93%
+    ----------- coverage: platform linux, python 3.7.5-final-0 -----------
+    Name                                          Stmts   Miss Branch BrPart  Cover
+    -------------------------------------------------------------------------------
+    src/project_name/__init__.py                      7      2      0      0    71%
+    src/project_name/__main__.py                      3      1      2      1    60%
+    src/project_name/cli.py                           6      0      0      0   100%
+    src/project_name/data/__init__.py                 2      0      0      0   100%
+    src/project_name/features/__init__.py             2      0      0      0   100%
+    src/project_name/logger/__init__.py              41      2     14      5    87%
+    src/project_name/models/__init__.py               2      0      0      0   100%
+    src/project_name/visualizations/__init__.py       2      0      0      0   100%
+    -------------------------------------------------------------------------------
+    TOTAL                                            65      5     16      6    86%
 
 
-    ============================== 77 passed in 1.59s ==============================
+    =============================== 11 passed in 0.16s ===============================
 
 
 Configuring and leveraging TravisCI for your project
