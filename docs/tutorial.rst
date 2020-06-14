@@ -823,7 +823,7 @@ If you are new to logging, or are considering logging for the first time in the 
 .. _Azure Pipelines: https://azure.microsoft.com/en-us/services/devops/pipelines/
 
 .. _Pipenv loading of .env: https://pipenv.kennethreitz.org/en/latest/advanced/#automatic-loading-of-env
-.. _Single-sourcing the package version: _https://packaging.python.org/guides/single-sourcing-package-version/#single-sourcing-the-version
+.. _Single-sourcing the package version: https://packaging.python.org/guides/single-sourcing-package-version/#single-sourcing-the-version
 .. _reStructuredText primer: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 
 .. _GitHub Pages: https://pages.github.com/
