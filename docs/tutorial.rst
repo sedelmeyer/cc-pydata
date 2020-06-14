@@ -12,8 +12,8 @@ This tutorial walks through the basic use of the Cookiecutter PyData (i.e. ``cc-
 
 .. _directory structure:
 
-Resulting directory structure
------------------------------
+``cc-pydata`` project template structure
+----------------------------------------
 
 When you generate a ``cc-pydata`` data science project from this template (see :ref:`getting started`), the resulting project will have the following directory structure::
 
@@ -28,14 +28,15 @@ When you generate a ``cc-pydata`` data science project from this template (see :
     │                        (see pipenv.readthedocs.io)
     ├── .env              <- Sets project-specific environmnt variables
     │                        such as credentials that you do not want
-    │                        committed to Git history (see
+    │                        committed to Git history
     ├── data              <- All data files related to the project.
     │   |                    Files contained in this directory are
     │   │                    ommitted from Git history via .gitignore
-    │   ├── raw           <- The original data file(s) that should
-    │   │                    never be modified
+    │   ├── raw           <- The original data file(s) that, for the
+    │   │                    purpose of reproducibility, should never
+    │   │                    be modified
     │   ├── interim       <- Data that has been cleaned or transformed
-    │   └── processed     <- The final data set(s) for modeling
+    │   └── processed     <- The final data set(s) used for modeling
     │
     ├── docs              <- A default Sphinx project for generating
     │   │                    project documentation
@@ -74,7 +75,7 @@ When you generate a ``cc-pydata`` data science project from this template (see :
     │       ├── __init__.py    <- Makes src a Python module
     │       ├── __main__.py    <- Entry point module
     │       └── cli.py         <- Module for creating the command line
-    │                             app
+    │                             interface for the project
     │
     ├── .gitignore        <- Specified files to exclude from Git
     │                        history (as a default, `.env`, `./data/`
@@ -96,10 +97,15 @@ Generating a new template
   :local:
   :backlinks: none
 
+0. Ensure all prerequisites are met
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+See the :ref:`requirements` section of the :ref:`readme` README documentation to ensure basic system dependencies are met.
+
 1. Initiate the template using Cookiecutter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-First generate your project::
+Generating a ``cc-pydata`` project template is as simple as running the following command from your terminal::
 
   cookiecutter gh:sedelmeyer/cc-pydata
 
@@ -108,8 +114,8 @@ Alternatively, if you have a local working copy of the ``cc-pydata`` project in 
   cookiecutter <path-to-directory>/cc-pydata
 
 
-2. Complete template prompts required to generate template
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2. Complete template prompts required to generate the template
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The below listed prompts will be presented on the command line after generating your project (see Step 1 above). For each prompt, default values will be presented in brackets (i.e. ``full_name [Michael Sedelmeyer]:``).
 
@@ -239,7 +245,7 @@ To deactivate your environment::
 
 For a more complete overview of how to use ``pipenv`` for package and dependencies management, please see the Pipenv_ project page.
 
-**Congratulations!** You've stood up a new PyData data science project template!
+**Congratulations!** You've stood up a new ``cc-pydata`` data science project template!
 
 **Now it's time to explore some of the features of this template!**
 
@@ -317,6 +323,8 @@ The resulting project template is configured to use reStructuredText_ and Sphinx
 * **If you are new to Sphinx**, please see `the Sphinx documentation <https://www.sphinx-doc.org>`_
 * **If you are new to reStructuredText**, a good starting place will be `the reStructuredText documentation provided by the Sphinx project <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
 
+.. _make-html:
+
 Generating and previewing your site HTML
 """"""""""""""""""""""""""""""""""""""""
 
@@ -365,9 +373,9 @@ There are several approaches you can take to accomplish this. Options include:
 
 Each approach listed above has its own pros and cons which are far too detailed to explore here. For a great comparison of using the ``automodule`` versus the ``autosummary`` extension, `please see this article by Roman Miroshnychenko <https://romanvm.pythonanywhere.com/post/autodocumenting-your-python-code-sphinx-part-ii-6/>`_. Otherwise, please refer to the ``autodoc``, ``sphinx-apidoc``, ``autosummary``, and ``autosummary_generate`` links provided in the list above.
 
-I am sure approaches other than those listed above exist as well, but you should be able to accomplish everything you need to using these tools, so I will save myself the time it would take to provide a more exhaustive list.
+I am sure approaches other than those listed above exist as well, but you should be able to accomplish everything you need to accomplish using these tools, so I will save myself the time it would take to provide a more exhaustive list.
 
-If you have questions about the proper syntax for writing  Sphinx-friendly reStructuredText docstrings in your Python code, please see:
+**If you have questions about the proper syntax for writing  Sphinx-friendly reStructuredText docstrings in your Python code**, please see:
 
 * `Roman Miroshnychenko's article on autodocumenting your python code <https://romanvm.pythonanywhere.com/post/autodocumenting-your-python-code-sphinx-part-i-5/>`_
 
@@ -379,7 +387,9 @@ Sphinx can also generate documentation from the Google- and Numpy-formatted docs
 
 .. note::
 
-   All Sphinx extensions listed above, including ``sphinx.ext.autodoc``, ``sphinx.ext.autosummary``, and ``sphinx.ext.napoleon`` are imported by default in the ``cc-pydata`` template's ``conf.py`` Sphinx configuration file.
+   * The first time you run ``make html`` as was described in :ref:`make-html`, the ``docs/modules.rst`` file contained in the default ``cc-pydata`` template will generate a starter "API Reference" page documenting all modules and functions already contained in the ``cc-pydata`` template. That initial ``modules.rst`` file makes use of the manual approach #1 listed above and uses the ``sphinx.ext.autodoc`` extension's ``automodule`` `directive <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#directive-automodule>`_ to generate that starter documentation.
+
+   * All Sphinx extensions listed above, including ``sphinx.ext.autodoc``, ``sphinx.ext.autosummary``, and ``sphinx.ext.napoleon`` are imported by default in the ``cc-pydata`` template's ``conf.py`` Sphinx configuration file.
 
 
 Rationale for using reStructuredText instead of Markdown
@@ -387,10 +397,15 @@ Rationale for using reStructuredText instead of Markdown
 
 GitHub, Jupyter notebooks, and other static site generators typically rely on Markdown as a lightweight markup language.
 
+QUESTION:
+
 * So then, why does the ``cc-pydata`` project template use reStructuredText instead of Markdown?
 * Afterall, reStructuredText is a bit more verbose and not quite as frictionless for an author to use compared to Markdown.
 
-Because benefits abound, particularly for technical writing (once you get past the initial learning curve). And, because the primary assumption is that you'll be writing technical content to document and support your Python-based ``cc-pydata`` project, reStructuredText is the better choice.
+ANSWER:
+
+* Because benefits abound, particularly for technical writing (once you get past the initial learning curve).
+* And, because the primary assumption is that you'll be writing technical content to document and support your Python-based ``cc-pydata`` project, reStructuredText is the better choice.
 
 Here are a few primary reasons worth highlighting:
 
@@ -412,8 +427,9 @@ Meanwhile, Sphinx is through-and-through a Python-based tool (in fact the docume
 * The second major drawback for Jekyll is, it's not a tool custom-suited for documenting code.
 * This drawback also applies to the Python-based `Pelican <https://docs.getpelican.com/>`_ site generator and many other static site generators.
 * They typically provide no means for auto-generating project documentation directly from the custom code contained in your packaged Python library.
+* Sphinx, on the otherhand, excels at this task!
 
-Sphinx on the otherhand excels at this task. As was illustrated above (see :ref:`make-docs`), Sphinx offers powerful built-in extensions such as `sphinx.ext.autodoc <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html>`_ for generating and organizing your project documentation, pulling documentation directly from the docstrings in your code.
+As was illustrated above (see :ref:`make-docs`), Sphinx offers powerful built-in extensions such as `sphinx.ext.autodoc <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html>`_ for generating and organizing your project documentation, pulling documentation directly from the docstrings in your code.
 
 Information about other popular "built-in" Sphinx extensions that help to make Sphinx a smart choice for technical documentation `can be found in the "Extensions" section of the Sphinx documentation <https://www.sphinx-doc.org/en/master/usage/extensions/index.html>`_.
 
@@ -610,12 +626,6 @@ The defaults provided (and described below), rely only on the ``logging`` `modul
   :local:
   :backlinks: none
 
-.. todo::
-
-   Add sections:
-
-   * Make schematic showing logging initialization hierarchy
-
 
 Default ``logging`` configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -697,9 +707,9 @@ The default ``logging.json`` configuration file provided with the ``cc-pydata`` 
 
 To add additional handlers, change logging levels, change formatters, or add filters to this ``logging.json`` file, please see:
 
-* The official ``logging.config.dictConfig`` `documentation <https://docs.python.org/3/library/logging.config.html#logging.config.dictConfig>`_.
+* Official ``logging.config.dictConfig`` `documentation <https://docs.python.org/3/library/logging.config.html#logging.config.dictConfig>`_;
 
-* The configuration dictionary `schema documentation <https://docs.python.org/3/library/logging.config.html#logging-config-dictschema>`_.
+* Configuration `dictionary schema documentation <https://docs.python.org/3/library/logging.config.html#logging-config-dictschema>`_.
 
 
 Functions provided in the custom ``<package-name>.logger`` module
@@ -747,7 +757,7 @@ Example::
     ...
 
 
-The ``@<package-name>.logger.logfunc()`` decorator function
+The ``<package-name>.logger.logfunc()`` decorator function
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 This function acts as a ``functools.wraps`` `decorator for decorating functions or methods <https://docs.python.org/3/library/functools.html#functools.wraps>`_ to provide logging functionality to log details of the decorated function
