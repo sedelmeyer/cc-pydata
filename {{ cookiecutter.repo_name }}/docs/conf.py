@@ -43,6 +43,7 @@ except Exception:
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
     'sphinx.ext.mathjax',
     'sphinx.ext.githubpages',
     'sphinx.ext.graphviz',
