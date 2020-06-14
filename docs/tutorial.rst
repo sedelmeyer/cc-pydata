@@ -3,7 +3,7 @@
 Tutorial
 ========
 
-This tutorial walks through the basic use of the Cookiecutter PyData template, as well as some of this template's more important features.
+This tutorial walks through the basic use of the Cookiecutter PyData (i.e. ``cc-pydata``) template, as well as some of this template's more important features.
 
 .. contents:: Tutorial Contents
   :local:
@@ -15,58 +15,77 @@ This tutorial walks through the basic use of the Cookiecutter PyData template, a
 Resulting directory structure
 -----------------------------
 
-When you generate a Cookiecutter PyData data science project from this template (see :ref:`getting started`), the resulting project will have the following directory structure::
+When you generate a ``cc-pydata`` data science project from this template (see :ref:`getting started`), the resulting project will have the following directory structure::
 
-    PyData Project Directory
+    cc-pydata Project Directory
     │
     ├── LICENSE
-    ├── README.rst         <- Top-level README for developers
-    ├── CHANGLOG.rst       <- Used to document version-by-version changes
-    ├── Pipfile            <- Requirements file for reproducing the analysis environment
-    │                         using the Pipenv package manager (see pipenv.readthedocs.io)
-    ├── .env               <- Sets project-specific environmnt variables such as credentials
-    │                         that you do not want committed to Git history (see
-    │                         pipenv.readthedocs.io/en/latest/advanced/#automatic-loading-of-env)
-    ├── data               <- All data files related to the project. Files contained in this
-    │   |                     directory are ommitted from Git history via the .gitignore file
-    │   ├── raw            <- The original data file(s), this data should never be modified
-    │   ├── interim        <- Intermediate data that has been transformed
-    │   └── processed      <- The final data set(s) for modeling
+    ├── README.rst        <- Top-level README for developers
+    ├── CHANGLOG.rst      <- Documents version-by-version changes
+    ├── Pipfile           <- Requirements file for reproducing the
+    │                        analysis environment using the Pipenv
+    │                        package manager
+    │                        (see pipenv.readthedocs.io)
+    ├── .env              <- Sets project-specific environmnt variables
+    │                        such as credentials that you do not want
+    │                        committed to Git history (see
+    ├── data              <- All data files related to the project.
+    │   |                    Files contained in this directory are
+    │   │                    ommitted from Git history via .gitignore
+    │   ├── raw           <- The original data file(s) that should
+    │   │                    never be modified
+    │   ├── interim       <- Data that has been cleaned or transformed
+    │   └── processed     <- The final data set(s) for modeling
     │
-    ├── docs               <- A default Sphinx project for generating documentation
+    ├── docs              <- A default Sphinx project for generating
+    │   │                    project documentation
     │   └── _static
-    │       └── figures    <- Generated graphics and figures to be used in Sphinx generated docs
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
+    │       └── figures   <- Generated graphics and figures to be used
+    │                        in Sphinx generated docs
+    ├── models            <- Trained and serialized models, model
+    │                        predictions, or model summaries
     │
-    ├── notebooks          <- Jupyter notebooks, named using a number and descriptive title
-    │                         so sequential run order and purpose are explicit, e.g.
-    │                         `001-EDA-property-assessments`
+    ├── notebooks         <- Jupyter notebooks, named using a number
+    │                        and descriptive title so sequential run-
+    │                        order and purpose are explicit, e.g.
+    │                        "001-EDA-property-assessments.ipynb"
     │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials
-    │   └── third-party    <- Third-party and copyrighted materials you do not want committed to
-    │                         Git history
+    ├── references        <- Data dictionaries, manuals, and all other
+    │   │                    explanatory materials
+    │   └── third-party   <- Third-party and copyrighted materials you
+    │                        do not want committed to Git history
     │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
+    ├── reports           <- Generated analysis as HTML, PDF, etc.
+    │   └── figures       <- Generated graphics and figures to be used
+    │                        in reporting
     │
-    ├── src                <- Source code for use in this project
+    ├── src               <- Source code for use in this project
     │   └── <package-name>
-    │       ├── data           <- Submodule for downloading and cleansing data
-    │       ├── features       <- Submodule for generating engineered features for modeling
-    │       ├── models         <- Submodule for training models and generating predictions
-    │       ├── visualizations <- Submodule for generating visualizations
-    │       ├── logger         <- Submodule for logging-related functionality
+    │       ├── data           <- Submodule for downloading and
+    │       │                     cleansing data
+    │       ├── features       <- Submodule for generating engineered
+    │       │                     features for modeling
+    │       ├── models         <- Submodule for training models and
+    │       │                     generating predictions
+    │       ├── visualizations <- Submodule for generating
+    │       │                     visualizations
+    │       ├── logger         <- Submodule for project logging-related
+    │       │                     functionality
     │       ├── __init__.py    <- Makes src a Python module
     │       ├── __main__.py    <- Entry point module
-    │       └── cli.py         <- Module for creating the command line app
+    │       └── cli.py         <- Module for creating the command line
+    │                             app
     │
-    ├── .gitignore         <- Specified files to exclude from Git history (as a default, `.env`,
-    │                         `./data/` files, and `*/third-party/` files are all excluded)
-    ├── .travis.yml        <- Configuration for TravisCI services (see travis-ci.com)
-    ├── logging.json       <- Default logging configuration dictionary
-    ├── setup.py           <- Setup script for the project using setuptools (see
-    │                         packaging.python.org/guides/distributing-packages-using-setuptools)
-    └── setup.cfg          <- contains option defaults for setup.py commands
+    ├── .gitignore        <- Specified files to exclude from Git
+    │                        history (as a default, `.env`, `./data/`
+    │                        files, and `*/third-party/` files are all
+    │                        excluded)
+    ├── .travis.yml       <- Configuration for TravisCI services
+    │                        (see travis-ci.com)
+    ├── logging.json      <- Default logging configuration dictionary
+    ├── setup.py          <- Setup script for the project using
+    │                        setuptools
+    └── setup.cfg         <- Option defaults for setup.py commands
 
 .. _getting started:
 
@@ -82,11 +101,11 @@ Generating a new template
 
 First generate your project::
 
-  cookiecutter gh:sedelmeyer/cookiecutter-pydata
+  cookiecutter gh:sedelmeyer/cc-pydata
 
-Alternatively, if you have a local working copy of the ``cookiecutter-pydata`` project in which you've made customizations to the template, you can run::
+Alternatively, if you have a local working copy of the ``cc-pydata`` project in which you've made customizations to the template, you can run::
 
-  cookiecutter <path-to-directory>/cookiecutter-pydata
+  cookiecutter <path-to-directory>/cc-pydata
 
 
 2. Complete template prompts required to generate template
@@ -178,7 +197,8 @@ To modify defaults or customize these prompts, please see the ``cookiecutter.jso
 
     * ``plain`` - a very simple command.
     * ``argparse`` - a command implemented with ``argparse``.
-    * ``click`` - a command implemented with `click <http://click.pocoo.org/>`_ * ``no`` - no CLI at all.
+    * ``click`` - a command implemented with `click <http://click.pocoo.org/>`_
+    * ``no`` - no CLI at all.
 
 * ``command_line_interface_bin_name``
 
@@ -329,9 +349,37 @@ At any time you can preview your generated site content by opening your site's `
 Auto-generating documentation for your custom package modules
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. todo::
+Sphinx is a powerful tool for auto-generating API documentation directly from the docstrings embedded within your code. In other words, if you take the time to document your code correctly using docstrings, your API reference material can largely write itself.
 
-    * Describe the basic usage of Sphinx to build and maintain documentation
+There are several approaches you can take to accomplish this. Options include:
+
+1. Manual configuration of API reference materials using the ``sphinx.ext.autodoc`` `autodoc Sphinx extension <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html>`_;
+
+2. Manual configuration of API reference materials using the ``sphinx.ext.autosummary`` `autsummary Sphinx extension <https://www.sphinx-doc.org/en/master/usage/extensions/autosummary.html>`_;
+
+3. Fully automated generation of API reference materials using the ``sphinx-apidoc`` `command line utility, which relies on the autodoc extension <https://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html>`_;
+
+4. Automatic generation of API reference materials by setting the ``autosummary`` extension's ``autosummary_generate = True`` `parameter in your Sphinx <https://www.sphinx-doc.org/en/master/usage/extensions/autosummary.html#confval-autosummary_generate>`_ ``conf.py`` file;
+
+5. ...a combination of any of the approaches listed above.
+
+Each approach listed above has its own pros and cons which are far too detailed to explore here. For a great comparison of using the ``automodule`` versus the ``autosummary`` extension, `please see this article by Roman Miroshnychenko <https://romanvm.pythonanywhere.com/post/autodocumenting-your-python-code-sphinx-part-ii-6/>`_. Otherwise, please refer to the ``autodoc``, ``sphinx-apidoc``, ``autosummary``, and ``autosummary_generate`` links provided in the list above.
+
+I am sure approaches other than those listed above exist as well, but you should be able to accomplish everything you need to using these tools, so I will save myself the time it would take to provide a more exhaustive list.
+
+If you have questions about the proper syntax for writing  Sphinx-friendly reStructuredText docstrings in your Python code, please see:
+
+* `Roman Miroshnychenko's article on autodocumenting your python code <https://romanvm.pythonanywhere.com/post/autodocumenting-your-python-code-sphinx-part-i-5/>`_
+
+* `Thomas Cokelaer's example on how to document your Python docstrings <https://thomas-cokelaer.info/tutorials/sphinx/docstring_python.html>`_
+
+You may also find Sphinx's `documentation on its Python Domain directives <https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#the-python-domain>`_ to be extremely useful while trying to embed references within your docstrings.
+
+Sphinx can also generate documentation from the Google- and Numpy-formatted docstring styles with the help of the ``sphinx.ext.napoleon`` Sphinx extension. If either of those docstring formats are your jam, please `see the napoleon documentation <https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html>`_.
+
+.. note::
+
+   All Sphinx extensions listed above, including ``sphinx.ext.autodoc``, ``sphinx.ext.autosummary``, and ``sphinx.ext.napoleon`` are imported by default in the ``cc-pydata`` template's ``conf.py`` Sphinx configuration file.
 
 
 Rationale for using reStructuredText instead of Markdown
