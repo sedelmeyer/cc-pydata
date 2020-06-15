@@ -8,6 +8,7 @@ flake8 = "*"
 sphinx = "*"
 pytest = "*"
 pytest-cov = "*"
+cookiecutter = "*"
 
 [packages]
 
