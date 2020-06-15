@@ -23,16 +23,19 @@ setup(
     name='cc-pydata',
     version='0.0.0',
     license='MIT license',
-    description='Cookiecutter template for a Python-based data science project.',
+    description='Cookiecutter template for a Python data science project.',
     long_description='%s\n%s' % (
-        re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.rst')),
+        re.compile(
+            '^.. start-badges.*^.. end-badges', re.M | re.S
+        ).sub('', read('README.rst')),
         re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst'))
     ),
     author='Michael Sedelmeyer',
     author_email='20605812+sedelmeyer@users.noreply.github.com',
     url='https://github.com/sedelmeyer/cc-pydata',
     classifiers=[
-        # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
+        # complete classifier list:
+        # http://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 4 - Beta',
         'Environment :: Console',
         'Intended Audience :: Developers',
