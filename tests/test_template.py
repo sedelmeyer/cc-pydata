@@ -10,16 +10,58 @@ from cookiecutter import main
 #: Define absolute path to cc-pydata cookiecutter project directory
 CCDIR = Path(__file__).resolve().parents[1]
 
+package_name = 'project_name'
 
 #: Define list of top-level files expected in built template
 template_files = [
+    '.editorconfig',
+    '.env',
+    '.gitignore',
+    '.travis.yml',
+    'CHANGELOG.rst',
+    'LICENSE',
+    'logging.json',
+    'Pipfile',
+    'README.rst',
+    'setup.cfg',
+    'setup.py',
+]
 
+#: Define list of src sub-directories expected in built template
+template_submodules = [
+    'data',
+    'features',
+    'logger',
+    'models',
+    'visualization',
 ]
 
 
 #: Define list of sub-directories expected in built template
 template_directories = [
-
+    'data',
+    'data/raw',
+    'data/interim',
+    'data/processed',
+    'docs',
+    'docs/_static/figures',
+    'docs/_templates',
+    'models',
+    'notebooks',
+    'references',
+    'references/third-party',
+    'reports',
+    'reports/figures',
+    'src',
+    *[
+        'src/{}/{}'.format(package_name, submod)
+        for submod in template_submodules
+    ],
+    'tests',
+    *[
+        'tests/{}'.format(submod)
+        for submod in template_submodules
+    ]
 ]
 
 
