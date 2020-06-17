@@ -175,4 +175,18 @@ class TestBuildDefaultTemplate(TestCase):
 
     def test_default_docs_build(self):
         """Ensure default sphinx docs build in rendered template"""
-        raise NotImplementedError
+        with working_directory(self.builtdir / 'docs'):
+            # run sphinx docs strict build test
+            result = subprocess.check_call(
+                shlex.split(
+                    'sphinx-build -nW -b html -d _build/doctrees . _build/html'
+                    )
+                )
+            self.assertEqual(result, 0)
+
+    def test_default_docs_make_html(self):
+        """Ensure default sphinx docs build in rendered template"""
+        with working_directory(self.builtdir / 'docs'):
+            # run default sphinx make html command
+            result = subprocess.check_call(shlex.split('make html'))
+            self.assertEqual(result, 0)
