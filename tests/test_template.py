@@ -35,7 +35,7 @@ template_submodules = [
     'features',
     'logger',
     'models',
-    'visualization',
+    'visualizations',
 ]
 
 #: Define list of sub-directories expected in built template
@@ -88,7 +88,7 @@ class TestBuildDefaultTemplate(TestCase):
             # get path to built template directory
             self.builtdir = Path(tmpdir).resolve() / 'project_name'
 
-            # define regex to find jinja brackets
+            # define regex to identify unrendered jinja brackets
             self.regex = re.compile('(\\{{|\\}}|\\{%|\\%})')
 
             # ensure context manager closes after tests
@@ -124,6 +124,6 @@ class TestBuildDefaultTemplate(TestCase):
             self.assertTrue(os.path.exists(self.builtdir / filename))
 
     def test_subdirs_exist(self):
-        """Ensure top-level sub-directories exist"""
-        # for dirname in template_directories:
-        raise NotImplementedError
+        """Ensure all expected sub-directories exist"""
+        for dirname in template_directories:
+            self.assertTrue(os.path.isdir(self.builtdir / dirname))
