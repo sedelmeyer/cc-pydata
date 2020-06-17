@@ -1,6 +1,6 @@
 """
 {{cookiecutter.package_name}}.models
-~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 This module contains functionality for training models and generating
 predictions.

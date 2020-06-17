@@ -1,6 +1,6 @@
 """
 {{cookiecutter.package_name}}.logger
-~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 This module contains logging-related features for the ``{{cookiecutter.package_name}}`` package
 
