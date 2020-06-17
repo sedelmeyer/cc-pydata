@@ -127,3 +127,15 @@ class TestBuildDefaultTemplate(TestCase):
         """Ensure all expected sub-directories exist"""
         for dirname in template_directories:
             self.assertTrue(os.path.isdir(self.builtdir / dirname))
+
+    def test_setup_py(self):
+        """Ensure rendered template package setup.py returns version number"""
+        raise NotImplementedError
+
+    def test_default_tests_pass(self):
+        """Ensure all default unit-tests pass in rendered template"""
+        raise NotImplementedError
+
+    def test_default_docs_build(self):
+        """Ensure default sphinx docs build in rendered template"""
+        raise NotImplementedError
