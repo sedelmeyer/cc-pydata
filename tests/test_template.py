@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 import re
 import shlex
+import shutil
 import subprocess
 import tempfile
 from unittest import TestCase
@@ -158,12 +159,19 @@ class TestBuildDefaultTemplate(TestCase):
             # run 'git init' so that scm_setuptools versioning works
             subprocess.call(shlex.split('git init'))
             # check that setup.py will return version
-            result = subprocess.check_call(shlex.split('python setup.py test'))
+            result = subprocess.check_call(
+                shlex.split('python setup.py --version')
+            )
         self.assertEqual(result, 0)
 
     def test_default_tests_pass(self):
         """Ensure all default unit-tests pass in rendered template"""
-        raise NotImplementedError
+        with working_directory(self.builtdir):
+            # move package module out of src to top-level to prevent path error
+            shutil.move(os.path.join('src', package_name), '.')
+            # run default unit tests in built template and check results
+            result = subprocess.check_call(shlex.split('python -m pytest'))
+            self.assertEqual(result, 0)
 
     def test_default_docs_build(self):
         """Ensure default sphinx docs build in rendered template"""
