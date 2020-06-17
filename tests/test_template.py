@@ -119,9 +119,11 @@ class TestBuildDefaultTemplate(TestCase):
                 self.assertEqual(len(result), 0)
 
     def test_files_exist(self):
-        """Ensure top-level files exist"""
-        raise NotImplementedError
+        """Ensure specified top-level files exist"""
+        for filename in template_files:
+            self.assertTrue(os.path.exists(self.builtdir / filename))
 
     def test_subdirs_exist(self):
         """Ensure top-level sub-directories exist"""
+        # for dirname in template_directories:
         raise NotImplementedError
