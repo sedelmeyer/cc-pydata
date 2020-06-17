@@ -10,6 +10,7 @@
 dist
 build
 eggs
+.eggs
 parts
 bin
 var
@@ -56,6 +57,7 @@ docs/_build
 .build
 .ve
 .bootstrap
+
 # Cookiecutter
 output/
 boilerplate/
