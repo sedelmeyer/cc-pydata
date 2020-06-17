@@ -2,6 +2,8 @@ import contextlib
 import os
 from pathlib import Path
 import re
+import shlex
+import subprocess
 import tempfile
 from unittest import TestCase
 
@@ -66,6 +68,17 @@ template_directories = [
 ]
 
 
+@contextlib.contextmanager
+def working_directory(directory):
+    """Change working directory temporarily with context manager"""
+    original_directory = os.getcwd()
+    try:
+        os.chdir(directory)
+        yield directory
+    finally:
+        os.chdir(original_directory)
+
+
 class TestBuildDefaultTemplate(TestCase):
     """Test default cookiecutter template build"""
 
@@ -102,6 +115,7 @@ class TestBuildDefaultTemplate(TestCase):
         """Ensire no jinja brackets left over after rendering directories"""
         # loop through all template sub-directories
         for subdir, dirs, files in os.walk(self.builtdir):
+            # assert no jinja brackets are present in rendered dirnames
             result = self.regex.findall(subdir)
             self.assertEqual(len(result), 0)
 
@@ -130,7 +144,13 @@ class TestBuildDefaultTemplate(TestCase):
 
     def test_setup_py(self):
         """Ensure rendered template package setup.py returns version number"""
-        raise NotImplementedError
+        # change active directory to new template directory
+        with working_directory(self.builtdir):
+            # run 'git init' so that scm_setuptools versioning works
+            subprocess.call(shlex.split('git init'))
+            # check that setup.py will return version
+            result = subprocess.check_call(shlex.split('python setup.py test'))
+        self.assertEqual(result, 0)
 
     def test_default_tests_pass(self):
         """Ensure all default unit-tests pass in rendered template"""
