@@ -1,6 +1,6 @@
 """
 {{cookiecutter.package_name}}.cli
-~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 This module that contains the command line app for ``{{cookiecutter.package_name}}``.
 

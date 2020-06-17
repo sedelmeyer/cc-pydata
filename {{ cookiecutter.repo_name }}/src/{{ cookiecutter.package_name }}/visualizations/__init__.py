@@ -1,6 +1,6 @@
 """
 {{cookiecutter.package_name}}.visualizations
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This module contains functionality for generating the visualizations that
 are required for this project.
