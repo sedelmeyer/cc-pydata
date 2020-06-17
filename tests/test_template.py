@@ -79,6 +79,15 @@ def working_directory(directory):
         os.chdir(original_directory)
 
 
+def test_working_directory():
+    """Ensure working_directory context manager works as expected"""
+    with tempfile.TemporaryDirectory() as tempdir:
+        original_directory = os.getcwd()
+        with working_directory(tempdir):
+            assert tempdir == os.getcwd()
+        assert original_directory == os.getcwd()
+
+
 class TestBuildDefaultTemplate(TestCase):
     """Test default cookiecutter template build"""
 
