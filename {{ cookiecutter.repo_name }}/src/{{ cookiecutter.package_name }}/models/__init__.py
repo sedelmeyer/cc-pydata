@@ -1,6 +1,6 @@
 """
 {{cookiecutter.package_name}}.models
-~~~~~~~~~~~~~~~~~~~
+{% for _ in cookiecutter.package_name %}{{"~"}}{% endfor %}~~~~~~~
 
 This module contains functionality for training models and generating
 predictions.
