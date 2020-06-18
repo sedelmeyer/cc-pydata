@@ -1,6 +1,6 @@
 """
 {{cookiecutter.package_name}}.features
-~~~~~~~~~~~~~
+{% for _ in cookiecutter.package_name %}{{"~"}}{% endfor %}~~~~~~~~~
 
 This module contains functionality for generating engineered features to be
 used in modeling for this project.

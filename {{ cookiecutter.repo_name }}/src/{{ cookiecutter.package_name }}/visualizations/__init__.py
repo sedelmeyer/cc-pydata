@@ -1,6 +1,6 @@
 """
 {{cookiecutter.package_name}}.visualizations
-~~~~~~~~~~~~~~~~~~~~~~~
+{% for _ in cookiecutter.package_name %}{{"~"}}{% endfor %}~~~~~~~~~~~~~~~
 
 This module contains functionality for generating the visualizations that
 are required for this project.
