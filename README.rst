@@ -50,18 +50,14 @@ For additional background on these other projects and to better understand the e
 Features
 --------
 
-* Pytest_ for testing Python >=3.5
-* Version configuration with `setuptools_scm`_
 * Pipenv_ for package management and for generating a repeatable environment
-* Travis-CI_ for continuous testing.
-* Out-of-the-box (and easily modified) logging configuration with base functionality
+* Travis-CI_ for continuous testing
+* Version configuration with `setuptools_scm`_
+* Out-of-the-box (and easily modified) ``logging`` configuration
 * Packaging of modules, installed into your working environment as an editable library (i.e. ``-e .``) and easily imported into Jupyter notebooks with natural syntax such as ``from module_name import function_name``
 * Project documentation generated using Sphinx_ and reStructuredText_, ready for hosting alongside your project on GitHub pages.
 
-.. todo::
-
-    * Perhaps add `Azure Pipelines`_ as a secondary CI option
-    * Tox_ for managing test environments for Python >=3.5
+To see functionality anticipated for future versions of the ``cc-pydata`` template, please see :ref:`future-releases`.
 
 .. _requirements:
 

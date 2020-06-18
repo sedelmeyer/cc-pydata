@@ -1,6 +1,6 @@
 """
 {{cookiecutter.package_name}}.logger
-~~~~~~~~~~~~~~~~~~~
+{% for _ in cookiecutter.package_name %}{{"~"}}{% endfor %}~~~~~~~
 
 This module contains logging-related features for the ``{{cookiecutter.package_name}}`` package
 
