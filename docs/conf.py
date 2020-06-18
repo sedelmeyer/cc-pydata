@@ -12,17 +12,25 @@
 #
 # import os
 # import sys
+import traceback
+from pkg_resources import get_distribution
+
 # sys.path.insert(0, os.path.abspath('.'))
 
 
 # -- Project information -----------------------------------------------------
 
 project = 'cc-pydata'
-copyright = '2020, Michael Sedelmeyer'
+year = '2020'
 author = 'Michael Sedelmeyer'
+copyright = '{0}, {1}'.format(year, author)
 
 # The full version, including alpha/beta/rc tags
-release = 'v0.1.3'
+try:
+    version = release = get_distribution('cc-pydata').version
+except Exception:
+    traceback.print_exc()
+    version = release = '0.0.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -32,9 +40,11 @@ release = 'v0.1.3'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
     'sphinx.ext.mathjax',
     'sphinx.ext.githubpages',
     'sphinx.ext.graphviz',
+    'sphinx.ext.extlinks',
     'sphinx.ext.todo',
 ]
 
