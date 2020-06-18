@@ -1,18 +1,19 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookiecutter PyData &#8212; cc-pydata v0.1.3 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -43,37 +44,37 @@
 <li><p><strong>Full project documentation:</strong> <a class="reference external" href="https://sedelmeyer.github.io/cc-pydata">https://sedelmeyer.github.io/cc-pydata</a></p></li>
 </ul>
 <div class="contents local topic" id="contents">
-<p class="topic-title first">Contents</p>
+<p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id5">Summary</a></p></li>
-<li><p><a class="reference internal" href="#design-decisions" id="id6">Design decisions</a></p>
+<li><p><a class="reference internal" href="#summary" id="id4">Summary</a></p></li>
+<li><p><a class="reference internal" href="#design-decisions" id="id5">Design decisions</a></p>
 <ul>
-<li><p><a class="reference internal" href="#inspiration-and-sources" id="id7">Inspiration and sources</a></p></li>
+<li><p><a class="reference internal" href="#inspiration-and-sources" id="id6">Inspiration and sources</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#features" id="id8">Features</a></p></li>
-<li><p><a class="reference internal" href="#requirements" id="id9">Requirements</a></p>
+<li><p><a class="reference internal" href="#features" id="id7">Features</a></p></li>
+<li><p><a class="reference internal" href="#requirements" id="id8">Requirements</a></p>
 <ul>
-<li><p><a class="reference internal" href="#basic-prerequisites" id="id10">Basic prerequisites</a></p>
+<li><p><a class="reference internal" href="#basic-prerequisites" id="id9">Basic prerequisites</a></p>
 <ul>
-<li><p><a class="reference internal" href="#installing-cookiecutter" id="id11">Installing <code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code></a></p></li>
-<li><p><a class="reference internal" href="#installing-pipenv" id="id12">Installing <code class="docutils literal notranslate"><span class="pre">pipenv</span></code></a></p></li>
-<li><p><a class="reference internal" href="#using-an-alternative-to-pipenv-for-package-management" id="id13">Using an alternative to <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> for package management</a></p></li>
+<li><p><a class="reference internal" href="#installing-cookiecutter" id="id10">Installing <code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code></a></p></li>
+<li><p><a class="reference internal" href="#installing-pipenv" id="id11">Installing <code class="docutils literal notranslate"><span class="pre">pipenv</span></code></a></p></li>
+<li><p><a class="reference internal" href="#using-an-alternative-to-pipenv-for-package-management" id="id12">Using an alternative to <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> for package management</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#getting-started" id="id14">Getting started</a></p>
+<li><p><a class="reference internal" href="#getting-started" id="id13">Getting started</a></p>
 <ul>
-<li><p><a class="reference internal" href="#initiate-the-cc-pydata-template-using-cookiecutter" id="id15">Initiate the <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template using Cookiecutter</a></p></li>
+<li><p><a class="reference internal" href="#initiate-the-cc-pydata-template-using-cookiecutter" id="id14">Initiate the <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template using Cookiecutter</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#cc-pydata-directory-structure" id="id16"><code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> directory structure</a></p></li>
-<li><p><a class="reference internal" href="#other-resources" id="id17">Other resources</a></p>
+<li><p><a class="reference internal" href="#cc-pydata-directory-structure" id="id15"><code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> directory structure</a></p></li>
+<li><p><a class="reference internal" href="#other-resources" id="id16">Other resources</a></p>
 <ul>
-<li><p><a class="reference internal" href="#cookiecutter-resources" id="id18">Cookiecutter resources</a></p></li>
-<li><p><a class="reference internal" href="#tools-leveraged-by-cc-pydata" id="id19">Tools leveraged by <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code></a></p></li>
-<li><p><a class="reference internal" href="#articles-related-to-python-packaging" id="id20">Articles related to Python packaging</a></p></li>
+<li><p><a class="reference internal" href="#cookiecutter-resources" id="id17">Cookiecutter resources</a></p></li>
+<li><p><a class="reference internal" href="#tools-leveraged-by-cc-pydata" id="id18">Tools leveraged by <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code></a></p></li>
+<li><p><a class="reference internal" href="#articles-related-to-python-packaging" id="id19">Articles related to Python packaging</a></p></li>
 </ul>
 </li>
 </ul>
@@ -108,24 +109,17 @@
 <div class="section" id="features">
 <span id="id1"></span><h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="http://pytest.org/">Pytest</a> for testing Python &gt;=3.5</p></li>
-<li><p>Version configuration with <a class="reference external" href="https://github.com/pypa/setuptools_scm/">setuptools_scm</a></p></li>
 <li><p><a class="reference external" href="https://pipenv.readthedocs.io/en/latest/#">Pipenv</a> for package management and for generating a repeatable environment</p></li>
-<li><p><a class="reference external" href="http://travis-ci.org/">Travis-CI</a> for continuous testing.</p></li>
-<li><p>Out-of-the-box (and easily modified) logging configuration with base functionality</p></li>
+<li><p><a class="reference external" href="http://travis-ci.org/">Travis-CI</a> for continuous testing</p></li>
+<li><p>Version configuration with <a class="reference external" href="https://github.com/pypa/setuptools_scm/">setuptools_scm</a></p></li>
+<li><p>Out-of-the-box (and easily modified) <code class="docutils literal notranslate"><span class="pre">logging</span></code> configuration</p></li>
 <li><p>Packaging of modules, installed into your working environment as an editable library (i.e. <code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">.</span></code>) and easily imported into Jupyter notebooks with natural syntax such as <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">module_name</span> <span class="pre">import</span> <span class="pre">function_name</span></code></p></li>
 <li><p>Project documentation generated using <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> and <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">reStructuredText</a>, ready for hosting alongside your project on GitHub pages.</p></li>
 </ul>
-<div class="admonition-todo admonition" id="id2">
-<p class="admonition-title">Todo</p>
-<ul class="simple">
-<li><p>Perhaps add <a class="reference external" href="https://azure.microsoft.com/en-us/services/devops/pipelines/">Azure Pipelines</a> as a secondary CI option</p></li>
-<li><p><a class="reference external" href="https://tox.readthedocs.io/en/latest/">Tox</a> for managing test environments for Python &gt;=3.5</p></li>
-</ul>
-</div>
+<p>To see functionality anticipated for future versions of the <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template, please see <a class="reference internal" href="changelog.html#future-releases"><span class="std std-ref">Future releases</span></a>.</p>
 </div>
 <div class="section" id="requirements">
-<span id="id3"></span><h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="basic-prerequisites">
 <h3>Basic prerequisites<a class="headerlink" href="#basic-prerequisites" title="Permalink to this headline">¶</a></h3>
 <p>This template and resulting <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project has been observed to work with the following installed dependencies. However, I suspect it will will work with a broader range of versions than are shown here:</p>
@@ -207,7 +201,7 @@
 </div>
 </div>
 <div class="section" id="other-resources">
-<span id="id4"></span><h2>Other resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>Other resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">¶</a></h2>
 <p>For further reading, please see <a class="reference external" href="https://sedelmeyer.github.io/cc-pydata/tutorial.html">this project’s full tutorial</a> as well as these other useful resources:</p>
 <div class="section" id="cookiecutter-resources">
 <h3>Cookiecutter resources<a class="headerlink" href="#cookiecutter-resources" title="Permalink to this headline">¶</a></h3>
@@ -341,7 +335,7 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -358,7 +352,7 @@
       &copy;2020, Michael Sedelmeyer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

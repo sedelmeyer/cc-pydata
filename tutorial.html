@@ -1,18 +1,19 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial &#8212; cc-pydata v0.1.3 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -38,7 +39,7 @@
 <span id="id1"></span><h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial walks through the basic use of the Cookiecutter PyData (i.e. <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code>) template, as well as some of this template’s more important features.</p>
 <div class="contents local topic" id="tutorial-contents">
-<p class="topic-title first">Tutorial Contents</p>
+<p class="topic-title">Tutorial Contents</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#cc-pydata-project-template-structure" id="id12"><code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project template structure</a></p></li>
 <li><p><a class="reference internal" href="#generating-a-new-template" id="id13">Generating a new template</a></p></li>
@@ -127,7 +128,7 @@
 <div class="section" id="generating-a-new-template">
 <span id="getting-started"></span><h2><a class="toc-backref" href="#tutorial-contents">Generating a new template</a><a class="headerlink" href="#generating-a-new-template" title="Permalink to this headline">¶</a></h2>
 <div class="contents local topic" id="in-this-section">
-<p class="topic-title first">In this section</p>
+<p class="topic-title">In this section</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#ensure-all-prerequisites-are-met" id="id18">0. Ensure all prerequisites are met</a></p></li>
 <li><p><a class="reference internal" href="#initiate-the-template-using-cookiecutter" id="id19">1. Initiate the template using Cookiecutter</a></p></li>
@@ -305,7 +306,7 @@
 <div class="section" id="packaging-characteristics-of-this-template">
 <span id="packaging"></span><h2><a class="toc-backref" href="#tutorial-contents">Packaging characteristics of this template</a><a class="headerlink" href="#packaging-characteristics-of-this-template" title="Permalink to this headline">¶</a></h2>
 <div class="contents local topic" id="id2">
-<p class="topic-title first">In this section</p>
+<p class="topic-title">In this section</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#using-pipenv-to-manage-your-project-dependencies" id="id23">Using Pipenv to manage your project dependencies</a></p></li>
 <li><p><a class="reference internal" href="#managing-environment-variables-with-the-env-file" id="id24">Managing environment variables with the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file</a></p></li>
@@ -371,7 +372,7 @@
 <div class="section" id="documenting-your-project-using-sphinx-and-github-pages">
 <h2><a class="toc-backref" href="#tutorial-contents">Documenting your project using Sphinx and GitHub Pages</a><a class="headerlink" href="#documenting-your-project-using-sphinx-and-github-pages" title="Permalink to this headline">¶</a></h2>
 <div class="contents local topic" id="id7">
-<p class="topic-title first">In this section</p>
+<p class="topic-title">In this section</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#getting-started-with-sphinx-and-restructuredtext" id="id27">Getting started with Sphinx and reStructuredText</a></p>
 <ul>
@@ -585,7 +586,7 @@
 <div class="section" id="test-configuration-and-continuous-integration-with-travisci">
 <h2><a class="toc-backref" href="#tutorial-contents">Test configuration and continuous integration with TravisCI</a><a class="headerlink" href="#test-configuration-and-continuous-integration-with-travisci" title="Permalink to this headline">¶</a></h2>
 <div class="contents local topic" id="id8">
-<p class="topic-title first">In this section</p>
+<p class="topic-title">In this section</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#unit-testing-your-project-and-using-the-pytest-runner" id="id36">Unit-testing your project and using the PyTest runner</a></p>
 <ul>
@@ -691,7 +692,7 @@ TOTAL                                            <span class="m">65</span>      
 <p>The <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template provides some useful default, yet easily modified, logging capabilities out-of-the-box for your data science project.</p>
 <p>The defaults provided (and described below), rely only on the <code class="docutils literal notranslate"><span class="pre">logging</span></code> <a class="reference external" href="https://docs.python.org/3/library/logging.html">module included in Python’s standard library</a>.</p>
 <div class="contents local topic" id="id10">
-<p class="topic-title first">In this section</p>
+<p class="topic-title">In this section</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#default-logging-configuration" id="id41">Default <code class="docutils literal notranslate"><span class="pre">logging</span></code> configuration</a></p>
 <ul>
@@ -992,7 +993,7 @@ runtime in seconds, default is <code class="docutils literal notranslate"><span 
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -1009,7 +1010,7 @@ runtime in seconds, default is <code class="docutils literal notranslate"><span 
       &copy;2020, Michael Sedelmeyer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
