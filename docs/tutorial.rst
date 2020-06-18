@@ -258,8 +258,8 @@ Packaging characteristics of this template
   :local:
   :backlinks: none
 
-Using Pipenv to manage your project dependencies
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Using ``pipenv`` to manage your project dependencies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. todo::
 
@@ -267,7 +267,36 @@ Using Pipenv to manage your project dependencies
     * Discuss ``pipenv shell``
     * Discuss use of ``Pipfile`` versus ``install requires`` and link to an article discussing the differences
 
-Please note that, via the Pipfile, your newly created local package is installed as an editable. For example, the line in the Pipfile that reads::
+If you are new to ``pipenv`` for dependency and package management, it may take a little time to get used to it. The best place to start is by taking some time to review core principles, benefits, and usage on the Pipenv_ project page.
+
+Chances are, if you have been using ``virtualenv`` or ``conda`` to manage your Python virtual environments up to this point, then you'll probably wonder how you've made it this far without using ``pipenv`` previously. As is described on the Pipenv_ project page:
+
+    "**Pipenv** is a tool that aims to bring the best of all packaging worlds (bundler, composer, npm, cargo, yarn, etc.) to the Python world. *Windows is a first-class citizen, in our world.*"
+
+    "It automatically creates and manages a virtualenv for your projects, as well as adds/removes packages from your ``Pipfile`` as you install/uninstall packages. It also generates the ever-important ``Pipfile.lock``, which is used to produce deterministic builds."
+
+Adding / installing dependencies using ``pipenv``
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+As was shown in the section :ref:`install-pipenv` above, creating a ``pipenv`` environment and ``Pipfile.lock`` deterministic build is as easy as running ``pipenv install --dev`` from your ``cc-pydata`` project directory.
+
+To add additional dependencies to your project, you can either:
+
+#. Edit your ``Pipfile`` list of dependencies directly, adding application-specific dependencies under the ``[packages]`` section or development-specific dependencies under the ``[dev-packages]`` section of the ``Pipfile``, then run ``pipenv install --dev`` to install the dependencies and update the ``Pipfile.lock`` build document.
+
+#. Or, more easily, you can run ``pipenv install <pip-package-name>`` to add and install a new application dependency, or ``pipenv install --dev <pip-package-name>`` to add and install a new development dependency. When you add a dependency in this manner, not only will the dependency be installed in your ``pipenv`` environment, but ``pipenv`` will also automatically updated your ``Pipfile`` and ``Pipfile.lock`` to reflect the newly added dependency.
+
+There are many additional actions you can take to update and change dependencies using ``pipenv``.
+
+* To learn more, please see the `documentation on the basic usage of Pipenv <https://pipenv.pypa.io/en/latest/basics/>`_.
+
+* If your preference is to manage dependencies using the ``setup.py`` ``install_requires`` argument, please take some time to `read the distinctions between Pipfile vs. setup.py <https://pipenv.pypa.io/en/latest/advanced/#pipfile-vs-setuppy>`_, and think carefully about the distinctions between managing dependencies for a Python "application" such as that which you are creating with the ``cc-pydata`` template versus a Python "library", which the ``cc-pydata`` template is not.
+
+
+Installing your local ``cc-pydata`` package as an editable
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Please note that by default, via the Pipfile, your newly created local ``cc-pydata`` package is installed as an editable. For example, the line in the Pipfile that reads::
 
   package_name = {editable = true,path = "."}
 
@@ -279,6 +308,7 @@ Please note that, via the Pipfile, your newly created local package is installed
 
     pip install -e .
 
+.. _env:
 
 Managing environment variables with the ``.env`` file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
