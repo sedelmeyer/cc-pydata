@@ -12,8 +12,9 @@
 #
 # import os
 # import sys
+import shlex
+import subprocess
 import traceback
-from pkg_resources import get_distribution
 
 # sys.path.insert(0, os.path.abspath('.'))
 
@@ -25,9 +26,16 @@ year = '2020'
 author = 'Michael Sedelmeyer'
 copyright = '{0}, {1}'.format(year, author)
 
-# The full version, including alpha/beta/rc tags
+# Here we retrieve the full project version, taken from latest git tag.
+# Normally, in a project using setuptools_scm, pkg_resources.get_distribution()
+# would be used to retrieve this tagged version. However, because this
+# cookicutter template is itself not a proper distribution, get_distribution
+# fails, thus the need for a direct call to `git describe`.
 try:
-    version = release = get_distribution('cc-pydata').version
+    version = release = subprocess.run(
+        shlex.split('git describe --tags --abbrev=0'),
+        capture_output=True
+    ).stdout.decode('ascii').strip()
 except Exception:
     traceback.print_exc()
     version = release = '0.0.0'
