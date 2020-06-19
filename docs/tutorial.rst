@@ -261,12 +261,6 @@ Packaging characteristics of this template
 Using ``pipenv`` to manage your project dependencies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
-
-    * Include basic Pipenv_ usage for this project (adding new dependencies, installing those dependenies, etc.)
-    * Discuss ``pipenv shell``
-    * Discuss use of ``Pipfile`` versus ``install requires`` and link to an article discussing the differences
-
 If you are new to ``pipenv`` for dependency and package management, it may take a little time to get used to it. The best place to start is by taking some time to review core principles, benefits, and usage on the Pipenv_ project page.
 
 Chances are, if you have been using ``virtualenv`` or ``conda`` to manage your Python virtual environments up to this point, then you'll probably wonder how you've made it this far without using ``pipenv`` previously. As is described on the Pipenv_ project page:
@@ -274,6 +268,7 @@ Chances are, if you have been using ``virtualenv`` or ``conda`` to manage your P
     "**Pipenv** is a tool that aims to bring the best of all packaging worlds (bundler, composer, npm, cargo, yarn, etc.) to the Python world. *Windows is a first-class citizen, in our world.*"
 
     "It automatically creates and manages a virtualenv for your projects, as well as adds/removes packages from your ``Pipfile`` as you install/uninstall packages. It also generates the ever-important ``Pipfile.lock``, which is used to produce deterministic builds."
+
 
 Adding / installing dependencies using ``pipenv``
 """""""""""""""""""""""""""""""""""""""""""""""""
@@ -295,8 +290,7 @@ There are many additional actions you can take to update and change dependencies
 
 Installing your local ``cc-pydata`` package as an editable
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Please note that by default, via the Pipfile, your newly created local ``cc-pydata`` package is installed as an editable. For example, the line in the Pipfile that reads::
+If you inspect the ``cc-pydata`` template's default ``Pipfile``, you will see that ``pipenv`` will install your newly created local ``cc-pydata`` package as an "editable" under the ``[packages]`` section of that ``Pipfile``. More specifically, the line in the ``Pipfile`` that reads::
 
   package_name = {editable = true,path = "."}
 
@@ -324,9 +318,28 @@ Managing environment variables with the ``.env`` file
 Accessing modules in your package from a Jupyter Notebook
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
+If you would like to incorporate Jupyter notebooks into your ``cc-pydata`` project, you will first need to install the ``jupyter`` package in your ``pipenv`` environment::
 
-    Describe usage of ``from <your-package-name> import <module-name>`` behavior in Jupyter notebooks
+    pipenv install --dev jupyter
+
+Then, once ``jupyter`` is installed, you can start your notebook server by running::
+
+    pipenv shell
+    jupyter notebook
+
+It is recommended that you create and store all Jupyter notebooks in the provided ``notebooks`` directory for consistency.
+
+The ``cc-pydata`` package module is configured in such a way that, if you wish to import that package for your current notebook session, you simply use the following syntaxt for import::
+
+    # example of importing the local `visualizations` module
+    from <package-name> import visualizations
+
+    # or, importing only one function from that module
+    from <package-name>.visualizations import <function-name>
+
+
+Therefore, there is no need to import `src`. Instead, you can use the more natural convention of importing your package based on its actual name.
+
 
 Versioning your project
 ^^^^^^^^^^^^^^^^^^^^^^^
