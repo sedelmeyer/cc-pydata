@@ -307,12 +307,29 @@ If you inspect the ``cc-pydata`` template's default ``Pipfile``, you will see th
 Managing environment variables with the ``.env`` file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
+When you generate a new ``cc-pydata`` project using this template, by default you will be provided with a ``.env`` file in which you can set environment variables specific to your project.
 
-    * Discuss the purpose and usage of the ``.env`` file
-    * Specify the importance of never committing your ``.env`` file to git history
-    * Discuss Pipenv's default behavior for importing ``.env`` files and the means by which to programmatically access those variables
-    * Include this link `Pipenv loading of .env`_
+* This ``.env`` file can be used for setting secret keys, credentials, or filepaths you need for your project, but would like to keep secret.
+* By default, the ``.gitignore`` for this project is set to ignore the ``.env`` file.
+* It is strongly, strongly, strongly suggested that you NEVER commit your ``.env`` file to source control, or else you will have compromised any credentials saved to that file.
+
+Typically, to load and access the environment variables saved to your ``.env`` you would need to use a tool such as `python-dotenv <https://saurabh-kumar.com/python-dotenv/>`_.
+
+But alas, because we are using ``pipenv`` to manage our ``cc-pydata`` project environment, ``pipenv`` **will automatically load your** ``.env`` **environment variables to your environment when you enter your** ``pipenv shell`` **or use** ``pipenv run``.
+
+For instance, if you have a secret key you wish to access programatically when running your ``cc-pydata`` package locally, you can add the following to your ``.env`` file::
+
+    SECRET_KEY=YOURSECRETKEY
+
+Then, to access that secret key from your code, you simply need to access it using the ``os.getenv`` method like this::
+
+    import os
+
+    SECRET_KEY = os.getenv("SECRET_KEY")
+
+``pipenv`` will seamlessly take care of loading those ``.env``-stored enviroment variables in the background.
+
+To learn more about this ``pipenv`` behavior, please see the documentation on `Pipenv loading of .env`_.
 
 
 Accessing modules in your package from a Jupyter Notebook
