@@ -344,12 +344,101 @@ Therefore, there is no need to import `src`. Instead, you can use the more natur
 Versioning your project
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
+The ``cc-pydata`` template is configured to make use of `setuptools_scm`_ to manage and track your ``cc-pydata`` project's current version.
 
-    * Describe versioning of project using `setuptools_scm`_
-    * Include link to article `Single-sourcing the package version`_
-    * Set project versions during commits to ``master`` by using ``git tag``
-    * Checking current project version with ``python setup.py --version`` while in ``pipenv shell``
+There are a number of different ways to maintain a Python project's current version. For a survey of different approaches to maintain a "single source of truth" for the version number of your project (i.e. where you only need to update the version in one single location), please see this article on `Single-sourcing the package version`_. ``cc-pydata`` makes use of option #7 in that article.
+
+By using ``setuptools_scm``, your ``cc-pydata`` application pulls the version number directly from the latest ``git`` tag associated with your project. Therefore, instead of manually setting a global ``__version__`` variable in your application, you simply add a tag when you commit a new version of your application to ``master``.
+
+Implications for choosing an effective `git` branching methodology
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+To use ``setuptools_scm`` effectively, you'll likely want to use a proper/consistent ``git`` branching methodology while building and maintaining your project.
+
+* At a minimum, you should perform all of your development work on separate non-``master`` ``git`` branches, and only when features are complete, "release" them by merging them into your ``master`` branch.
+
+* Therefore, each time you merge a set of your changes into ``master``, that event should be considered a release.
+
+* Thus, a release merged into ``master`` would require you tag it with a new version number.
+
+For instance, say you have a set of tested features on a ``develop`` branch that are ready for release...
+
+You would first merge it into ``master`` (and consider using the ``--no-ff`` argument to prevent fast-forward merges, `thus maintaining the context of your branches and the branching topology <https://stackoverflow.com/questions/9069061/what-is-the-difference-between-git-merge-and-git-merge-no-ff>`_ of your ``git`` history):
+
+.. code-block:: Bash
+
+    # Assuming your 'develop' branch is your current active branch
+    git checkout master
+
+    git merge --no-ff develop
+
+    git tag -a v0.3.0 -m "Add a set of features that ..."
+
+As you can see in the steps above, once the set of new features are merged into your ``master`` branch, you would then immediately add an "annotated" (designated by the ``-a`` argument) version tag, and comment it with a brief message describing the release.
+
+Now, if you were to check the version of your project::
+
+    python setup.py --version
+
+...``setuptools_scm`` would provide you the following result:
+
+.. code-block:: Bash
+
+    v0.3.0
+
+Then, once you have completed and tagged your merge into ``master``, you would push your latest release changes (including the new tag) to your desired ``remote`` and switch back your "development" branch so you don't accidentally make any additional changes to ``master``:
+
+.. code-block:: Bash
+
+    git push origin master
+    git push origin v0.3.0
+    git checkout develop
+    git merge --no-ff master
+
+Now, because you are past your prior release, if you were to re-run ``python setup.py --version``, you'd receive a result similar to this:
+
+.. code-block:: Bash
+
+    0.3.0.dev5+gefeb5a6.d20200620
+
+Voilà! You have released a new version of your project!
+
+To systematize your branching methodology in a manner similar to this, please take some time to:
+
+* `Consider using the Git-flow methodology <https://nvie.com/posts/a-successful-git-branching-model/>`_
+* Or, at a minimum, `the simpler GitHub flow methodology <https://guides.github.com/introduction/flow/>`_.
+
+While you're at it, why not do yourself a favor and also add some some useful and consistent context to each of your commits by using the:
+
+* `Conventional Commits specification for adding human and machine readable meaning to your commit messages <https://www.conventionalcommits.org/>`_.
+
+
+Implications for using Semantic Versioning as a consistent version-numbering scheme
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+According to the ``setuptools_scm`` documentation, `it is required to always include a "patch version" in your tagged version numbers <https://github.com/pypa/setuptools_scm/#default-versioning-scheme>`_. That means:
+
+* If you are releasing ``v0.3.0`` as was demonstrated in the previous section,
+* Then be certain to include the final "``0``", which indicates the "patch version" of that release.
+
+In fact, while you're at it, why not just consistently use Semantic Versioning (i.e. `SemVer`_) for every release you tag in ``git``.
+
+* `SemVer`_ is clean, easy to use, and it conveys important meaning about the underlying code in your package and what has been modified from one version to the next.
+* An added benefit, ``setuptools_scm`` is expected to switch to SemVer as its default behavior in the future.
+
+At its core, SemVer uses the ``MAJOR.MINOR.PATCH`` increment scheme for version numbering. As is specified in the `SemVer`_ documentation:
+
+1. You change the ``MAJOR`` version when you make incompatible API changes,
+2. You change the ``MINOR`` version when you add functionality in a backwards compatible manner, and
+3. You change the ``PATCH`` version when you make backwards compatible bug fixes.
+
+Therefore, each version you release to ``master`` should always be tagged with three distinct period-separated digits, such as in the example:
+
+.. code-block:: Bash
+
+    git tag -a v0.3.0 -m "Add a set of features that ..."
+
+
 
 Documenting your project using Sphinx and GitHub Pages
 ------------------------------------------------------
@@ -616,7 +705,7 @@ The ``pytest`` test-runner is a powerful command-line tool. There are far too ma
 
 Running ``pytest`` will provide a convenient summary as tests are run. As an example, your default ``cc-pydata`` test output will look something like this if there are no test failures:
 
-.. code:: bash
+.. code-block:: bash
 
     ============================== test session starts ===============================
     platform linux -- Python 3.7.5, pytest-5.4.3, py-1.8.1, pluggy-0.13.1
@@ -870,3 +959,4 @@ If you are new to logging, or are considering logging for the first time in the 
 .. _reStructuredText primer: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 
 .. _GitHub Pages: https://pages.github.com/
+.. _SemVer: https://semver.org/
