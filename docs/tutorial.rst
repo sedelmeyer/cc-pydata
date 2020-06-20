@@ -678,8 +678,8 @@ Test configuration and continuous integration with TravisCI
   :local:
   :backlinks: none
 
-Unit-testing your project and using the PyTest runner
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Unit-testing your project and using the ``pytest`` test-runner
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Location of ``cc-pydata`` unit tests
 """"""""""""""""""""""""""""""""""""
@@ -758,14 +758,77 @@ Running ``pytest`` will provide a convenient summary as tests are run. As an exa
 Configuring and leveraging TravisCI for your project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The ``cc-pydata`` project template is configured to use `Travis-CI`_ services for continuous integration testing.
+
+* The ``.travis.yml`` file provided in the ``cc-pydata`` project template is used to configure your `Travis-CI`_ build.
+* For a tutorial on how to use Travis-CI, please `see the official Travis-CI tutorial <https://docs.travis-ci.com/user/tutorial/>`_, and if you're new to continuous integration, please `see their article on core concepts for beginners <https://docs.travis-ci.com/user/for-beginners>`_.
+
+The default ``.travis.yml`` configuration file
+""""""""""""""""""""""""""""""""""""""""""""""
+
+Below is a snippet showing what is contained in the ``cc-pydata`` default ``.travis.yml`` file (with comments added to describe what each item means).
+
+.. code-block:: yaml
+
+    # This first section tells travis-ci.com what coding language and
+    # which distribution and versions to use for your build.
+    language: python
+    dist: xenial
+    python:
+    - 3.7
+
+    # This section tells travis-ci what commands to runner.
+    # Note that the first thing it will do is install our pipenv
+    # environment.
+    install:
+    - pip install pipenv
+    - pipenv install --system --deploy --ignore-pipfile
+
+    # This tells travis-ci to only run builds when you push your master
+    # or develop branches. Therefore, travis builds will ot run for any
+    # other branches.
+    branches:
+    only:
+    - master
+    - develop
+
+    # This defines the build "stages" you wish to run. Note here that
+    # the "answers" stage will only be executed when your master branch
+    # is pushed. The "test" stage on the otherhand, it will run for
+    # both the master and develop branches as specified in the previous
+    # section.
+    stages:
+    - test
+    - name: answers
+        if: branch = master
+
+    # This section specifies what travis-ci should do for each stage
+    # you have defined above. For the "test" stage you pipenv
+    # environment will be installed and your tests will execute using
+    # the pytest test runner set to verbose mode. For the "answers"
+    # stage, the code in your cc-pydata package's main module will be
+    # run.
+    jobs:
+    include:
+        - stage: test
+        script: pytest -v
+        install:
+            - pip install pipenv
+            - pipenv install --system --deploy --dev --ignore-pipfile
+
+        - stage: answers
+        script:
+        - python3 -m {{ cookiecutter.package_name }}
+
+
 .. todo::
 
     * Describe the basic .travis.yml configuration
     * Describe basic steps to set up CI integration with TravisCI for your project
 
 
-Logging configuration and the out-of-box logging features
----------------------------------------------------------
+Logging configuration and out-of-the-box ``cc-pydata`` logging features
+-----------------------------------------------------------------------
 
 The ``cc-pydata`` template provides some useful default, yet easily modified, logging capabilities out-of-the-box for your data science project.
 
@@ -962,7 +1025,7 @@ If you are new to logging, or are considering logging for the first time in the 
 .. _Packaging a python library: https://blog.ionelmc.ro/2014/05/25/python-packaging/
 .. _Packaging pitfalls: https://blog.ionelmc.ro/2014/06/25/python-packaging-pitfalls/
 .. _Cookiecutter Data Science: https://drivendata.github.io/cookiecutter-data-science/
-.. _Travis-CI: http://travis-ci.org/
+.. _Travis-CI: http://travis-ci.com/
 .. _Tox: https://tox.readthedocs.io/en/latest/
 .. _Sphinx: http://sphinx-doc.org/
 .. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
