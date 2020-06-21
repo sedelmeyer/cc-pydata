@@ -30,7 +30,7 @@ When you generate a ``cc-pydata`` data science project from this template (see :
     │                        such as credentials that you do not want
     │                        committed to Git history
     ├── data              <- All data files related to the project.
-    │   |                    Files contained in this directory are
+    │   │                    Files contained in this directory are
     │   │                    ommitted from Git history via .gitignore
     │   ├── raw           <- The original data file(s) that, for the
     │   │                    purpose of reproducibility, should never
@@ -81,7 +81,7 @@ When you generate a ``cc-pydata`` data science project from this template (see :
     │                        history (as a default, `.env`, `./data/`
     │                        files, and `*/third-party/` files are all
     │                        excluded)
-    ├── .travis.yml       <- Configuration for TravisCI services
+    ├── .travis.yml       <- Configuration for Travis-CI services
     │                        (see travis-ci.com)
     ├── logging.json      <- Default logging configuration dictionary
     ├── setup.py          <- Setup script for the project using
@@ -258,16 +258,39 @@ Packaging characteristics of this template
   :local:
   :backlinks: none
 
-Using Pipenv to manage your project dependencies
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Using ``pipenv`` to manage your project dependencies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
+If you are new to ``pipenv`` for dependency and package management, it may take a little time to get used to it. The best place to start is by taking some time to review core principles, benefits, and usage on the Pipenv_ project page.
 
-    * Include basic Pipenv_ usage for this project (adding new dependencies, installing those dependenies, etc.)
-    * Discuss ``pipenv shell``
-    * Discuss use of ``Pipfile`` versus ``install requires`` and link to an article discussing the differences
+Chances are, if you have been using ``virtualenv`` or ``conda`` to manage your Python virtual environments up to this point, then you'll probably wonder how you've made it this far without using ``pipenv`` previously. As is described on the Pipenv_ project page:
 
-Please note that, via the Pipfile, your newly created local package is installed as an editable. For example, the line in the Pipfile that reads::
+    "**Pipenv** is a tool that aims to bring the best of all packaging worlds (bundler, composer, npm, cargo, yarn, etc.) to the Python world. *Windows is a first-class citizen, in our world.*"
+
+    "It automatically creates and manages a virtualenv for your projects, as well as adds/removes packages from your ``Pipfile`` as you install/uninstall packages. It also generates the ever-important ``Pipfile.lock``, which is used to produce deterministic builds."
+
+
+Adding / installing dependencies using ``pipenv``
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+As was shown in the section :ref:`install-pipenv` above, creating a ``pipenv`` environment and ``Pipfile.lock`` deterministic build is as easy as running ``pipenv install --dev`` from your ``cc-pydata`` project directory.
+
+To add additional dependencies to your project, you can either:
+
+#. Edit your ``Pipfile`` list of dependencies directly, adding application-specific dependencies under the ``[packages]`` section or development-specific dependencies under the ``[dev-packages]`` section of the ``Pipfile``, then run ``pipenv install --dev`` to install the dependencies and update the ``Pipfile.lock`` build document.
+
+#. Or, more easily, you can run ``pipenv install <pip-package-name>`` to add and install a new application dependency, or ``pipenv install --dev <pip-package-name>`` to add and install a new development dependency. When you add a dependency in this manner, not only will the dependency be installed in your ``pipenv`` environment, but ``pipenv`` will also automatically updated your ``Pipfile`` and ``Pipfile.lock`` to reflect the newly added dependency.
+
+There are many additional actions you can take to update and change dependencies using ``pipenv``.
+
+* To learn more, please see the `documentation on the basic usage of Pipenv <https://pipenv.pypa.io/en/latest/basics/>`_.
+
+* If your preference is to manage dependencies using the ``setup.py`` ``install_requires`` argument, please take some time to `read the distinctions between Pipfile vs. setup.py <https://pipenv.pypa.io/en/latest/advanced/#pipfile-vs-setuppy>`_, and think carefully about the distinctions between managing dependencies for a Python "application" such as that which you are creating with the ``cc-pydata`` template versus a Python "library", which the ``cc-pydata`` template is not.
+
+
+Installing your local ``cc-pydata`` package as an editable
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+If you inspect the ``cc-pydata`` template's default ``Pipfile``, you will see that ``pipenv`` will install your newly created local ``cc-pydata`` package as an "editable" under the ``[packages]`` section of that ``Pipfile``. More specifically, the line in the ``Pipfile`` that reads::
 
   package_name = {editable = true,path = "."}
 
@@ -275,38 +298,166 @@ Please note that, via the Pipfile, your newly created local package is installed
 
     pipenv install -e .
 
-...which is similar to running the following command in plain old Pip if you were not working from a virtual environment::
+...which is similar to running the following command in plain old ``pip`` if you were not working from a virtual environment::
 
     pip install -e .
 
+.. _env:
 
 Managing environment variables with the ``.env`` file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
+When you generate a new ``cc-pydata`` project using this template, by default you will be provided with a ``.env`` file in which you can set environment variables specific to your project.
 
-    * Discuss the purpose and usage of the ``.env`` file
-    * Specify the importance of never committing your ``.env`` file to git history
-    * Discuss Pipenv's default behavior for importing ``.env`` files and the means by which to programmatically access those variables
-    * Include this link `Pipenv loading of .env`_
+* This ``.env`` file can be used for setting secret keys, credentials, or filepaths you need for your project, but would like to keep secret.
+* By default, the ``.gitignore`` for this project is set to ignore the ``.env`` file.
+* It is strongly, strongly, strongly suggested that you NEVER commit your ``.env`` file to source control, or else you will have compromised any credentials saved to that file.
+
+Typically, to load and access the environment variables saved to your ``.env`` file you would need to use a tool such as `python-dotenv <https://saurabh-kumar.com/python-dotenv/>`_.
+
+But alas, because we are using ``pipenv`` to manage our ``cc-pydata`` project environment, ``pipenv`` **will automatically load your** ``.env`` **environment variables to your environment when you enter your** ``pipenv shell`` **or use** ``pipenv run``.
+
+For instance, if you have a secret key you wish to access programatically when running your ``cc-pydata`` package locally, you can add the following to your ``.env`` file::
+
+    SECRET_KEY=YOURSECRETKEY
+
+``pipenv`` will seamlessly take care of loading this ``.env``-stored enviroment variable in the background.
+
+Then, to access that secret key directly within your code, you simply need to access it using ``os.getenv``::
+
+    import os
+
+    SECRET_KEY = os.getenv("SECRET_KEY")
+
+To learn more about this ``pipenv`` behavior, please see the documentation on `Pipenv loading of .env`_.
 
 
 Accessing modules in your package from a Jupyter Notebook
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
+If you would like to incorporate Jupyter notebooks into your ``cc-pydata`` project, you will first need to install the ``jupyter`` package in your ``pipenv`` environment::
 
-    Describe usage of ``from <your-package-name> import <module-name>`` behavior in Jupyter notebooks
+    pipenv install --dev jupyter
+
+Then, once ``jupyter`` is installed, you can start your notebook server by running::
+
+    pipenv shell
+    jupyter notebook
+
+It is recommended that you create and store all Jupyter notebooks in the provided ``notebooks`` directory for consistency.
+
+The ``cc-pydata`` package module is configured in such a way that, if you wish to import that package for your current notebook session, you simply use the following syntaxt for import::
+
+    # example of importing the local `visualizations` module
+    from <package-name> import visualizations
+
+    # or, importing only one function from that module
+    from <package-name>.visualizations import <function-name>
+
+
+Therefore, there is no need to import `src`. Instead, you can use the more natural convention of importing your package based on its actual name.
+
 
 Versioning your project
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
+The ``cc-pydata`` template is configured to make use of `setuptools_scm`_ to manage and track your ``cc-pydata`` project's current version.
 
-    * Describe versioning of project using `setuptools_scm`_
-    * Include link to article `Single-sourcing the package version`_
-    * Set project versions during commits to ``master`` by using ``git tag``
-    * Checking current project version with ``python setup.py --version`` while in ``pipenv shell``
+There are a number of different ways to maintain a Python project's current version. For a survey of different approaches to maintain a "single source of truth" for the version number of your project (i.e. where you only need to update the version in one single location), please see this article on `Single-sourcing the package version`_. ``cc-pydata`` makes use of option #7 in that article.
+
+By using ``setuptools_scm``, your ``cc-pydata`` application pulls the version number directly from the latest ``git`` tag associated with your project. Therefore, instead of manually setting a global ``__version__`` variable in your application, you simply add a tag when you commit a new version of your application to ``master``.
+
+Implications for choosing an effective ``git`` branching methodology
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+To use ``setuptools_scm`` effectively, you'll likely want to use a proper/consistent ``git`` branching methodology while building and maintaining your project.
+
+* At a minimum, you should perform all of your development work on separate non-``master`` ``git`` branches, and only when features are complete, "release" them by merging them into your ``master`` branch.
+
+* Therefore, each time you merge a set of your changes into ``master``, that event should be considered a release.
+
+* Thus, a release merged into ``master`` would require you tag it with a new version number.
+
+For instance, say you have a set of tested features on a ``develop`` branch that are ready for release...
+
+You would first merge it into ``master`` (and consider using the ``--no-ff`` argument to prevent fast-forward merges, `thus maintaining the context of your branches and the branching topology <https://stackoverflow.com/questions/9069061/what-is-the-difference-between-git-merge-and-git-merge-no-ff>`_ of your ``git`` history):
+
+.. code-block:: Bash
+
+    # Assuming your 'develop' branch is your current active branch
+    git checkout master
+
+    git merge --no-ff develop
+
+    git tag -a v0.3.0 -m "Add a set of features that ..."
+
+As you can see in the steps above, once the set of new features are merged into your ``master`` branch, you would then immediately add an "annotated" (designated by the ``-a`` argument) version tag, and comment it with a brief message describing the release.
+
+Now, if you were to check the version of your project::
+
+    python setup.py --version
+
+... ``setuptools_scm`` would provide you the following result:
+
+.. code-block:: Bash
+
+    v0.3.0
+
+Then, once you have completed and tagged your merge into ``master``, you would push your latest release changes (including the new tag) to your desired ``remote`` and switch back your "development" branch so you don't accidentally make any additional changes to ``master``:
+
+.. code-block:: Bash
+
+    git push origin master
+    git push origin v0.3.0
+    git checkout develop
+    git merge --no-ff master
+
+Now, because you are past your prior release, if you were to re-run ``python setup.py --version``, you'd receive a result similar to this:
+
+.. code-block:: Bash
+
+    0.3.0.dev5+gefeb5a6.d20200620
+
+Voilà! You have released a new version of your project!
+
+To systematize your branching methodology in a manner similar to this, please take some time to:
+
+* Consider using `the Git-flow methodology <https://nvie.com/posts/a-successful-git-branching-model/>`_
+* Or, at a minimum, `the simpler GitHub flow methodology <https://guides.github.com/introduction/flow/>`_.
+
+While you're at it, why not do yourself a favor and also add some some useful and consistent context to each of your commits by using the:
+
+* `Conventional Commits specification for adding human and machine readable meaning to your commit messages <https://www.conventionalcommits.org/>`_.
+
+
+Implications for using Semantic Versioning as a consistent version-numbering scheme
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+According to the ``setuptools_scm`` documentation, `it is required to always include a "patch version" in your tagged version numbers <https://github.com/pypa/setuptools_scm/#default-versioning-scheme>`_.
+
+That means:
+
+* If you are releasing ``v0.3.0`` as was demonstrated in the previous section,
+* Then be certain to include the final "``0``", which indicates the "patch version" of that release.
+
+In fact, while you're at it, why not just consistently use Semantic Versioning (i.e. `SemVer`_) for every release you tag in ``git``.
+
+* `SemVer`_ is clean, easy to use, and it conveys important meaning about the underlying code in your package and what has been modified from one version to the next.
+* An added benefit, ``setuptools_scm`` is expected to switch to SemVer as its default behavior in the future.
+
+At its core, SemVer uses the ``MAJOR.MINOR.PATCH`` increment scheme for version numbering. As is specified in the `SemVer`_ documentation:
+
+1. You change the ``MAJOR`` version when you make incompatible API changes,
+2. You change the ``MINOR`` version when you add functionality in a backwards compatible manner, and
+3. You change the ``PATCH`` version when you make backwards compatible bug fixes.
+
+Therefore, each version you release to ``master`` should always be tagged with three distinct period-separated digits, such as in the example:
+
+.. code-block:: Bash
+
+    git tag -a v0.3.0 -m "Add a set of features that ..."
+
+
 
 Documenting your project using Sphinx and GitHub Pages
 ------------------------------------------------------
@@ -522,15 +673,15 @@ Once you have pushed the first version of your ``gh-pages`` branch to GitHub, Gi
 
 There should now appear a hyperlink indicating the URL at which your new site is located. Follow that link and you can preview your site.
 
-Test configuration and continuous integration with TravisCI
------------------------------------------------------------
+Test configuration and continuous integration with Travis-CI
+------------------------------------------------------------
 
 .. contents:: In this section
   :local:
   :backlinks: none
 
-Unit-testing your project and using the PyTest runner
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Unit-testing your project and using the ``pytest`` test-runner
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Location of ``cc-pydata`` unit tests
 """"""""""""""""""""""""""""""""""""
@@ -573,7 +724,7 @@ The ``pytest`` test-runner is a powerful command-line tool. There are far too ma
 
 Running ``pytest`` will provide a convenient summary as tests are run. As an example, your default ``cc-pydata`` test output will look something like this if there are no test failures:
 
-.. code:: bash
+.. code-block:: bash
 
     ============================== test session starts ===============================
     platform linux -- Python 3.7.5, pytest-5.4.3, py-1.8.1, pluggy-0.13.1
@@ -606,17 +757,81 @@ Running ``pytest`` will provide a convenient summary as tests are run. As an exa
     =============================== 11 passed in 0.16s ===============================
 
 
-Configuring and leveraging TravisCI for your project
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Configuring and leveraging Travis-CI for your project
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
+The ``cc-pydata`` project template is configured to use `Travis-CI`_ services for continuous integration testing.
 
-    * Describe the basic .travis.yml configuration
-    * Describe basic steps to set up CI integration with TravisCI for your project
+* The ``.travis.yml`` file provided in the ``cc-pydata`` project template is used to configure your `Travis-CI`_ build.
+* For a tutorial on how to use Travis-CI, please `see the official Travis-CI tutorial <https://docs.travis-ci.com/user/tutorial/>`_, and if you're new to continuous integration, please `see their article on core concepts for beginners <https://docs.travis-ci.com/user/for-beginners>`_.
+
+The default ``.travis.yml`` configuration file
+""""""""""""""""""""""""""""""""""""""""""""""
+
+Below is a snippet showing what is contained in the ``cc-pydata`` default ``.travis.yml`` file (with comments added to describe what each item means).
+
+.. code-block:: yaml
+
+    # This first section tells travis-ci.com what coding language and
+    # which distribution and versions to use for your build.
+    language: python
+    dist: xenial
+    python:
+    - 3.7
+
+    # This section tells travis-ci what commands to run. Note that the
+    # first thing it will do is install our pipenv environment.
+    install:
+    - pip install pipenv
+    - pipenv install --system --deploy --ignore-pipfile
+
+    # This tells travis-ci to only run builds when you push your master
+    # or develop branches. Therefore, travis builds will ot run for any
+    # other branches.
+    branches:
+    only:
+    - master
+    - develop
+
+    # This defines the build "stages" you wish to run. Note here, that
+    # the "answers" stage will only be executed when your master branch
+    # is pushed. The "test" stage on the otherhand, it will run for
+    # both the master and develop branches as specified in the previous
+    # section.
+    stages:
+    - test
+    - name: answers
+        if: branch = master
+
+    # This section specifies what travis-ci should do for each stage
+    # you have defined above. For the "test" stage, your pipenv
+    # environment will be installed and your tests will execute using
+    # the pytest test runner set to verbose mode. For the "answers"
+    # stage, the code in your cc-pydata package's main module will be
+    # run.
+    jobs:
+    include:
+        - stage: test
+        script: pytest -v
+        install:
+            - pip install pipenv
+            - pipenv install --system --deploy --dev --ignore-pipfile
+
+        - stage: answers
+        script:
+        - python3 -m {{ cookiecutter.package_name }}
 
 
-Logging configuration and the out-of-box logging features
----------------------------------------------------------
+Setting up travis-ci.com to run CI builds for your project
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+In order for Travis-CI to run builds for your project when you push to your GitHub hosted ``master`` or ``develop`` remote branches, you will need to authorize Travis-CI for your GitHub account as well as the specific ``cc-pydata`` project repository on GitHub.
+
+For instructions on how to accomplish this, please `see the Travis-CI instructions on how to get started with GitHub <https://docs.travis-ci.com/user/tutorial/#to-get-started-with-travis-ci-using-github>`_.
+
+
+Logging configuration and out-of-the-box ``cc-pydata`` logging features
+-----------------------------------------------------------------------
 
 The ``cc-pydata`` template provides some useful default, yet easily modified, logging capabilities out-of-the-box for your data science project.
 
@@ -813,7 +1028,7 @@ If you are new to logging, or are considering logging for the first time in the 
 .. _Packaging a python library: https://blog.ionelmc.ro/2014/05/25/python-packaging/
 .. _Packaging pitfalls: https://blog.ionelmc.ro/2014/06/25/python-packaging-pitfalls/
 .. _Cookiecutter Data Science: https://drivendata.github.io/cookiecutter-data-science/
-.. _Travis-CI: http://travis-ci.org/
+.. _Travis-CI: http://travis-ci.com/
 .. _Tox: https://tox.readthedocs.io/en/latest/
 .. _Sphinx: http://sphinx-doc.org/
 .. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
@@ -827,3 +1042,4 @@ If you are new to logging, or are considering logging for the first time in the 
 .. _reStructuredText primer: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 
 .. _GitHub Pages: https://pages.github.com/
+.. _SemVer: https://semver.org/
