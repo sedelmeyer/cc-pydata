@@ -143,7 +143,7 @@ Below is a high level overview of the resulting directory structure when you gen
     │                         other explanatory materials
     ├── reports            <- Generated analysis as HTML, LaTeX, etc.
     ├── src                <- Source code for use in this project
-    ├── .travis.yml        <- Configuration for TravisCI services
+    ├── .travis.yml        <- Configuration for Travis-CI services
     │                         (see travis-ci.com)
     ├── logging.json       <- Default logging configuration dictionary
     ├── setup.py           <- Setup script for the project using
@@ -189,7 +189,7 @@ Articles related to Python packaging
 .. _Packaging a python library: https://blog.ionelmc.ro/2014/05/25/python-packaging/
 .. _Packaging pitfalls: https://blog.ionelmc.ro/2014/06/25/python-packaging-pitfalls/
 .. _Cookiecutter Data Science: https://drivendata.github.io/cookiecutter-data-science/
-.. _Travis-CI: http://travis-ci.org/
+.. _Travis-CI: http://travis-ci.com/
 .. _Tox: https://tox.readthedocs.io/en/latest/
 .. _Sphinx: http://sphinx-doc.org/
 .. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html

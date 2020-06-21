@@ -81,7 +81,7 @@ When you generate a ``cc-pydata`` data science project from this template (see :
     │                        history (as a default, `.env`, `./data/`
     │                        files, and `*/third-party/` files are all
     │                        excluded)
-    ├── .travis.yml       <- Configuration for TravisCI services
+    ├── .travis.yml       <- Configuration for Travis-CI services
     │                        (see travis-ci.com)
     ├── logging.json      <- Default logging configuration dictionary
     ├── setup.py          <- Setup script for the project using
@@ -671,8 +671,8 @@ Once you have pushed the first version of your ``gh-pages`` branch to GitHub, Gi
 
 There should now appear a hyperlink indicating the URL at which your new site is located. Follow that link and you can preview your site.
 
-Test configuration and continuous integration with TravisCI
------------------------------------------------------------
+Test configuration and continuous integration with Travis-CI
+------------------------------------------------------------
 
 .. contents:: In this section
   :local:
@@ -755,8 +755,8 @@ Running ``pytest`` will provide a convenient summary as tests are run. As an exa
     =============================== 11 passed in 0.16s ===============================
 
 
-Configuring and leveraging TravisCI for your project
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Configuring and leveraging Travis-CI for your project
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``cc-pydata`` project template is configured to use `Travis-CI`_ services for continuous integration testing.
 
