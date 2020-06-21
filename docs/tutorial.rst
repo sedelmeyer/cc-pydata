@@ -821,10 +821,12 @@ Below is a snippet showing what is contained in the ``cc-pydata`` default ``.tra
         - python3 -m {{ cookiecutter.package_name }}
 
 
-.. todo::
+Setting up travis-ci.com to run CI builds for your project
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-    * Describe the basic .travis.yml configuration
-    * Describe basic steps to set up CI integration with TravisCI for your project
+In order for Travis-CI to run builds for your project when you push to your GitHub hosted ``master`` or ``develop`` remote branches, you will need to authorize Travis-CI for your GitHub account as well as the specific ``cc-pydata`` project repository on GitHub.
+
+For instructions on how to accomplish this, please `see the Travis-CI instructions on how to get started with GitHub <https://docs.travis-ci.com/user/tutorial/#to-get-started-with-travis-ci-using-github>`_.
 
 
 Logging configuration and out-of-the-box ``cc-pydata`` logging features
