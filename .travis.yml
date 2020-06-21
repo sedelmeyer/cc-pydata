@@ -10,6 +10,9 @@ branches:
 
 matrix:
   include:
+    - python: '3.5'
+      env:
+        - TOXENV=py35
     - python: '3.6'
       env:
         - TOXENV=py36
@@ -22,6 +25,9 @@ matrix:
     - python: '3.7'
       env:
         - TOXENV=linter
+    - python: '3.8'
+      env:
+        - TOXENV=py38
 
 install:
   - pip install tox
