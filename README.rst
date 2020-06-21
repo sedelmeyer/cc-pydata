@@ -6,6 +6,9 @@ Cookiecutter PyData (``cc-pydata``) is a Cookiecutter_ template for generating "
 .. image:: https://travis-ci.com/sedelmeyer/cc-pydata.svg?branch=master
     :target: https://travis-ci.com/sedelmeyer/cc-pydata
 
+.. image:: https://img.shields.io/badge/License-MIT-black.svg
+    :target: https://github.com/sedelmeyer/cc-pydata/blob/master/LICENSE
+
 * **GitHub repo:** https://github.com/sedelmeyer/cc-pydata
 * **Full project documentation:** https://sedelmeyer.github.io/cc-pydata
 
