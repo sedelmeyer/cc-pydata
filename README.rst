@@ -6,6 +6,9 @@ Cookiecutter PyData (``cc-pydata``) is a Cookiecutter_ template for generating "
 .. image:: https://travis-ci.com/sedelmeyer/cc-pydata.svg?branch=master
     :target: https://travis-ci.com/sedelmeyer/cc-pydata
 
+.. image:: https://img.shields.io/badge/License-MIT-black.svg
+    :target: https://github.com/sedelmeyer/cc-pydata/blob/master/LICENSE
+
 * **GitHub repo:** https://github.com/sedelmeyer/cc-pydata
 * **Full project documentation:** https://sedelmeyer.github.io/cc-pydata
 
@@ -69,7 +72,7 @@ Basic prerequisites
 
 This template and resulting ``cc-pydata`` project has been observed to work with the following installed dependencies. However, I suspect it will will work with a broader range of versions than are shown here:
 
-* ``python >= 3.7``
+* ``python >= 3.6``
 * ``cookiecutter >= 1.7``
 * ``pipenv >= 2018-11-26``
 
