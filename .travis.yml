@@ -25,6 +25,7 @@ matrix:
 
 install:
   - pip install tox
+  - pip install graphviz
 
 script:
   - tox
