@@ -31,7 +31,11 @@ matrix:
 
 install:
   - pip install tox
-  - pip install graphviz
+
+addons:
+    apt:
+        packages:
+            - graphviz
 
 script:
   - tox
