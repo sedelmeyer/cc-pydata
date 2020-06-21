@@ -69,7 +69,7 @@ Basic prerequisites
 
 This template and resulting ``cc-pydata`` project has been observed to work with the following installed dependencies. However, I suspect it will will work with a broader range of versions than are shown here:
 
-* ``python >= 3.7``
+* ``python >= 3.6``
 * ``cookiecutter >= 1.7``
 * ``pipenv >= 2018-11-26``
 
