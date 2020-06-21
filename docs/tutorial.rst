@@ -30,7 +30,7 @@ When you generate a ``cc-pydata`` data science project from this template (see :
     │                        such as credentials that you do not want
     │                        committed to Git history
     ├── data              <- All data files related to the project.
-    │   |                    Files contained in this directory are
+    │   │                    Files contained in this directory are
     │   │                    ommitted from Git history via .gitignore
     │   ├── raw           <- The original data file(s) that, for the
     │   │                    purpose of reproducibility, should never
@@ -298,7 +298,7 @@ If you inspect the ``cc-pydata`` template's default ``Pipfile``, you will see th
 
     pipenv install -e .
 
-...which is similar to running the following command in plain old Pip if you were not working from a virtual environment::
+...which is similar to running the following command in plain old ``pip`` if you were not working from a virtual environment::
 
     pip install -e .
 
@@ -313,7 +313,7 @@ When you generate a new ``cc-pydata`` project using this template, by default yo
 * By default, the ``.gitignore`` for this project is set to ignore the ``.env`` file.
 * It is strongly, strongly, strongly suggested that you NEVER commit your ``.env`` file to source control, or else you will have compromised any credentials saved to that file.
 
-Typically, to load and access the environment variables saved to your ``.env`` you would need to use a tool such as `python-dotenv <https://saurabh-kumar.com/python-dotenv/>`_.
+Typically, to load and access the environment variables saved to your ``.env`` file you would need to use a tool such as `python-dotenv <https://saurabh-kumar.com/python-dotenv/>`_.
 
 But alas, because we are using ``pipenv`` to manage our ``cc-pydata`` project environment, ``pipenv`` **will automatically load your** ``.env`` **environment variables to your environment when you enter your** ``pipenv shell`` **or use** ``pipenv run``.
 
@@ -321,13 +321,13 @@ For instance, if you have a secret key you wish to access programatically when r
 
     SECRET_KEY=YOURSECRETKEY
 
-Then, to access that secret key from your code, you simply need to access it using the ``os.getenv`` method like this::
+``pipenv`` will seamlessly take care of loading this ``.env``-stored enviroment variable in the background.
+
+Then, to access that secret key directly within your code, you simply need to access it using ``os.getenv``::
 
     import os
 
     SECRET_KEY = os.getenv("SECRET_KEY")
-
-``pipenv`` will seamlessly take care of loading those ``.env``-stored enviroment variables in the background.
 
 To learn more about this ``pipenv`` behavior, please see the documentation on `Pipenv loading of .env`_.
 
@@ -367,8 +367,8 @@ There are a number of different ways to maintain a Python project's current vers
 
 By using ``setuptools_scm``, your ``cc-pydata`` application pulls the version number directly from the latest ``git`` tag associated with your project. Therefore, instead of manually setting a global ``__version__`` variable in your application, you simply add a tag when you commit a new version of your application to ``master``.
 
-Implications for choosing an effective `git` branching methodology
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Implications for choosing an effective ``git`` branching methodology
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 To use ``setuptools_scm`` effectively, you'll likely want to use a proper/consistent ``git`` branching methodology while building and maintaining your project.
 
@@ -397,7 +397,7 @@ Now, if you were to check the version of your project::
 
     python setup.py --version
 
-...``setuptools_scm`` would provide you the following result:
+... ``setuptools_scm`` would provide you the following result:
 
 .. code-block:: Bash
 
@@ -422,7 +422,7 @@ Voilà! You have released a new version of your project!
 
 To systematize your branching methodology in a manner similar to this, please take some time to:
 
-* `Consider using the Git-flow methodology <https://nvie.com/posts/a-successful-git-branching-model/>`_
+* Consider using `the Git-flow methodology <https://nvie.com/posts/a-successful-git-branching-model/>`_
 * Or, at a minimum, `the simpler GitHub flow methodology <https://guides.github.com/introduction/flow/>`_.
 
 While you're at it, why not do yourself a favor and also add some some useful and consistent context to each of your commits by using the:
@@ -433,7 +433,9 @@ While you're at it, why not do yourself a favor and also add some some useful an
 Implications for using Semantic Versioning as a consistent version-numbering scheme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-According to the ``setuptools_scm`` documentation, `it is required to always include a "patch version" in your tagged version numbers <https://github.com/pypa/setuptools_scm/#default-versioning-scheme>`_. That means:
+According to the ``setuptools_scm`` documentation, `it is required to always include a "patch version" in your tagged version numbers <https://github.com/pypa/setuptools_scm/#default-versioning-scheme>`_.
+
+That means:
 
 * If you are releasing ``v0.3.0`` as was demonstrated in the previous section,
 * Then be certain to include the final "``0``", which indicates the "patch version" of that release.
@@ -777,9 +779,8 @@ Below is a snippet showing what is contained in the ``cc-pydata`` default ``.tra
     python:
     - 3.7
 
-    # This section tells travis-ci what commands to runner.
-    # Note that the first thing it will do is install our pipenv
-    # environment.
+    # This section tells travis-ci what commands to run. Note that the
+    # first thing it will do is install our pipenv environment.
     install:
     - pip install pipenv
     - pipenv install --system --deploy --ignore-pipfile
@@ -792,7 +793,7 @@ Below is a snippet showing what is contained in the ``cc-pydata`` default ``.tra
     - master
     - develop
 
-    # This defines the build "stages" you wish to run. Note here that
+    # This defines the build "stages" you wish to run. Note here, that
     # the "answers" stage will only be executed when your master branch
     # is pushed. The "test" stage on the otherhand, it will run for
     # both the master and develop branches as specified in the previous
@@ -803,7 +804,7 @@ Below is a snippet showing what is contained in the ``cc-pydata`` default ``.tra
         if: branch = master
 
     # This section specifies what travis-ci should do for each stage
-    # you have defined above. For the "test" stage you pipenv
+    # you have defined above. For the "test" stage, your pipenv
     # environment will be installed and your tests will execute using
     # the pytest test runner set to verbose mode. For the "answers"
     # stage, the code in your cc-pydata package's main module will be
