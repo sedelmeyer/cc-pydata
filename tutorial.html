@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial &#8212; cc-pydata v0.1.3 documentation</title>
+    <title>Tutorial &#8212; cc-pydata v0.2.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -41,12 +41,12 @@
 <div class="contents local topic" id="tutorial-contents">
 <p class="topic-title">Tutorial Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#cc-pydata-project-template-structure" id="id12"><code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project template structure</a></p></li>
-<li><p><a class="reference internal" href="#generating-a-new-template" id="id13">Generating a new template</a></p></li>
-<li><p><a class="reference internal" href="#packaging-characteristics-of-this-template" id="id14">Packaging characteristics of this template</a></p></li>
-<li><p><a class="reference internal" href="#documenting-your-project-using-sphinx-and-github-pages" id="id15">Documenting your project using Sphinx and GitHub Pages</a></p></li>
-<li><p><a class="reference internal" href="#test-configuration-and-continuous-integration-with-travisci" id="id16">Test configuration and continuous integration with TravisCI</a></p></li>
-<li><p><a class="reference internal" href="#logging-configuration-and-the-out-of-box-logging-features" id="id17">Logging configuration and the out-of-box logging features</a></p></li>
+<li><p><a class="reference internal" href="#cc-pydata-project-template-structure" id="id7"><code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project template structure</a></p></li>
+<li><p><a class="reference internal" href="#generating-a-new-template" id="id8">Generating a new template</a></p></li>
+<li><p><a class="reference internal" href="#packaging-characteristics-of-this-template" id="id9">Packaging characteristics of this template</a></p></li>
+<li><p><a class="reference internal" href="#documenting-your-project-using-sphinx-and-github-pages" id="id10">Documenting your project using Sphinx and GitHub Pages</a></p></li>
+<li><p><a class="reference internal" href="#test-configuration-and-continuous-integration-with-travis-ci" id="id11">Test configuration and continuous integration with Travis-CI</a></p></li>
+<li><p><a class="reference internal" href="#logging-configuration-and-out-of-the-box-cc-pydata-logging-features" id="id12">Logging configuration and out-of-the-box <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> logging features</a></p></li>
 </ul>
 </div>
 <div class="section" id="cc-pydata-project-template-structure">
@@ -65,7 +65,7 @@
 │                        such as credentials that you do not want
 │                        committed to Git history
 ├── data              &lt;- All data files related to the project.
-│   |                    Files contained in this directory are
+│   │                    Files contained in this directory are
 │   │                    ommitted from Git history via .gitignore
 │   ├── raw           &lt;- The original data file(s) that, for the
 │   │                    purpose of reproducibility, should never
@@ -116,7 +116,7 @@
 │                        history (as a default, `.env`, `./data/`
 │                        files, and `*/third-party/` files are all
 │                        excluded)
-├── .travis.yml       &lt;- Configuration for TravisCI services
+├── .travis.yml       &lt;- Configuration for Travis-CI services
 │                        (see travis-ci.com)
 ├── logging.json      &lt;- Default logging configuration dictionary
 ├── setup.py          &lt;- Setup script for the project using
@@ -130,11 +130,11 @@
 <div class="contents local topic" id="in-this-section">
 <p class="topic-title">In this section</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#ensure-all-prerequisites-are-met" id="id18">0. Ensure all prerequisites are met</a></p></li>
-<li><p><a class="reference internal" href="#initiate-the-template-using-cookiecutter" id="id19">1. Initiate the template using Cookiecutter</a></p></li>
-<li><p><a class="reference internal" href="#complete-template-prompts-required-to-generate-the-template" id="id20">2. Complete template prompts required to generate the template</a></p></li>
-<li><p><a class="reference internal" href="#initiate-git-version-control" id="id21">3. Initiate git version control</a></p></li>
-<li><p><a class="reference internal" href="#install-your-new-pipenv-environment-from-the-pipfile" id="id22">4. Install your new <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> environment from the Pipfile</a></p></li>
+<li><p><a class="reference internal" href="#ensure-all-prerequisites-are-met" id="id13">0. Ensure all prerequisites are met</a></p></li>
+<li><p><a class="reference internal" href="#initiate-the-template-using-cookiecutter" id="id14">1. Initiate the template using Cookiecutter</a></p></li>
+<li><p><a class="reference internal" href="#complete-template-prompts-required-to-generate-the-template" id="id15">2. Complete template prompts required to generate the template</a></p></li>
+<li><p><a class="reference internal" href="#initiate-git-version-control" id="id16">3. Initiate git version control</a></p></li>
+<li><p><a class="reference internal" href="#install-your-new-pipenv-environment-from-the-pipfile" id="id17">4. Install your new <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> environment from the Pipfile</a></p></li>
 </ul>
 </div>
 <div class="section" id="ensure-all-prerequisites-are-met">
@@ -269,7 +269,7 @@
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">travis</span></code></p>
 <ul>
-<li><p>If you want the <a class="reference external" href="http://travis-ci.org/">Travis-CI</a> badge and configuration (currently, this project will always generate with Tracis-CI configuration).</p></li>
+<li><p>If you want the <a class="reference external" href="http://travis-ci.com/">Travis-CI</a> badge and configuration (currently, this project will always generate with Tracis-CI configuration).</p></li>
 </ul>
 </li>
 </ul>
@@ -308,23 +308,47 @@
 <div class="contents local topic" id="id2">
 <p class="topic-title">In this section</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#using-pipenv-to-manage-your-project-dependencies" id="id23">Using Pipenv to manage your project dependencies</a></p></li>
-<li><p><a class="reference internal" href="#managing-environment-variables-with-the-env-file" id="id24">Managing environment variables with the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file</a></p></li>
-<li><p><a class="reference internal" href="#accessing-modules-in-your-package-from-a-jupyter-notebook" id="id25">Accessing modules in your package from a Jupyter Notebook</a></p></li>
-<li><p><a class="reference internal" href="#versioning-your-project" id="id26">Versioning your project</a></p></li>
+<li><p><a class="reference internal" href="#using-pipenv-to-manage-your-project-dependencies" id="id18">Using <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> to manage your project dependencies</a></p>
+<ul>
+<li><p><a class="reference internal" href="#adding-installing-dependencies-using-pipenv" id="id19">Adding / installing dependencies using <code class="docutils literal notranslate"><span class="pre">pipenv</span></code></a></p></li>
+<li><p><a class="reference internal" href="#installing-your-local-cc-pydata-package-as-an-editable" id="id20">Installing your local <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> package as an editable</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#managing-environment-variables-with-the-env-file" id="id21">Managing environment variables with the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file</a></p></li>
+<li><p><a class="reference internal" href="#accessing-modules-in-your-package-from-a-jupyter-notebook" id="id22">Accessing modules in your package from a Jupyter Notebook</a></p></li>
+<li><p><a class="reference internal" href="#versioning-your-project" id="id23">Versioning your project</a></p>
+<ul>
+<li><p><a class="reference internal" href="#implications-for-choosing-an-effective-git-branching-methodology" id="id24">Implications for choosing an effective <code class="docutils literal notranslate"><span class="pre">git</span></code> branching methodology</a></p></li>
+<li><p><a class="reference internal" href="#implications-for-using-semantic-versioning-as-a-consistent-version-numbering-scheme" id="id25">Implications for using Semantic Versioning as a consistent version-numbering scheme</a></p></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="using-pipenv-to-manage-your-project-dependencies">
-<h3>Using Pipenv to manage your project dependencies<a class="headerlink" href="#using-pipenv-to-manage-your-project-dependencies" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="id3">
-<p class="admonition-title">Todo</p>
+<h3>Using <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> to manage your project dependencies<a class="headerlink" href="#using-pipenv-to-manage-your-project-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>If you are new to <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> for dependency and package management, it may take a little time to get used to it. The best place to start is by taking some time to review core principles, benefits, and usage on the <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/#">Pipenv</a> project page.</p>
+<p>Chances are, if you have been using <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span></code> to manage your Python virtual environments up to this point, then you’ll probably wonder how you’ve made it this far without using <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> previously. As is described on the <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/#">Pipenv</a> project page:</p>
+<blockquote>
+<div><p>“<strong>Pipenv</strong> is a tool that aims to bring the best of all packaging worlds (bundler, composer, npm, cargo, yarn, etc.) to the Python world. <em>Windows is a first-class citizen, in our world.</em>”</p>
+<p>“It automatically creates and manages a virtualenv for your projects, as well as adds/removes packages from your <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code> as you install/uninstall packages. It also generates the ever-important <code class="docutils literal notranslate"><span class="pre">Pipfile.lock</span></code>, which is used to produce deterministic builds.”</p>
+</div></blockquote>
+<div class="section" id="adding-installing-dependencies-using-pipenv">
+<h4>Adding / installing dependencies using <code class="docutils literal notranslate"><span class="pre">pipenv</span></code><a class="headerlink" href="#adding-installing-dependencies-using-pipenv" title="Permalink to this headline">¶</a></h4>
+<p>As was shown in the section <a class="reference internal" href="#install-pipenv"><span class="std std-ref">4. Install your new pipenv environment from the Pipfile</span></a> above, creating a <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> environment and <code class="docutils literal notranslate"><span class="pre">Pipfile.lock</span></code> deterministic build is as easy as running <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">--dev</span></code> from your <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project directory.</p>
+<p>To add additional dependencies to your project, you can either:</p>
+<ol class="arabic simple">
+<li><p>Edit your <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code> list of dependencies directly, adding application-specific dependencies under the <code class="docutils literal notranslate"><span class="pre">[packages]</span></code> section or development-specific dependencies under the <code class="docutils literal notranslate"><span class="pre">[dev-packages]</span></code> section of the <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code>, then run <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">--dev</span></code> to install the dependencies and update the <code class="docutils literal notranslate"><span class="pre">Pipfile.lock</span></code> build document.</p></li>
+<li><p>Or, more easily, you can run <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">&lt;pip-package-name&gt;</span></code> to add and install a new application dependency, or <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">--dev</span> <span class="pre">&lt;pip-package-name&gt;</span></code> to add and install a new development dependency. When you add a dependency in this manner, not only will the dependency be installed in your <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> environment, but <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> will also automatically updated your <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code> and <code class="docutils literal notranslate"><span class="pre">Pipfile.lock</span></code> to reflect the newly added dependency.</p></li>
+</ol>
+<p>There are many additional actions you can take to update and change dependencies using <code class="docutils literal notranslate"><span class="pre">pipenv</span></code>.</p>
 <ul class="simple">
-<li><p>Include basic <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/#">Pipenv</a> usage for this project (adding new dependencies, installing those dependenies, etc.)</p></li>
-<li><p>Discuss <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">shell</span></code></p></li>
-<li><p>Discuss use of <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code> versus <code class="docutils literal notranslate"><span class="pre">install</span> <span class="pre">requires</span></code> and link to an article discussing the differences</p></li>
+<li><p>To learn more, please see the <a class="reference external" href="https://pipenv.pypa.io/en/latest/basics/">documentation on the basic usage of Pipenv</a>.</p></li>
+<li><p>If your preference is to manage dependencies using the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> <code class="docutils literal notranslate"><span class="pre">install_requires</span></code> argument, please take some time to <a class="reference external" href="https://pipenv.pypa.io/en/latest/advanced/#pipfile-vs-setuppy">read the distinctions between Pipfile vs. setup.py</a>, and think carefully about the distinctions between managing dependencies for a Python “application” such as that which you are creating with the <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template versus a Python “library”, which the <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template is not.</p></li>
 </ul>
 </div>
-<p>Please note that, via the Pipfile, your newly created local package is installed as an editable. For example, the line in the Pipfile that reads:</p>
+<div class="section" id="installing-your-local-cc-pydata-package-as-an-editable">
+<h4>Installing your local <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> package as an editable<a class="headerlink" href="#installing-your-local-cc-pydata-package-as-an-editable" title="Permalink to this headline">¶</a></h4>
+<p>If you inspect the <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template’s default <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code>, you will see that <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> will install your newly created local <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> package as an “editable” under the <code class="docutils literal notranslate"><span class="pre">[packages]</span></code> section of that <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code>. More specifically, the line in the <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code> that reads:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package_name</span> <span class="o">=</span> <span class="p">{</span><span class="n">editable</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
@@ -332,60 +356,154 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipenv</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
 </pre></div>
 </div>
-<p>…which is similar to running the following command in plain old Pip if you were not working from a virtual environment:</p>
+<p>…which is similar to running the following command in plain old <code class="docutils literal notranslate"><span class="pre">pip</span></code> if you were not working from a virtual environment:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="managing-environment-variables-with-the-env-file">
-<h3>Managing environment variables with the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file<a class="headerlink" href="#managing-environment-variables-with-the-env-file" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="id4">
-<p class="admonition-title">Todo</p>
-<ul class="simple">
-<li><p>Discuss the purpose and usage of the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file</p></li>
-<li><p>Specify the importance of never committing your <code class="docutils literal notranslate"><span class="pre">.env</span></code> file to git history</p></li>
-<li><p>Discuss Pipenv’s default behavior for importing <code class="docutils literal notranslate"><span class="pre">.env</span></code> files and the means by which to programmatically access those variables</p></li>
-<li><p>Include this link <a class="reference external" href="https://pipenv.kennethreitz.org/en/latest/advanced/#automatic-loading-of-env">Pipenv loading of .env</a></p></li>
-</ul>
 </div>
+<div class="section" id="managing-environment-variables-with-the-env-file">
+<span id="env"></span><h3>Managing environment variables with the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file<a class="headerlink" href="#managing-environment-variables-with-the-env-file" title="Permalink to this headline">¶</a></h3>
+<p>When you generate a new <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project using this template, by default you will be provided with a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file in which you can set environment variables specific to your project.</p>
+<ul class="simple">
+<li><p>This <code class="docutils literal notranslate"><span class="pre">.env</span></code> file can be used for setting secret keys, credentials, or filepaths you need for your project, but would like to keep secret.</p></li>
+<li><p>By default, the <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> for this project is set to ignore the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file.</p></li>
+<li><p>It is strongly, strongly, strongly suggested that you NEVER commit your <code class="docutils literal notranslate"><span class="pre">.env</span></code> file to source control, or else you will have compromised any credentials saved to that file.</p></li>
+</ul>
+<p>Typically, to load and access the environment variables saved to your <code class="docutils literal notranslate"><span class="pre">.env</span></code> file you would need to use a tool such as <a class="reference external" href="https://saurabh-kumar.com/python-dotenv/">python-dotenv</a>.</p>
+<p>But alas, because we are using <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> to manage our <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project environment, <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> <strong>will automatically load your</strong> <code class="docutils literal notranslate"><span class="pre">.env</span></code> <strong>environment variables to your environment when you enter your</strong> <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">shell</span></code> <strong>or use</strong> <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">run</span></code>.</p>
+<p>For instance, if you have a secret key you wish to access programatically when running your <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> package locally, you can add the following to your <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SECRET_KEY</span><span class="o">=</span><span class="n">YOURSECRETKEY</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pipenv</span></code> will seamlessly take care of loading this <code class="docutils literal notranslate"><span class="pre">.env</span></code>-stored enviroment variable in the background.</p>
+<p>Then, to access that secret key directly within your code, you simply need to access it using <code class="docutils literal notranslate"><span class="pre">os.getenv</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;SECRET_KEY&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To learn more about this <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> behavior, please see the documentation on <a class="reference external" href="https://pipenv.kennethreitz.org/en/latest/advanced/#automatic-loading-of-env">Pipenv loading of .env</a>.</p>
 </div>
 <div class="section" id="accessing-modules-in-your-package-from-a-jupyter-notebook">
 <h3>Accessing modules in your package from a Jupyter Notebook<a class="headerlink" href="#accessing-modules-in-your-package-from-a-jupyter-notebook" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="id5">
-<p class="admonition-title">Todo</p>
-<p>Describe usage of <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">&lt;your-package-name&gt;</span> <span class="pre">import</span> <span class="pre">&lt;module-name&gt;</span></code> behavior in Jupyter notebooks</p>
+<p>If you would like to incorporate Jupyter notebooks into your <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project, you will first need to install the <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> package in your <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipenv</span> <span class="n">install</span> <span class="o">--</span><span class="n">dev</span> <span class="n">jupyter</span>
+</pre></div>
 </div>
+<p>Then, once <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> is installed, you can start your notebook server by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipenv</span> <span class="n">shell</span>
+<span class="n">jupyter</span> <span class="n">notebook</span>
+</pre></div>
+</div>
+<p>It is recommended that you create and store all Jupyter notebooks in the provided <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> directory for consistency.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> package module is configured in such a way that, if you wish to import that package for your current notebook session, you simply use the following syntaxt for import:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># example of importing the local `visualizations` module</span>
+<span class="kn">from</span> <span class="o">&lt;</span><span class="n">package</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">visualizations</span>
+
+<span class="c1"># or, importing only one function from that module</span>
+<span class="kn">from</span> <span class="o">&lt;</span><span class="n">package</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;.</span><span class="n">visualizations</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="n">function</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Therefore, there is no need to import <cite>src</cite>. Instead, you can use the more natural convention of importing your package based on its actual name.</p>
 </div>
 <div class="section" id="versioning-your-project">
 <h3>Versioning your project<a class="headerlink" href="#versioning-your-project" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="id6">
-<p class="admonition-title">Todo</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template is configured to make use of <a class="reference external" href="https://github.com/pypa/setuptools_scm/">setuptools_scm</a> to manage and track your <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project’s current version.</p>
+<p>There are a number of different ways to maintain a Python project’s current version. For a survey of different approaches to maintain a “single source of truth” for the version number of your project (i.e. where you only need to update the version in one single location), please see this article on <a class="reference external" href="https://packaging.python.org/guides/single-sourcing-package-version/#single-sourcing-the-version">Single-sourcing the package version</a>. <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> makes use of option #7 in that article.</p>
+<p>By using <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code>, your <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> application pulls the version number directly from the latest <code class="docutils literal notranslate"><span class="pre">git</span></code> tag associated with your project. Therefore, instead of manually setting a global <code class="docutils literal notranslate"><span class="pre">__version__</span></code> variable in your application, you simply add a tag when you commit a new version of your application to <code class="docutils literal notranslate"><span class="pre">master</span></code>.</p>
+<div class="section" id="implications-for-choosing-an-effective-git-branching-methodology">
+<h4>Implications for choosing an effective <code class="docutils literal notranslate"><span class="pre">git</span></code> branching methodology<a class="headerlink" href="#implications-for-choosing-an-effective-git-branching-methodology" title="Permalink to this headline">¶</a></h4>
+<p>To use <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code> effectively, you’ll likely want to use a proper/consistent <code class="docutils literal notranslate"><span class="pre">git</span></code> branching methodology while building and maintaining your project.</p>
 <ul class="simple">
-<li><p>Describe versioning of project using <a class="reference external" href="https://github.com/pypa/setuptools_scm/">setuptools_scm</a></p></li>
-<li><p>Include link to article <a class="reference external" href="https://packaging.python.org/guides/single-sourcing-package-version/#single-sourcing-the-version">Single-sourcing the package version</a></p></li>
-<li><p>Set project versions during commits to <code class="docutils literal notranslate"><span class="pre">master</span></code> by using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">tag</span></code></p></li>
-<li><p>Checking current project version with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">--version</span></code> while in <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">shell</span></code></p></li>
+<li><p>At a minimum, you should perform all of your development work on separate non-<code class="docutils literal notranslate"><span class="pre">master</span></code> <code class="docutils literal notranslate"><span class="pre">git</span></code> branches, and only when features are complete, “release” them by merging them into your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.</p></li>
+<li><p>Therefore, each time you merge a set of your changes into <code class="docutils literal notranslate"><span class="pre">master</span></code>, that event should be considered a release.</p></li>
+<li><p>Thus, a release merged into <code class="docutils literal notranslate"><span class="pre">master</span></code> would require you tag it with a new version number.</p></li>
 </ul>
+<p>For instance, say you have a set of tested features on a <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch that are ready for release…</p>
+<p>You would first merge it into <code class="docutils literal notranslate"><span class="pre">master</span></code> (and consider using the <code class="docutils literal notranslate"><span class="pre">--no-ff</span></code> argument to prevent fast-forward merges, <a class="reference external" href="https://stackoverflow.com/questions/9069061/what-is-the-difference-between-git-merge-and-git-merge-no-ff">thus maintaining the context of your branches and the branching topology</a> of your <code class="docutils literal notranslate"><span class="pre">git</span></code> history):</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming your &#39;develop&#39; branch is your current active branch</span>
+git checkout master
+
+git merge --no-ff develop
+
+git tag -a v0.3.0 -m <span class="s2">&quot;Add a set of features that ...&quot;</span>
+</pre></div>
+</div>
+<p>As you can see in the steps above, once the set of new features are merged into your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch, you would then immediately add an “annotated” (designated by the <code class="docutils literal notranslate"><span class="pre">-a</span></code> argument) version tag, and comment it with a brief message describing the release.</p>
+<p>Now, if you were to check the version of your project:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>… <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code> would provide you the following result:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>v0.3.0
+</pre></div>
+</div>
+<p>Then, once you have completed and tagged your merge into <code class="docutils literal notranslate"><span class="pre">master</span></code>, you would push your latest release changes (including the new tag) to your desired <code class="docutils literal notranslate"><span class="pre">remote</span></code> and switch back your “development” branch so you don’t accidentally make any additional changes to <code class="docutils literal notranslate"><span class="pre">master</span></code>:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>git push origin master
+git push origin v0.3.0
+git checkout develop
+git merge --no-ff master
+</pre></div>
+</div>
+<p>Now, because you are past your prior release, if you were to re-run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">--version</span></code>, you’d receive a result similar to this:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="m">0</span>.3.0.dev5+gefeb5a6.d20200620
+</pre></div>
+</div>
+<p>Voilà! You have released a new version of your project!</p>
+<p>To systematize your branching methodology in a manner similar to this, please take some time to:</p>
+<ul class="simple">
+<li><p>Consider using <a class="reference external" href="https://nvie.com/posts/a-successful-git-branching-model/">the Git-flow methodology</a></p></li>
+<li><p>Or, at a minimum, <a class="reference external" href="https://guides.github.com/introduction/flow/">the simpler GitHub flow methodology</a>.</p></li>
+</ul>
+<p>While you’re at it, why not do yourself a favor and also add some some useful and consistent context to each of your commits by using the:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.conventionalcommits.org/">Conventional Commits specification for adding human and machine readable meaning to your commit messages</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="implications-for-using-semantic-versioning-as-a-consistent-version-numbering-scheme">
+<h4>Implications for using Semantic Versioning as a consistent version-numbering scheme<a class="headerlink" href="#implications-for-using-semantic-versioning-as-a-consistent-version-numbering-scheme" title="Permalink to this headline">¶</a></h4>
+<p>According to the <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code> documentation, <a class="reference external" href="https://github.com/pypa/setuptools_scm/#default-versioning-scheme">it is required to always include a “patch version” in your tagged version numbers</a>.</p>
+<p>That means:</p>
+<ul class="simple">
+<li><p>If you are releasing <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code> as was demonstrated in the previous section,</p></li>
+<li><p>Then be certain to include the final “<code class="docutils literal notranslate"><span class="pre">0</span></code>”, which indicates the “patch version” of that release.</p></li>
+</ul>
+<p>In fact, while you’re at it, why not just consistently use Semantic Versioning (i.e. <a class="reference external" href="https://semver.org/">SemVer</a>) for every release you tag in <code class="docutils literal notranslate"><span class="pre">git</span></code>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://semver.org/">SemVer</a> is clean, easy to use, and it conveys important meaning about the underlying code in your package and what has been modified from one version to the next.</p></li>
+<li><p>An added benefit, <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code> is expected to switch to SemVer as its default behavior in the future.</p></li>
+</ul>
+<p>At its core, SemVer uses the <code class="docutils literal notranslate"><span class="pre">MAJOR.MINOR.PATCH</span></code> increment scheme for version numbering. As is specified in the <a class="reference external" href="https://semver.org/">SemVer</a> documentation:</p>
+<ol class="arabic simple">
+<li><p>You change the <code class="docutils literal notranslate"><span class="pre">MAJOR</span></code> version when you make incompatible API changes,</p></li>
+<li><p>You change the <code class="docutils literal notranslate"><span class="pre">MINOR</span></code> version when you add functionality in a backwards compatible manner, and</p></li>
+<li><p>You change the <code class="docutils literal notranslate"><span class="pre">PATCH</span></code> version when you make backwards compatible bug fixes.</p></li>
+</ol>
+<p>Therefore, each version you release to <code class="docutils literal notranslate"><span class="pre">master</span></code> should always be tagged with three distinct period-separated digits, such as in the example:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>git tag -a v0.3.0 -m <span class="s2">&quot;Add a set of features that ...&quot;</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
 <div class="section" id="documenting-your-project-using-sphinx-and-github-pages">
 <h2><a class="toc-backref" href="#tutorial-contents">Documenting your project using Sphinx and GitHub Pages</a><a class="headerlink" href="#documenting-your-project-using-sphinx-and-github-pages" title="Permalink to this headline">¶</a></h2>
-<div class="contents local topic" id="id7">
+<div class="contents local topic" id="id3">
 <p class="topic-title">In this section</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#getting-started-with-sphinx-and-restructuredtext" id="id27">Getting started with Sphinx and reStructuredText</a></p>
+<li><p><a class="reference internal" href="#getting-started-with-sphinx-and-restructuredtext" id="id26">Getting started with Sphinx and reStructuredText</a></p>
 <ul>
-<li><p><a class="reference internal" href="#generating-and-previewing-your-site-html" id="id28">Generating and previewing your site HTML</a></p></li>
-<li><p><a class="reference internal" href="#auto-generating-documentation-for-your-custom-package-modules" id="id29">Auto-generating documentation for your custom package modules</a></p></li>
-<li><p><a class="reference internal" href="#rationale-for-using-restructuredtext-instead-of-markdown" id="id30">Rationale for using reStructuredText instead of Markdown</a></p></li>
-<li><p><a class="reference internal" href="#rationale-for-using-sphinx-instead-of-jekyll-pelican-or-some-other-static-site-generator" id="id31">Rationale for using Sphinx instead of Jekyll, Pelican, or some other static site generator</a></p></li>
-<li><p><a class="reference internal" href="#adding-a-logo-to-your-sphinx-site" id="id32">Adding a logo to your Sphinx site</a></p></li>
-<li><p><a class="reference internal" href="#adding-a-favicon-to-your-sphinx-site" id="id33">Adding a favicon to your Sphinx site</a></p></li>
+<li><p><a class="reference internal" href="#generating-and-previewing-your-site-html" id="id27">Generating and previewing your site HTML</a></p></li>
+<li><p><a class="reference internal" href="#auto-generating-documentation-for-your-custom-package-modules" id="id28">Auto-generating documentation for your custom package modules</a></p></li>
+<li><p><a class="reference internal" href="#rationale-for-using-restructuredtext-instead-of-markdown" id="id29">Rationale for using reStructuredText instead of Markdown</a></p></li>
+<li><p><a class="reference internal" href="#rationale-for-using-sphinx-instead-of-jekyll-pelican-or-some-other-static-site-generator" id="id30">Rationale for using Sphinx instead of Jekyll, Pelican, or some other static site generator</a></p></li>
+<li><p><a class="reference internal" href="#adding-a-logo-to-your-sphinx-site" id="id31">Adding a logo to your Sphinx site</a></p></li>
+<li><p><a class="reference internal" href="#adding-a-favicon-to-your-sphinx-site" id="id32">Adding a favicon to your Sphinx site</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#hosting-your-project-documentation-using-github-pages" id="id34">Hosting your project documentation using GitHub Pages</a></p></li>
-<li><p><a class="reference internal" href="#accessing-your-new-site-on-github-pages" id="id35">Accessing your new site on GitHub Pages</a></p></li>
+<li><p><a class="reference internal" href="#hosting-your-project-documentation-using-github-pages" id="id33">Hosting your project documentation using GitHub Pages</a></p></li>
+<li><p><a class="reference internal" href="#accessing-your-new-site-on-github-pages" id="id34">Accessing your new site on GitHub Pages</a></p></li>
 </ul>
 </div>
 <div class="section" id="getting-started-with-sphinx-and-restructuredtext">
@@ -583,23 +701,28 @@
 <p>There should now appear a hyperlink indicating the URL at which your new site is located. Follow that link and you can preview your site.</p>
 </div>
 </div>
-<div class="section" id="test-configuration-and-continuous-integration-with-travisci">
-<h2><a class="toc-backref" href="#tutorial-contents">Test configuration and continuous integration with TravisCI</a><a class="headerlink" href="#test-configuration-and-continuous-integration-with-travisci" title="Permalink to this headline">¶</a></h2>
-<div class="contents local topic" id="id8">
+<div class="section" id="test-configuration-and-continuous-integration-with-travis-ci">
+<h2><a class="toc-backref" href="#tutorial-contents">Test configuration and continuous integration with Travis-CI</a><a class="headerlink" href="#test-configuration-and-continuous-integration-with-travis-ci" title="Permalink to this headline">¶</a></h2>
+<div class="contents local topic" id="id4">
 <p class="topic-title">In this section</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#unit-testing-your-project-and-using-the-pytest-runner" id="id36">Unit-testing your project and using the PyTest runner</a></p>
+<li><p><a class="reference internal" href="#unit-testing-your-project-and-using-the-pytest-test-runner" id="id35">Unit-testing your project and using the <code class="docutils literal notranslate"><span class="pre">pytest</span></code> test-runner</a></p>
 <ul>
-<li><p><a class="reference internal" href="#location-of-cc-pydata-unit-tests" id="id37">Location of <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> unit tests</a></p></li>
-<li><p><a class="reference internal" href="#pytest-test-runner" id="id38"><code class="docutils literal notranslate"><span class="pre">pytest</span></code> test-runner</a></p></li>
-<li><p><a class="reference internal" href="#running-unit-tests-using-pytest" id="id39">Running unit tests using <code class="docutils literal notranslate"><span class="pre">pytest</span></code></a></p></li>
+<li><p><a class="reference internal" href="#location-of-cc-pydata-unit-tests" id="id36">Location of <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> unit tests</a></p></li>
+<li><p><a class="reference internal" href="#pytest-test-runner" id="id37"><code class="docutils literal notranslate"><span class="pre">pytest</span></code> test-runner</a></p></li>
+<li><p><a class="reference internal" href="#running-unit-tests-using-pytest" id="id38">Running unit tests using <code class="docutils literal notranslate"><span class="pre">pytest</span></code></a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#configuring-and-leveraging-travisci-for-your-project" id="id40">Configuring and leveraging TravisCI for your project</a></p></li>
+<li><p><a class="reference internal" href="#configuring-and-leveraging-travis-ci-for-your-project" id="id39">Configuring and leveraging Travis-CI for your project</a></p>
+<ul>
+<li><p><a class="reference internal" href="#the-default-travis-yml-configuration-file" id="id40">The default <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> configuration file</a></p></li>
+<li><p><a class="reference internal" href="#setting-up-travis-ci-com-to-run-ci-builds-for-your-project" id="id41">Setting up travis-ci.com to run CI builds for your project</a></p></li>
+</ul>
+</li>
 </ul>
 </div>
-<div class="section" id="unit-testing-your-project-and-using-the-pytest-runner">
-<h3>Unit-testing your project and using the PyTest runner<a class="headerlink" href="#unit-testing-your-project-and-using-the-pytest-runner" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="unit-testing-your-project-and-using-the-pytest-test-runner">
+<h3>Unit-testing your project and using the <code class="docutils literal notranslate"><span class="pre">pytest</span></code> test-runner<a class="headerlink" href="#unit-testing-your-project-and-using-the-pytest-test-runner" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="location-of-cc-pydata-unit-tests">
 <h4>Location of <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> unit tests<a class="headerlink" href="#location-of-cc-pydata-unit-tests" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template, by default, provides a <code class="docutils literal notranslate"><span class="pre">tests/</span></code> directory at the same level as the <code class="docutils literal notranslate"><span class="pre">src/</span></code> directory.</p>
@@ -676,39 +799,96 @@ TOTAL                                            <span class="m">65</span>      
 </div>
 </div>
 </div>
-<div class="section" id="configuring-and-leveraging-travisci-for-your-project">
-<h3>Configuring and leveraging TravisCI for your project<a class="headerlink" href="#configuring-and-leveraging-travisci-for-your-project" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="id9">
-<p class="admonition-title">Todo</p>
+<div class="section" id="configuring-and-leveraging-travis-ci-for-your-project">
+<h3>Configuring and leveraging Travis-CI for your project<a class="headerlink" href="#configuring-and-leveraging-travis-ci-for-your-project" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project template is configured to use <a class="reference external" href="http://travis-ci.com/">Travis-CI</a> services for continuous integration testing.</p>
 <ul class="simple">
-<li><p>Describe the basic .travis.yml configuration</p></li>
-<li><p>Describe basic steps to set up CI integration with TravisCI for your project</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file provided in the <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project template is used to configure your <a class="reference external" href="http://travis-ci.com/">Travis-CI</a> build.</p></li>
+<li><p>For a tutorial on how to use Travis-CI, please <a class="reference external" href="https://docs.travis-ci.com/user/tutorial/">see the official Travis-CI tutorial</a>, and if you’re new to continuous integration, please <a class="reference external" href="https://docs.travis-ci.com/user/for-beginners">see their article on core concepts for beginners</a>.</p></li>
 </ul>
+<div class="section" id="the-default-travis-yml-configuration-file">
+<h4>The default <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> configuration file<a class="headerlink" href="#the-default-travis-yml-configuration-file" title="Permalink to this headline">¶</a></h4>
+<p>Below is a snippet showing what is contained in the <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> default <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file (with comments added to describe what each item means).</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This first section tells travis-ci.com what coding language and</span>
+<span class="c1"># which distribution and versions to use for your build.</span>
+<span class="nt">language</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python</span>
+<span class="nt">dist</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">xenial</span>
+<span class="nt">python</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">3.7</span>
+
+<span class="c1"># This section tells travis-ci what commands to run. Note that the</span>
+<span class="c1"># first thing it will do is install our pipenv environment.</span>
+<span class="nt">install</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pip install pipenv</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pipenv install --system --deploy --ignore-pipfile</span>
+
+<span class="c1"># This tells travis-ci to only run builds when you push your master</span>
+<span class="c1"># or develop branches. Therefore, travis builds will ot run for any</span>
+<span class="c1"># other branches.</span>
+<span class="nt">branches</span><span class="p">:</span>
+<span class="nt">only</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">develop</span>
+
+<span class="c1"># This defines the build &quot;stages&quot; you wish to run. Note here, that</span>
+<span class="c1"># the &quot;answers&quot; stage will only be executed when your master branch</span>
+<span class="c1"># is pushed. The &quot;test&quot; stage on the otherhand, it will run for</span>
+<span class="c1"># both the master and develop branches as specified in the previous</span>
+<span class="c1"># section.</span>
+<span class="nt">stages</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">answers</span>
+    <span class="l l-Scalar l-Scalar-Plain">if</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">branch = master</span>
+
+<span class="c1"># This section specifies what travis-ci should do for each stage</span>
+<span class="c1"># you have defined above. For the &quot;test&quot; stage, your pipenv</span>
+<span class="c1"># environment will be installed and your tests will execute using</span>
+<span class="c1"># the pytest test runner set to verbose mode. For the &quot;answers&quot;</span>
+<span class="c1"># stage, the code in your cc-pydata package&#39;s main module will be</span>
+<span class="c1"># run.</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="nt">include</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">stage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
+    <span class="nt">script</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pytest -v</span>
+    <span class="nt">install</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pip install pipenv</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pipenv install --system --deploy --dev --ignore-pipfile</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">stage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">answers</span>
+    <span class="nt">script</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python3 -m {{ cookiecutter.package_name }}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-up-travis-ci-com-to-run-ci-builds-for-your-project">
+<h4>Setting up travis-ci.com to run CI builds for your project<a class="headerlink" href="#setting-up-travis-ci-com-to-run-ci-builds-for-your-project" title="Permalink to this headline">¶</a></h4>
+<p>In order for Travis-CI to run builds for your project when you push to your GitHub hosted <code class="docutils literal notranslate"><span class="pre">master</span></code> or <code class="docutils literal notranslate"><span class="pre">develop</span></code> remote branches, you will need to authorize Travis-CI for your GitHub account as well as the specific <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project repository on GitHub.</p>
+<p>For instructions on how to accomplish this, please <a class="reference external" href="https://docs.travis-ci.com/user/tutorial/#to-get-started-with-travis-ci-using-github">see the Travis-CI instructions on how to get started with GitHub</a>.</p>
 </div>
 </div>
 </div>
-<div class="section" id="logging-configuration-and-the-out-of-box-logging-features">
-<h2><a class="toc-backref" href="#tutorial-contents">Logging configuration and the out-of-box logging features</a><a class="headerlink" href="#logging-configuration-and-the-out-of-box-logging-features" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="logging-configuration-and-out-of-the-box-cc-pydata-logging-features">
+<h2><a class="toc-backref" href="#tutorial-contents">Logging configuration and out-of-the-box <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> logging features</a><a class="headerlink" href="#logging-configuration-and-out-of-the-box-cc-pydata-logging-features" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template provides some useful default, yet easily modified, logging capabilities out-of-the-box for your data science project.</p>
 <p>The defaults provided (and described below), rely only on the <code class="docutils literal notranslate"><span class="pre">logging</span></code> <a class="reference external" href="https://docs.python.org/3/library/logging.html">module included in Python’s standard library</a>.</p>
-<div class="contents local topic" id="id10">
+<div class="contents local topic" id="id5">
 <p class="topic-title">In this section</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#default-logging-configuration" id="id41">Default <code class="docutils literal notranslate"><span class="pre">logging</span></code> configuration</a></p>
+<li><p><a class="reference internal" href="#default-logging-configuration" id="id42">Default <code class="docutils literal notranslate"><span class="pre">logging</span></code> configuration</a></p>
 <ul>
-<li><p><a class="reference internal" href="#the-package-level-nullhandler-initialized-at-import" id="id42">The package-level <code class="docutils literal notranslate"><span class="pre">NullHandler</span></code> initialized at import</a></p></li>
-<li><p><a class="reference internal" href="#initializing-active-logging-with-the-package-name-logger-start-logging-function" id="id43">Initializing active logging with the <code class="docutils literal notranslate"><span class="pre">&lt;package-name&gt;.logger.start_logging()</span></code> function</a></p></li>
-<li><p><a class="reference internal" href="#diagram-illustrating-the-default-cc-pydata-project-logging-behavior" id="id44">Diagram illustrating the Default <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project logging behavior</a></p></li>
-<li><p><a class="reference internal" href="#customizing-the-provided-logging-json-configuration-file" id="id45">Customizing the provided <code class="docutils literal notranslate"><span class="pre">logging.json</span></code> configuration file</a></p></li>
+<li><p><a class="reference internal" href="#the-package-level-nullhandler-initialized-at-import" id="id43">The package-level <code class="docutils literal notranslate"><span class="pre">NullHandler</span></code> initialized at import</a></p></li>
+<li><p><a class="reference internal" href="#initializing-active-logging-with-the-package-name-logger-start-logging-function" id="id44">Initializing active logging with the <code class="docutils literal notranslate"><span class="pre">&lt;package-name&gt;.logger.start_logging()</span></code> function</a></p></li>
+<li><p><a class="reference internal" href="#diagram-illustrating-the-default-cc-pydata-project-logging-behavior" id="id45">Diagram illustrating the Default <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project logging behavior</a></p></li>
+<li><p><a class="reference internal" href="#customizing-the-provided-logging-json-configuration-file" id="id46">Customizing the provided <code class="docutils literal notranslate"><span class="pre">logging.json</span></code> configuration file</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#functions-provided-in-the-custom-package-name-logger-module" id="id46">Functions provided in the custom <code class="docutils literal notranslate"><span class="pre">&lt;package-name&gt;.logger</span></code> module</a></p>
+<li><p><a class="reference internal" href="#functions-provided-in-the-custom-package-name-logger-module" id="id47">Functions provided in the custom <code class="docutils literal notranslate"><span class="pre">&lt;package-name&gt;.logger</span></code> module</a></p>
 <ul>
-<li><p><a class="reference internal" href="#the-package-name-logger-start-logging-function" id="id47">The <code class="docutils literal notranslate"><span class="pre">&lt;package-name&gt;.logger.start_logging()</span></code> function</a></p></li>
-<li><p><a class="reference internal" href="#the-package-name-logger-logfunc-decorator-function" id="id48">The <code class="docutils literal notranslate"><span class="pre">&lt;package-name&gt;.logger.logfunc()</span></code> decorator function</a></p></li>
+<li><p><a class="reference internal" href="#the-package-name-logger-start-logging-function" id="id48">The <code class="docutils literal notranslate"><span class="pre">&lt;package-name&gt;.logger.start_logging()</span></code> function</a></p></li>
+<li><p><a class="reference internal" href="#the-package-name-logger-logfunc-decorator-function" id="id49">The <code class="docutils literal notranslate"><span class="pre">&lt;package-name&gt;.logger.logfunc()</span></code> decorator function</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#for-additional-information-on-best-practices-and-logging-in-python" id="id49">For additional information on best practices and logging in Python</a></p></li>
+<li><p><a class="reference internal" href="#for-additional-information-on-best-practices-and-logging-in-python" id="id50">For additional information on best practices and logging in Python</a></p></li>
 </ul>
 </div>
 <div class="section" id="default-logging-configuration">
@@ -957,8 +1137,8 @@ runtime in seconds, default is <code class="docutils literal notranslate"><span 
 <li class="toctree-l2"><a class="reference internal" href="#generating-a-new-template">Generating a new template</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#packaging-characteristics-of-this-template">Packaging characteristics of this template</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#documenting-your-project-using-sphinx-and-github-pages">Documenting your project using Sphinx and GitHub Pages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#test-configuration-and-continuous-integration-with-travisci">Test configuration and continuous integration with TravisCI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#logging-configuration-and-the-out-of-box-logging-features">Logging configuration and the out-of-box logging features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-configuration-and-continuous-integration-with-travis-ci">Test configuration and continuous integration with Travis-CI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logging-configuration-and-out-of-the-box-cc-pydata-logging-features">Logging configuration and out-of-the-box <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> logging features</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
