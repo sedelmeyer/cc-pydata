@@ -9,9 +9,6 @@ Future releases
 .. todo::
 
     * Improve template README.rst placeholder instructions for replicating and adding to a ``cc-pydata`` project
-    * Add `Azure Pipelines`_ support to template
-    * Add tox_ to repo
-    * Add tox_ and doc tests to template
     * Create a ``gh-pages`` script to automate docs publishing steps
 
 .. _cookiecutter-pypackage: https://github.com/audreyr/cookiecutter-pypackage
@@ -19,6 +16,17 @@ Future releases
 .. _pytest-cookies: https://github.com/hackebrot/pytest-cookies
 .. _tox: https://tox.readthedocs.io/en/latest/
 .. _`Azure Pipelines`: https://azure.microsoft.com/en-us/services/devops/pipelines/
+
+v0.3.0 (Under development)
+--------------------------
+
+* Add ``tox`` to project repo for testing with ``py36``, ``py37``, ``py38``
+
+.. todo::
+
+    * Add tox_ and doc tests to template
+    * Add `Azure Pipelines`_ support to template
+
 
 v0.2.1 (2020-06-17)
 -------------------
