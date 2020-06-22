@@ -20,3 +20,17 @@ class TestTestsFunctions(TestCase):
         """Ensure default template arg"""
         json_dict = tests.get_default_template_args(tests.CCJSON)
         self.assertEqual(type(json_dict), dict)
+
+    def test_bake_cookie_template(self):
+        """Ensure cookie baking recipe works"""
+        with tempfile.TemporaryDirectory() as tempdir:
+            project_name = 'test_project'
+            tests.bake_cookiecutter_template(
+                output_dir=tempdir,
+                extra_context={
+                    'project_name': project_name
+                }
+            )
+            self.assertTrue(
+                os.path.isdir(os.path.join(tempdir, project_name))
+            )
