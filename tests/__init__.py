@@ -4,12 +4,17 @@ import os
 from pathlib import Path
 import re
 
+from cookiecutter import main
+
 
 #: Define absolute path to cc-pydata cookiecutter project directory
 CCDIR = Path(__file__).resolve().parents[1]
 
 #: Define path to cookiecutter.json defaults file
 CCJSON = CCDIR / 'cookiecutter.json'
+
+#: Define regex string required to identify all jinja-related brackets
+JINJA_REGEX = '(\\{{|\\}}|\\{%|\\%}|\\{#|\\#})'
 
 
 def get_default_template_args(filepath):
@@ -23,9 +28,28 @@ def get_default_template_args(filepath):
     return json_dict
 
 
+def bake_cookiecutter_template(
+    output_dir, template=str(CCDIR), extra_context=None
+):
+    """Generate the cookiecutter template defined in this project repo
+    """
+    main.cookiecutter(
+                template=template,
+                no_input=True,
+                extra_context=extra_context,
+                output_dir=output_dir
+            )
+
+
+def find_jinja_brackets(input, regex=JINJA_REGEX):
+    """
+    """
+
+
 @contextlib.contextmanager
 def working_directory(directory):
-    """Change working directory temporarily with context manager"""
+    """Change working directory temporarily with context manager
+    """
     original_directory = os.getcwd()
     try:
         os.chdir(directory)
