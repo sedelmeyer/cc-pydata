@@ -34,3 +34,15 @@ class TestTestsFunctions(TestCase):
             self.assertTrue(
                 os.path.isdir(os.path.join(tempdir, project_name))
             )
+
+    def test_find_jinja_brackets(self):
+        """Ensure find_jinja_brackets finds all bracket types"""
+        string = "{{ test }}, {% test %}, {# test #}"
+        results = tests.find_jinja_brackets(string)
+        self.assertEqual(len(results), 6)
+
+    def test_find_jinja_brackets_ignores_json(self):
+        """Ensure find_jinja_brackets ignores json and dict brackets"""
+        string = "{ test }"
+        results = tests.find_jinja_brackets(string)
+        self.assertEqual(len(results), 0)
