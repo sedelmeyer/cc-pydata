@@ -13,6 +13,12 @@ from cookiecutter import main
 
 import tests
 
+#: Define ``project_name`` for default template
+project_name = tests.get_default_template_args(tests.CCJSON)['project_name']
+
+#: Define "license" argument options and match strings
+license_list = tests.get_default_template_args(tests.CCJSON)['license']
+
 
 class TestBuildTemplateOption(TestCase):
     """Test default cookiecutter template build"""
@@ -37,8 +43,33 @@ class TestBuildTemplateOption(TestCase):
             )
 
     def test_open_source_license_options(self):
-        """Ensure open source license options build"""
-        raise NotImplementedError
+        """Ensure open source license options build correctly"""
+        for license_name in license_list[:-1]:
+            with tempfile.TemporaryDirectory() as tempdir:
+                tests.bake_cookiecutter_template(
+                    output_dir=tempdir,
+                    extra_context={
+                        'license': license_name
+                    }
+                )
+                licpath = os.path.join(tempdir, project_name, 'LICENSE')
+                setuppath = os.path.join(tempdir, project_name, 'setup.py')
+                print(license_name)
+                with open(licpath, 'r') as lic, open(setuppath, 'r') as setup:
+                    license_text = lic.read()
+                    setup_text = setup.read()
+                    # confirm that correct license name is listed in each file
+                    self.assertTrue(
+                        license_name.lower() in license_text.lower()
+                    )
+                    self.assertTrue(
+                        license_name.lower() in setup_text.lower()
+                    )
+                    # confirm that neither file contains unrendered jinja
+                    lic_jinja = tests.find_jinja_brackets(license_text)
+                    setup_jinja = tests.find_jinja_brackets(setup_text)
+                    self.assertEqual(len(lic_jinja), 0)
+                    self.assertEqual(len(setup_jinja), 0)
 
     def test_not_open_source_license_option(self):
         """Ensure non-open source license option builds"""
