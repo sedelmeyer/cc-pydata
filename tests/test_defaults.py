@@ -1,23 +1,28 @@
 import contextlib
 import os
 from pathlib import Path
-import re
 import shlex
 import shutil
 import subprocess
 import tempfile
 from unittest import TestCase
 
-from cookiecutter import main
+import tests
 
 
-#: Define absolute path to cc-pydata cookiecutter project directory
-CCDIR = Path(__file__).resolve().parents[1]
+#: Define ``project_name`` for default template
+project_name = tests.get_default_template_args(tests.CCJSON)['project_name']
 
-#: Define default package_name for template
-package_name = 'project_name'
+#: Define ``package_name`` for default template
+package_name = project_name.lower().replace('-', '_')
 
-#: Define list of top-level files expected in built template
+#: Define ``distribution_name`` for default template
+distribution_name = project_name.lower().replace('_', '-')
+
+#: Define ``command_line_interface_bin_name`` for default template
+command_line_interface_bin_name = distribution_name
+
+#: Define list of top-level files expected in default template
 template_files = [
     '.editorconfig',
     '.env',
@@ -32,7 +37,7 @@ template_files = [
     'setup.py',
 ]
 
-#: Define list of src submodule directories expected in built template
+#: Define list of src submodule directories expected in default template
 template_submodules = [
     'data',
     'features',
@@ -41,7 +46,7 @@ template_submodules = [
     'visualizations',
 ]
 
-#: Define list of sub-directories expected in built template
+#: Define list of sub-directories expected in default template
 template_directories = [
     'data',
     'data/raw',
@@ -69,26 +74,6 @@ template_directories = [
 ]
 
 
-@contextlib.contextmanager
-def working_directory(directory):
-    """Change working directory temporarily with context manager"""
-    original_directory = os.getcwd()
-    try:
-        os.chdir(directory)
-        yield directory
-    finally:
-        os.chdir(original_directory)
-
-
-def test_working_directory():
-    """Ensure working_directory context manager works as expected"""
-    with tempfile.TemporaryDirectory() as tempdir:
-        original_directory = os.getcwd()
-        with working_directory(tempdir):
-            assert tempdir == os.getcwd()
-        assert original_directory == os.getcwd()
-
-
 class TestBuildDefaultTemplate(TestCase):
     """Test default cookiecutter template build"""
 
@@ -99,21 +84,10 @@ class TestBuildDefaultTemplate(TestCase):
             self.tmpdir = tmpdir = stack.enter_context(
                 tempfile.TemporaryDirectory()
             )
-
             # build cookie template in temp directory
-            main.cookiecutter(
-                template=str(CCDIR),
-                no_input=True,
-                extra_context=None,
-                output_dir=tmpdir
-            )
-
+            tests.bake_cookiecutter_template(output_dir=tmpdir)
             # get path to built template directory
-            self.builtdir = Path(tmpdir).resolve() / 'project_name'
-
-            # define regex to identify unrendered jinja brackets
-            self.regex = re.compile('(\\{{|\\}}|\\{%|\\%})')
-
+            self.builtdir = Path(tmpdir).resolve() / project_name
             # ensure context manager closes after tests
             self.addCleanup(stack.pop_all().close)
 
@@ -126,7 +100,7 @@ class TestBuildDefaultTemplate(TestCase):
         # loop through all template sub-directories
         for subdir, dirs, files in os.walk(self.builtdir):
             # assert no jinja brackets are present in rendered dirnames
-            result = self.regex.findall(subdir)
+            result = tests.find_jinja_brackets(subdir)
             self.assertEqual(len(result), 0)
 
     def test_jinja_rendered_files(self):
@@ -139,7 +113,7 @@ class TestBuildDefaultTemplate(TestCase):
                 with open(filepath, 'r') as fn:
                     file_content = fn.read()
                 # assert no jinja brackets are present in rendered files
-                result = self.regex.findall(file_content)
+                result = tests.find_jinja_brackets(file_content)
                 self.assertEqual(len(result), 0)
 
     def test_files_exist(self):
@@ -155,7 +129,7 @@ class TestBuildDefaultTemplate(TestCase):
     def test_setup_py(self):
         """Ensure rendered template package setup.py returns version number"""
         # change active directory to new template directory
-        with working_directory(self.builtdir):
+        with tests.working_directory(self.builtdir):
             # run 'git init' so that scm_setuptools versioning works
             subprocess.call(shlex.split('git init'))
             # check that setup.py will return version
@@ -166,8 +140,9 @@ class TestBuildDefaultTemplate(TestCase):
 
     def test_default_tests_pass(self):
         """Ensure all default unit-tests pass in rendered template"""
-        with working_directory(self.builtdir):
+        with tests.working_directory(self.builtdir):
             # move package module out of src to top-level to prevent path error
+            # otherwise, test would need to install Pipenv for template
             shutil.move(os.path.join('src', package_name), '.')
             # run default unit tests in built template and check results
             result = subprocess.check_call(shlex.split('python -m pytest'))
@@ -175,7 +150,7 @@ class TestBuildDefaultTemplate(TestCase):
 
     def test_default_docs_build(self):
         """Ensure default sphinx docs build in rendered template"""
-        with working_directory(self.builtdir / 'docs'):
+        with tests.working_directory(self.builtdir / 'docs'):
             # run sphinx docs strict build test
             result = subprocess.check_call(
                 shlex.split(
@@ -186,7 +161,25 @@ class TestBuildDefaultTemplate(TestCase):
 
     def test_default_docs_make_html(self):
         """Ensure default sphinx docs build in rendered template"""
-        with working_directory(self.builtdir / 'docs'):
+        with tests.working_directory(self.builtdir / 'docs'):
             # run default sphinx make html command
             result = subprocess.check_call(shlex.split('make html'))
             self.assertEqual(result, 0)
+
+    def test_cli_argparse_works(self):
+        """Ensure template cli default function works"""
+        with tests.working_directory(self.builtdir):
+            # move package module out of src to top-level to prevent path error
+            # otherwise, test would need to install Pipenv for template
+            shutil.move(os.path.join('src', package_name), '.')
+            # run default unit tests in built template and check results
+            cli_entry_point = command_line_interface_bin_name
+            cli_arg = 'arg'
+            result = subprocess.check_output(
+                shlex.split(
+                    'python -m {} {} {}'.format(
+                        package_name, cli_entry_point, cli_arg
+                    )
+                )
+            )
+            self.assertTrue(cli_arg in str(result))

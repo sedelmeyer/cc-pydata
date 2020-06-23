@@ -4,6 +4,9 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+{%- if cookiecutter.tox == "yes" -%}
+tox = "*"
+{%- endif -%}
 pytest = "*"
 pytest-cov = "*"
 flake8 = "*"
