@@ -162,3 +162,7 @@ class TestBuildDefaultTemplate(TestCase):
             # run default sphinx make html command
             result = subprocess.check_call(shlex.split('make html'))
             self.assertEqual(result, 0)
+
+    def test_cli_argparse_works(self):
+        """Ensure template cli default function works"""
+        raise NotImplementedError
