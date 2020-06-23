@@ -20,6 +20,12 @@ project_name = tests.get_default_template_args(tests.CCJSON)['project_name']
 #: define ``package_name`` for default template
 package_name = project_name.lower().replace('-', '_')
 
+#: define ``distribution_name`` for default template
+distribution_name = project_name.lower().replace('_', '-')
+
+#: define ``command_line_interface_bin_name`` for default template
+command_line_interface_bin_name = distribution_name
+
 #: Define list of top-level files expected in default template
 template_files = [
     '.editorconfig',
@@ -140,6 +146,7 @@ class TestBuildDefaultTemplate(TestCase):
         """Ensure all default unit-tests pass in rendered template"""
         with tests.working_directory(self.builtdir):
             # move package module out of src to top-level to prevent path error
+            # otherwise, test would need to install Pipenv for template
             shutil.move(os.path.join('src', package_name), '.')
             # run default unit tests in built template and check results
             result = subprocess.check_call(shlex.split('python -m pytest'))
@@ -165,4 +172,18 @@ class TestBuildDefaultTemplate(TestCase):
 
     def test_cli_argparse_works(self):
         """Ensure template cli default function works"""
-        raise NotImplementedError
+        with tests.working_directory(self.builtdir):
+            # move package module out of src to top-level to prevent path error
+            # otherwise, test would need to install Pipenv for template
+            shutil.move(os.path.join('src', package_name), '.')
+            # run default unit tests in built template and check results
+            cli_entry_point = command_line_interface_bin_name
+            cli_arg = 'arg'
+            result = subprocess.check_output(
+                shlex.split(
+                    'python -m {} {} {}'.format(
+                        package_name, cli_entry_point, cli_arg
+                    )
+                )
+            )
+            self.assertNotEqual(str(result).find(cli_arg), -1)
