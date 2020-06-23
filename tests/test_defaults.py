@@ -82,21 +82,10 @@ class TestBuildDefaultTemplate(TestCase):
             self.tmpdir = tmpdir = stack.enter_context(
                 tempfile.TemporaryDirectory()
             )
-
             # build cookie template in temp directory
-            main.cookiecutter(
-                template=str(tests.CCDIR),
-                no_input=True,
-                extra_context=None,
-                output_dir=tmpdir
-            )
-
+            tests.bake_cookiecutter_template(output_dir=tmpdir)
             # get path to built template directory
             self.builtdir = Path(tmpdir).resolve() / project_name
-
-            # define regex to identify unrendered jinja brackets
-            self.regex = re.compile('(\\{{|\\}}|\\{%|\\%})')
-
             # ensure context manager closes after tests
             self.addCleanup(stack.pop_all().close)
 
@@ -109,7 +98,7 @@ class TestBuildDefaultTemplate(TestCase):
         # loop through all template sub-directories
         for subdir, dirs, files in os.walk(self.builtdir):
             # assert no jinja brackets are present in rendered dirnames
-            result = self.regex.findall(subdir)
+            result = tests.find_jinja_brackets(subdir)
             self.assertEqual(len(result), 0)
 
     def test_jinja_rendered_files(self):
@@ -122,7 +111,7 @@ class TestBuildDefaultTemplate(TestCase):
                 with open(filepath, 'r') as fn:
                     file_content = fn.read()
                 # assert no jinja brackets are present in rendered files
-                result = self.regex.findall(file_content)
+                result = tests.find_jinja_brackets(file_content)
                 self.assertEqual(len(result), 0)
 
     def test_files_exist(self):
