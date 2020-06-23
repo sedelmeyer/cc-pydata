@@ -1,9 +1,5 @@
 import contextlib
 import os
-from pathlib import Path
-import shlex
-import shutil
-import subprocess
 import tempfile
 from unittest import TestCase
 
@@ -23,7 +19,7 @@ class TestBuildTemplateOption(TestCase):
         """Build template in temporary directory"""
         with contextlib.ExitStack() as stack:
             # open temp directory context manager
-            self.tmpdir = tmpdir = stack.enter_context(
+            self.tmpdir = stack.enter_context(
                 tempfile.TemporaryDirectory()
             )
             # ensure context manager closes after tests
@@ -31,7 +27,7 @@ class TestBuildTemplateOption(TestCase):
 
     def test_build_fails_invalid_package_name(self):
         """Ensure template build fails with invalid package name"""
-        with self.assertRaises(Exception) as cm:
+        with self.assertRaises(Exception):
             extra_context = {'package_name': 'test-invalid'}
             tests.bake_cookiecutter_template(
                 output_dir=self.tmpdir,
@@ -156,7 +152,6 @@ class TestBuildTemplateOption(TestCase):
         self.assertTrue('TOXENV' in filetext)
         results = tests.find_jinja_brackets(filetext)
         self.assertEqual(len(results), 0)
-
 
     def test_tox_option_no(self):
         """Ensure no tox option builds correctly and hook removes tox.ini"""
