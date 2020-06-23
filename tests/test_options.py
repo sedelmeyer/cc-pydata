@@ -1,15 +1,11 @@
 import contextlib
-import json
 import os
 from pathlib import Path
-import re
 import shlex
 import shutil
 import subprocess
 import tempfile
 from unittest import TestCase
-
-from cookiecutter import main
 
 import tests
 
@@ -85,8 +81,8 @@ class TestBuildTemplateOption(TestCase):
             os.path.exists(os.path.join(builtdir, 'LICENSE'))
         )
         # confirm setup.py generates correctly
-        setuppath = os.path.join(builtdir, 'setup.py')
-        with open(setuppath, 'r') as setup:
+        setup_path = os.path.join(builtdir, 'setup.py')
+        with open(setup_path, 'r') as setup:
             setup_text = setup.read()
         # confirm that no license classifier is listed
         self.assertTrue(
@@ -97,12 +93,35 @@ class TestBuildTemplateOption(TestCase):
         self.assertEqual(len(setup_jinja), 0)
 
     def test_travis_option_yes(self):
-        """Ensure travis option builds"""
-        raise NotImplementedError
+        """Ensure travis option builds correctly"""
+        extra_context = {'travis': 'yes'}
+        tests.bake_cookiecutter_template(
+            output_dir=self.tmpdir,
+            extra_context=extra_context
+        )
+        builtdir = os.path.join(self.tmpdir, project_name)
+        travis_path = os.path.join(builtdir, '.travis.yml')
+        self.assertTrue(
+            os.path.exists(travis_path)
+        )
+        with open(travis_path, 'r') as travis:
+            travis_text = travis.read()
+
+        results = tests.find_jinja_brackets(travis_text)
+        self.assertEqual(len(results), 0)
 
     def test_travis_option_no(self):
-        """Ensure non-travis option builds"""
-        raise NotImplementedError
+        """Ensure non-travis option builds template and remove .travis.yml"""
+        extra_context = {'travis': 'no'}
+        tests.bake_cookiecutter_template(
+            output_dir=self.tmpdir,
+            extra_context=extra_context
+        )
+        builtdir = os.path.join(self.tmpdir, project_name)
+        travis_path = os.path.join(builtdir, '.travis.yml')
+        self.assertFalse(
+            os.path.exists(travis_path)
+        )
 
     def test_tox_option_yes(self):
         """Ensure tox option builds and passes tests"""
