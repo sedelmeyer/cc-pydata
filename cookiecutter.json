@@ -30,7 +30,7 @@
     "linter": ["flake8"],
     "command_line_interface": ["argparse"],
     "command_line_interface_bin_name": "{{ cookiecutter.distribution_name }}",
-    "travis": ["yes"],
+    "travis": ["yes", "no"],
     "tox": ["yes"],
 
     "_extensions": ["jinja2_time.TimeExtension"]
