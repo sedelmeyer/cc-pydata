@@ -22,15 +22,17 @@ v0.3.0 (Under development)
 
 * Add ``tox`` to project repo for testing with ``py36``, ``py37``, ``py38``
 * Refactor testing for clearer organization of default template vs. options tests
+* Add ``tox`` option to template
+* Add pre- and post-gen hooks
+* Clean up existing template json options
+* Make Travis-CI optional
 
 .. todo::
 
-    * Add tox_ option to template
-    * Add pre- and post-gen hooks
-    * Clean up template gen options
-    * Make Travis-CI an option
+    * Refactor/simplify options tests
     * Add `Azure Pipelines`_ option to template
     * Add default Python version argument to template
+    * Add documentation for new options and features
 
 
 v0.2.1 (2020-06-17)
