@@ -5,8 +5,8 @@ from unittest import TestCase
 import tests
 
 
-class TestTestsFunctions(TestCase):
-    """Test utility functions contained in the tests __init__.py file"""
+class TestTestsUtilityFunctions(TestCase):
+    """Test utility functions contained in the tests/__init__.py file"""
 
     def test_working_directory(self):
         """Ensure working_directory context manager works as expected"""
