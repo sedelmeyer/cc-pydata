@@ -1,15 +1,11 @@
 import contextlib
-import json
 import os
 from pathlib import Path
-import re
 import shlex
 import shutil
 import subprocess
 import tempfile
 from unittest import TestCase
-
-from cookiecutter import main
 
 import tests
 
@@ -17,13 +13,13 @@ import tests
 #: Define ``project_name`` for default template
 project_name = tests.get_default_template_args(tests.CCJSON)['project_name']
 
-#: define ``package_name`` for default template
+#: Define ``package_name`` for default template
 package_name = project_name.lower().replace('-', '_')
 
-#: define ``distribution_name`` for default template
+#: Define ``distribution_name`` for default template
 distribution_name = project_name.lower().replace('_', '-')
 
-#: define ``command_line_interface_bin_name`` for default template
+#: Define ``command_line_interface_bin_name`` for default template
 command_line_interface_bin_name = distribution_name
 
 #: Define list of top-level files expected in default template
@@ -186,4 +182,4 @@ class TestBuildDefaultTemplate(TestCase):
                     )
                 )
             )
-            self.assertNotEqual(str(result).find(cli_arg), -1)
+            self.assertTrue(cli_arg in str(result))
