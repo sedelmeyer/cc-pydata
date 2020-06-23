@@ -17,11 +17,13 @@ CCJSON = CCDIR / 'cookiecutter.json'
 JINJA_REGEX = '(\\{{|\\}}|\\{%|\\%}|\\{#|\\#})'
 
 
-def get_default_template_args(filepath):
+def get_default_template_args(filepath=CCJSON):
     """Load cookiecutter.json to dictionary object
 
-    :param filepath: string containing filepath to cookiecutter.json file
-    :return: dictionary object containing cookiecutter default arguments
+    :param filepath: filepath to cookiecutter.json file, defaults to CCJSON
+    :type filepath: str, optional
+    :return: dictionary of cookiecutter default arguments
+    :rtype: dict
     """
     with open(filepath, 'rt') as fp:
         json_dict = json.load(fp)
@@ -32,6 +34,14 @@ def bake_cookiecutter_template(
     output_dir, template=str(CCDIR), extra_context=None
 ):
     """Generate the cookiecutter template defined in this project repo
+
+    :param output_dir: directory path in which to generate template
+    :type output_dir: str
+    :param template: name of cookiecutter template, defaults to str(CCDIR)
+    :type template: str, optional
+    :param extra_context: dictionary of non-default arguments for cookiecutter
+                          template build, defaults to None
+    :type extra_context: dict, optional
     """
     main.cookiecutter(
                 template=template,
@@ -41,24 +51,27 @@ def bake_cookiecutter_template(
             )
 
 
-def find_jinja_brackets(input, regex=JINJA_REGEX):
+def find_jinja_brackets(string, regex=JINJA_REGEX):
     """Find all instances of input string that contains jinja brackets
 
-    :param input: text within which to search for jinja brackets
-    :type input: str
+    :param string: text within which to search for jinja brackets
+    :type string: str
     :param regex: regular expression pattern, defaults to JINJA_REGEX
     :type regex: str, optional
     :return: list of string instances that match regex
     :rtype: list
     """
     regex_compiled = re.compile(regex)
-    result = regex_compiled.findall(input)
+    result = regex_compiled.findall(string)
     return result
 
 
 @contextlib.contextmanager
 def working_directory(directory):
     """Change working directory temporarily with context manager
+
+    :param directory: path to desired working directory
+    :type directory: str
     """
     original_directory = os.getcwd()
     try:
