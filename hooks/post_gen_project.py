@@ -9,3 +9,6 @@ if __name__ == '__main__':
 
     if 'no' == '{{ cookiecutter.travis }}':
         os.remove('.travis.yml')
+
+    if 'no' == '{{ cookiecutter.tox }}':
+        os.remove('tox.ini')
