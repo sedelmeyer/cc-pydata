@@ -123,10 +123,66 @@ class TestBuildTemplateOption(TestCase):
             os.path.exists(travis_path)
         )
 
-    def test_tox_option_yes(self):
-        """Ensure tox option builds and passes tests"""
-        raise NotImplementedError
+    def test_tox_option_yes_exists(self):
+        """Ensure tox option builds correctly"""
+        extra_context = {'tox': 'yes'}
+        tests.bake_cookiecutter_template(
+            output_dir=self.tmpdir,
+            extra_context=extra_context
+        )
+        builtdir = os.path.join(self.tmpdir, project_name)
+        tox_path = os.path.join(builtdir, 'tox.ini')
+        self.assertTrue(
+            os.path.exists(tox_path)
+        )
+        with open(tox_path, 'r') as tox:
+            tox_text = tox.read()
+
+        results = tests.find_jinja_brackets(tox_text)
+        self.assertEqual(len(results), 0)
+
+    def test_tox_option_yes_travis_correct(self):
+        """Ensure tox option builds with correct .travis.yml content"""
+        extra_context = {'tox': 'yes', 'travis': 'yes'}
+        tests.bake_cookiecutter_template(
+            output_dir=self.tmpdir,
+            extra_context=extra_context
+        )
+        builtdir = os.path.join(self.tmpdir, project_name)
+        filepath = os.path.join(builtdir, '.travis.yml')
+        with open(filepath, 'r') as fp:
+            filetext = fp.read()
+
+        self.assertTrue('TOXENV' in filetext)
+        results = tests.find_jinja_brackets(filetext)
+        self.assertEqual(len(results), 0)
+
 
     def test_tox_option_no(self):
-        """Ensure non-tox option builds"""
-        raise NotImplementedError
+        """Ensure no tox option builds correctly and hook removes tox.ini"""
+        extra_context = {'tox': 'no'}
+        tests.bake_cookiecutter_template(
+            output_dir=self.tmpdir,
+            extra_context=extra_context
+        )
+        builtdir = os.path.join(self.tmpdir, project_name)
+        tox_path = os.path.join(builtdir, 'tox.ini')
+        self.assertFalse(
+            os.path.exists(tox_path)
+        )
+
+    def test_tox_option_no_travis_correct(self):
+        """Ensure no tox option builds with correct .travis.yml content"""
+        extra_context = {'tox': 'no', 'travis': 'yes'}
+        tests.bake_cookiecutter_template(
+            output_dir=self.tmpdir,
+            extra_context=extra_context
+        )
+        builtdir = os.path.join(self.tmpdir, project_name)
+        filepath = os.path.join(builtdir, '.travis.yml')
+        with open(filepath, 'r') as fp:
+            filetext = fp.read()
+
+        self.assertTrue('TOXENV' not in filetext)
+        results = tests.find_jinja_brackets(filetext)
+        self.assertEqual(len(results), 0)
