@@ -29,7 +29,12 @@ class TestBuildTemplateOption(TestCase):
 
     def test_build_fails_invalid_package_name(self):
         """Ensure template build fails with invalid package name"""
-        raise NotImplementedError
+        with self.assertRaises(Exception) as cm:
+            extra_context = {'package_name': 'test-invalid'}
+            tests.bake_cookiecutter_template(
+                output_dir=self.tmpdir,
+                extra_context=extra_context
+            )
 
     def test_open_source_license_options(self):
         """Ensure open source license options build"""
