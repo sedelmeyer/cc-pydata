@@ -16,6 +16,17 @@ class TestTestsUtilityFunctions(TestCase):
                 self.assertEqual(tempdir, os.getcwd())
             self.assertEqual(original_directory, os.getcwd())
 
+    def test_render_json_dict_jinja(self):
+        """"""
+        json_dict = {
+            'project_name': "test-project",
+            'package_name': "{{ project_name|lower|replace(' ','_')|replace('-','_') }}"
+        }
+        new_dict = tests._render_json_dict_jinja(json_dict)
+
+        self.assertEqual(new_dict['project_name'], "test-project")
+        self.assertEqual(new_dict['package_name'], "test_project")
+
     def test_get_default_template_args(self):
         """Ensure default template arg"""
         json_dict = tests.get_default_template_args(tests.CCJSON)
