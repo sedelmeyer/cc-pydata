@@ -1,6 +1,6 @@
 # Config file for automatic testing at travis-ci.com
 
-{%- if cookiecutter.tox == 'yes' -%}
+{% if cookiecutter.tox == 'yes' -%}
 language: python
 dist: xenial
 
@@ -38,7 +38,7 @@ addons:
 script:
   - tox
 
-{%- else -%}
+{% else -%}
 language: python
 dist: xenial
 python:
@@ -71,4 +71,4 @@ jobs:
       script:
       - python3 -m {{ cookiecutter.package_name }}
 
-{%- endif -%}
+{% endif -%}
