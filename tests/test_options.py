@@ -5,11 +5,17 @@ from unittest import TestCase
 
 import tests
 
+#: Load cookicutter.json to dictionary
+json_dict = tests.get_default_template_args(tests.CCJSON)
+
 #: Define ``project_name`` for default template
-project_name = tests.get_default_template_args(tests.CCJSON)['project_name']
+project_name = json_dict['project_name']
+
+#: Define ``project_name`` for default template
+repo_name = json_dict['repo_name']
 
 #: Define "license" argument options and match strings
-license_list = tests.get_default_template_args(tests.CCJSON)['license']
+license_list = json_dict['license']
 
 
 class TestBuildTemplateOption(TestCase):
@@ -44,8 +50,8 @@ class TestBuildTemplateOption(TestCase):
                         'license': license_name
                     }
                 )
-                licpath = os.path.join(tempdir, project_name, 'LICENSE')
-                setuppath = os.path.join(tempdir, project_name, 'setup.py')
+                licpath = os.path.join(tempdir, repo_name, 'LICENSE')
+                setuppath = os.path.join(tempdir, repo_name, 'setup.py')
                 print(license_name)
                 with open(licpath, 'r') as lic, open(setuppath, 'r') as setup:
                     license_text = lic.read()
@@ -71,7 +77,7 @@ class TestBuildTemplateOption(TestCase):
                 'license': license_list[-1]
             }
         )
-        builtdir = os.path.join(self.tmpdir, project_name)
+        builtdir = os.path.join(self.tmpdir, repo_name)
         # confirm post_gen_project hook removes LICENSE file
         self.assertFalse(
             os.path.exists(os.path.join(builtdir, 'LICENSE'))
@@ -95,7 +101,7 @@ class TestBuildTemplateOption(TestCase):
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, project_name)
+        builtdir = os.path.join(self.tmpdir, repo_name)
         travis_path = os.path.join(builtdir, '.travis.yml')
         self.assertTrue(
             os.path.exists(travis_path)
@@ -113,7 +119,7 @@ class TestBuildTemplateOption(TestCase):
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, project_name)
+        builtdir = os.path.join(self.tmpdir, repo_name)
         travis_path = os.path.join(builtdir, '.travis.yml')
         self.assertFalse(
             os.path.exists(travis_path)
@@ -126,7 +132,7 @@ class TestBuildTemplateOption(TestCase):
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, project_name)
+        builtdir = os.path.join(self.tmpdir, repo_name)
         tox_path = os.path.join(builtdir, 'tox.ini')
         self.assertTrue(
             os.path.exists(tox_path)
@@ -144,7 +150,7 @@ class TestBuildTemplateOption(TestCase):
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, project_name)
+        builtdir = os.path.join(self.tmpdir, repo_name)
         filepath = os.path.join(builtdir, '.travis.yml')
         with open(filepath, 'r') as fp:
             filetext = fp.read()
@@ -160,7 +166,7 @@ class TestBuildTemplateOption(TestCase):
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, project_name)
+        builtdir = os.path.join(self.tmpdir, repo_name)
         tox_path = os.path.join(builtdir, 'tox.ini')
         self.assertFalse(
             os.path.exists(tox_path)
@@ -173,7 +179,7 @@ class TestBuildTemplateOption(TestCase):
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, project_name)
+        builtdir = os.path.join(self.tmpdir, repo_name)
         filepath = os.path.join(builtdir, '.travis.yml')
         with open(filepath, 'r') as fp:
             filetext = fp.read()
