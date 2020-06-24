@@ -16,16 +16,41 @@ class TestTestsUtilityFunctions(TestCase):
                 self.assertEqual(tempdir, os.getcwd())
             self.assertEqual(original_directory, os.getcwd())
 
+    def test_fix_cookiecutter_jinja_var_string(self):
+        """Ensure function removed 'cookiecutter.' substring only"""
+        values = [
+            "cookiecutter.test",
+            "test"
+        ]
+        for value in values:
+            output = tests._fix_cookicutter_jinja_var(value)
+            self.assertEqual(output, "test")
+
+    def test_fix_cookiecutter_jinja_var_nonstring(self):
+        """Ensure function returns input value when not of type str"""
+        value = [
+            "cookiecutter.test",
+            "test"
+        ]
+        output = tests._fix_cookicutter_jinja_var(value)
+        self.assertEqual(value, output)
+
     def test_render_json_dict_jinja(self):
-        """"""
+        """Ensure only double curley bracket jinja values are rendered"""
+        skipped_value1 = "{% now 'utc', '%Y' %}"
+        skipped_value2 = ["{{}}", 1, "test"]
         json_dict = {
             'project_name': "test-project",
-            'package_name': "{{ project_name|lower|replace(' ','_')|replace('-','_') }}"
+            'package_name': "{{ project_name|lower|replace(' ','_')|"
+                            "replace('-','_') }}",
+            'skipped_value1': skipped_value1,
+            'skipped_value2': skipped_value2
         }
         new_dict = tests._render_json_dict_jinja(json_dict)
-
         self.assertEqual(new_dict['project_name'], "test-project")
         self.assertEqual(new_dict['package_name'], "test_project")
+        self.assertEqual(new_dict['skipped_value1'], skipped_value1)
+        self.assertEqual(new_dict['skipped_value2'], skipped_value2)
 
     def test_get_default_template_args(self):
         """Ensure default template arg"""
