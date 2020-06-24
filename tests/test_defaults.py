@@ -87,9 +87,7 @@ class TestBuildDefaultTemplate(TestCase):
                 tempfile.TemporaryDirectory()
             )
             # build cookie template in temp directory
-            tests.bake_cookiecutter_template(output_dir=tmpdir)
-            # get path to built template directory
-            self.builtdir = Path(tmpdir).resolve() / repo_name
+            self.builtdir = tests.bake_cookiecutter_template(output_dir=tmpdir)
             # ensure context manager closes after tests
             self.addCleanup(stack.pop_all().close)
 
@@ -121,12 +119,16 @@ class TestBuildDefaultTemplate(TestCase):
     def test_files_exist(self):
         """Ensure specified top-level files exist"""
         for filename in template_files:
-            self.assertTrue(os.path.exists(self.builtdir / filename))
+            self.assertTrue(
+                os.path.exists(os.path.join(self.builtdir, filename))
+            )
 
     def test_subdirs_exist(self):
         """Ensure all expected sub-directories exist"""
         for dirname in template_directories:
-            self.assertTrue(os.path.isdir(self.builtdir / dirname))
+            self.assertTrue(
+                os.path.isdir(os.path.join(self.builtdir, dirname))
+            )
 
     def test_setup_py(self):
         """Ensure rendered template package setup.py returns version number"""
@@ -152,7 +154,7 @@ class TestBuildDefaultTemplate(TestCase):
 
     def test_default_docs_build(self):
         """Ensure default sphinx docs build in rendered template"""
-        with tests.working_directory(self.builtdir / 'docs'):
+        with tests.working_directory(os.path.join(self.builtdir, 'docs')):
             # run sphinx docs strict build test
             result = subprocess.check_call(
                 shlex.split(
@@ -163,7 +165,7 @@ class TestBuildDefaultTemplate(TestCase):
 
     def test_default_docs_make_html(self):
         """Ensure default sphinx docs build in rendered template"""
-        with tests.working_directory(self.builtdir / 'docs'):
+        with tests.working_directory(os.path.join(self.builtdir, 'docs')):
             # run default sphinx make html command
             result = subprocess.check_call(shlex.split('make html'))
             self.assertEqual(result, 0)

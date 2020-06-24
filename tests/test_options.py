@@ -44,14 +44,14 @@ class TestBuildTemplateOption(TestCase):
         """Ensure open source license options build correctly"""
         for license_name in license_list[:-1]:
             with tempfile.TemporaryDirectory() as tempdir:
-                tests.bake_cookiecutter_template(
+                builtdir = tests.bake_cookiecutter_template(
                     output_dir=tempdir,
                     extra_context={
                         'license': license_name
                     }
                 )
-                licpath = os.path.join(tempdir, repo_name, 'LICENSE')
-                setuppath = os.path.join(tempdir, repo_name, 'setup.py')
+                licpath = os.path.join(builtdir, 'LICENSE')
+                setuppath = os.path.join(builtdir, 'setup.py')
                 print(license_name)
                 with open(licpath, 'r') as lic, open(setuppath, 'r') as setup:
                     license_text = lic.read()
@@ -71,13 +71,12 @@ class TestBuildTemplateOption(TestCase):
 
     def test_not_open_source_license_option(self):
         """Ensure non-open source license option builds correctly"""
-        tests.bake_cookiecutter_template(
+        builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context={
                 'license': license_list[-1]
             }
         )
-        builtdir = os.path.join(self.tmpdir, repo_name)
         # confirm post_gen_project hook removes LICENSE file
         self.assertFalse(
             os.path.exists(os.path.join(builtdir, 'LICENSE'))
@@ -97,11 +96,10 @@ class TestBuildTemplateOption(TestCase):
     def test_travis_option_yes(self):
         """Ensure travis option builds correctly"""
         extra_context = {'travis': 'yes'}
-        tests.bake_cookiecutter_template(
+        builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, repo_name)
         travis_path = os.path.join(builtdir, '.travis.yml')
         self.assertTrue(
             os.path.exists(travis_path)
@@ -115,11 +113,10 @@ class TestBuildTemplateOption(TestCase):
     def test_travis_option_no(self):
         """Ensure non-travis option builds template and remove .travis.yml"""
         extra_context = {'travis': 'no'}
-        tests.bake_cookiecutter_template(
+        builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, repo_name)
         travis_path = os.path.join(builtdir, '.travis.yml')
         self.assertFalse(
             os.path.exists(travis_path)
@@ -128,11 +125,10 @@ class TestBuildTemplateOption(TestCase):
     def test_tox_option_yes_exists(self):
         """Ensure tox option builds correctly"""
         extra_context = {'tox': 'yes'}
-        tests.bake_cookiecutter_template(
+        builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, repo_name)
         tox_path = os.path.join(builtdir, 'tox.ini')
         self.assertTrue(
             os.path.exists(tox_path)
@@ -146,11 +142,10 @@ class TestBuildTemplateOption(TestCase):
     def test_tox_option_yes_travis_correct(self):
         """Ensure tox option builds with correct .travis.yml content"""
         extra_context = {'tox': 'yes', 'travis': 'yes'}
-        tests.bake_cookiecutter_template(
+        builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, repo_name)
         filepath = os.path.join(builtdir, '.travis.yml')
         with open(filepath, 'r') as fp:
             filetext = fp.read()
@@ -162,11 +157,10 @@ class TestBuildTemplateOption(TestCase):
     def test_tox_option_no(self):
         """Ensure no tox option builds correctly and hook removes tox.ini"""
         extra_context = {'tox': 'no'}
-        tests.bake_cookiecutter_template(
+        builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, repo_name)
         tox_path = os.path.join(builtdir, 'tox.ini')
         self.assertFalse(
             os.path.exists(tox_path)
@@ -175,11 +169,10 @@ class TestBuildTemplateOption(TestCase):
     def test_tox_option_no_travis_correct(self):
         """Ensure no tox option builds with correct .travis.yml content"""
         extra_context = {'tox': 'no', 'travis': 'yes'}
-        tests.bake_cookiecutter_template(
+        builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, repo_name)
         filepath = os.path.join(builtdir, '.travis.yml')
         with open(filepath, 'r') as fp:
             filetext = fp.read()
