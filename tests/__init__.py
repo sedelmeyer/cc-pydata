@@ -40,10 +40,10 @@ from cookiecutter import main
 
 
 #: Define absolute path to cc-pydata cookiecutter project directory
-CCDIR = Path(__file__).resolve().parents[1]
+CCDIR = str(Path(__file__).resolve().parents[1])
 
 #: Define path to cookiecutter.json default choice variables file
-CCJSON = CCDIR / 'cookiecutter.json'
+CCJSON = os.path.join(CCDIR, 'cookiecutter.json')
 
 #: Define regex string required to identify all jinja-related brackets
 JINJA_REGEX = '(\\{{|\\}}|\\{%|\\%}|\\{#|\\#})'
@@ -65,7 +65,7 @@ def _fix_cookicutter_jinja_var(value, replace='cookiecutter.'):
              ``value`` input
     """
     if type(value) is str:
-        return value.replace("cookiecutter.", "")
+        return value.replace(replace, "")
     else:
         return value
 
@@ -110,17 +110,19 @@ def get_default_template_args(filepath=CCJSON):
 
 
 def bake_cookiecutter_template(
-    output_dir, template=str(CCDIR), extra_context=None
+    output_dir, template=CCDIR, extra_context=None
 ):
     """Generate the cookiecutter template defined in this project repo
 
     :param output_dir: directory path in which to generate template
     :type output_dir: str
-    :param template: name of cookiecutter template, defaults to str(CCDIR)
+    :param template: name of cookiecutter template, defaults to CCDIR
     :type template: str, optional
     :param extra_context: dictionary of non-default arguments for cookiecutter
                           template build, defaults to None
     :type extra_context: dict, optional
+    :return: path to built cookiecutter template directory
+    :rtype: str
     """
     main.cookiecutter(
                 template=template,
@@ -128,6 +130,9 @@ def bake_cookiecutter_template(
                 extra_context=extra_context,
                 output_dir=output_dir
             )
+    repo_name = os.listdir(output_dir)[0]
+    builtdir = os.path.join(output_dir, repo_name)
+    return builtdir
 
 
 def find_jinja_brackets(string, regex=JINJA_REGEX):
