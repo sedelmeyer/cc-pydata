@@ -4,6 +4,8 @@ import os
 from pathlib import Path
 import re
 
+from jinja2 import Template
+
 from cookiecutter import main
 
 
@@ -16,6 +18,23 @@ CCJSON = CCDIR / 'cookiecutter.json'
 #: Define regex string required to identify all jinja-related brackets
 JINJA_REGEX = '(\\{{|\\}}|\\{%|\\%}|\\{#|\\#})'
 
+def _fix_cookicutter_jinja_var(value):
+    """"""
+    if type(value) is str:
+        return value.replace("cookiecutter.", "")
+    else:
+        return value
+
+
+def _render_json_dict_jinja(json_dict):
+    """"""
+    for key, value in json_dict.items():
+        if type(value) is str:
+            result = find_jinja_brackets(value, regex='(\\{{|\\}})')
+            if len(result)>0:
+                json_dict[key] = Template(_fix_cookicutter_jinja_var(value)).render(json_dict)
+    return json_dict
+
 
 def get_default_template_args(filepath=CCJSON):
     """Load cookiecutter.json to dictionary object
@@ -27,6 +46,7 @@ def get_default_template_args(filepath=CCJSON):
     """
     with open(filepath, 'rt') as fp:
         json_dict = json.load(fp)
+    json_dict = _render_json_dict_jinja(json_dict)
     return json_dict
 
 
