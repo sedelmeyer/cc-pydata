@@ -9,18 +9,20 @@ from unittest import TestCase
 
 import tests
 
-
 #: Define ``project_name`` for default template
-project_name = tests.get_default_template_args(tests.CCJSON)['project_name']
+json_dict = tests.get_default_template_args(tests.CCJSON)
+
+#: Define ``repo_name`` for default template
+repo_name = json_dict['repo_name']
 
 #: Define ``package_name`` for default template
-package_name = project_name.lower().replace('-', '_')
+package_name = json_dict['package_name']
 
 #: Define ``distribution_name`` for default template
-distribution_name = project_name.lower().replace('_', '-')
+distribution_name = json_dict['distribution_name']
 
 #: Define ``command_line_interface_bin_name`` for default template
-command_line_interface_bin_name = distribution_name
+command_line_interface_bin_name = json_dict['command_line_interface_bin_name']
 
 #: Define list of top-level files expected in default template
 template_files = [
@@ -87,7 +89,7 @@ class TestBuildDefaultTemplate(TestCase):
             # build cookie template in temp directory
             tests.bake_cookiecutter_template(output_dir=tmpdir)
             # get path to built template directory
-            self.builtdir = Path(tmpdir).resolve() / project_name
+            self.builtdir = Path(tmpdir).resolve() / repo_name
             # ensure context manager closes after tests
             self.addCleanup(stack.pop_all().close)
 
