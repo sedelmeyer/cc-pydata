@@ -1,10 +1,40 @@
+"""
+tests
+~~~~~
+
+This module contains global variables and utility functions required for
+testing the ``cc-pydata`` cookiecutter template.
+
+Unit tests for these functions can be found in tests.test_testutils submodule
+
+**Module Variables:**
+
+.. autosummary::
+
+   CCDIR
+   CCJSON
+   JINJA_REGEX
+
+**Module Functions:**
+
+.. autosummary::
+
+   _fix_cookicutter_jinja_var
+   _render_json_dict_jinja
+   get_default_template_args
+   bake_cookiecutter_template
+   find_jinja_brackets
+   working_directory
+
+|
+"""
 import contextlib
 import json
 import os
 from pathlib import Path
 import re
 
-from jinja2 import Template
+import jinja2
 
 from cookiecutter import main
 
@@ -12,14 +42,28 @@ from cookiecutter import main
 #: Define absolute path to cc-pydata cookiecutter project directory
 CCDIR = Path(__file__).resolve().parents[1]
 
-#: Define path to cookiecutter.json defaults file
+#: Define path to cookiecutter.json default choice variables file
 CCJSON = CCDIR / 'cookiecutter.json'
 
 #: Define regex string required to identify all jinja-related brackets
 JINJA_REGEX = '(\\{{|\\}}|\\{%|\\%}|\\{#|\\#})'
 
-def _fix_cookicutter_jinja_var(value):
-    """"""
+
+def _fix_cookicutter_jinja_var(value, replace='cookiecutter.'):
+    """Remove 'cookiecutter.' string from 'cookiecutter.varname' jinja strings
+
+    Can be used to remove different substrings as well by passing a string
+    to the optional ``replace`` parameter.
+
+    :param value: The string value within which to replace text
+    :type value: str
+    :param replace: The string to be removed from the ``value`` input,
+                    defaults to 'cookiecutter.'
+    :type replace: str, optional
+    :return: Returns the input value with the ``replace`` string removed
+             if ``value`` is of type str, otherwise it just returns the
+             ``value`` input
+    """
     if type(value) is str:
         return value.replace("cookiecutter.", "")
     else:
@@ -27,12 +71,27 @@ def _fix_cookicutter_jinja_var(value):
 
 
 def _render_json_dict_jinja(json_dict):
-    """"""
+    """Render jinja-templated choice variables in cookiecutter.json dictionary
+
+    .. note::
+
+       This function only modifies dictionary values that are strings containing
+       double curly bracket jinja variables such as '{{ varname }}'. All other
+       dictionary values are left unmodified.
+
+    :param json_dict: cookiecutter choice variables dictionary
+    :type json_dict: dict
+    :return: Cookiecutter choice variable dictionary with jinja-templated
+             values rendered
+    :rtype: dict
+    """
     for key, value in json_dict.items():
         if type(value) is str:
             result = find_jinja_brackets(value, regex='(\\{{|\\}})')
             if len(result)>0:
-                json_dict[key] = Template(_fix_cookicutter_jinja_var(value)).render(json_dict)
+                json_dict[key] = jinja2.Template(
+                    _fix_cookicutter_jinja_var(value)
+                ).render(json_dict)
     return json_dict
 
 
