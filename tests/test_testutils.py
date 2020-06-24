@@ -60,16 +60,18 @@ class TestTestsUtilityFunctions(TestCase):
     def test_bake_cookie_template(self):
         """Ensure cookie baking recipe works"""
         with tempfile.TemporaryDirectory() as tempdir:
-            project_name = 'test_project'
-            tests.bake_cookiecutter_template(
+            repo_name = 'test_project'
+            builtdir = tests.bake_cookiecutter_template(
                 output_dir=tempdir,
                 extra_context={
-                    'project_name': project_name
+                    'repo_name': repo_name
                 }
             )
+            test_builtdir = os.path.join(tempdir, repo_name)
             self.assertTrue(
-                os.path.isdir(os.path.join(tempdir, project_name))
+                os.path.isdir(test_builtdir)
             )
+            self.assertEqual(builtdir, test_builtdir)
 
     def test_find_jinja_brackets(self):
         """Ensure find_jinja_brackets finds all bracket types"""
