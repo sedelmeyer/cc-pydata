@@ -106,10 +106,7 @@ class TestBuildDefaultTemplate(TestCase):
         # loop through all template files for all sub-directories
         for subdir, dirs, files in os.walk(self.builtdir):
             for filename in files:
-                filepath = subdir + os.sep + filename
-                print(filepath)
-                with open(filepath, 'r') as fn:
-                    file_content = fn.read()
+                file_content = tests.read_template_file(subdir, filename)
                 # assert no jinja brackets are present in rendered files
                 self.assertIsNone(tests.find_jinja_brackets(file_content))
 

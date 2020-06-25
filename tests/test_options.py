@@ -55,22 +55,15 @@ class TestBuildTemplateOption(TestCase):
                         'license': license_name
                     }
                 )
-                licpath = os.path.join(builtdir, 'LICENSE')
-                setuppath = os.path.join(builtdir, 'setup.py')
-                print(license_name)
-                with open(licpath, 'r') as lic, open(setuppath, 'r') as setup:
-                    license_text = lic.read()
-                    setup_text = setup.read()
-                # confirm that correct license name is listed in each file
-                self.assertTrue(
-                    license_name.lower() in license_text.lower()
-                )
-                self.assertTrue(
-                    license_name.lower() in setup_text.lower()
-                )
-                # confirm that neither file contains unrendered jinja
-                self.assertIsNone(tests.find_jinja_brackets(license_text))
-                self.assertIsNone(tests.find_jinja_brackets(setup_text))
+                # check the files affected by the license choice
+                for filename in ['LICENSE', 'setup.py']:
+                    content = tests.read_template_file(builtdir, filename)
+                    # confirm that correct license name is listed in each file
+                    self.assertTrue(
+                        license_name.lower() in content.lower()
+                    )
+                    # confirm that neither file contains unrendered jinja
+                    self.assertIsNone(tests.find_jinja_brackets(content))
 
     def test_not_open_source_license_option(self):
         """Ensure non-open source license option builds correctly"""
@@ -85,15 +78,13 @@ class TestBuildTemplateOption(TestCase):
             os.path.exists(os.path.join(builtdir, 'LICENSE'))
         )
         # confirm setup.py generates correctly
-        setup_path = os.path.join(builtdir, 'setup.py')
-        with open(setup_path, 'r') as setup:
-            setup_text = setup.read()
+        content = tests.read_template_file(builtdir, 'setup.py')
         # confirm that no license classifier is listed
         self.assertTrue(
-            'License ::' not in setup_text
+            'License ::' not in content
         )
         # confirm that file does not contain unrendered jinja
-        self.assertIsNone(tests.find_jinja_brackets(setup_text))
+        self.assertIsNone(tests.find_jinja_brackets(content))
 
     def test_travis_option_yes(self):
         """Ensure travis option builds correctly"""
@@ -102,14 +93,11 @@ class TestBuildTemplateOption(TestCase):
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        travis_path = os.path.join(builtdir, '.travis.yml')
         self.assertTrue(
-            os.path.exists(travis_path)
+            os.path.exists(os.path.join(builtdir, '.travis.yml'))
         )
-        with open(travis_path, 'r') as travis:
-            travis_text = travis.read()
-
-        self.assertIsNone(tests.find_jinja_brackets(travis_text))
+        content = tests.read_template_file(builtdir, '.travis.yml')
+        self.assertIsNone(tests.find_jinja_brackets(content))
 
     def test_travis_option_no(self):
         """Ensure non-travis option builds template and remove .travis.yml"""
@@ -130,14 +118,11 @@ class TestBuildTemplateOption(TestCase):
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        tox_path = os.path.join(builtdir, 'tox.ini')
         self.assertTrue(
-            os.path.exists(tox_path)
+            os.path.exists(os.path.join(builtdir, 'tox.ini'))
         )
-        with open(tox_path, 'r') as tox:
-            tox_text = tox.read()
-
-        self.assertIsNone(tests.find_jinja_brackets(tox_text))
+        content = tests.read_template_file(builtdir, 'tox.ini')
+        self.assertIsNone(tests.find_jinja_brackets(content))
 
     def test_tox_option_yes_travis_correct(self):
         """Ensure tox option builds with correct .travis.yml content"""
@@ -146,12 +131,9 @@ class TestBuildTemplateOption(TestCase):
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        filepath = os.path.join(builtdir, '.travis.yml')
-        with open(filepath, 'r') as fp:
-            filetext = fp.read()
-
-        self.assertTrue('TOXENV' in filetext)
-        self.assertIsNone(tests.find_jinja_brackets(filetext))
+        content = tests.read_template_file(builtdir, '.travis.yml')
+        self.assertTrue('TOXENV' in content)
+        self.assertIsNone(tests.find_jinja_brackets(content))
 
     def test_tox_option_no(self):
         """Ensure no tox option builds correctly and hook removes tox.ini"""
@@ -172,9 +154,6 @@ class TestBuildTemplateOption(TestCase):
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        filepath = os.path.join(builtdir, '.travis.yml')
-        with open(filepath, 'r') as fp:
-            filetext = fp.read()
-
-        self.assertTrue('TOXENV' not in filetext)
-        self.assertIsNone(tests.find_jinja_brackets(filetext))
+        content = tests.read_template_file(builtdir, '.travis.yml')
+        self.assertTrue('TOXENV' not in content)
+        self.assertIsNone(tests.find_jinja_brackets(content))
