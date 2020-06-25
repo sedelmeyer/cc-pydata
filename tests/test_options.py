@@ -8,13 +8,7 @@ import tests
 #: Load cookicutter.json to dictionary
 json_dict = tests.get_default_template_args(tests.CCJSON)
 
-#: Define ``project_name`` for default template
-project_name = json_dict['project_name']
-
-#: Define ``project_name`` for default template
-repo_name = json_dict['repo_name']
-
-#: Define "license" argument options and match strings
+#: Define "license" choice variable argument options
 license_list = json_dict['license']
 
 

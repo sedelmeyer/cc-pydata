@@ -11,14 +11,8 @@ import tests
 #: Define ``project_name`` for default template
 json_dict = tests.get_default_template_args(tests.CCJSON)
 
-#: Define ``repo_name`` for default template
-repo_name = json_dict['repo_name']
-
 #: Define ``package_name`` for default template
 package_name = json_dict['package_name']
-
-#: Define ``distribution_name`` for default template
-distribution_name = json_dict['distribution_name']
 
 #: Define ``command_line_interface_bin_name`` for default template
 command_line_interface_bin_name = json_dict['command_line_interface_bin_name']
