@@ -1,3 +1,9 @@
+"""
+tests.test_options
+~~~~~~~~~~~~~~~~~~
+
+This module contains tests for optional ``cc-pydata`` template build options
+"""
 import contextlib
 import os
 import tempfile
@@ -5,11 +11,11 @@ from unittest import TestCase
 
 import tests
 
-#: Define ``project_name`` for default template
-project_name = tests.get_default_template_args(tests.CCJSON)['project_name']
+#: Load cookicutter.json to dictionary
+json_dict = tests.get_default_template_args(tests.CCJSON)
 
-#: Define "license" argument options and match strings
-license_list = tests.get_default_template_args(tests.CCJSON)['license']
+#: Define "license" choice variable argument options
+license_list = json_dict['license']
 
 
 class TestBuildTemplateOption(TestCase):
@@ -36,84 +42,70 @@ class TestBuildTemplateOption(TestCase):
 
     def test_open_source_license_options(self):
         """Ensure open source license options build correctly"""
-        for license_name in license_list[:-1]:
+        open_source_licenses = [
+            license_name for license_name in license_list
+            if license_name != "Not open source"
+        ]
+        # iterate through list of open source licenses and bake each cookie
+        for license_name in open_source_licenses:
             with tempfile.TemporaryDirectory() as tempdir:
-                tests.bake_cookiecutter_template(
+                builtdir = tests.bake_cookiecutter_template(
                     output_dir=tempdir,
                     extra_context={
                         'license': license_name
                     }
                 )
-                licpath = os.path.join(tempdir, project_name, 'LICENSE')
-                setuppath = os.path.join(tempdir, project_name, 'setup.py')
-                print(license_name)
-                with open(licpath, 'r') as lic, open(setuppath, 'r') as setup:
-                    license_text = lic.read()
-                    setup_text = setup.read()
-                # confirm that correct license name is listed in each file
-                self.assertTrue(
-                    license_name.lower() in license_text.lower()
-                )
-                self.assertTrue(
-                    license_name.lower() in setup_text.lower()
-                )
-                # confirm that neither file contains unrendered jinja
-                lic_jinja = tests.find_jinja_brackets(license_text)
-                setup_jinja = tests.find_jinja_brackets(setup_text)
-                self.assertEqual(len(lic_jinja), 0)
-                self.assertEqual(len(setup_jinja), 0)
+                # check the files affected by the license choice
+                for filename in ['LICENSE', 'setup.py']:
+                    content = tests.read_template_file(builtdir, filename)
+                    # confirm that correct license name is listed in each file
+                    self.assertTrue(
+                        license_name.lower() in content.lower()
+                    )
+                    # confirm that neither file contains unrendered jinja
+                    self.assertIsNone(tests.find_jinja_brackets(content))
 
     def test_not_open_source_license_option(self):
         """Ensure non-open source license option builds correctly"""
-        tests.bake_cookiecutter_template(
+        builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context={
-                'license': license_list[-1]
+                'license': "Not open source"
             }
         )
-        builtdir = os.path.join(self.tmpdir, project_name)
         # confirm post_gen_project hook removes LICENSE file
         self.assertFalse(
             os.path.exists(os.path.join(builtdir, 'LICENSE'))
         )
         # confirm setup.py generates correctly
-        setup_path = os.path.join(builtdir, 'setup.py')
-        with open(setup_path, 'r') as setup:
-            setup_text = setup.read()
+        content = tests.read_template_file(builtdir, 'setup.py')
         # confirm that no license classifier is listed
         self.assertTrue(
-            'License ::' not in setup_text
+            'License ::' not in content
         )
         # confirm that file does not contain unrendered jinja
-        setup_jinja = tests.find_jinja_brackets(setup_text)
-        self.assertEqual(len(setup_jinja), 0)
+        self.assertIsNone(tests.find_jinja_brackets(content))
 
     def test_travis_option_yes(self):
         """Ensure travis option builds correctly"""
         extra_context = {'travis': 'yes'}
-        tests.bake_cookiecutter_template(
+        builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, project_name)
-        travis_path = os.path.join(builtdir, '.travis.yml')
         self.assertTrue(
-            os.path.exists(travis_path)
+            os.path.exists(os.path.join(builtdir, '.travis.yml'))
         )
-        with open(travis_path, 'r') as travis:
-            travis_text = travis.read()
-
-        results = tests.find_jinja_brackets(travis_text)
-        self.assertEqual(len(results), 0)
+        content = tests.read_template_file(builtdir, '.travis.yml')
+        self.assertIsNone(tests.find_jinja_brackets(content))
 
     def test_travis_option_no(self):
         """Ensure non-travis option builds template and remove .travis.yml"""
         extra_context = {'travis': 'no'}
-        tests.bake_cookiecutter_template(
+        builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, project_name)
         travis_path = os.path.join(builtdir, '.travis.yml')
         self.assertFalse(
             os.path.exists(travis_path)
@@ -122,45 +114,34 @@ class TestBuildTemplateOption(TestCase):
     def test_tox_option_yes_exists(self):
         """Ensure tox option builds correctly"""
         extra_context = {'tox': 'yes'}
-        tests.bake_cookiecutter_template(
+        builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, project_name)
-        tox_path = os.path.join(builtdir, 'tox.ini')
         self.assertTrue(
-            os.path.exists(tox_path)
+            os.path.exists(os.path.join(builtdir, 'tox.ini'))
         )
-        with open(tox_path, 'r') as tox:
-            tox_text = tox.read()
-
-        results = tests.find_jinja_brackets(tox_text)
-        self.assertEqual(len(results), 0)
+        content = tests.read_template_file(builtdir, 'tox.ini')
+        self.assertIsNone(tests.find_jinja_brackets(content))
 
     def test_tox_option_yes_travis_correct(self):
         """Ensure tox option builds with correct .travis.yml content"""
         extra_context = {'tox': 'yes', 'travis': 'yes'}
-        tests.bake_cookiecutter_template(
+        builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, project_name)
-        filepath = os.path.join(builtdir, '.travis.yml')
-        with open(filepath, 'r') as fp:
-            filetext = fp.read()
-
-        self.assertTrue('TOXENV' in filetext)
-        results = tests.find_jinja_brackets(filetext)
-        self.assertEqual(len(results), 0)
+        content = tests.read_template_file(builtdir, '.travis.yml')
+        self.assertTrue('TOXENV' in content)
+        self.assertIsNone(tests.find_jinja_brackets(content))
 
     def test_tox_option_no(self):
         """Ensure no tox option builds correctly and hook removes tox.ini"""
         extra_context = {'tox': 'no'}
-        tests.bake_cookiecutter_template(
+        builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, project_name)
         tox_path = os.path.join(builtdir, 'tox.ini')
         self.assertFalse(
             os.path.exists(tox_path)
@@ -169,15 +150,10 @@ class TestBuildTemplateOption(TestCase):
     def test_tox_option_no_travis_correct(self):
         """Ensure no tox option builds with correct .travis.yml content"""
         extra_context = {'tox': 'no', 'travis': 'yes'}
-        tests.bake_cookiecutter_template(
+        builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context=extra_context
         )
-        builtdir = os.path.join(self.tmpdir, project_name)
-        filepath = os.path.join(builtdir, '.travis.yml')
-        with open(filepath, 'r') as fp:
-            filetext = fp.read()
-
-        self.assertTrue('TOXENV' not in filetext)
-        results = tests.find_jinja_brackets(filetext)
-        self.assertEqual(len(results), 0)
+        content = tests.read_template_file(builtdir, '.travis.yml')
+        self.assertTrue('TOXENV' not in content)
+        self.assertIsNone(tests.find_jinja_brackets(content))

@@ -1,8 +1,11 @@
 """
-This module contains functions that will run prior to generating the template
+This script contains the cookiecutter hooks that run immediately before the
+generation of the ``cc-pydata`` template, but after completing the intial
+build prompts.
 
-Using pre_gen_project actions is useful for ensuring valid names are passed
-to cookiecutter arguments.
+For more information about cookiecutter hooks, please see:
+https://cookiecutter.readthedocs.io/en/1.7.2/advanced/hooks.html
+
 """
 
 import re
