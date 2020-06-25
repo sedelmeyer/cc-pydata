@@ -149,6 +149,21 @@ def find_jinja_brackets(string, regex=JINJA_REGEX):
     return result
 
 
+def read_template_file(builtdir, filename):
+    """Read the contents of a file contained in the baked cookiecutter template
+
+    :param builtdir: the file path to the built cookiecutter template
+    :type builtdir: str
+    :param filename: the name of the file within the cookiecutter template
+    :type filename: [type]
+    :return: [description]
+    :rtype: [type]
+    """
+    with open(os.path.join(builtdir, filename), 'r') as f:
+        content = f.read()
+    return content
+
+
 @contextlib.contextmanager
 def working_directory(directory):
     """Change working directory temporarily with context manager

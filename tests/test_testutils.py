@@ -53,8 +53,13 @@ class TestTestsUtilityFunctions(TestCase):
         self.assertEqual(new_dict['skipped_value2'], skipped_value2)
 
     def test_get_default_template_args(self):
-        """Ensure default template arg"""
-        json_dict = tests.get_default_template_args(tests.CCJSON)
+        """Ensure get_default_template_args reads json to a dictionary"""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            filepath = os.path.join(tmpdir, 'testfile')
+            json_content = '{"test1": "test1", "test2": [1,2,3]}'
+            with open(os.path.join(filepath), 'w') as f:
+                f.write(json_content)
+            json_dict = tests.get_default_template_args(filepath)
         self.assertEqual(type(json_dict), dict)
 
     def test_bake_cookie_template(self):
@@ -82,10 +87,18 @@ class TestTestsUtilityFunctions(TestCase):
         ]
         for string in strings:
             self.assertTrue(tests.find_jinja_brackets(string))
-        # self.assertTrue(len(results), 6)
 
     def test_find_jinja_brackets_ignores_json(self):
         """Ensure find_jinja_brackets ignores json and dict brackets"""
         string = "{ test }"
         self.assertIsNone(tests.find_jinja_brackets(string))
-        # self.assertEqual(len(results), 0)
+
+    def test_read_template_file(self):
+        """Ensure read_template_file returns file content"""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            filename = 'testfile'
+            content = 'test'
+            with open(os.path.join(tmpdir, filename), 'w') as f:
+                f.write(content)
+            test_content = tests.read_template_file(tmpdir, filename)
+            self.assertEqual(test_content, content)
