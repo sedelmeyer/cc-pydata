@@ -42,7 +42,12 @@ class TestBuildTemplateOption(TestCase):
 
     def test_open_source_license_options(self):
         """Ensure open source license options build correctly"""
-        for license_name in license_list[:-1]:
+        open_source_licenses = [
+            license_name for license_name in license_list
+            if license_name != "Not open source"
+        ]
+        # iterate through list of open source licenses and bake each cookie
+        for license_name in open_source_licenses:
             with tempfile.TemporaryDirectory() as tempdir:
                 builtdir = tests.bake_cookiecutter_template(
                     output_dir=tempdir,
@@ -74,7 +79,7 @@ class TestBuildTemplateOption(TestCase):
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context={
-                'license': license_list[-1]
+                'license': "Not open source"
             }
         )
         # confirm post_gen_project hook removes LICENSE file
