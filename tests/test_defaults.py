@@ -1,3 +1,9 @@
+"""
+tests.test_defaults
+~~~~~~~~~~~~~~~~~~~
+
+This module contains tests for the default ``cc-pydata`` template build
+"""
 import contextlib
 import os
 import shlex

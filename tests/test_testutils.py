@@ -1,3 +1,9 @@
+"""
+tests.test_testutils
+~~~~~~~~~~~~~~~~~~~~
+
+This module contains unit tests for utility functions in the ``tests`` module
+"""
 import os
 import tempfile
 from unittest import TestCase
