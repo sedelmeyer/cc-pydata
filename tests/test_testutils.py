@@ -75,12 +75,17 @@ class TestTestsUtilityFunctions(TestCase):
 
     def test_find_jinja_brackets(self):
         """Ensure find_jinja_brackets finds all bracket types"""
-        string = "{{ test }}, {% test %}, {# test #}"
-        results = tests.find_jinja_brackets(string)
-        self.assertEqual(len(results), 6)
+        strings = [
+            "test {{ test }} test",
+            "test {% test %} test",
+            "test {# test #} test",
+        ]
+        for string in strings:
+            self.assertTrue(tests.find_jinja_brackets(string))
+        # self.assertTrue(len(results), 6)
 
     def test_find_jinja_brackets_ignores_json(self):
         """Ensure find_jinja_brackets ignores json and dict brackets"""
         string = "{ test }"
-        results = tests.find_jinja_brackets(string)
-        self.assertEqual(len(results), 0)
+        self.assertIsNone(tests.find_jinja_brackets(string))
+        # self.assertEqual(len(results), 0)

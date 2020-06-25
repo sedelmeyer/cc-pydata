@@ -87,8 +87,7 @@ def _render_json_dict_jinja(json_dict):
     """
     for key, value in json_dict.items():
         if type(value) is str:
-            result = find_jinja_brackets(value, regex='(\\{{|\\}})')
-            if len(result) > 0:
+            if find_jinja_brackets(value, regex='(\\{{|\\}})'):
                 json_dict[key] = jinja2.Template(
                     _fix_cookicutter_jinja_var(value)
                 ).render(json_dict)
@@ -142,11 +141,11 @@ def find_jinja_brackets(string, regex=JINJA_REGEX):
     :type string: str
     :param regex: regular expression pattern, defaults to JINJA_REGEX
     :type regex: str, optional
-    :return: list of string instances that match regex
-    :rtype: list
+    :return: regex search result, True if pattern found, None if not
+    :rtype: bool or NoneType
     """
     regex_compiled = re.compile(regex)
-    result = regex_compiled.findall(string)
+    result = regex_compiled.search(string)
     return result
 
 
