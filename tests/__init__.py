@@ -88,7 +88,7 @@ def _render_json_dict_jinja(json_dict):
     for key, value in json_dict.items():
         if type(value) is str:
             result = find_jinja_brackets(value, regex='(\\{{|\\}})')
-            if len(result)>0:
+            if len(result) > 0:
                 json_dict[key] = jinja2.Template(
                     _fix_cookicutter_jinja_var(value)
                 ).render(json_dict)
