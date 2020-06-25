@@ -99,8 +99,7 @@ class TestBuildDefaultTemplate(TestCase):
         # loop through all template sub-directories
         for subdir, dirs, files in os.walk(self.builtdir):
             # assert no jinja brackets are present in rendered dirnames
-            result = tests.find_jinja_brackets(subdir)
-            self.assertEqual(len(result), 0)
+            self.assertIsNone(tests.find_jinja_brackets(subdir))
 
     def test_jinja_rendered_files(self):
         """Ensure no jinja brackets are left over after rendering files"""
@@ -112,8 +111,7 @@ class TestBuildDefaultTemplate(TestCase):
                 with open(filepath, 'r') as fn:
                     file_content = fn.read()
                 # assert no jinja brackets are present in rendered files
-                result = tests.find_jinja_brackets(file_content)
-                self.assertEqual(len(result), 0)
+                self.assertIsNone(tests.find_jinja_brackets(file_content))
 
     def test_files_exist(self):
         """Ensure specified top-level files exist"""

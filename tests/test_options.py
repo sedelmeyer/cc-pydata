@@ -69,10 +69,8 @@ class TestBuildTemplateOption(TestCase):
                     license_name.lower() in setup_text.lower()
                 )
                 # confirm that neither file contains unrendered jinja
-                lic_jinja = tests.find_jinja_brackets(license_text)
-                setup_jinja = tests.find_jinja_brackets(setup_text)
-                self.assertEqual(len(lic_jinja), 0)
-                self.assertEqual(len(setup_jinja), 0)
+                self.assertIsNone(tests.find_jinja_brackets(license_text))
+                self.assertIsNone(tests.find_jinja_brackets(setup_text))
 
     def test_not_open_source_license_option(self):
         """Ensure non-open source license option builds correctly"""
@@ -95,8 +93,7 @@ class TestBuildTemplateOption(TestCase):
             'License ::' not in setup_text
         )
         # confirm that file does not contain unrendered jinja
-        setup_jinja = tests.find_jinja_brackets(setup_text)
-        self.assertEqual(len(setup_jinja), 0)
+        self.assertIsNone(tests.find_jinja_brackets(setup_text))
 
     def test_travis_option_yes(self):
         """Ensure travis option builds correctly"""
@@ -112,8 +109,7 @@ class TestBuildTemplateOption(TestCase):
         with open(travis_path, 'r') as travis:
             travis_text = travis.read()
 
-        results = tests.find_jinja_brackets(travis_text)
-        self.assertEqual(len(results), 0)
+        self.assertIsNone(tests.find_jinja_brackets(travis_text))
 
     def test_travis_option_no(self):
         """Ensure non-travis option builds template and remove .travis.yml"""
@@ -141,8 +137,7 @@ class TestBuildTemplateOption(TestCase):
         with open(tox_path, 'r') as tox:
             tox_text = tox.read()
 
-        results = tests.find_jinja_brackets(tox_text)
-        self.assertEqual(len(results), 0)
+        self.assertIsNone(tests.find_jinja_brackets(tox_text))
 
     def test_tox_option_yes_travis_correct(self):
         """Ensure tox option builds with correct .travis.yml content"""
@@ -156,8 +151,7 @@ class TestBuildTemplateOption(TestCase):
             filetext = fp.read()
 
         self.assertTrue('TOXENV' in filetext)
-        results = tests.find_jinja_brackets(filetext)
-        self.assertEqual(len(results), 0)
+        self.assertIsNone(tests.find_jinja_brackets(filetext))
 
     def test_tox_option_no(self):
         """Ensure no tox option builds correctly and hook removes tox.ini"""
@@ -183,5 +177,4 @@ class TestBuildTemplateOption(TestCase):
             filetext = fp.read()
 
         self.assertTrue('TOXENV' not in filetext)
-        results = tests.find_jinja_brackets(filetext)
-        self.assertEqual(len(results), 0)
+        self.assertIsNone(tests.find_jinja_brackets(filetext))
