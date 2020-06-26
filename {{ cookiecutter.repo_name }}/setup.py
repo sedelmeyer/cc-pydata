@@ -37,7 +37,10 @@ setup(
     license='{{ cookiecutter.license }}',
     description={{ '{0!r}'.format(cookiecutter.project_short_description).lstrip('ub') }},
     long_description='%s\n%s' % (
-        re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.rst')),
+        re.compile(
+            '^.. start-badges.*^.. end-badges',
+            re.M | re.S
+        ).sub('', read('README.rst')),
         re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst'))
     ),
     author={{ '{0!r}'.format(cookiecutter.full_name).lstrip('ub') }},
@@ -49,7 +52,8 @@ setup(
     include_package_data=True,
     zip_safe=False,
     classifiers=[
-        # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
+        # complete classifier list:
+        # http://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
 {%- if cookiecutter.license in license_classifiers %}
