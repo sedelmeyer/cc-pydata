@@ -26,6 +26,8 @@ This Cookiecutter_ template allows for the creation of a "reasonably standardize
 * Allows you to get started right away on your data science work when starting a new project
 * Creates a sense of consistency across your projects, making it easier for yourself and others to interpret and replicate your analyses and findings.
 
+.. _design:
+
 Design decisions
 ----------------
 
@@ -45,7 +47,7 @@ For this reason, this template takes inspiration and borrows heavily from these 
 
 For additional background on these other projects and to better understand the elements of both that appealed most to me, please read:
 
-* Ionel's packaging thoughts outlined in his posts on `Packaging a python library`_ and `Packaging pitfalls`_
+* Ionelmc's packaging thoughts outlined in his posts on `Packaging a python library`_ and `Packaging pitfalls`_
 * Driven Data's fabulous write-up on `Cookiecutter Data Science`_
 
 .. _features:
