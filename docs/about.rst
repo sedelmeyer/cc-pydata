@@ -13,19 +13,12 @@ This page contains useful information to help you learn a bit more about the ``c
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 
-.. contents:: Contents of this page
+.. contents:: On this page
   :local:
   :depth: 1
   :backlinks: top
 
-License
--------
-
-The ``cc-pydata`` Cookiecutter template is offered for use under the MIT open source license.
-
-The content of this license is shown below and can also be found in `the LICENSE file contained in the project repository on GitHub <https://github.com/sedelmeyer/cc-pydata/blob/master/LICENSE>`_:
-
-    .. include:: ../LICENSE
+.. _development:
 
 Development philosophy
 ----------------------
@@ -38,10 +31,20 @@ I have taken the time to :ref:`carefully test<project-testing>` and document the
 
 I hope that the :ref:`Tutorial` for this project not only enlightens the user, but provides (a) the blueprint needed for those who may not be familiar with all of the tools and methods employed in the template, and (b) enough of a foundation for those who wish `to fork <https://en.wikipedia.org/wiki/Fork_(software_development)>`_ and modify the project to better suit their own needs.
 
+License
+-------
+
+The ``cc-pydata`` Cookiecutter template is offered for use under the MIT open source license.
+
+The content of this license is shown below and can also be found in `the LICENSE file contained in the project repository on GitHub <https://github.com/sedelmeyer/cc-pydata/blob/master/LICENSE>`_:
+
+    .. include:: ../LICENSE
+
+
 Contributing
 ------------
 
-As is mentioned above in the development philosophy for this project, I have sought to balance best practices and features with my own particular needs. Therefore, I am not actively seeking contributions to the ``cc-pydata`` project from others. My primary reason being that, as soon as others begin adding features to this project, the more likely it will be that the template no longer fits my specific needs.
+As is mentioned above in the :ref:`development` section of this project, I have sought to balance best practices and features with my own particular needs. Therefore, I am not actively seeking contributions to the ``cc-pydata`` project from others. My primary reason being that, as soon as others begin adding features to this project, the more likely it will be that the template no longer fits my specific needs.
 
 If however, you do see opportunities to improve this project and its resulting template, I am still interested in hearing from you.
 
@@ -53,3 +56,41 @@ I am not quite sure how firm I am on my position of "no contributions." Therefor
 
 Project testing and test configuration
 --------------------------------------
+
+.. todo::
+
+   Add content for...
+
+   * test modules
+   * tox automation
+   * travis continuous integration
+
+
+I have sought to develop a thorough set of tests to ensure that the ``cc-pydata`` project and resulting template function as expected. Tests for this project can be found in the ``tests`` directory
+
+.. contents:: In this section
+  :local:
+  :backlinks: None
+
+API documentation for project ``tests`` module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. contents:: Module contents
+  :local:
+  :depth: 2
+  :backlinks: top
+
+.. automodule:: tests
+   :members:
+
+.. automodule:: tests.test_testutils
+   :members:
+
+.. automodule:: tests.test_defaults
+   :members:
+
+.. automodule:: tests.test_options
+   :members:
+
+.. automodule:: tests.toxtest
+   :members:
