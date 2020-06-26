@@ -43,7 +43,9 @@ Contributing
 
 As is mentioned above in the development philosophy for this project, I have sought to balance best practices and features with my own particular needs. Therefore, I am not actively seeking contributions to the ``cc-pydata`` project from others. My primary reason being that, as soon as others begin adding features to this project, the more likely it will be that the template no longer fits my specific needs.
 
-If however, you do see opportunities to improve this project and its resulting template, I would still be interested in hearing from you.
+If however, you do see opportunities to improve this project and its resulting template, I am still interested in hearing from you.
+
+If you'd like to suggest changes or to get in touch regarding the ``cc-pydata`` project, `please feel free to open an issue and we can discuss <https://github.com/sedelmeyer/cc-pydata/issues>`_.
 
 I am not quite sure how firm I am on my position of "no contributions." Therefore, if you have great ideas on how to improve this project, there's a very good chance that I can be convinced!
 
