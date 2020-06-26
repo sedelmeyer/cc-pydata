@@ -11,6 +11,7 @@ Welcome to Cookiecutter PyData's documentation!
 
    readme
    tutorial
+   about
    changelog
 
 * :ref:`search`
