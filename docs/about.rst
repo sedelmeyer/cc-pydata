@@ -54,8 +54,8 @@ I am not quite sure how firm I am on my position of "no contributions." Therefor
 
 .. _project-testing:
 
-Project testing and test configuration
---------------------------------------
+Project testing and test API
+----------------------------
 
 .. todo::
 
@@ -85,6 +85,10 @@ Therefore, I am providing more detail than might otherwise be warranted on how I
 Testing tools employed for this project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. todo::
+
+   * Add links to appropriate sections ``tox``, ``tests``, ``travis``
+
 I have sought to develop a thorough set of tests to ensure that the ``cc-pydata`` project and resulting template function as expected. Programatic tests for this project can be found in the ``tests`` directory, where I seek to test each unique feature of this template.
 
 Tests for this project occur in several ways.
@@ -106,14 +110,37 @@ Tests for this project occur in several ways.
 ``tox`` test matrix and automation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. todo::
+
+   * Describe ``tox`` and significance/benefits of the tool as a ``cc-pydata`` option
+   * Add details about ``tox`` configuration with ``tox.ini``
+   * Describe basic ``tox`` command line usage and syntax
+   * Describe ``tox`` within ``tox`` usage
+
 Continuous integration test builds with Travis-CI and Azure Pipelines
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. todo::
+
+   * Describe ``.travis.yml`` configuration with ``tox``
+   * Describe importance of Travis-CI and Azure, particularly for interpreters and operating systems not available on your local machine
 
 Custom ``tests`` module using ``unittest`` and the ``pytest`` test-runner
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. todo::
+
+   * Describe ``tests`` module configuration and structure
+   * Describe ``pytest`` test-runner usage
+   * Describe significance of ``tests.toxtest`` module and special usage
+
+
 API documentation for the ``tests`` module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. todo::
+
+   * Add introduction to API section
 
 .. contents:: Module contents
   :local:
