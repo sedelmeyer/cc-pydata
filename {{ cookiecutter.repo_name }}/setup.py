@@ -22,6 +22,14 @@ def read(*names, **kwargs):
     ) as fh:
         return fh.read()
 
+{%- set license_classifiers = {
+    'MIT license': 'License :: OSI Approved :: MIT License',
+    'BSD 2-Clause License': 'License :: OSI Approved :: BSD License',
+    'BSD 3-Clause License': 'License :: OSI Approved :: BSD License',
+    'ISC license': 'License :: OSI Approved :: ISC License (ISCL)',
+    'Apache Software License 2.0': 'License :: OSI Approved :: Apache Software License',
+} %}
+
 
 setup(
     name='{{ cookiecutter.distribution_name }}',
@@ -29,7 +37,10 @@ setup(
     license='{{ cookiecutter.license }}',
     description={{ '{0!r}'.format(cookiecutter.project_short_description).lstrip('ub') }},
     long_description='%s\n%s' % (
-        re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.rst')),
+        re.compile(
+            '^.. start-badges.*^.. end-badges',
+            re.M | re.S
+        ).sub('', read('README.rst')),
         re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst'))
     ),
     author={{ '{0!r}'.format(cookiecutter.full_name).lstrip('ub') }},
@@ -41,17 +52,12 @@ setup(
     include_package_data=True,
     zip_safe=False,
     classifiers=[
-        # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
+        # complete classifier list:
+        # http://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
-{%- if cookiecutter.license in ["BSD 2-Clause License", "BSD 3-Clause License"] %}
-        'License :: OSI Approved :: BSD License',
-{%- elif cookiecutter.license == "MIT license" %}
-        'License :: OSI Approved :: MIT License',
-{%- elif cookiecutter.license == "ISC license" %}
-        'License :: OSI Approved :: ISC License (ISCL)',
-{%- elif cookiecutter.license == "Apache Software License 2.0" %}
-        'License :: OSI Approved :: Apache Software License',
+{%- if cookiecutter.license in license_classifiers %}
+        '{{ license_classifiers[cookiecutter.license] }}',
 {%- endif %}
         'Operating System :: Unix',
         'Operating System :: POSIX',
@@ -64,7 +70,7 @@ setup(
     keywords=[
         # eg: 'keyword1', 'keyword2', 'keyword3',
     ],
-    python_requires='>=3.5',
+    python_requires='>=3.6',
     install_requires=[
         # eg: 'aspectlib==1.1.1', 'six>=1.7',
     ],
