@@ -117,102 +117,117 @@ Alternatively, if you have a local working copy of the ``cc-pydata`` project in 
 2. Complete template prompts required to generate the template
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The below listed prompts will be presented on the command line after generating your project (see Step 1 above). For each prompt, default values will be presented in brackets (i.e. ``full_name [Michael Sedelmeyer]:``).
+The below listed prompts will be presented on the command-line after initiating your project template (see Step 1 above). For each prompt, default values will be presented in brackets (i.e. ``full_name [Bob Smith]:``).
 
-To modify defaults or customize these prompts, please see the ``cookiecutter.json`` file.
+To modify defaults or customize these prompts, you can do so in the ``cookiecutter.json`` file. Additional information on the ``cookiecutter.json`` file can be found in `the Cookiecutter "choice variables" documentation <https://cookiecutter.readthedocs.io/en/1.7.2/advanced/choice_variables.html>`_.
 
-* ``full_name``
+Additionally, if you would like to auto-populate the values for any of these prompts, you can also create a ``.cookiecutterrc`` configuration file as is outlined in `the Cookiecutter "user config" documentation <https://cookiecutter.readthedocs.io/en/1.7.2/advanced/user_config.html#user-config>`_.
 
-  * Main author of this library or application (used in ``setup.py`` and ``docs/conf.py``).
-  * Can be set in your ``~/.cookiecutterrc`` config file.
+"Choice variable" template prompts
+""""""""""""""""""""""""""""""""""
 
-* ``email``
+1. ``full_name``
 
-  * Contact email of the author (used in ``setup.py``).
-  * Can be set in your ``~/.cookiecutterrc`` config file.
+  * Main author of this library or application (used in ``setup.py`` and ``docs/conf.py``)
+  * Can be set in your ``~/.cookiecutterrc`` config file
 
-* ``website``
+2. ``email``
+
+  * Contact email of the author (used in ``setup.py``)
+  * Can be set in your ``~/.cookiecutterrc`` config file
+
+3. ``website``
 
   * Website of the author (not yet used in resulting template).
-  * Can be set in your ``~/.cookiecutterrc`` config file.
+  * Can be set in your ``~/.cookiecutterrc`` config file
 
-* ``github_username``
+4. ``github_username``
 
-  * GitHub user name of this project (used for GitHub links in ``setup.py`` and ``docs/conf.py``).
-  * Can be set in your ``~/.cookiecutterrc`` config file.
+  * GitHub user name of this project (used for GitHub links in ``setup.py`` and ``docs/conf.py``)
+  * Can be set in your ``~/.cookiecutterrc`` config file
 
-* ``project_name``
+5. ``project_name``
 
-  * Verbose project name, used in headings (docs, readme, etc).
+  * Verbose project name (used in headings in ``README.rst``, ``docs/index.rst``, etc)
 
-* ``repo_name``
+6. ``repo_name``
 
-  * Repository name on GitHub (and project's root directory name, used in ``setup.py``, ``docs/conf.py``, and for GitHub links).
+  * Repository root-directory name and repo name on GitHub (used in ``setup.py``, ``docs/conf.py``, and for GitHub links)
 
-* ``package_name``
+7. ``package_name``
 
-  * Python package name (whatever you would import).
+  * Python package name (the source code package name as you would import it in your code, i.e.: ``import package_name``)
 
-* ``distribution_name``
+8. ``distribution_name``
 
-  * PyPI distribution name (what you would ``pip install``).
+  * PyPI distribution name (what you would ``pip install``)
 
-* ``project_short_description``
+9. ``project_short_description``
 
-  * One line description of the project (used in ``README.rst``, ``setup.py``, and ``docs/conf.py``).
+  * One line description of the project (used in ``README.rst``, ``setup.py``, and ``docs/conf.py``)
 
-* ``release_date``
+10. ``release_date``
 
-  * Release date of the project (ISO 8601 format) default to today (used in ``CHANGELOG.rst``).
+  * Release date of the project (ISO 8601 format), defaults to ``today`` (used in ``CHANGELOG.rst``)
 
-* ``year_from``
+11. ``year_from``
 
-  * Copyright year (used in Sphinx ``conf.py``).
+  * Initial copyright year (used in Sphinx ``docs/conf.py``)
 
-* ``version``
+12. ``version``
 
-  * Release version (used in ``setup.py`` and ``docs/conf.py``).
+  * Release version, defaults to ``0.0.0`` (used in ``setup.py`` and ``docs/conf.py``)
 
-* ``scm_versioning``
+13. ``scm_versioning``
 
-  * Enables the use of `setuptools-scm <https://pypi.org/project/setuptools-scm/>`_ (there is currently no option to turn this off, all projects will include this capability by default).
+  * Enables the use of `setuptools-scm <https://pypi.org/project/setuptools-scm/>`_, defaults to ``yes`` (there is currently no option to turn this off, all projects will include this capability by default)
 
-* ``license``
+14. ``license``
 
-  * License to use. Available options:
+  * License to use in the rendered template
+  * Available options:
 
     * MIT license
     * BSD 2-Clause license
     * BSD 3-Clause license
     * ISC license
     * Apache Software License 2.0
+    * Not open source
 
-  * What license to pick? https://choosealicense.com/
+  * If need help deciding which license to pick, see this: https://choosealicense.com/
 
-* ``test_runner``
+15. ``test_runner``
 
-  * Test runner to use. Currently only configured for ``pytest``.
+  * Available options: ``pytest`` only
 
-* ``linter``
+16. ``linter``
 
   * Available options: ``flake8`` only
 
-* ``command_line_interface``
+17. ``command_line_interface``
 
-  * Option to enable a CLI (a bin/executable file). Available options:
+  * Enables a CLI bin/executable file.
+  * Available options: ``argparse`` only
 
-    * ``plain`` - a very simple command.
-    * ``argparse`` - a command implemented with ``argparse``.
-    * ``click`` - a command implemented with `click <http://click.pocoo.org/>`_
-    * ``no`` - no CLI at all.
+18. ``command_line_interface_bin_name``
 
-* ``command_line_interface_bin_name``
+  * Name of the CLI bin/executable file (used to set the console script name in ``setup.py`` and the name you would use to invoke the CLI from your terminal)
 
-  * Name of the CLI bin/executable file (set the console script name in ``setup.py``).
+19. ``travis``
 
-* ``travis``
+  * Adds a default Travis-CI_ badge and ``.travis.yml`` configuration file to the rendered template, defaults to ``yes``
+  * Available options:
 
-  * If you want the Travis-CI_ badge and configuration (currently, this project will always generate with Tracis-CI configuration).
+    * yes
+    * no
+
+20. ``tox``
+
+  * Adds a default ``tox.ini`` test automation configuration file to the rendered template, defaults to ``yes``
+  * Available options:
+
+    * yes
+    * no
 
 3. Initiate git version control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
