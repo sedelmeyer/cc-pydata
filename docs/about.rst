@@ -44,7 +44,7 @@ The content of this license is shown below and can also be found in `the LICENSE
 Contributing
 ------------
 
-As is mentioned above in the :ref:`development` section of this project, I have sought to balance best practices and features with my own particular needs. Therefore, I am not actively seeking contributions to the ``cc-pydata`` project from others. My primary reason being that, as soon as others begin adding features to this project, the more likely it will be that the template no longer fits my specific needs.
+As is mentioned above in the :ref:`development` section of this page, I have sought to balance best practices and features with my own particular needs. Therefore, I am not actively seeking contributions to the ``cc-pydata`` project from others. My primary reason being that, as soon as others begin adding features to this project, the more likely it will be that the template no longer fits my specific needs.
 
 If however, you do see opportunities to improve this project and its resulting template, I am still interested in hearing from you.
 
@@ -65,15 +65,55 @@ Project testing and test configuration
    * tox automation
    * travis continuous integration
 
+It has been my experience that testing a Cookiecutter template presents its own set of unique challenges.
 
-I have sought to develop a thorough set of tests to ensure that the ``cc-pydata`` project and resulting template function as expected. Tests for this project can be found in the ``tests`` directory
+Not only do you need to:
+
+1. Test that the template renders, but you also need to
+2. Test that the template renders appropriately according to whatever sorts of build options you provide when invoking the template, and you also need to
+3. Test that the default functionality baked into template after it's been rendered functions appropriately as well (i.e. you need to perform tests within tests).
+
+Thus far, I have been unable to find any clear documentation online on how to do this correctly.
+
+Therefore, I am providing more detail than might otherwise be warranted on how I have configured my ``cc-pydata`` project tests to deal with (what I can only imagine are) common challenges encountered by anyone who has ever sought to thoroughly test their own custom Cookiecutter template.
 
 .. contents:: In this section
   :local:
-  :backlinks: None
+  :depth: 1
+  :backlinks: top
 
-API documentation for project ``tests`` module
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing tools employed for this project
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+I have sought to develop a thorough set of tests to ensure that the ``cc-pydata`` project and resulting template function as expected. Programatic tests for this project can be found in the ``tests`` directory, where I seek to test each unique feature of this template.
+
+Tests for this project occur in several ways.
+
+1. There are the programmatic tests using Python's standard ``unittest`` library to author test cases for each template feature I wish to test.
+
+   * My governing principal here, is that I should not add any additional functionality into the template, or the means by which the overarching ``cc-pydata`` project renders the template, without also developing a test (or set of tests) to test that functionality.
+
+   * There are additionally unit tests built into the rendered template produced by this project. Those in-template tests ensure that the baseline package provided in that rendered template functions correctly (presenting an opportunity for tests within tests).
+
+2. There are a set of automated tests configured using ``tox`` to ensure that the ``cc-pydata`` project functions correctly on several different versions of Python (those versions are ``python 3.6``, ``python 3.7``, and ``python 3.8`` as of ``cc-pydata`` v0.3.0 at the time of my writing this).
+
+   * This ``tox`` configuration also runs a documentation test build to ensures that the ``cc-pydata`` Sphinx-based documentation renders successfully and it runs a linter to ensure that the project code meets `PEP 8 <https://www.python.org/dev/peps/pep-0008/>`_ linting standards.
+
+   * Also, dependent on whether the ``tox`` option is enabled for the rendered ``cc-pydata`` template, the rendered template itself will also contain a ``tox``-automated test configuration as well to perform similar tasks for the resulting rendered template (and yet another layer of tests within tests).
+
+3. Lastly, continuous integration is implemented using `Travis-CI <https://travis-ci.com/>`_ (and soon to also be implemented using `Azure Pipelines <https://azure.microsoft.com/en-us/services/devops/pipelines/>`_) to run and test automated builds each time committed revisions to the ``cc-pydata`` project are pushed to the GitHub-hosted remote ``develop`` or ``master`` branches for the project.
+
+``tox`` test matrix and automation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Continuous integration test builds with Travis-CI and Azure Pipelines
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Custom ``tests`` module using ``unittest`` and the ``pytest`` test-runner
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+API documentation for the ``tests`` module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. contents:: Module contents
   :local:
