@@ -772,8 +772,23 @@ Running ``pytest`` will provide a convenient summary as tests are run. As an exa
     =============================== 11 passed in 0.16s ===============================
 
 
+Test matrix automation using ``tox``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. todo::
+
+   * Describe ``tox`` and significance/benefits of the tool as a ``cc-pydata`` option
+   * Add link to good ``tox`` article
+   * Add details about ``tox`` configuration with ``tox.ini``
+   * Describe basic ``tox`` command line usage and syntax
+
 Configuring and leveraging Travis-CI for your project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. todo::
+
+   * Add details concerning the new option to deselect travis usage
+   * Discuss variations in travis dependent on ``tox`` option build
 
 The ``cc-pydata`` project template is configured to use `Travis-CI`_ services for continuous integration testing.
 
@@ -782,6 +797,10 @@ The ``cc-pydata`` project template is configured to use `Travis-CI`_ services fo
 
 The default ``.travis.yml`` configuration file
 """"""""""""""""""""""""""""""""""""""""""""""
+
+.. todo::
+
+   * Include additional detail about ``tox`` configuration for ``.travis.yml``
 
 Below is a snippet showing what is contained in the ``cc-pydata`` default ``.travis.yml`` file (with comments added to describe what each item means).
 
