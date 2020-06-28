@@ -101,7 +101,7 @@ Tests for this project occur in several ways.
 
 2. There are a set of automated tests configured using ``tox`` to ensure that the ``cc-pydata`` project functions correctly on several different versions of Python (those versions are ``python 3.6``, ``python 3.7``, and ``python 3.8`` as of ``cc-pydata`` v0.3.0 at the time of my writing this).
 
-   * This ``tox`` configuration also runs a documentation test build to ensures that the ``cc-pydata`` Sphinx-based documentation renders successfully and it runs a linter to ensure that the project code meets `PEP 8 <https://www.python.org/dev/peps/pep-0008/>`_ linting standards.
+   * This ``tox`` configuration also runs a documentation test build to ensure that the ``cc-pydata`` Sphinx-based documentation renders successfully and it runs a linter to ensure that the project code meets `PEP 8 <https://www.python.org/dev/peps/pep-0008/>`_ standards.
 
    * Also, dependent on whether the ``tox`` option is enabled for the rendered ``cc-pydata`` template, the rendered template itself will also contain a ``tox``-automated test configuration as well to perform similar tasks for the resulting rendered template (and yet another layer of tests within tests).
 
@@ -128,19 +128,64 @@ Continuous integration test builds with Travis-CI and Azure Pipelines
 Custom ``tests`` module using ``unittest`` and the ``pytest`` test-runner
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
+To run tests for the ``cc-pydata`` project, enter your development environment by running ``pipenv shell`` and run the the following command from your top-level of your project directory::
 
-   * Describe ``tests`` module configuration and structure
-   * Describe ``pytest`` test-runner usage
-   * Describe significance of ``tests.toxtest`` module and special usage
+   pytest
+
+
+You should see output similar to this:
+
+.. code-block:: Bash
+
+    ============================ test session starts =============================
+    platform linux -- Python 3.7.5, pytest-5.4.3, py-1.8.2, pluggy-0.13.1
+    rootdir: /home/Code/cookiecutter-pydata, inifile: setup.cfg, testpaths: tests
+    plugins: cov-2.10.0
+    collected 28 items
+
+    tests/test_defaults.py ..........                                       [ 35%]
+    tests/test_options.py .........                                         [ 67%]
+    tests/test_testutils.py .........                                       [100%]
+
+    ============================= 28 passed in 5.55s =============================
+
+
+Testing Cookiecutter template builds
+""""""""""""""""""""""""""""""""""""
+
+It's probably worth acknowledging that:
+
+1. There exists a ``pytest`` plugin for testing Cookiecutter templates. That plug-in is named ``pytest-cookies``, and it provides a boilerplate-free experience for building and testing Cookiecutter templates
+
+2. But, I do not use that plug-in in any way for testing this project
+
+If you'd like to learn more about the ``pytest-cookies`` plug-in for your own use, `please see that project's documentation <https://pytest-cookies.readthedocs.io/en/latest/>`_.
+
+While I use ``pytest`` as the test-runner for this project, I do not use the ``pytest`` framework for writing my tests. I have attempted to keep my tests written entirely using ``unittest`` from the Python standard library. This approach requires a bit more boilerplate in my test code, but it also helps to ensure that I am not locked into ``pytest`` as a testing requirement. Besides, I have also found a simple-enough approach to building and testing my Cookiecutter template using just ``unittest`` test cases. As a result, I haven't felt a need to use ``pytest`` or the ``pytest-cookies`` plug-in.
+
+If you examine the ``TestCase`` classes in the ``tests.test_default`` and ``tests.test_options`` test modules, you will see that each ``TestCase`` contains a ``setUp()`` method that:
+
+a. Uses the ``contextlib.ExitStack`` `context manager <https://docs.python.org/3/library/contextlib.html#contextlib.ExitStack>`_ to build a ``tempfile.TemporaryDirectory`` `temporary directory <https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory>`_ in which I can build each of my ``cc-pydata`` rendered templates for testing;
+
+b. Uses the ``addCleanUp`` method to ensure the temporary directory gets cleaned up after each test, regardless if the test setup fails in any way.
+
+Each test case additionally uses ``cookiecutter.main.cookiecutter``, `the main entry point to the cookiecutter command <https://cookiecutter.readthedocs.io/en/1.7.2/cookiecutter.html#module-cookiecutter.main>`_, which allows you to easily initiate a template build directly from your Python code.
+
+By putting these pieces together, ``cc-pydata`` template test builds become predictable and easy to manage.
+
+The structure of the ``tests`` module
+"""""""""""""""""""""""""""""""""""""
+
+As you will see in the ``tests`` module API documentation below, ``cc-pydata`` tests are split among several submodules.
+
+1. :mod:`tests`: At the highest level are a set of utility functions that make testing easier and reduce boilerplate code in each test case. These utility functions themselves are tested in :mod:`tests.test_testutils`.
+2. :mod:`tests.test_defaults`: Next are a set of tests focused on the default ``cc-pydata`` template build.
+3. :mod:`tests.test_options`: This sub-module focuses on testing versions of the cc-pydata`` template produced when using the optional arguments available in the template.
+4. :mod:`tests.toxtest`: Finally, there is a sub-module that only runs when explicitly called using the command ``pytest -s tests/test_toxtest.py``. This is a costly test to run because it not only renders the ``cc-pydata`` template, but it also invokes that template's own ``tox.ini`` to run all of its own ``tox`` environments. Think of it as tests-within-tests-within-tests, all running in their own embedded temporary environments. This sub-module can take a couple minutes to run, so considered yourself warned. See :mod:`tests.toxtest` for more detail.
 
 
 API documentation for the ``tests`` module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. todo::
-
-   * Add introduction to API section
 
 .. contents:: Module contents
   :local:
