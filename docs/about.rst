@@ -117,13 +117,23 @@ Tests for this project occur in several ways.
    * Describe basic ``tox`` command line usage and syntax
    * Describe ``tox`` within ``tox`` usage
 
-Continuous integration test builds with Travis-CI and Azure Pipelines
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Continuous integration test builds with Travis-CI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
+Continuous integration (CI) build tests are set to run via `Travis-CI`_ every time a change is pushed to either the ``master`` or ``develop`` branches.
 
-   * Describe ``.travis.yml`` configuration with ``tox``
-   * Describe importance of Travis-CI and Azure, particularly for interpreters and operating systems not available on your local machine
+These CI tests ensure that the ``cc-pydata`` ``tox`` automated test matrix runs successfully on a Linux system.
+
+Please see the ``cc-pydata`` project's ``.travis.yml`` configuration file for more detail.
+
+.. note::
+
+   There are currently plans to migrate this CI automation from Travis-CI over to GitHub's native `GitHub Actions`_ service.
+
+   * The primary reason for this planned change is that GitHub Actions offer Windows OS images for CI testing, while Travis-CI does not.
+   * During this CI service migration, MacOS builds will also be added to the CI build matrix.
+   * I occasionally use all three of these operating systems for my development work and would appreciate the added assurance that my project and rendered templates run successfully on all three platforms.
+
 
 Custom ``tests`` module using ``unittest`` and the ``pytest`` test-runner
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -150,8 +160,8 @@ You should see output similar to this:
     ============================= 28 passed in 5.55s =============================
 
 
-Testing Cookiecutter template builds
-""""""""""""""""""""""""""""""""""""
+Testing rendered Cookiecutter templates
+"""""""""""""""""""""""""""""""""""""""
 
 It's probably worth acknowledging that:
 
@@ -159,7 +169,7 @@ It's probably worth acknowledging that:
 
 2. But, I do not use that plug-in in any way for testing this project
 
-If you'd like to learn more about the ``pytest-cookies`` plug-in for your own use, `please see that project's documentation <https://pytest-cookies.readthedocs.io/en/latest/>`_.
+If you'd like to learn more about the ``pytest-cookies`` plugin for your own use, `please see that project's documentation <https://pytest-cookies.readthedocs.io/en/latest/>`_.
 
 While I use ``pytest`` as the test-runner for this project, I do not use the ``pytest`` framework for writing my tests. I have attempted to keep my tests written entirely using ``unittest`` from the Python standard library. This approach requires a bit more boilerplate in my test code, but it also helps to ensure that I am not locked into ``pytest`` as a testing requirement. Besides, I have also found a simple-enough approach to building and testing my Cookiecutter template using just ``unittest`` test cases. As a result, I haven't felt a need to use ``pytest`` or the ``pytest-cookies`` plug-in.
 
@@ -206,3 +216,7 @@ API documentation for the ``tests`` module
 
 .. automodule:: tests.toxtest
    :members:
+
+
+.. _`Travis-CI`: https://travis-ci.com/
+.. _`GitHub Actions`: https://github.com/features/actions
