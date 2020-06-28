@@ -57,14 +57,6 @@ I am not quite sure how firm I am on my position of "no contributions." Therefor
 Project testing and test API
 ----------------------------
 
-.. todo::
-
-   Add content for...
-
-   * test modules
-   * tox automation
-   * travis continuous integration
-
 It has been my experience that testing a Cookiecutter template presents its own set of unique challenges.
 
 Not only do you need to:
@@ -82,40 +74,62 @@ Therefore, I am providing more detail than might otherwise be warranted on how I
   :depth: 1
   :backlinks: top
 
+Using ``pipenv`` to install the required development dependencies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Prior to running any of the tests outlined below, you will need to first install the `Pipenv`_ virtual environment required for development of the ``cc-pydata`` Cookiecutter template.
+
+For details regarding Pipenv and its usage, please :ref:`see the packaging section section<packaging>` of the Tutorial.
+
+Assuming :ref:`you already have Pipenv installed on your development machine<requirements>`, you should be able to install the required dependencies and virtual environment by running the following commands from the ``cc-pydata`` repository's base directory::
+
+   pipenv install --dev
+   pipenv shell
+
+Once you are working from your active ``pipenv`` shell, you will be able to run all other testing commands outlined in the sections below.
+
 Testing tools employed for this project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. todo::
-
-   * Add links to appropriate sections ``tox``, ``tests``, ``travis``
 
 I have sought to develop a thorough set of tests to ensure that the ``cc-pydata`` project and resulting template function as expected. Programatic tests for this project can be found in the ``tests`` directory, where I seek to test each unique feature of this template.
 
 Tests for this project occur in several ways.
 
-1. There are the programmatic tests using Python's standard ``unittest`` library to author test cases for each template feature I wish to test.
+1. There are :ref:`the programmatic tests<unit-tests>` using Python's standard ``unittest`` library to author test cases for each template feature I wish to test.
 
    * My governing principal here, is that I should not add any additional functionality into the template, or the means by which the overarching ``cc-pydata`` project renders the template, without also developing a test (or set of tests) to test that functionality.
 
    * There are additionally unit tests built into the rendered template produced by this project. Those in-template tests ensure that the baseline package provided in that rendered template functions correctly (presenting an opportunity for tests within tests).
 
-2. There are a set of automated tests configured using ``tox`` to ensure that the ``cc-pydata`` project functions correctly on several different versions of Python (those versions are ``python 3.6``, ``python 3.7``, and ``python 3.8`` as of ``cc-pydata`` v0.3.0 at the time of my writing this).
+2. There are :ref:`a set of automated tests configured<test-automation>` using ``tox`` to ensure that the ``cc-pydata`` project functions correctly on several different versions of Python (those versions are ``python 3.6``, ``python 3.7``, and ``python 3.8`` as of ``cc-pydata`` v0.3.0 at the time of my writing this).
 
-   * This ``tox`` configuration also runs a documentation test build to ensure that the ``cc-pydata`` Sphinx-based documentation renders successfully and it runs a linter to ensure that the project code meets `PEP 8 <https://www.python.org/dev/peps/pep-0008/>`_ standards.
+   * This ``tox`` configuration also runs a documentation test build to ensure that the ``cc-pydata`` Sphinx-based documentation renders successfully and it runs a linter to ensure that the project code meets `PEP 8`_ standards.
 
    * Also, dependent on whether the ``tox`` option is enabled for the rendered ``cc-pydata`` template, the rendered template itself will also contain a ``tox``-automated test configuration as well to perform similar tasks for the resulting rendered template (and yet another layer of tests within tests).
 
-3. Lastly, continuous integration is implemented using `Travis-CI <https://travis-ci.com/>`_ (and soon to also be implemented using `Azure Pipelines <https://azure.microsoft.com/en-us/services/devops/pipelines/>`_) to run and test automated builds each time committed revisions to the ``cc-pydata`` project are pushed to the GitHub-hosted remote ``develop`` or ``master`` branches for the project.
+3. Lastly, :ref:`continuous integration is implemented<ci-services>` using `Travis-CI`_ (and soon to also be implemented using `GitHub Actions`_) to run and test automated builds each time committed revisions to the ``cc-pydata`` project are pushed to the GitHub-hosted remote ``develop`` or ``master`` branches for the project.
+
+.. _`test-automation`:
 
 ``tox`` test matrix and automation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
+If you are not familiar with Python's test automation tool `Tox`_, learning it is well worth the investment in time it takes to learn how to use it.
 
-   * Describe ``tox`` and significance/benefits of the tool as a ``cc-pydata`` option
-   * Add details about ``tox`` configuration with ``tox.ini``
-   * Describe basic ``tox`` command line usage and syntax
-   * Describe ``tox`` within ``tox`` usage
+If you review the ``tox.ini`` configuration file contained in the ``cc-pydata`` project repository, you will see that ``tox`` automation for this project is configured to:
+
+1. Run tests on several different versions of Python to ensure compatibility with each of those versions.
+2. Run a test build of the ``cc-pydata`` project's Sphinx documentation to ensure docs build successfully
+3. Run a ``flake8`` linting test to ensure all of the Python syntax in this project meets `PEP 8`_ standards
+4. Run a full build of the ``cc-pydata`` default template and then run that rendered template's own automated ``tox`` tests (see details concerning the ``tests.toxtest`` test module :ref:`outlined in this section<tests-structure>`)
+
+To run these automated ``tox`` tests, you simply run the ``tox`` command from within your active ``pipenv`` development environment.
+
+Additionally, you can run individual ``tox`` environments (instead of all at once) by explcitly specifying the envrionment you wish to run, such as::
+
+   tox -e docs
+
+.. _`ci-services`:
 
 Continuous integration test builds with Travis-CI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -134,6 +148,7 @@ Please see the ``cc-pydata`` project's ``.travis.yml`` configuration file for mo
    * During this CI service migration, MacOS builds will also be added to the CI build matrix.
    * I occasionally use all three of these operating systems for my development work and would appreciate the added assurance that my project and rendered templates run successfully on all three platforms.
 
+.. _`unit-tests`:
 
 Custom ``tests`` module using ``unittest`` and the ``pytest`` test-runner
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -183,6 +198,8 @@ Each test case additionally uses ``cookiecutter.main.cookiecutter``, `the main e
 
 By putting these pieces together, ``cc-pydata`` template test builds become predictable and easy to manage.
 
+.. _`tests-structure`:
+
 The structure of the ``tests`` module
 """""""""""""""""""""""""""""""""""""
 
@@ -220,3 +237,6 @@ API documentation for the ``tests`` module
 
 .. _`Travis-CI`: https://travis-ci.com/
 .. _`GitHub Actions`: https://github.com/features/actions
+.. _tox: https://tox.readthedocs.io/en/latest/
+.. _`pep 8`: <https://www.python.org/dev/peps/pep-0008/>
+.. _`Pipenv`: https://pipenv.readthedocs.io/en/latest/#
