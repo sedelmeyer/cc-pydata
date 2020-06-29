@@ -15,7 +15,7 @@ Cookiecutter PyData (``cc-pydata``) is a Cookiecutter_ template for generating "
 
 .. contents:: Contents
   :local:
-  :backlinks: none
+  :backlinks: top
 
 Summary
 -------
