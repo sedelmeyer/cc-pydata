@@ -3,7 +3,7 @@
     "email": "Enter your email",
     "website": "Enter your website",
     "github_username": "Enter your GitHub username",
-    "project_name": "cc-pydata nameless",
+    "project_name": "nameless cc-pydata",
     "repo_name": "{{ cookiecutter.project_name|lower|replace(' ','-') }}",
     "package_name": "{{ cookiecutter.project_name|lower|replace(' ','_')|replace('-','_') }}",
     "distribution_name": "{{ cookiecutter.package_name|replace('_','-') }}",
