@@ -8,32 +8,20 @@ Future releases
 
 .. todo::
 
-    * Improve template README.rst placeholder instructions for replicating and adding to a ``cc-pydata`` project
+    * Add GitHub Actions for testing macos and windows builds-
+    * Improve template README.rst placeholder instructions
     * Create a ``gh-pages`` script to automate docs publishing steps
-
-.. _cookiecutter-pypackage: https://github.com/audreyr/cookiecutter-pypackage
-.. _cookiecutter-datascience: https://github.com/drivendata/cookiecutter-data-science
-.. _pytest-cookies: https://github.com/hackebrot/pytest-cookies
-.. _tox: https://tox.readthedocs.io/en/latest/
-.. _`Azure Pipelines`: https://azure.microsoft.com/en-us/services/devops/pipelines/
 
 v0.3.0 (Under development)
 --------------------------
 
 * Add ``tox`` to project repo for testing with ``py36``, ``py37``, ``py38``
 * Refactor testing for clearer organization of default template vs. options tests
-* Add ``tox`` option to template
-* Add pre- and post-gen hooks
-* Clean up existing template json options
-* Make Travis-CI optional
-
-.. todo::
-
-    * Refactor/simplify options tests
-    * Add `Azure Pipelines`_ option to template
-    * Add default Python version argument to template
-    * Add documentation for new options and features
-
+* Add ``tox`` option to template build variables
+* Add pre- and post-gen hooks for template rendering
+* Modify template json options to better reflect available rendering options
+* Make Travis-CI optional for the rendered template build process
+* Update documentation to reflect changes to the project
 
 v0.2.1 (2020-06-17)
 -------------------

@@ -10,13 +10,13 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
+import os
+import sys
 import shlex
 import subprocess
 import traceback
 
-# sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('..'))
 
 
 # -- Project information -----------------------------------------------------
@@ -89,7 +89,7 @@ html_theme_options = {
     'github_user': 'sedelmeyer',
     'github_repo': 'cc-pydata',
     'fixed_sidebar': 'false',
-    'description': 'Cookiecutter PyData (cc-pydata) is a template for '
+    'description': 'Cookiecutter PyData (i.e. cc-pydata) is a template for '
             'generating "reasonably standardized" skeletons for Python-based '
             'data science projects.',
     'badge_branch': 'master',
