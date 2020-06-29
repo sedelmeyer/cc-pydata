@@ -5,7 +5,7 @@ tests
 This module contains global variables and utility functions required for
 testing the ``cc-pydata`` cookiecutter template.
 
-Unit tests for these functions can be found in tests.test_testutils submodule
+Unit tests for these functions can be found in ``tests.test_testutils`` module
 
 **Module Variables:**
 
@@ -37,10 +37,10 @@ import jinja2
 from cookiecutter import main
 
 
-#: Define absolute path to cc-pydata cookiecutter project directory
+#: Define absolute path to ``cc-pydata`` cookiecutter project directory
 CCDIR = str(Path(__file__).resolve().parents[1])
 
-#: Define path to cookiecutter.json default choice variables file
+#: Define path to ``cookiecutter.json`` default choice variables file
 CCJSON = os.path.join(CCDIR, 'cookiecutter.json')
 
 #: Define regex string required to identify all jinja-related brackets
@@ -93,9 +93,10 @@ def _render_json_dict_jinja(json_dict):
 
 
 def get_default_template_args(filepath=CCJSON):
-    """Load cookiecutter.json to dictionary object
+    """Load ``cookiecutter.json`` to a dictionary object with rendered jinja
 
-    :param filepath: filepath to cookiecutter.json file, defaults to CCJSON
+    :param filepath: filepath to ``cookiecutter.json`` file, defaults to
+                     ``CCJSON``
     :type filepath: str
     :return: dictionary of cookiecutter default arguments
     :rtype: dict
@@ -109,16 +110,16 @@ def get_default_template_args(filepath=CCJSON):
 def bake_cookiecutter_template(
     output_dir, template=CCDIR, extra_context=None
 ):
-    """Generate the cookiecutter template defined in this project repo
+    """Generate the cookiecutter template defined in this project repository
 
-    :param output_dir: directory path in which to generate template
+    :param output_dir: directory path in which to render the template
     :type output_dir: str
-    :param template: name of cookiecutter template, defaults to CCDIR
+    :param template: name of cookiecutter template, defaults to ``CCDIR``
     :type template: str
     :param extra_context: dictionary of non-default arguments for cookiecutter
                           template build, defaults to None
     :type extra_context: dict
-    :return: path to built cookiecutter template directory
+    :return: path to rendered cookiecutter template directory
     :rtype: str
     """
     main.cookiecutter(
@@ -133,13 +134,13 @@ def bake_cookiecutter_template(
 
 
 def find_jinja_brackets(string, regex=JINJA_REGEX):
-    """Find all instances of input string that contains jinja brackets
+    """Find all instances of input ``string`` that contains jinja brackets
 
     :param string: text within which to search for jinja brackets
     :type string: str
-    :param regex: regular expression pattern, defaults to JINJA_REGEX
+    :param regex: regular expression pattern, defaults to ``JINJA_REGEX``
     :type regex: str
-    :return: regex search result, True if pattern found, None if not
+    :return: regex search result, ``True`` if pattern found, ``None`` if not
     :rtype: bool, None
     """
     regex_compiled = re.compile(regex)
@@ -150,9 +151,9 @@ def find_jinja_brackets(string, regex=JINJA_REGEX):
 def read_template_file(builtdir, filename):
     """Read the contents of a file contained in the baked cookiecutter template
 
-    :param builtdir: the file path to the built cookiecutter template
+    :param builtdir: file path to the rendered cookiecutter template
     :type builtdir: str
-    :param filename: the name of the file within the cookiecutter template
+    :param filename: name of the target file within the cookiecutter template
     :type filename: str
     :return: text content contained within the target file
     :rtype: str
