@@ -38,7 +38,7 @@ template_files = [
     'setup.py',
 ]
 
-#: Define list of src submodule directories expected in default template
+#: Define list of ``src`` submodule directories expected in default template
 template_submodules = [
     'data',
     'features',
@@ -76,10 +76,10 @@ template_directories = [
 
 
 class TestBuildDefaultTemplate(TestCase):
-    """Test default cookiecutter template build"""
+    """Test default ``cc-pydata`` cookiecutter template build"""
 
     def setUp(self):
-        """Build template in temporary directory"""
+        """Render default ``cc-pydata`` template in temporary directory"""
         with contextlib.ExitStack() as stack:
             # open temp directory context manager
             self.tmpdir = tmpdir = stack.enter_context(
@@ -91,18 +91,18 @@ class TestBuildDefaultTemplate(TestCase):
             self.addCleanup(stack.pop_all().close)
 
     def test_project_exists(self):
-        """Ensure built template exists in temp dir"""
+        """Ensure rendered template directory exists in temporary directory"""
         self.assertTrue(os.path.isdir(self.builtdir))
 
     def test_jinja_rendered_dirs(self):
-        """Ensire no jinja brackets left over after rendering directories"""
+        """Ensire no jinja brackets exist after rendering directory names"""
         # loop through all template sub-directories
         for subdir, dirs, files in os.walk(self.builtdir):
             # assert no jinja brackets are present in rendered dirnames
             self.assertIsNone(tests.find_jinja_brackets(subdir))
 
     def test_jinja_rendered_files(self):
-        """Ensure no jinja brackets are left over after rendering files"""
+        """Ensure no jinja brackets exist after rendering template files"""
         # loop through all template files for all sub-directories
         for subdir, dirs, files in os.walk(self.builtdir):
             for filename in files:
@@ -147,7 +147,7 @@ class TestBuildDefaultTemplate(TestCase):
             self.assertEqual(result, 0)
 
     def test_default_docs_build(self):
-        """Ensure default sphinx docs build in rendered template"""
+        """Ensure default Sphinx docs build in rendered template"""
         with tests.working_directory(os.path.join(self.builtdir, 'docs')):
             # run sphinx docs strict build test
             result = subprocess.check_call(
@@ -158,14 +158,14 @@ class TestBuildDefaultTemplate(TestCase):
             self.assertEqual(result, 0)
 
     def test_default_docs_make_html(self):
-        """Ensure default sphinx docs build in rendered template"""
+        """Ensure default Sphinx docs build in rendered template"""
         with tests.working_directory(os.path.join(self.builtdir, 'docs')):
             # run default sphinx make html command
             result = subprocess.check_call(shlex.split('make html'))
             self.assertEqual(result, 0)
 
     def test_cli_argparse_works(self):
-        """Ensure template cli default function works"""
+        """Ensure template's CLI default ``argparse`` function works"""
         with tests.working_directory(self.builtdir):
             # move package module out of src to top-level to prevent path error
             # otherwise, test would need to install Pipenv for template
