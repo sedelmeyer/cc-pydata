@@ -62,7 +62,7 @@ The default ``cc-pydata`` template makes use of the following tools and features
 * Travis-CI_ for continuous integration;
 * Versioning with `setuptools_scm`_;
 * Out-of-the-box and easily modified ``logging`` functionality;
-* Packaging of your custom source code, installed into your working environment as an editable library (i.e. ``-e .``) and easily imported into Jupyter notebooks with natural syntax such as ``from module_name import function_name;``
+* Packaging of your custom source code, installed into your working environment as an editable library (i.e. ``-e .``) and easily imported into Jupyter notebooks with natural syntax such as ``from module_name import function_name``;
 * Project documentation generated using Sphinx_ and reStructuredText_, ready for hosting alongside your project on GitHub pages.
 
 To see functionality anticipated for future versions of the ``cc-pydata`` template, please see `the Changelog notes regarding future-releases <https://sedelmeyer.github.io/cc-pydata/changelog.html#future-releases>`_.
