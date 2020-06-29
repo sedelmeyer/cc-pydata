@@ -29,7 +29,7 @@ class TestTestsUtilityFunctions(TestCase):
             "test"
         ]
         for value in values:
-            output = tests._fix_cookicutter_jinja_var(value)
+            output = tests._fix_cookiecutter_jinja_var(value)
             self.assertEqual(output, "test")
 
     def test_fix_cookiecutter_jinja_var_nonstring(self):
@@ -38,7 +38,7 @@ class TestTestsUtilityFunctions(TestCase):
             "cookiecutter.test",
             "test"
         ]
-        output = tests._fix_cookicutter_jinja_var(value)
+        output = tests._fix_cookiecutter_jinja_var(value)
         self.assertEqual(value, output)
 
     def test_render_json_dict_jinja(self):

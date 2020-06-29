@@ -19,7 +19,7 @@ Unit tests for these functions can be found in tests.test_testutils submodule
 
 .. autosummary::
 
-   _fix_cookicutter_jinja_var
+   _fix_cookiecutter_jinja_var
    _render_json_dict_jinja
    get_default_template_args
    bake_cookiecutter_template
@@ -49,7 +49,7 @@ CCJSON = os.path.join(CCDIR, 'cookiecutter.json')
 JINJA_REGEX = '(\\{{|\\}}|\\{%|\\%}|\\{#|\\#})'
 
 
-def _fix_cookicutter_jinja_var(value, replace='cookiecutter.'):
+def _fix_cookiecutter_jinja_var(value, replace='cookiecutter.'):
     """Remove 'cookiecutter.' string from 'cookiecutter.varname' jinja strings
 
     Can be used to remove different substrings as well by passing a string
@@ -89,7 +89,7 @@ def _render_json_dict_jinja(json_dict):
         if type(value) is str:
             if find_jinja_brackets(value, regex='(\\{{|\\}})'):
                 json_dict[key] = jinja2.Template(
-                    _fix_cookicutter_jinja_var(value)
+                    _fix_cookiecutter_jinja_var(value)
                 ).render(json_dict)
     return json_dict
 
