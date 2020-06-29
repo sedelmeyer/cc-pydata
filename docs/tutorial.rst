@@ -775,12 +775,23 @@ Running ``pytest`` will provide a convenient summary as tests are run. As an exa
 Test matrix automation using ``tox``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
+The ``cc-pydata`` template includes the options to render the resulting template with ``tox`` automated testing.
 
-   * Describe ``tox`` and significance/benefits of the tool as a ``cc-pydata`` option
-   * Add link to good ``tox`` article
-   * Add details about ``tox`` configuration with ``tox.ini``
-   * Describe basic ``tox`` command line usage and syntax
+If you are not familiar with Python's test automation tool `Tox`_, learning to use it is well worth the investment in time.
+
+If you review the ``tox.ini`` configuration file contained in the template directory, you will see that ``tox`` automation for this project is configured to:
+
+1. Run the template's unit tests on several different versions of Python to ensure compatibility with each of those versions;
+2. Run a test build of the project template's default Sphinx documentation to ensure docs build successfully;
+3. Run a ``flake8`` linting test to ensure all of the Python syntax in the template meets `PEP 8`_ standards; and...
+
+To run these automated ``tox`` tests, you simply run the ``tox`` command from within your active ``pipenv`` development environment.
+
+Additionally, you can run individual ``tox`` environments (instead of all at once) by explcitly specifying the environment you wish to run, such as::
+
+   tox -e docs
+
+If you select ``"no"`` for the ``tox`` choice variable prompt during the ``cc-pydata`` template rendering process, there will be no ``tox.ini`` file contained in final rendered template and ``tox`` will not be included in the ``Pipfile`` ``dev-packages`` requirements.
 
 Configuring and leveraging Travis-CI for your project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1077,3 +1088,6 @@ If you are new to logging, or are considering logging for the first time in the 
 
 .. _GitHub Pages: https://pages.github.com/
 .. _SemVer: https://semver.org/
+
+.. _`pep 8`: https://www.python.org/dev/peps/pep-0008/
+
