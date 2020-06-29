@@ -796,24 +796,26 @@ If you select ``"no"`` for the ``tox`` choice variable prompt during the ``cc-py
 Configuring and leveraging Travis-CI for your project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
-
-   * Add details concerning the new option to deselect travis usage
-   * Discuss variations in travis dependent on ``tox`` option build
-
-The ``cc-pydata`` project template is configured to use `Travis-CI`_ services for continuous integration testing.
+The ``cc-pydata`` project template offers the option to configure the rendered template to use `Travis-CI`_ services for continuous integration testing.
 
 * The ``.travis.yml`` file provided in the ``cc-pydata`` project template is used to configure your `Travis-CI`_ build.
-* For a tutorial on how to use Travis-CI, please `see the official Travis-CI tutorial <https://docs.travis-ci.com/user/tutorial/>`_, and if you're new to continuous integration, please `see their article on core concepts for beginners <https://docs.travis-ci.com/user/for-beginners>`_.
+* For a tutorial on how to use Travis-CI, please `see the official Travis-CI tutorial <https://docs.travis-ci.com/user/tutorial/>`_, and if you're new to continuous integration (CI), please `see their article on core CI concepts for beginners <https://docs.travis-ci.com/user/for-beginners>`_.
+
+If you select ``"no"`` for the ``travis`` choice variable prompt during the ``cc-pydata`` template rendering process, there will be neither a ``.travis.yml`` file added to the finished template, nor will there be a Travis build-badge included in the rendered template's default documentation.
 
 The default ``.travis.yml`` configuration file
 """"""""""""""""""""""""""""""""""""""""""""""
 
-.. todo::
+The configuration of the default ``.travis.yml`` file changes depending on whether the ``tox`` option is selected or deselected during the template rendering process.
 
-   * Include additional detail about ``tox`` configuration for ``.travis.yml``
+If ``"yes"`` is selected for both the ``travis`` and ``tox`` options, then the rendered ``.travis.yml`` configuration file will trigger a Travis-CI build which runs all of the default ``tox`` environments specified in the template's ``tox.ini``.
 
-Below is a snippet showing what is contained in the ``cc-pydata`` default ``.travis.yml`` file (with comments added to describe what each item means).
+If ``"no"`` is selected for the ``tox`` option, but ``"yes"`` is selected for ``travis``, then the resulting ``.travis.yml`` configuration file will run a Travis-CI build that installs the template's ``pipenv`` requirements and runs:
+
+1. A ``tests`` stage that calls the ``pytest`` test-runner to ensure all tests pass, as well as...
+2. An ``answers`` stage that ensures the template package's ``main`` entry-point exits with a status of ``0`` when run.
+
+To illustrate the syntax of the ``.travis.yml`` file, below is a snippet showing what is contained in the ``cc-pydata`` default ``.travis.yml`` file when ``tox`` is not enabled for the template (with comments added to describe what each item means).
 
 .. code-block:: yaml
 
@@ -825,7 +827,8 @@ Below is a snippet showing what is contained in the ``cc-pydata`` default ``.tra
     - 3.7
 
     # This section tells travis-ci what commands to run. Note that the
-    # first thing it will do is install our pipenv environment.
+    # first thing it will do is install the required pipenv
+    # environment.
     install:
     - pip install pipenv
     - pipenv install --system --deploy --ignore-pipfile
@@ -870,7 +873,7 @@ Below is a snippet showing what is contained in the ``cc-pydata`` default ``.tra
 Setting up travis-ci.com to run CI builds for your project
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-In order for Travis-CI to run builds for your project when you push to your GitHub hosted ``master`` or ``develop`` remote branches, you will need to authorize Travis-CI for your GitHub account as well as the specific ``cc-pydata`` project repository on GitHub.
+In order for Travis-CI to run builds for your project when you push to your GitHub-hosted ``master`` or ``develop`` remote branches, you will need to authorize Travis-CI for your GitHub account and for the specific ``cc-pydata`` rendered template repository on GitHub.
 
 For instructions on how to accomplish this, please `see the Travis-CI instructions on how to get started with GitHub <https://docs.travis-ci.com/user/tutorial/#to-get-started-with-travis-ci-using-github>`_.
 
