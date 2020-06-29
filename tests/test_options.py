@@ -31,7 +31,7 @@ class TestBuildTemplateOption(TestCase):
             # ensure context manager closes after tests
             self.addCleanup(stack.pop_all().close)
 
-    def test_build_fails_invalid_package_name(self):
+    def test_build_pre_hook_invalid_package_name_fails(self):
         """Ensure template build fails with invalid package name"""
         with self.assertRaises(Exception):
             extra_context = {'package_name': 'test-invalid'}
@@ -40,7 +40,7 @@ class TestBuildTemplateOption(TestCase):
                 extra_context=extra_context
             )
 
-    def test_open_source_license_options(self):
+    def test_license_open_source_options(self):
         """Ensure open source license options build correctly"""
         open_source_licenses = [
             license_name for license_name in license_list
@@ -65,7 +65,7 @@ class TestBuildTemplateOption(TestCase):
                     # confirm that neither file contains unrendered jinja
                     self.assertIsNone(tests.find_jinja_brackets(content))
 
-    def test_not_open_source_license_option(self):
+    def test_license_not_open_source(self):
         """Ensure non-open source license option builds correctly"""
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
@@ -86,8 +86,8 @@ class TestBuildTemplateOption(TestCase):
         # confirm that file does not contain unrendered jinja
         self.assertIsNone(tests.find_jinja_brackets(content))
 
-    def test_travis_option_yes(self):
-        """Ensure travis option builds correctly"""
+    def test_travis_yes_yaml(self):
+        """Ensure travis 'yes' option builds with ``travis.yml`` file"""
         extra_context = {'travis': 'yes'}
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
@@ -99,8 +99,8 @@ class TestBuildTemplateOption(TestCase):
         content = tests.read_template_file(builtdir, '.travis.yml')
         self.assertIsNone(tests.find_jinja_brackets(content))
 
-    def test_travis_option_no(self):
-        """Ensure non-travis option builds template and remove .travis.yml"""
+    def test_travis_no_yaml(self):
+        """Ensure travis 'no' option removes .travis.yml"""
         extra_context = {'travis': 'no'}
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
@@ -111,8 +111,8 @@ class TestBuildTemplateOption(TestCase):
             os.path.exists(travis_path)
         )
 
-    def test_tox_option_yes_exists(self):
-        """Ensure tox option builds correctly"""
+    def test_tox_yes_ini(self):
+        """Ensure tox 'yes' option builds with ``tox.ini`` file"""
         extra_context = {'tox': 'yes'}
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
@@ -124,8 +124,19 @@ class TestBuildTemplateOption(TestCase):
         content = tests.read_template_file(builtdir, 'tox.ini')
         self.assertIsNone(tests.find_jinja_brackets(content))
 
-    def test_tox_option_yes_travis_correct(self):
-        """Ensure tox option builds with correct .travis.yml content"""
+    def test_tox_yes_pipfile(self):
+        """Ensure tox 'yes' option adds tox install to ``Pipfile``"""
+        extra_context = {'tox': 'yes'}
+        builtdir = tests.bake_cookiecutter_template(
+            output_dir=self.tmpdir,
+            extra_context=extra_context
+        )
+        content = tests.read_template_file(builtdir, 'Pipfile')
+        self.assertTrue('tox' in content)
+        self.assertIsNone(tests.find_jinja_brackets(content))
+
+    def test_tox_travis_yes_yaml(self):
+        """Ensure tox and travis 'yes' option builds correct ``.travis.yml``"""
         extra_context = {'tox': 'yes', 'travis': 'yes'}
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
@@ -135,8 +146,8 @@ class TestBuildTemplateOption(TestCase):
         self.assertTrue('TOXENV' in content)
         self.assertIsNone(tests.find_jinja_brackets(content))
 
-    def test_tox_option_no(self):
-        """Ensure no tox option builds correctly and hook removes tox.ini"""
+    def test_tox_no_ini(self):
+        """Ensure tox 'no' option removes tox.ini"""
         extra_context = {'tox': 'no'}
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
@@ -146,6 +157,17 @@ class TestBuildTemplateOption(TestCase):
         self.assertFalse(
             os.path.exists(tox_path)
         )
+
+    def test_tox_no_pipfile(self):
+        """Ensure tox 'no' option removes tox install from ``Pipfile``"""
+        extra_context = {'tox': 'no'}
+        builtdir = tests.bake_cookiecutter_template(
+            output_dir=self.tmpdir,
+            extra_context=extra_context
+        )
+        content = tests.read_template_file(builtdir, 'Pipfile')
+        self.assertTrue('tox' not in content)
+        self.assertIsNone(tests.find_jinja_brackets(content))
 
     def test_tox_option_no_travis_correct(self):
         """Ensure no tox option builds with correct .travis.yml content"""
