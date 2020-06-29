@@ -11,18 +11,18 @@ from unittest import TestCase
 
 import tests
 
-#: Load cookicutter.json to dictionary
+#: Load ``cookicutter.json`` to dictionary
 json_dict = tests.get_default_template_args(tests.CCJSON)
 
-#: Define "license" choice variable argument options
+#: Define ``'license'`` choice variable argument options
 license_list = json_dict['license']
 
 
 class TestBuildTemplateOption(TestCase):
-    """Test default cookiecutter template build"""
+    """Test optional cookiecutter template build arguments"""
 
     def setUp(self):
-        """Build template in temporary directory"""
+        """Generate temporary directory in which to render templates"""
         with contextlib.ExitStack() as stack:
             # open temp directory context manager
             self.tmpdir = stack.enter_context(
@@ -32,7 +32,7 @@ class TestBuildTemplateOption(TestCase):
             self.addCleanup(stack.pop_all().close)
 
     def test_build_pre_hook_invalid_package_name_fails(self):
-        """Ensure template build fails with invalid package name"""
+        """Ensure template build fails with invalid ``package_name``"""
         with self.assertRaises(Exception):
             extra_context = {'package_name': 'test-invalid'}
             tests.bake_cookiecutter_template(
@@ -66,7 +66,7 @@ class TestBuildTemplateOption(TestCase):
                     self.assertIsNone(tests.find_jinja_brackets(content))
 
     def test_license_not_open_source(self):
-        """Ensure non-open source license option builds correctly"""
+        """Ensure 'Not open source' license option builds correctly"""
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
             extra_context={
@@ -117,7 +117,7 @@ class TestBuildTemplateOption(TestCase):
         self.assertIsNone(tests.find_jinja_brackets(conf_content))
 
     def test_travis_no_yaml(self):
-        """Ensure travis 'no' option removes .travis.yml"""
+        """Ensure travis 'no' option removes ``.travis.yml``"""
         extra_context = {'travis': 'no'}
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
@@ -180,7 +180,7 @@ class TestBuildTemplateOption(TestCase):
         self.assertIsNone(tests.find_jinja_brackets(content))
 
     def test_tox_no_ini(self):
-        """Ensure tox 'no' option removes tox.ini"""
+        """Ensure tox 'no' option removes ``tox.ini``"""
         extra_context = {'tox': 'no'}
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
@@ -192,7 +192,7 @@ class TestBuildTemplateOption(TestCase):
         )
 
     def test_tox_no_pipfile(self):
-        """Ensure tox 'no' option removes tox install from ``Pipfile``"""
+        """Ensure tox 'no' option removes ``tox`` install from ``Pipfile``"""
         extra_context = {'tox': 'no'}
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,
