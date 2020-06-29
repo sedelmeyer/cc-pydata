@@ -8,20 +8,20 @@ Future releases
 
 .. todo::
 
-    * Add GitHub Actions for testing macos and windows builds-
+    * Add GitHub Actions for testing MacOS and Windows platform builds
     * Improve template README.rst placeholder instructions
     * Create a ``gh-pages`` script to automate docs publishing steps
 
-v0.3.0 (Under development)
---------------------------
+v0.3.0 (2020-06-29)
+-------------------
 
 * Add ``tox`` to project repo for testing with ``py36``, ``py37``, ``py38``
 * Refactor testing for clearer organization of default template vs. options tests
-* Add ``tox`` option to template build variables
+* Add ``tox`` option to template choice variables
 * Add pre- and post-gen hooks for template rendering
-* Modify template json options to better reflect available rendering options
+* Modify ``cookiecutter.json`` options to better reflect available rendering options
 * Make Travis-CI optional for the rendered template build process
-* Update documentation to reflect changes to the project
+* Update documentation to reflect changes to the project and add developer notes
 
 v0.2.1 (2020-06-17)
 -------------------
