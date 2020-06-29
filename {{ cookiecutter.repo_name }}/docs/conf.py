@@ -101,7 +101,7 @@ html_theme_options = {
     'badge_branch': 'master',
     'github_banner': 'true',
     'github_button': 'true',
-    'travis_button': 'true',
+    'travis_button': '{% if cookiecutter.travis == "yes" -%}true{% else -%}false{%- endif -%}',
     'show_powered_by': 'true',
     'show_relbar_bottom': 'true',
     'extra_nav_links': {

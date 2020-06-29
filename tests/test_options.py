@@ -99,6 +99,23 @@ class TestBuildTemplateOption(TestCase):
         content = tests.read_template_file(builtdir, '.travis.yml')
         self.assertIsNone(tests.find_jinja_brackets(content))
 
+    def test_travis_yes_badge(self):
+        """Ensure travis 'yes' option includes badge in docs"""
+        extra_context = {'travis': 'yes'}
+        builtdir = tests.bake_cookiecutter_template(
+            output_dir=self.tmpdir,
+            extra_context=extra_context
+        )
+        readme_content = tests.read_template_file(builtdir, 'README.rst')
+        print(readme_content)
+        self.assertTrue(
+            '\n.. image:: https://travis-ci.com/' in readme_content
+        )
+        self.assertIsNone(tests.find_jinja_brackets(readme_content))
+        conf_content = tests.read_template_file(builtdir, 'docs/conf.py')
+        self.assertTrue("'travis_button': 'true'," in conf_content)
+        self.assertIsNone(tests.find_jinja_brackets(conf_content))
+
     def test_travis_no_yaml(self):
         """Ensure travis 'no' option removes .travis.yml"""
         extra_context = {'travis': 'no'}
@@ -110,6 +127,22 @@ class TestBuildTemplateOption(TestCase):
         self.assertFalse(
             os.path.exists(travis_path)
         )
+
+    def test_travis_no_badge(self):
+        """Ensure travis 'no' option does not include badge in docs"""
+        extra_context = {'travis': 'no'}
+        builtdir = tests.bake_cookiecutter_template(
+            output_dir=self.tmpdir,
+            extra_context=extra_context
+        )
+        readme_content = tests.read_template_file(builtdir, 'README.rst')
+        self.assertTrue(
+            '.. image:: https://travis-ci.com/' not in readme_content
+        )
+        self.assertIsNone(tests.find_jinja_brackets(readme_content))
+        conf_content = tests.read_template_file(builtdir, 'docs/conf.py')
+        self.assertTrue("'travis_button': 'false'," in conf_content)
+        self.assertIsNone(tests.find_jinja_brackets(conf_content))
 
     def test_tox_yes_ini(self):
         """Ensure tox 'yes' option builds with ``tox.ini`` file"""
@@ -135,7 +168,7 @@ class TestBuildTemplateOption(TestCase):
         self.assertTrue('tox' in content)
         self.assertIsNone(tests.find_jinja_brackets(content))
 
-    def test_tox_travis_yes_yaml(self):
+    def test_tox_yes_travis_yes_yaml(self):
         """Ensure tox and travis 'yes' option builds correct ``.travis.yml``"""
         extra_context = {'tox': 'yes', 'travis': 'yes'}
         builtdir = tests.bake_cookiecutter_template(
@@ -169,8 +202,8 @@ class TestBuildTemplateOption(TestCase):
         self.assertTrue('tox' not in content)
         self.assertIsNone(tests.find_jinja_brackets(content))
 
-    def test_tox_option_no_travis_correct(self):
-        """Ensure no tox option builds with correct .travis.yml content"""
+    def test_tox_no_travis_yes_yaml(self):
+        """Ensure tox 'no' option builds with correct ``.travis.yml``"""
         extra_context = {'tox': 'no', 'travis': 'yes'}
         builtdir = tests.bake_cookiecutter_template(
             output_dir=self.tmpdir,

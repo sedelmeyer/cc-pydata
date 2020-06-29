@@ -2,9 +2,11 @@
 {% for _ in cookiecutter.project_name %}{{"="}}{% endfor %}
 
 {{ cookiecutter.project_short_description }}
-
+{% if cookiecutter.travis == 'yes' %}
 .. image:: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.distribution_name }}.svg?branch=master
     :target: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.distribution_name }}
+{% else -%}
+{%- endif %}
 
 .. contents:: Contents
   :local:
