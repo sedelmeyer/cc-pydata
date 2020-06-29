@@ -19,11 +19,9 @@ Unit tests for these functions can be found in tests.test_testutils submodule
 
 .. autosummary::
 
-   _fix_cookiecutter_jinja_var
-   _render_json_dict_jinja
-   get_default_template_args
    bake_cookiecutter_template
    find_jinja_brackets
+   get_default_template_args
    working_directory
 
 |
@@ -59,7 +57,7 @@ def _fix_cookiecutter_jinja_var(value, replace='cookiecutter.'):
     :type value: str
     :param replace: The string to be removed from the ``value`` input,
                     defaults to 'cookiecutter.'
-    :type replace: str, optional
+    :type replace: str
     :return: Returns the input value with the ``replace`` string removed
              if ``value`` is of type str, otherwise it just returns the
              ``value`` input
@@ -98,7 +96,7 @@ def get_default_template_args(filepath=CCJSON):
     """Load cookiecutter.json to dictionary object
 
     :param filepath: filepath to cookiecutter.json file, defaults to CCJSON
-    :type filepath: str, optional
+    :type filepath: str
     :return: dictionary of cookiecutter default arguments
     :rtype: dict
     """
@@ -116,10 +114,10 @@ def bake_cookiecutter_template(
     :param output_dir: directory path in which to generate template
     :type output_dir: str
     :param template: name of cookiecutter template, defaults to CCDIR
-    :type template: str, optional
+    :type template: str
     :param extra_context: dictionary of non-default arguments for cookiecutter
                           template build, defaults to None
-    :type extra_context: dict, optional
+    :type extra_context: dict
     :return: path to built cookiecutter template directory
     :rtype: str
     """
@@ -140,9 +138,9 @@ def find_jinja_brackets(string, regex=JINJA_REGEX):
     :param string: text within which to search for jinja brackets
     :type string: str
     :param regex: regular expression pattern, defaults to JINJA_REGEX
-    :type regex: str, optional
+    :type regex: str
     :return: regex search result, True if pattern found, None if not
-    :rtype: bool or NoneType
+    :rtype: bool, None
     """
     regex_compiled = re.compile(regex)
     result = regex_compiled.search(string)
@@ -155,9 +153,9 @@ def read_template_file(builtdir, filename):
     :param builtdir: the file path to the built cookiecutter template
     :type builtdir: str
     :param filename: the name of the file within the cookiecutter template
-    :type filename: [type]
-    :return: [description]
-    :rtype: [type]
+    :type filename: str
+    :return: text content contained within the target file
+    :rtype: str
     """
     with open(os.path.join(builtdir, filename), 'r') as f:
         content = f.read()
