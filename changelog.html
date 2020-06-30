@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Changelog &#8212; cc-pydata v0.2.1 documentation</title>
+    <title>Changelog &#8212; cc-pydata v0.3.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -15,9 +15,10 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Tutorial" href="tutorial.html" />
+    <link rel="prev" title="About this project" href="about.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -41,26 +42,29 @@
 <div class="admonition-todo admonition" id="id3">
 <p class="admonition-title">Todo</p>
 <ul class="simple">
-<li><p>Improve template README.rst placeholder instructions for replicating and adding to a <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project</p></li>
-<li><p>Add <a class="reference external" href="https://azure.microsoft.com/en-us/services/devops/pipelines/">Azure Pipelines</a> support to template</p></li>
-<li><p>Add <a class="reference external" href="https://tox.readthedocs.io/en/latest/">tox</a> to repo</p></li>
-<li><p>Add <a class="reference external" href="https://tox.readthedocs.io/en/latest/">tox</a> and doc tests to template</p></li>
+<li><p>Add GitHub Actions for testing MacOS and Windows platform builds</p></li>
+<li><p>Improve template README.rst placeholder instructions</p></li>
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> script to automate docs publishing steps</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="v0-3-0-future-release">
-<h2>v0.3.0 (future release)<a class="headerlink" href="#v0-3-0-future-release" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="v0-3-0-2020-06-29">
+<h2>v0.3.0 (2020-06-29)<a class="headerlink" href="#v0-3-0-2020-06-29" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Add <a class="reference external" href="https://tox.readthedocs.io/en/latest/">tox</a> to repo</p></li>
-<li><p>Add <a class="reference external" href="https://tox.readthedocs.io/en/latest/">tox</a> and doc tests to template</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">tox</span></code> to project repo for testing with <code class="docutils literal notranslate"><span class="pre">py36</span></code>, <code class="docutils literal notranslate"><span class="pre">py37</span></code>, <code class="docutils literal notranslate"><span class="pre">py38</span></code></p></li>
+<li><p>Refactor testing for clearer organization of default template vs. options tests</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">tox</span></code> option to template choice variables</p></li>
+<li><p>Add pre- and post-gen hooks for template rendering</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">cookiecutter.json</span></code> options to better reflect available rendering options</p></li>
+<li><p>Make Travis-CI optional for the rendered template build process</p></li>
+<li><p>Update documentation to reflect changes to the project and add developer notes</p></li>
 </ul>
 </div>
 <div class="section" id="v0-2-1-2020-06-17">
 <h2>v0.2.1 (2020-06-17)<a class="headerlink" href="#v0-2-1-2020-06-17" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> packaging and setuptools-scm versioning to project</p></li>
-<li><p>Add unit tests and Travis-CI to project</p></li>
+<li><p>Add unit tests and TravisCI to project</p></li>
 </ul>
 </div>
 <div class="section" id="v0-2-0-2020-06-14">
@@ -146,7 +150,7 @@
     <ul>
         <li>
           &larr;
-          <a href="tutorial.html" title="Previous document">Tutorial</a>
+          <a href="about.html" title="Previous document">About this project</a>
         </li>
     </ul>
   </nav>
@@ -165,7 +169,7 @@
 
 
 
-<p class="blurb">Cookiecutter PyData (cc-pydata) is a template for generating "reasonably standardized" skeletons for Python-based data science projects.</p>
+<p class="blurb">Cookiecutter PyData (i.e. cc-pydata) is a template for generating "reasonably standardized" skeletons for Python-based data science projects.</p>
 
 
 
@@ -195,9 +199,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Cookiecutter PyData</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About this project</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#future-releases">Future releases</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#v0-3-0-future-release">v0.3.0 (future release)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-3-0-2020-06-29">v0.3.0 (2020-06-29)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-1-2020-06-17">v0.2.1 (2020-06-17)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-0-2020-06-14">v0.2.0 (2020-06-14)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-1-7-2020-05-31">v0.1.7 (2020-05-31)</a></li>
@@ -228,7 +233,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="tutorial.html" title="previous chapter">Tutorial</a></li>
+      <li>Previous: <a href="about.html" title="previous chapter">About this project</a></li>
   </ul></li>
 </ul>
 </div>

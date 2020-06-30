@@ -32,45 +32,45 @@ When you generate a ``cc-pydata`` data science project from this template (see :
     ├── data              <- All data files related to the project.
     │   │                    Files contained in this directory are
     │   │                    ommitted from Git history via .gitignore
-    │   ├── raw           <- The original data file(s) that, for the
+    │   ├── raw/          <- The original data file(s) that, for the
     │   │                    purpose of reproducibility, should never
     │   │                    be modified
-    │   ├── interim       <- Data that has been cleaned or transformed
-    │   └── processed     <- The final data set(s) used for modeling
+    │   ├── interim/      <- Data that has been cleaned or transformed
+    │   └── processed/    <- The final data set(s) used for modeling
     │
     ├── docs              <- A default Sphinx project for generating
     │   │                    project documentation
     │   └── _static
-    │       └── figures   <- Generated graphics and figures to be used
+    │       └── figures/  <- Generated graphics and figures to be used
     │                        in Sphinx generated docs
-    ├── models            <- Trained and serialized models, model
+    ├── models/           <- Trained and serialized models, model
     │                        predictions, or model summaries
     │
-    ├── notebooks         <- Jupyter notebooks, named using a number
+    ├── notebooks/        <- Jupyter notebooks, named using a number
     │                        and descriptive title so sequential run-
     │                        order and purpose are explicit, e.g.
     │                        "001-EDA-property-assessments.ipynb"
     │
     ├── references        <- Data dictionaries, manuals, and all other
     │   │                    explanatory materials
-    │   └── third-party   <- Third-party and copyrighted materials you
+    │   └── third-party/  <- Third-party and copyrighted materials you
     │                        do not want committed to Git history
     │
     ├── reports           <- Generated analysis as HTML, PDF, etc.
-    │   └── figures       <- Generated graphics and figures to be used
+    │   └── figures/      <- Generated graphics and figures to be used
     │                        in reporting
     │
     ├── src               <- Source code for use in this project
     │   └── <package-name>
-    │       ├── data           <- Submodule for downloading and
+    │       ├── data/          <- Submodule for downloading and
     │       │                     cleansing data
-    │       ├── features       <- Submodule for generating engineered
+    │       ├── features/      <- Submodule for generating engineered
     │       │                     features for modeling
-    │       ├── models         <- Submodule for training models and
+    │       ├── models/        <- Submodule for training models and
     │       │                     generating predictions
-    │       ├── visualizations <- Submodule for generating
+    │       ├── visualizations/<- Submodule for generating
     │       │                     visualizations
-    │       ├── logger         <- Submodule for project logging-related
+    │       ├── logger/        <- Submodule for project logging-related
     │       │                     functionality
     │       ├── __init__.py    <- Makes src a Python module
     │       ├── __main__.py    <- Entry point module
@@ -85,8 +85,10 @@ When you generate a ``cc-pydata`` data science project from this template (see :
     │                        (see travis-ci.com)
     ├── logging.json      <- Default logging configuration dictionary
     ├── setup.py          <- Setup script for the project using
-    │                        setuptools
-    └── setup.cfg         <- Option defaults for setup.py commands
+    │
+    ├── setup.cfg         <- Option defaults for setup.py commands
+    │
+    └── tox.ini           <- Default tox-automated test configuration
 
 .. _getting started:
 
@@ -95,12 +97,12 @@ Generating a new template
 
 .. contents:: In this section
   :local:
-  :backlinks: none
+  :backlinks: top
 
 0. Ensure all prerequisites are met
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-See the :ref:`requirements` section of the :ref:`readme` README documentation to ensure basic system dependencies are met.
+See the :ref:`requirements` section of the ``cc-pydata`` :ref:`README<readme>` documentation to ensure basic system dependencies are met.
 
 1. Initiate the template using Cookiecutter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -117,112 +119,127 @@ Alternatively, if you have a local working copy of the ``cc-pydata`` project in 
 2. Complete template prompts required to generate the template
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The below listed prompts will be presented on the command line after generating your project (see Step 1 above). For each prompt, default values will be presented in brackets (i.e. ``full_name [Michael Sedelmeyer]:``).
+The below listed prompts will be presented on the command-line after initiating your project template (see Step 1 above). For each prompt, default values will be presented in brackets (i.e. ``full_name [Bob Smith]:``).
 
-To modify defaults or customize these prompts, please see the ``cookiecutter.json`` file.
+To modify defaults or customize these prompts, you can do so in the ``cookiecutter.json`` file. Additional information on the ``cookiecutter.json`` file can be found in `the Cookiecutter "choice variables" documentation <https://cookiecutter.readthedocs.io/en/1.7.2/advanced/choice_variables.html>`_.
 
-* ``full_name``
+Additionally, if you would like to auto-populate the values for any of these prompts, you can also create a ``.cookiecutterrc`` configuration file as is outlined in `the Cookiecutter "user config" documentation <https://cookiecutter.readthedocs.io/en/1.7.2/advanced/user_config.html#user-config>`_.
 
-  * Main author of this library or application (used in ``setup.py`` and ``docs/conf.py``).
-  * Can be set in your ``~/.cookiecutterrc`` config file.
+"Choice variable" template prompts
+""""""""""""""""""""""""""""""""""
 
-* ``email``
+1. ``full_name``
 
-  * Contact email of the author (used in ``setup.py``).
-  * Can be set in your ``~/.cookiecutterrc`` config file.
+  * Main author of this library or application (used in ``setup.py`` and ``docs/conf.py``)
+  * Can be set in your ``~/.cookiecutterrc`` config file
 
-* ``website``
+2. ``email``
+
+  * Contact email of the author (used in ``setup.py``)
+  * Can be set in your ``~/.cookiecutterrc`` config file
+
+3. ``website``
 
   * Website of the author (not yet used in resulting template).
-  * Can be set in your ``~/.cookiecutterrc`` config file.
+  * Can be set in your ``~/.cookiecutterrc`` config file
 
-* ``github_username``
+4. ``github_username``
 
-  * GitHub user name of this project (used for GitHub links in ``setup.py`` and ``docs/conf.py``).
-  * Can be set in your ``~/.cookiecutterrc`` config file.
+  * GitHub user name of this project (used for GitHub links in ``setup.py`` and ``docs/conf.py``)
+  * Can be set in your ``~/.cookiecutterrc`` config file
 
-* ``project_name``
+5. ``project_name``
 
-  * Verbose project name, used in headings (docs, readme, etc).
+  * Verbose project name (used in headings in ``README.rst``, ``docs/index.rst``, etc.)
 
-* ``repo_name``
+6. ``repo_name``
 
-  * Repository name on GitHub (and project's root directory name, used in ``setup.py``, ``docs/conf.py``, and for GitHub links).
+  * Repository root-directory name and repo name on GitHub (used in ``setup.py``, ``docs/conf.py``, and for GitHub links)
 
-* ``package_name``
+7. ``package_name``
 
-  * Python package name (whatever you would import).
+  * Python package name (the source code package name as you would import it in your code, i.e.: ``import package_name``)
 
-* ``distribution_name``
+8. ``distribution_name``
 
-  * PyPI distribution name (what you would ``pip install``).
+  * PyPI distribution name (what you would ``pip install``)
 
-* ``project_short_description``
+9. ``project_short_description``
 
-  * One line description of the project (used in ``README.rst``, ``setup.py``, and ``docs/conf.py``).
+  * One line description of the project (used in ``README.rst``, ``setup.py``, and ``docs/conf.py``)
 
-* ``release_date``
+10. ``release_date``
 
-  * Release date of the project (ISO 8601 format) default to today (used in ``CHANGELOG.rst``).
+  * Release date of the project (ISO 8601 format), defaults to ``today`` (used in ``CHANGELOG.rst``)
 
-* ``year_from``
+11. ``year_from``
 
-  * Copyright year (used in Sphinx ``conf.py``).
+  * Initial copyright year (used in Sphinx ``docs/conf.py``)
 
-* ``version``
+12. ``version``
 
-  * Release version (used in ``setup.py`` and ``docs/conf.py``).
+  * Release version, defaults to ``0.0.0`` (used in ``setup.py`` and ``docs/conf.py``)
 
-* ``scm_versioning``
+13. ``scm_versioning``
 
-  * Enables the use of `setuptools-scm <https://pypi.org/project/setuptools-scm/>`_ (there is currently no option to turn this off, all projects will include this capability by default).
+  * Enables the use of `setuptools-scm <https://pypi.org/project/setuptools-scm/>`_, defaults to ``yes`` (there is currently no option to turn this off, all projects will include this capability by default)
 
-* ``license``
+14. ``license``
 
-  * License to use. Available options:
+  * License to use in the rendered template
+  * Available options:
 
     * MIT license
     * BSD 2-Clause license
     * BSD 3-Clause license
     * ISC license
     * Apache Software License 2.0
+    * Not open source
 
-  * What license to pick? https://choosealicense.com/
+  * If need help deciding which license to pick, see this: https://choosealicense.com/
 
-* ``test_runner``
+15. ``test_runner``
 
-  * Test runner to use. Currently only configured for ``pytest``.
+  * Available options: ``pytest`` only
 
-* ``linter``
+16. ``linter``
 
   * Available options: ``flake8`` only
 
-* ``command_line_interface``
+17. ``command_line_interface``
 
-  * Option to enable a CLI (a bin/executable file). Available options:
+  * Enables a CLI bin/executable file.
+  * Available options: ``argparse`` only
 
-    * ``plain`` - a very simple command.
-    * ``argparse`` - a command implemented with ``argparse``.
-    * ``click`` - a command implemented with `click <http://click.pocoo.org/>`_
-    * ``no`` - no CLI at all.
+18. ``command_line_interface_bin_name``
 
-* ``command_line_interface_bin_name``
+  * Name of the CLI bin/executable file (used to set the console script name in ``setup.py`` and the name you would use to invoke the CLI from your terminal)
 
-  * Name of the CLI bin/executable file (set the console script name in ``setup.py``).
+19. ``travis``
 
-* ``travis``
+  * Adds a default Travis-CI_ badge and ``.travis.yml`` configuration file to the rendered template, defaults to ``yes``
+  * Available options:
 
-  * If you want the Travis-CI_ badge and configuration (currently, this project will always generate with Tracis-CI configuration).
+    * yes
+    * no
+
+20. ``tox``
+
+  * Adds a default ``tox.ini`` test automation configuration file to the rendered template, defaults to ``yes``
+  * Available options:
+
+    * yes
+    * no
 
 3. Initiate git version control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The first thing you should do once your template has been generated is to ``cd`` into your new repository and initiate ``git``::
+The first thing you should do once your template has been generated is to ``cd`` into your new repository and initialize ``git``::
 
   cd <newly-generate-directory>
   git init
 
-This step will be required prior to inititating your Pipenv environment because ``setuptools-scm`` is used for versioning your newly generated package. If Git has not yet been initiated for your project, Pipenv install of your local package will fail in the next step below.
+This step will be required prior to inititating your Pipenv environment because ``setuptools-scm`` is used for versioning your newly generated package. If Git has not yet been initialized for your project, the ``pipenv`` install of your local package will fail in the next step below.
 
 .. _install-pipenv:
 
@@ -256,7 +273,7 @@ Packaging characteristics of this template
 
 .. contents:: In this section
   :local:
-  :backlinks: none
+  :backlinks: top
 
 Using ``pipenv`` to manage your project dependencies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -358,14 +375,16 @@ The ``cc-pydata`` package module is configured in such a way that, if you wish t
 Therefore, there is no need to import `src`. Instead, you can use the more natural convention of importing your package based on its actual name.
 
 
-Versioning your project
-^^^^^^^^^^^^^^^^^^^^^^^
+Versioning your project with ``git`` tags and ``setuptools_scm``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``cc-pydata`` template is configured to make use of `setuptools_scm`_ to manage and track your ``cc-pydata`` project's current version.
 
 There are a number of different ways to maintain a Python project's current version. For a survey of different approaches to maintain a "single source of truth" for the version number of your project (i.e. where you only need to update the version in one single location), please see this article on `Single-sourcing the package version`_. ``cc-pydata`` makes use of option #7 in that article.
 
-By using ``setuptools_scm``, your ``cc-pydata`` application pulls the version number directly from the latest ``git`` tag associated with your project. Therefore, instead of manually setting a global ``__version__`` variable in your application, you simply add a tag when you commit a new version of your application to ``master``.
+By using ``setuptools_scm``, your ``cc-pydata`` application pulls the version number directly from the latest ``git`` tag associated with your project.
+
+Therefore, instead of manually setting a global ``__version__`` variable in your application, you simply add a tag when you commit a new version of your application to ``master``.
 
 Implications for choosing an effective ``git`` branching methodology
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -464,7 +483,7 @@ Documenting your project using Sphinx and GitHub Pages
 
 .. contents:: In this section
   :local:
-  :backlinks: none
+  :backlinks: top
 
 Getting started with Sphinx and reStructuredText
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -678,7 +697,7 @@ Test configuration and continuous integration with Travis-CI
 
 .. contents:: In this section
   :local:
-  :backlinks: none
+  :backlinks: top
 
 Unit-testing your project and using the ``pytest`` test-runner
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -757,18 +776,50 @@ Running ``pytest`` will provide a convenient summary as tests are run. As an exa
     =============================== 11 passed in 0.16s ===============================
 
 
+Test matrix automation using ``tox``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``cc-pydata`` template includes the options to render the resulting template with ``tox`` automated testing.
+
+If you are not familiar with Python's test automation tool `Tox`_, learning to use it is well worth the investment in time.
+
+If you review the ``tox.ini`` configuration file contained in the template directory, you will see that ``tox`` automation for this project is configured to:
+
+1. Run the template's unit tests on several different versions of Python to ensure compatibility with each of those versions,
+2. Run a test build of the project template's default Sphinx documentation to ensure docs build successfully, and...
+3. Run a ``flake8`` linting test to ensure all of the Python syntax in the template meets `PEP 8`_ standards.
+
+To run these automated ``tox`` tests, you simply run the ``tox`` command from within your active ``pipenv`` development environment.
+
+Alternatively, you can run individual ``tox`` environments (instead of all at once) by explcitly specifying the environment you wish to run, such as::
+
+   tox -e docs
+
+If you select ``"no"`` for the ``tox`` choice variable prompt during the ``cc-pydata`` template rendering process, there will be no ``tox.ini`` file contained in the final rendered template and ``tox`` will not be included in the ``Pipfile`` ``dev-packages`` requirements.
+
 Configuring and leveraging Travis-CI for your project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``cc-pydata`` project template is configured to use `Travis-CI`_ services for continuous integration testing.
+The ``cc-pydata`` project template offers the option to configure the rendered template to use `Travis-CI`_ services for continuous integration testing.
 
 * The ``.travis.yml`` file provided in the ``cc-pydata`` project template is used to configure your `Travis-CI`_ build.
-* For a tutorial on how to use Travis-CI, please `see the official Travis-CI tutorial <https://docs.travis-ci.com/user/tutorial/>`_, and if you're new to continuous integration, please `see their article on core concepts for beginners <https://docs.travis-ci.com/user/for-beginners>`_.
+* For a tutorial on how to use Travis-CI, please `see the official Travis-CI tutorial <https://docs.travis-ci.com/user/tutorial/>`_, and if you're new to continuous integration (CI), please `see their article on core CI concepts for beginners <https://docs.travis-ci.com/user/for-beginners>`_.
+
+If you select ``"no"`` for the ``travis`` choice variable prompt during the ``cc-pydata`` template rendering process, there will be neither a ``.travis.yml`` file added to the finished template, nor will there be a Travis build-badge included in the rendered template's default documentation.
 
 The default ``.travis.yml`` configuration file
 """"""""""""""""""""""""""""""""""""""""""""""
 
-Below is a snippet showing what is contained in the ``cc-pydata`` default ``.travis.yml`` file (with comments added to describe what each item means).
+The configuration of the default ``.travis.yml`` file changes depending on whether the ``tox`` option is selected or deselected during the template rendering process.
+
+If ``"yes"`` is selected for both the ``travis`` and ``tox`` options, then the rendered ``.travis.yml`` configuration file will trigger a Travis-CI build which runs all of the default ``tox`` environments specified in the template's ``tox.ini``.
+
+If ``"no"`` is selected for the ``tox`` option, but ``"yes"`` is selected for ``travis``, then the resulting ``.travis.yml`` configuration file will run a Travis-CI build that installs the template's ``pipenv`` requirements and runs:
+
+1. A ``tests`` stage that calls the ``pytest`` test-runner to ensure all tests pass, as well as...
+2. An ``answers`` stage that ensures the template package's ``main`` entry-point exits with a status of ``0`` when run.
+
+To illustrate the syntax of the ``.travis.yml`` file, below is a snippet showing what is contained in the ``cc-pydata`` default ``.travis.yml`` file when ``tox`` is not enabled for the template (with comments added to describe what each item means).
 
 .. code-block:: yaml
 
@@ -780,7 +831,8 @@ Below is a snippet showing what is contained in the ``cc-pydata`` default ``.tra
     - 3.7
 
     # This section tells travis-ci what commands to run. Note that the
-    # first thing it will do is install our pipenv environment.
+    # first thing it will do is install the required pipenv
+    # environment.
     install:
     - pip install pipenv
     - pipenv install --system --deploy --ignore-pipfile
@@ -825,7 +877,7 @@ Below is a snippet showing what is contained in the ``cc-pydata`` default ``.tra
 Setting up travis-ci.com to run CI builds for your project
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-In order for Travis-CI to run builds for your project when you push to your GitHub hosted ``master`` or ``develop`` remote branches, you will need to authorize Travis-CI for your GitHub account as well as the specific ``cc-pydata`` project repository on GitHub.
+In order for Travis-CI to run builds for your project when you push to your GitHub-hosted ``master`` or ``develop`` remote branches, you will need to authorize Travis-CI for your GitHub account and for your specific ``cc-pydata`` rendered template repository on GitHub.
 
 For instructions on how to accomplish this, please `see the Travis-CI instructions on how to get started with GitHub <https://docs.travis-ci.com/user/tutorial/#to-get-started-with-travis-ci-using-github>`_.
 
@@ -839,7 +891,7 @@ The defaults provided (and described below), rely only on the ``logging`` `modul
 
 .. contents:: In this section
   :local:
-  :backlinks: none
+  :backlinks: top
 
 
 Default ``logging`` configuration
@@ -1043,3 +1095,6 @@ If you are new to logging, or are considering logging for the first time in the 
 
 .. _GitHub Pages: https://pages.github.com/
 .. _SemVer: https://semver.org/
+
+.. _`pep 8`: https://www.python.org/dev/peps/pep-0008/
+

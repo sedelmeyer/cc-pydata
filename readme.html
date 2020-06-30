@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookiecutter PyData &#8212; cc-pydata v0.2.1 documentation</title>
+    <title>Cookiecutter PyData &#8212; cc-pydata v0.3.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -15,6 +15,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Tutorial" href="tutorial.html" />
@@ -39,6 +40,7 @@
 <span id="readme"></span><h1>Cookiecutter PyData<a class="headerlink" href="#cookiecutter-pydata" title="Permalink to this headline">¶</a></h1>
 <p>Cookiecutter PyData (<code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code>) is a <a class="reference external" href="https://github.com/audreyr/cookiecutter">Cookiecutter</a> template for generating “reasonably standardized” skeletons for Python-based data science projects.</p>
 <a class="reference external image-reference" href="https://travis-ci.com/sedelmeyer/cc-pydata"><img alt="https://travis-ci.com/sedelmeyer/cc-pydata.svg?branch=master" src="https://travis-ci.com/sedelmeyer/cc-pydata.svg?branch=master" /></a>
+<a class="reference external image-reference" href="https://github.com/sedelmeyer/cc-pydata/blob/master/LICENSE"><img alt="https://img.shields.io/badge/License-MIT-black.svg" src="https://img.shields.io/badge/License-MIT-black.svg" /></a>
 <ul class="simple">
 <li><p><strong>GitHub repo:</strong> <a class="reference external" href="https://github.com/sedelmeyer/cc-pydata">https://github.com/sedelmeyer/cc-pydata</a></p></li>
 <li><p><strong>Full project documentation:</strong> <a class="reference external" href="https://sedelmeyer.github.io/cc-pydata">https://sedelmeyer.github.io/cc-pydata</a></p></li>
@@ -80,87 +82,90 @@
 </ul>
 </div>
 <div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#contents">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>This <a class="reference external" href="https://github.com/audreyr/cookiecutter">Cookiecutter</a> template allows for the creation of a “reasonably standardized”, but flexible project structure when starting a new Python-based data science project. The benefits of using such a structure and implementing it with Cookiecutter is that it:</p>
 <ul class="simple">
-<li><p>Takes the guesswork and low-value manual labor out of standing up a new data science project</p></li>
-<li><p>Allows you to get started right away on your data science work when starting a new project</p></li>
+<li><p>Takes the guesswork and low-value manual labor out of standing up a new data science project,</p></li>
+<li><p>Allows you to get started right away on your data science work when starting a new project,</p></li>
 <li><p>Creates a sense of consistency across your projects, making it easier for yourself and others to interpret and replicate your analyses and findings.</p></li>
 </ul>
 </div>
 <div class="section" id="design-decisions">
-<h2>Design decisions<a class="headerlink" href="#design-decisions" title="Permalink to this headline">¶</a></h2>
+<span id="design"></span><h2><a class="toc-backref" href="#contents">Design decisions</a><a class="headerlink" href="#design-decisions" title="Permalink to this headline">¶</a></h2>
 <p>While I have attempted to embed Python best practices and standards into the design of this template, best practices and standards change over time. What’s more, this template is designed to formalize the workflows (see <a class="reference internal" href="#getting-started">Getting started</a>) and leverage the tools (see <a class="reference internal" href="#features">Features</a>) that work best for me across a wide range of projects. If you choose to adopt this template for your own use, you may find these workflows and tools do not work for you without making some changes yourself. For that reason, please feel free to fork and modify your own version of this project.</p>
 <div class="section" id="inspiration-and-sources">
-<span id="sources"></span><h3>Inspiration and sources<a class="headerlink" href="#inspiration-and-sources" title="Permalink to this headline">¶</a></h3>
-<p>To begin this project, I took note of the workflows and design decisions I began repeating across a number of my projects, portions of which were heavily inspired by methods I had learned from others and from patterns codified by other great Cookiecutter templates.</p>
-<p>For this reason, this template takes inspiration and borrows heavily from these other fabulous Cookiecutter templates available on GitHub:</p>
+<span id="sources"></span><h3><a class="toc-backref" href="#contents">Inspiration and sources</a><a class="headerlink" href="#inspiration-and-sources" title="Permalink to this headline">¶</a></h3>
+<p>When I started building this project, I took note of the workflows and design decisions I began repeating across a number of my Python-based analysis projects. Many of those workflows and decisions were inspired by methods I had learned from others and from patterns codified by other great Cookiecutter templates.</p>
+<p>As a result, this template takes inspiration and borrows heavily from these other fabulous Cookiecutter templates available on GitHub:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/drivendata/cookiecutter-data-science">drivendata/cookiecutter-data-science</a></p></li>
 <li><p><a class="reference external" href="https://github.com/ionelmc/cookiecutter-pylibrary">ionelmc/cookiecutter-pylibrary</a></p></li>
 </ul>
 <p>For additional background on these other projects and to better understand the elements of both that appealed most to me, please read:</p>
 <ul class="simple">
-<li><p>Ionel’s packaging thoughts outlined in his posts on <a class="reference external" href="https://blog.ionelmc.ro/2014/05/25/python-packaging/">Packaging a python library</a> and <a class="reference external" href="https://blog.ionelmc.ro/2014/06/25/python-packaging-pitfalls/">Packaging pitfalls</a></p></li>
-<li><p>Driven Data’s fabulous write-up on <a class="reference external" href="https://drivendata.github.io/cookiecutter-data-science/">Cookiecutter Data Science</a></p></li>
+<li><p>Ionel Cristian Mărie’s articles on <a class="reference external" href="https://blog.ionelmc.ro/2014/05/25/python-packaging/">Packaging a python library</a> and <a class="reference external" href="https://blog.ionelmc.ro/2014/06/25/python-packaging-pitfalls/">Packaging pitfalls</a>,</p></li>
+<li><p>Driven Data’s fabulous write-up on the <a class="reference external" href="https://drivendata.github.io/cookiecutter-data-science/">Cookiecutter Data Science</a> template.</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="features">
-<span id="id1"></span><h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2><a class="toc-backref" href="#contents">Features</a><a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<p>The default <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template makes use of the following tools and features:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://pipenv.readthedocs.io/en/latest/#">Pipenv</a> for package management and for generating a repeatable environment</p></li>
-<li><p><a class="reference external" href="http://travis-ci.com/">Travis-CI</a> for continuous testing</p></li>
-<li><p>Version configuration with <a class="reference external" href="https://github.com/pypa/setuptools_scm/">setuptools_scm</a></p></li>
-<li><p>Out-of-the-box (and easily modified) <code class="docutils literal notranslate"><span class="pre">logging</span></code> configuration</p></li>
-<li><p>Packaging of modules, installed into your working environment as an editable library (i.e. <code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">.</span></code>) and easily imported into Jupyter notebooks with natural syntax such as <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">module_name</span> <span class="pre">import</span> <span class="pre">function_name</span></code></p></li>
+<li><p><a class="reference external" href="https://pipenv.readthedocs.io/en/latest/#">Pipenv</a> for package management and for generating a repeatable environment;</p></li>
+<li><p>Automated testing using <a class="reference external" href="https://tox.readthedocs.io/en/latest/">Tox</a>;</p></li>
+<li><p><a class="reference external" href="http://travis-ci.com/">Travis-CI</a> for continuous integration;</p></li>
+<li><p>Versioning with <a class="reference external" href="https://github.com/pypa/setuptools_scm/">setuptools_scm</a>;</p></li>
+<li><p>Out-of-the-box and easily modified <code class="docutils literal notranslate"><span class="pre">logging</span></code> functionality;</p></li>
+<li><p>Packaging of your custom source code, installed into your working environment as an editable library (i.e. <code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">.</span></code>) and easily imported into Jupyter notebooks with natural syntax such as <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">module_name</span> <span class="pre">import</span> <span class="pre">function_name</span></code>;</p></li>
 <li><p>Project documentation generated using <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> and <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">reStructuredText</a>, ready for hosting alongside your project on GitHub pages.</p></li>
 </ul>
-<p>To see functionality anticipated for future versions of the <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template, please see <a class="reference internal" href="changelog.html#future-releases"><span class="std std-ref">Future releases</span></a>.</p>
+<p>To see functionality anticipated for future versions of the <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template, please see <a class="reference external" href="https://sedelmeyer.github.io/cc-pydata/changelog.html#future-releases">the Changelog notes regarding future-releases</a>.</p>
 </div>
 <div class="section" id="requirements">
-<span id="id2"></span><h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2><a class="toc-backref" href="#contents">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="basic-prerequisites">
-<h3>Basic prerequisites<a class="headerlink" href="#basic-prerequisites" title="Permalink to this headline">¶</a></h3>
-<p>This template and resulting <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project has been observed to work with the following installed dependencies. However, I suspect it will will work with a broader range of versions than are shown here:</p>
+<h3><a class="toc-backref" href="#contents">Basic prerequisites</a><a class="headerlink" href="#basic-prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>This template and resulting <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project has been tested to work with the following installed dependencies. However, I suspect it will will work with a broader range of <code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code> and <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> versions than are shown here:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">&gt;=</span> <span class="pre">3.7</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">&gt;=</span> <span class="pre">3.6</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cookiecutter</span> <span class="pre">&gt;=</span> <span class="pre">1.7</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">&gt;=</span> <span class="pre">2018-11-26</span></code></p></li>
 </ul>
+<p>For an in-depth review of testing perfomed on this project, please see <a class="reference external" href="https://sedelmeyer.github.io/cc-pydata/about.html#project-testing-and-test-api">the write-up I have provided on “Project testing and the test API”</a>.</p>
 <div class="section" id="installing-cookiecutter">
-<h4>Installing <code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code><a class="headerlink" href="#installing-cookiecutter" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#contents">Installing <code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code></a><a class="headerlink" href="#installing-cookiecutter" title="Permalink to this headline">¶</a></h4>
 <p>In order to generate this template, you will need <code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code> installed on your machine. For instruction on how to install this, please see the <a class="reference external" href="https://cookiecutter.readthedocs.io/en/1.7.2/installation.html">Cookiecutter installation documentation</a>.</p>
 </div>
 <div class="section" id="installing-pipenv">
-<h4>Installing <code class="docutils literal notranslate"><span class="pre">pipenv</span></code><a class="headerlink" href="#installing-pipenv" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#contents">Installing <code class="docutils literal notranslate"><span class="pre">pipenv</span></code></a><a class="headerlink" href="#installing-pipenv" title="Permalink to this headline">¶</a></h4>
 <p>In addition, because the resulting <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project template is configured to use <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> for package management, you will also want to enure that you have <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> installed on your machine. For more information on <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> please see <a class="reference external" href="https://pipenv.pypa.io/en/latest/">the documentation</a>. For instructions on how to properly install <code class="docutils literal notranslate"><span class="pre">pipenv</span></code>, please see <a class="reference external" href="https://pipenv.pypa.io/en/latest/install/#installing-pipenv">the official installation instructions</a>.</p>
 </div>
 <div class="section" id="using-an-alternative-to-pipenv-for-package-management">
-<h4>Using an alternative to <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> for package management<a class="headerlink" href="#using-an-alternative-to-pipenv-for-package-management" title="Permalink to this headline">¶</a></h4>
-<p>If you prefer NOT to use <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> for packaging and virtual environment management in favor of an alternative such as <code class="docutils literal notranslate"><span class="pre">conda</span></code> or <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code>, you likely can do so with the resulting <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project. You will just need to modify the resulting project structure accordingly.</p>
+<h4><a class="toc-backref" href="#contents">Using an alternative to <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> for package management</a><a class="headerlink" href="#using-an-alternative-to-pipenv-for-package-management" title="Permalink to this headline">¶</a></h4>
+<p>If you prefer NOT to use <code class="docutils literal notranslate"><span class="pre">pipenv</span></code> for packaging and virtual environment management in favor of an alternative such as <code class="docutils literal notranslate"><span class="pre">conda</span></code> or <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code>, you will need to modify the resulting template structure accordingly.</p>
 </div>
 </div>
 </div>
 <div class="section" id="getting-started">
-<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#contents">Getting started</a><a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="initiate-the-cc-pydata-template-using-cookiecutter">
-<h3>Initiate the <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template using Cookiecutter<a class="headerlink" href="#initiate-the-cc-pydata-template-using-cookiecutter" title="Permalink to this headline">¶</a></h3>
-<p>Once you have met the basic requirements listed above, generating a new Cookiecutter PyData project skeleton is as easy as executing this in your command line:</p>
+<h3><a class="toc-backref" href="#contents">Initiate the <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> template using Cookiecutter</a><a class="headerlink" href="#initiate-the-cc-pydata-template-using-cookiecutter" title="Permalink to this headline">¶</a></h3>
+<p>Once you have met the basic requirements listed above, generating a new <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project template is as easy as executing this in your command line:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cookiecutter</span> <span class="n">gh</span><span class="p">:</span><span class="n">sedelmeyer</span><span class="o">/</span><span class="n">cc</span><span class="o">-</span><span class="n">pydata</span>
 </pre></div>
 </div>
-<p>Alternatively, if you have a local working copy of the <code class="docutils literal notranslate"><span class="pre">cookiecutter-pydata</span></code> project in which you’ve made customizations to the template, you can run:</p>
+<p>Alternatively, if you have a local working copy of the <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> project in which you have made customizations to the template, you can run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cookiecutter</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">directory</span><span class="o">&gt;/</span><span class="n">cc</span><span class="o">-</span><span class="n">pydata</span>
 </pre></div>
 </div>
-<p><strong>For a complete overview on how to generate and configure your Cookiecutter PyData data science project,</strong> please see <a class="reference external" href="https://sedelmeyer.github.io/cc-pydata/tutorial.html">this project’s full tutorial</a>.</p>
+<p><strong>For a complete overview on how to generate and configure your</strong> <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> <strong>data science project,</strong> please see <a class="reference external" href="https://sedelmeyer.github.io/cc-pydata/tutorial.html">this project’s full tutorial</a>.</p>
 </div>
 </div>
 <div class="section" id="cc-pydata-directory-structure">
-<h2><code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> directory structure<a class="headerlink" href="#cc-pydata-directory-structure" title="Permalink to this headline">¶</a></h2>
-<p>Below is a high level overview of the resulting directory structure when you generate a Cookiecutter PyData data science project.</p>
-<p><strong>For a complete overview of the resulting project directory,</strong> please see <a class="reference external" href="https://sedelmeyer.github.io/cc-pydata/tutorial.html">this project’s full tutorial</a>.</p>
+<h2><a class="toc-backref" href="#contents"><code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> directory structure</a><a class="headerlink" href="#cc-pydata-directory-structure" title="Permalink to this headline">¶</a></h2>
+<p>Below is a high level overview of the resulting directory structure when you generate a <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code> data science project template.</p>
+<p><strong>For a complete overview of the resulting project directory,</strong> please see <a class="reference external" href="https://sedelmeyer.github.io/cc-pydata/tutorial.html#cc-pydata-project-template-structure">the full directory map provided in the tutorial</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cc-pydata Project Directory
 │
 ├── README.rst         &lt;- The top-level README for developers using
@@ -174,37 +179,38 @@
 ├── .env               &lt;- Sets project-specific environment
 │                         variables such as credentials that you
 │                         do not want committed to Git history
-├── data               &lt;- All data files related to the project.
+├── data/              &lt;- All data files related to the project.
 │                         Files contained in this directory are
 │                         ommitted from Git history via the
 │                         .gitignore file
-├── docs               &lt;- A default Sphinx project for generating
+├── docs/              &lt;- A default Sphinx project for generating
 │                         documentation
-├── models             &lt;- Trained and serialized models, model
+├── models/            &lt;- Trained and serialized models, model
 │                         predictions, or model summaries
-├── notebooks          &lt;- Jupyter notebooks, named using a number
+├── notebooks/         &lt;- Jupyter notebooks, named using a number
 │                         and descriptive title so sequential run
 │                         order and purpose are explicit, e.g.
 │                         `001-EDA-property-assessments`
-├── references         &lt;- Data dictionaries, manuals, and all
+├── references/        &lt;- Data dictionaries, manuals, and all
 │                         other explanatory materials
-├── reports            &lt;- Generated analysis as HTML, LaTeX, etc.
-├── src                &lt;- Source code for use in this project
+├── reports/           &lt;- Generated analysis as HTML, LaTeX, etc.
+├── src/               &lt;- Source code for use in this project
 ├── .travis.yml        &lt;- Configuration for Travis-CI services
 │                         (see travis-ci.com)
 ├── logging.json       &lt;- Default logging configuration dictionary
 ├── setup.py           &lt;- Setup script for the project using
 │                         setuptools
-└── setup.cfg          &lt;- contains option defaults for setup.pydata
-                          commands
+├── setup.cfg          &lt;- contains option defaults for setup.pydata
+│                         commands
+└── tox.ini            &lt;- Default tox-automated test configuration
 </pre></div>
 </div>
 </div>
 <div class="section" id="other-resources">
-<span id="id3"></span><h2>Other resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2><a class="toc-backref" href="#contents">Other resources</a><a class="headerlink" href="#other-resources" title="Permalink to this headline">¶</a></h2>
 <p>For further reading, please see <a class="reference external" href="https://sedelmeyer.github.io/cc-pydata/tutorial.html">this project’s full tutorial</a> as well as these other useful resources:</p>
 <div class="section" id="cookiecutter-resources">
-<h3>Cookiecutter resources<a class="headerlink" href="#cookiecutter-resources" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#contents">Cookiecutter resources</a><a class="headerlink" href="#cookiecutter-resources" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The <a class="reference external" href="https://github.com/audreyr/cookiecutter">Cookiecutter</a> project on GitHub</p></li>
 <li><p>The official <a class="reference external" href="https://cookiecutter.readthedocs.io/en/1.7.2/">Cookiecutter project documentation</a></p></li>
@@ -213,17 +219,18 @@
 </ul>
 </div>
 <div class="section" id="tools-leveraged-by-cc-pydata">
-<h3>Tools leveraged by <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code><a class="headerlink" href="#tools-leveraged-by-cc-pydata" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#contents">Tools leveraged by <code class="docutils literal notranslate"><span class="pre">cc-pydata</span></code></a><a class="headerlink" href="#tools-leveraged-by-cc-pydata" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://pipenv.readthedocs.io/en/latest/#">Pipenv</a> for package and virtual environment management</p></li>
 <li><p><a class="reference external" href="http://travis-ci.com/">Travis-CI</a> for continuous integration</p></li>
 <li><p><a class="reference external" href="https://github.com/pypa/setuptools_scm/">setuptools_scm</a> for project versioning</p></li>
 <li><p><a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> and <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">reStructuredText</a> for authoring project documentation</p></li>
-<li><p><a class="reference external" href="http://pytest.org/">Pytest</a> for use as a Python test runner</p></li>
+<li><p><a class="reference external" href="http://pytest.org/">Pytest</a> for use as a Python test-runner</p></li>
+<li><p><a class="reference external" href="https://tox.readthedocs.io/en/latest/">Tox</a> for automated test configuration and matrix testing on multiple versions of Python</p></li>
 </ul>
 </div>
 <div class="section" id="articles-related-to-python-packaging">
-<h3>Articles related to Python packaging<a class="headerlink" href="#articles-related-to-python-packaging" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#contents">Articles related to Python packaging</a><a class="headerlink" href="#articles-related-to-python-packaging" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://blog.ionelmc.ro/2014/05/25/python-packaging/">Packaging a python library</a></p></li>
 <li><p><a class="reference external" href="https://blog.ionelmc.ro/2014/06/25/python-packaging-pitfalls/">Packaging pitfalls</a></p></li>
@@ -264,7 +271,7 @@
 
 
 
-<p class="blurb">Cookiecutter PyData (cc-pydata) is a template for generating "reasonably standardized" skeletons for Python-based data science projects.</p>
+<p class="blurb">Cookiecutter PyData (i.e. cc-pydata) is a template for generating "reasonably standardized" skeletons for Python-based data science projects.</p>
 
 
 
@@ -303,6 +310,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About this project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 </ul>
 
