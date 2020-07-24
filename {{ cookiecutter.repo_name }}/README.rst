@@ -3,8 +3,8 @@
 
 {{ cookiecutter.project_short_description }}
 {% if cookiecutter.travis == 'yes' %}
-.. image:: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.distribution_name }}.svg?branch=master
-    :target: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.distribution_name }}
+.. image:: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}.svg?branch=master
+    :target: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}
 {% else -%}
 {%- endif %}
 
@@ -25,14 +25,14 @@ Analysis and findings
 
 The analysis and findings associated with this project can be found here:
 
-https://{{ cookiecutter.github_username}}.github.io/{{ cookiecutter.distribution_name }}
+https://{{ cookiecutter.github_username}}.github.io/{{ cookiecutter.repo_name }}
 
 Source code documentation
 -------------------------
 
 Documentation for the python modules built specifically for this analysis (i.e. modules located in the ``./src/`` directory of this project) can be found here:
 
-https://{{ cookiecutter.github_username}}.github.io/{{ cookiecutter.distribution_name }}/modules.html
+https://{{ cookiecutter.github_username}}.github.io/{{ cookiecutter.repo_name }}/modules.html
 
 .. _replication:
 

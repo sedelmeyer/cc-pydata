@@ -12,6 +12,15 @@ Future releases
     * Improve template README.rst placeholder instructions
     * Create a ``gh-pages`` script to automate docs publishing steps
 
+v0.3.1 (2020-07-23)
+-------------------
+
+* Add GitHub actions build test to project
+* Add ``logfunc`` exception handling to prevent errors when decorated function contains no docstring
+* Fix ``jinja`` variables in Travis badge and GitHub URLs to prevent error when ``distribution_name`` and ``repo_name`` differ
+* Fix template ``tox.ini`` to include ``src`` in ``flake8`` linting test
+
+
 v0.3.0 (2020-06-29)
 -------------------
 
